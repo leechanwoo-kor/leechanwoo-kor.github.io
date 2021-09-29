@@ -17,7 +17,7 @@ minimal_mistakes_skin    : "dirt"
 
 # Site Settings
 locale                   : "ko-KR"
-title                    : "leechanwoo-kor Blog"
+title                    : "Release notes for"
 title_separator          : "-"
 subtitle                 : "leechanwoo-kor" # site tagline that appears below site title in masthead
 name                     : "이찬우(LEE CHANWOO)"
