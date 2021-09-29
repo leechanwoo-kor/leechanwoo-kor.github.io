@@ -20,14 +20,14 @@ locale                   : "ko-KR"
 title                    : "leechanwoo-kor Blog"
 title_separator          : "-"
 subtitle                 : "leechanwoo-kor" # site tagline that appears below site title in masthead
-name                     : "이찬우(Charles Lee)"
+name                     : "이찬우(LEE CHANWOO)"
 description              : "An amazing website."
 url                      : "https://leechanwoo-kor.github.io" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : "https://github.com/leechanwoo-kor/leechanwoo-kor.github.io.git" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 logo                     : # path of logo image to display in the masthead, e.g. "/assets/images/88x88.png"
-masthead_title           : "LEECHANWOO-KOR" # overrides the website title displayed in the masthead, use " " for no title
+masthead_title           : "Release notes for" # overrides the website title displayed in the masthead, use " " for no title
 # breadcrumbs            : false # true, false (default)
 words_per_minute         : 200
 comments:
@@ -104,7 +104,7 @@ analytics:
 author:
   name             : "Lee Chanwoo"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "I am an **amazing** person!!!"
+  bio              : "**📝 Blog 2021 version 1.0.1**<br>**🔖 Sep 29, 2021**"
   location         : "Republic of Korea"
   email            :
   links:
