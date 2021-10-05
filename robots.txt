@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://leechanwoo-kor.github.io/sitemap.xml
