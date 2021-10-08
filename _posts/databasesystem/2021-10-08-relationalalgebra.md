@@ -52,8 +52,8 @@ toc_icon: "sticky-note"
 
 - 일반 집합 연산자
 	- Relation이 Tuple의 **set**이라는 개념을 이용하며, 수학의 집합 연산자를 차용한다
-	- 조건: 피연산자가 두 개이며, **합병가능(Union-compatible)이어야 한다
-	- **합병가능(Union-compatible)
+	- 조건: 피연산자가 두 개이며, **합병가능(Union-compatible)**이어야 한다
+	- **합병가능(Union-compatible)**
 		- 필드 수가 같아아 한다 (속성의 개수)
 		- 왼쪽에서 부터 오른쪽으로 차례대로 대응하는 필드의 동일한 도메인을 가지고 있어야 한다 (도메인이 같으면 이름은 달라도 됨)
 
@@ -190,16 +190,5 @@ Cartesian Product는 두 Relation의 구조가 달라도 가능하다<br>
 
 - 각 combining시 **Name conflict(이름 충돌)**이 그림과 같이 빈번히 일어날 수 있다
 	- 이는 User, DBA 모두에게 모호할 수 있어, 명시적으로 이름을 바꾸는 데 사용한다
-
-**💡**<br>
-Bag vs Set<br>
-초기 DBMS는 Bag를 이용한 data modeling을 하였다<br>
-Bag은 한마디로, 중복을 허용하는 집합 개념이다<br>
-그렇기 때문에 implementation 관점에서,<br>
-Set을 이용한 것보다 효율이 좋다<br>
-(두 Relation을 합칠 경우 복사해서 붙여넣기만 하면 된다)<br>
-현재는 Data의 종류에 따라 저장 방법이 매우 다르므로<br>
-이 두가지를 적절히 사용한다 (All과 Distinct 개념)<br>
-{: .notice--primary}
 
 ---
