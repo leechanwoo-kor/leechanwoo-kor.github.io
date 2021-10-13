@@ -31,10 +31,8 @@ toc_icon: "sticky-note"
     - 고객 레코드가 임의의 순서로 저장된다고 가정 → 힙(Heap) 파일로 저장
 
 ```
-
     SELECT *
       FROM customer
-
 ```
 
 - 이 힙(Heap) 파일은 모든 고객 레코드 모음에 대해 효율적으로 전체 스캔을 지원함
@@ -45,11 +43,9 @@ toc_icon: "sticky-note"
     - 아니다 → 너무 느림
 
 ```
-
     SELECT *
       FROM customer
      WHERE age = 40
-    
 ```
 
 <br>
@@ -57,19 +53,15 @@ toc_icon: "sticky-note"
 - 다음 두 쿼리를 보면
 
 ```
-
     SELECT cid, name
       FROM customer
      WHERE age > 40
-
 ```
 
 ```
-
     SELECT cid, name
       FROM customer
   ORDER BY age ASC
-
 ```
 
 - 위의 두 쿼리 속도를 높이기 위해 고객 테이블을 구성하는 방법은 무엇인가?
@@ -86,11 +78,9 @@ toc_icon: "sticky-note"
 - 이 쿼리에는 **cid** 필드를 기준으로 정렬된 파일 조직이 필요
 
 ```
-
     SELECT cid, name, age
       FROM customer
      WHERE 100 < cid < 9999
-
 ```
 
 - 고객 테이블에 대한 파일을 **age** 로 정렬하면 위 쿼리에 전혀 도움이 되지 않을 수 있음
@@ -102,48 +92,38 @@ toc_icon: "sticky-note"
 - Scan: 파일의 모든 레코드를 읽음
 
 ```
-
     SELECT *
       FOMR R
-
 ```
 
 - Equality Search: 파일에서 같음(=) 조건을 만족하는 레코드를 찾음
 
 ```
-
     SELECT *
       FROM R
      WHERE A = 30
-
 ```
 
 - Range Search: 범위(<, >, <=, .. ) 조건을 만족하는 레코드를 찾음
 
 ```
-
     SELECT *
       FROM R
      WHERE A > 50
-
 ```
 
 - Insert: 파일에 새로운 레코드를 삽입함
 
 ```
-
     INSERT INTO R
          VALUES < . . . >
-
 ```
 
 - Delete: 파일에서 레코드를 삭제함
 
 ```
-
     DELETE FROM R
           WHERE A = 30
-
 ```
 
 <br>
@@ -326,12 +306,10 @@ Index File : Exercise
     - 고객(아이디, 이름, 나이, 전화번호, 급여)
 
 ```
-
     SELECT 이름, 전화번호
       FROM 고객
      WHERE 나이 > 50
        AND 급여 = 5000
-
 ```
 
 - 고객은 '나이'별로 정렬, 그런 다음 두 개의 인덱스를 작성하여 이 쿼리에 효율적으로 답할 수 있음
@@ -363,7 +341,6 @@ Two-Level Index : Clustered{: .text-center}
 - **F** 값은 **모든** 지수 수준에서 **동일**
 - **r1** : 1단계 인덱스의 데이터 항목 수
 ```
-
            1레벨: r1/F 블록
            2레벨: r1/F2 블록
            3단계: r1/F3 블록
@@ -371,7 +348,6 @@ Two-Level Index : Clustered{: .text-center}
            . . .
 
            n 레벨: r1/Fn 블록
-
 ```
 - 그러면 (r1/F^n) >= 1 따라서 검색 시간(n) = logF(r1)
 
