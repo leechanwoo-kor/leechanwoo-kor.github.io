@@ -248,28 +248,28 @@ toc_icon: "sticky-note"
 
 ---
 
-![image](https://user-images.githubusercontent.com/55765292/137048889-5bfee479-10f1-4608-8ebd-6ede2f8defc6.png){: width="80%" height="80%"}{: .align-center}
+![image](https://user-images.githubusercontent.com/55765292/137048889-5bfee479-10f1-4608-8ebd-6ede2f8defc6.png){: width="40%" height="40%"}{: .align-center}
 
 Clustered/Sparse Index : Key
 {: .text-center}
 
 <br>
 
-![image](https://user-images.githubusercontent.com/55765292/137049057-8b39d0bc-3b86-4310-9162-cb4e4a7f10d2.png){: width="80%" height="80%"}{: .align-center}
+![image](https://user-images.githubusercontent.com/55765292/137049057-8b39d0bc-3b86-4310-9162-cb4e4a7f10d2.png){: width="40%" height="40%"}{: .align-center}
 
 Clustered/Sparse Index : Non-Key
 {: .text-center}
 
 <br>
 
-![image](https://user-images.githubusercontent.com/55765292/137049168-eec1c8bb-a494-4cda-8e67-3ee56cc5b79c.png)
+![image](https://user-images.githubusercontent.com/55765292/137049168-eec1c8bb-a494-4cda-8e67-3ee56cc5b79c.png){: width="40%" height="40%"}{: .align-center}
 
 Unclustered/Dense Index : Key
 {: .text-center}
 
 <br>
 
-![image](https://user-images.githubusercontent.com/55765292/137049392-7c6511e5-a77f-4e98-b45b-60e7db02c18a.png){: width="80%" height="80%"}{: .align-center}
+![image](https://user-images.githubusercontent.com/55765292/137049392-7c6511e5-a77f-4e98-b45b-60e7db02c18a.png){: width="40%" height="40%"}{: .align-center}
 
 Unclustered/Dense Index : Non-Key
 {: .text-center}
