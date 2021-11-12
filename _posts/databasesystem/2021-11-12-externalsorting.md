@@ -13,11 +13,7 @@ toc_icon: "sticky-note"
 
 # Database System
 
-<br>
-
 ## Extenal Sorting
-
-<br>
 
 ### Why Sorting
 
@@ -82,23 +78,21 @@ toc_icon: "sticky-note"
 
 ## Internal Sorting
 
-<br>
-
 ### Example: Selection Sorting
 
-![image](https://user-images.githubusercontent.com/55765292/141417039-f905ca27-b834-45b1-af59-960ce3ed659a.png){: width="80%" height="80%"}{: .align-center}
+![image](https://user-images.githubusercontent.com/55765292/141417039-f905ca27-b834-45b1-af59-960ce3ed659a.png){: width="50%" height="50%"}{: .align-center}
 
 <br>
 
-### Example: Selection Sorting
+### Example: Bubble Sorting
 
-- Bubble Sorting
-
-![image](https://user-images.githubusercontent.com/55765292/141417104-9e3d2f02-a6e7-465f-ba59-a6f5d0a7e572.png){: width="80%" height="80%"}{: .align-center}
+![image](https://user-images.githubusercontent.com/55765292/141417104-9e3d2f02-a6e7-465f-ba59-a6f5d0a7e572.png){: width="50%" height="50%"}{: .align-center}
 
 <br>
 
 ### Comparison: Internal Sorting
+
+<br>
 
 ![image](https://user-images.githubusercontent.com/55765292/141417700-c3e08438-aa99-4c5a-b017-54ff9086c85c.png){: width="80%" height="80%"}{: .align-center}
 
@@ -112,3 +106,26 @@ toc_icon: "sticky-note"
 <br>
 
 ## External Sorting
+
+- 크기가 사용 가능한 메인 메모리 공간(즉, 데이터 크기 >> 메모리 크기)을 초과하는 레코드 파일을 정렬하려면 어떻게 해야할까?
+- 내부 정렬을 사용하여 다음 파일을 정렬할 수 있을까?
+    - 파일 크기는 1GB입니다.(각 100바이트에 10^7개의 레코드)
+    - 사용 가능한 메인 메모리 크기는 50MB입니다.
+    - 페이지 크기: 4,096(2^12)바이트
+    - 한 페이지에 40개의 레코드 저장, 이 파일에는 **250,000**페이지가 필요합니다.
+    - 메인 메모리는 **12,800**페이지를 저장할 수 있습니다.(=50*20^20/2^12)
+- 전체 파일이 메인 메모리에 맞지 않더라도 정렬할 수 있습니다.
+    1. 더 작은 하위 파일로 나눕니다.
+    2. 이 하위 파일을 정렬합니다. 정렬된 각 서브파일을 "**실행(run)**"이라고 합니다.
+    3. 최소 크기의 메인 메모리를 사용하여 merge 실행
+- 디크스와 메인 메모리 사이에서 각 페이지를 여러번 이동해야 합니다.
+
+<br>
+
+- 외부 정렬에 대한 접근 방식
+    1. 3페이지의 버퍼 공간이 모두 사용 가능한 경우에도 임의 크기의 파일 정렬이 가능합니다.
+    2. 더 크고 따라서 더 현실적인 버퍼 크기(예: **B > 3**페이지)를 효과적으로 사용하도록 이 알고리즘을 수정합니다.
+- 외부 정렬 최적화
+    1. I/O 수 감소
+    2. 평균 I/O 비용 절감
+- 주요 관심사는 I/O 수를 줄이는 것입니다.
