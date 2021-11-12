@@ -140,17 +140,17 @@ toc_icon: "sticky-note"
 - Pass 1, 2, ... : 한번에 두 개의 **실행** 병합 : **병합** 단계
     - **세 개**의 버퍼 페이지가 사용되었습니다. (입력용 2개, 출력용 1개)
 
-![image](https://user-images.githubusercontent.com/55765292/141429720-4ab22f12-b99f-4ad6-b8d4-142782acc514.png){: width="50%" height="50%"}{: .align-center}
+![image](https://user-images.githubusercontent.com/55765292/141429720-4ab22f12-b99f-4ad6-b8d4-142782acc514.png){: width="80%" height="80%"}{: .align-center}
 
 <br>
 
-![image](https://user-images.githubusercontent.com/55765292/141429886-b735073a-92b5-4104-9df9-1ca47dc0f607.png){: width="50%" height="50%"}{: .align-center}
+![image](https://user-images.githubusercontent.com/55765292/141429886-b735073a-92b5-4104-9df9-1ca47dc0f607.png){: width="80%" height="80%"}{: .align-center}
 
 - 참고: 실행은 (많은) 정렬된 페이지가 있는 논리적 청크입니다.
 
 <br>
 
-![image](https://user-images.githubusercontent.com/55765292/141430120-9b26ddff-a727-49bd-931d-7b357e31a009.png){: width="50%" height="50%"}{: .align-center}
+![image](https://user-images.githubusercontent.com/55765292/141430120-9b26ddff-a727-49bd-931d-7b357e31a009.png){: width="80%" height="80%"}{: .align-center}
 
 - 참고: 실제 정렬은 패스 0에서 한 번만 발생합니다. 각 병합 패스 후에 실행 크기는 두 배가되지만 실행 수는 절반으로 줄어듭니다.
 
@@ -179,13 +179,13 @@ toc_icon: "sticky-note"
     1. 메모리 내 정렬 중에 전체 버퍼 공간(예: **B** 페이지)을 사용하여 **초기 실행 횟수를 줄입니다.**
     2. 한 번에 **두 개 이상의 실행**(예: B-1개의 실행)을 병합하여 **패스 수를 줄입니다.**
 
-![image](https://user-images.githubusercontent.com/55765292/141431732-4b31e598-6f05-4bdd-844c-d4ea8ac157c7.png){: width="50%" height="50%"}{: .align-center}
+![image](https://user-images.githubusercontent.com/55765292/141431732-4b31e598-6f05-4bdd-844c-d4ea8ac157c7.png){: width="80%" height="80%"}{: .align-center}
 
 - 가능한 한 큰 초기 실행 크기를 구성
 - Pass 0 (**정렬**) : **B** 버퍼 페이지를 사용하여 **N** 페이지를 정렬합니다.
 - 각각 **B** 페이지의 **N/B** 정렬 실행을 생성합니다.
 
-![image](https://user-images.githubusercontent.com/55765292/141432072-005574cd-6e74-432e-8c79-72d233697123.png){: width="50%" height="50%"}{: .align-center}
+![image](https://user-images.githubusercontent.com/55765292/141432072-005574cd-6e74-432e-8c79-72d233697123.png){: width="80%" height="80%"}{: .align-center}
 
 - 정렬된 하위 목록을 하나의 긴 정렬 목록으로 구성합니다.
 - 1, 2, ..., K (**병합**) : 병합은 **(B-1)**개의 **INPUT 버퍼**를 사용하여 실행됩니다.
@@ -211,7 +211,7 @@ Algorithm Multi-Way Sort (file)
 
 ---
 
-![image](https://user-images.githubusercontent.com/55765292/141433351-d7abe6a0-4289-4f05-93af-efa914641083.png){: width="50%" height="50%"}{: .align-center}
+![image](https://user-images.githubusercontent.com/55765292/141433351-d7abe6a0-4289-4f05-93af-efa914641083.png){: width="80%" height="80%"}{: .align-center}
 
 - **초기 정렬 실행 횟수 (Pass 0)**
     - 메인 메모리에서 사용 가능한 **B** 페이지를 사용하여 Pass 0 동안 **N** 페이지를 읽고 내부 정렬을 사용하여 정렬합니다.
@@ -244,7 +244,7 @@ Algorithm Multi-Way Sort (file)
 
 ---
 
-![image](https://user-images.githubusercontent.com/55765292/141436094-fa952dde-f1e2-41fa-8830-d68981fa4da9.png){: width="50%" height="50%"}{: .align-center}
+![image](https://user-images.githubusercontent.com/55765292/141436094-fa952dde-f1e2-41fa-8830-d68981fa4da9.png){: width="80%" height="80%"}{: .align-center}
 
 ---
 
@@ -253,7 +253,7 @@ Algorithm Multi-Way Sort (file)
 
 <br>
 
-![image](https://user-images.githubusercontent.com/55765292/141436284-17c26312-db19-4466-b727-b038f567c3dd.png){: width="50%" height="50%"}{: .align-center}
+![image](https://user-images.githubusercontent.com/55765292/141436284-17c26312-db19-4466-b727-b038f567c3dd.png){: width="80%" height="80%"}{: .align-center}
 
 <br>
 
@@ -270,10 +270,14 @@ Algorithm Multi-Way Sort (file)
 <summary>접기/펼치기</summary>
 <div markdown="1">
 
+  
 (a) 10000/3 = 3334개의 정렬된 실행
+  
 (b) 20000/5 = 4000개의 정렬된 실행
+  
 (c) 2000000/17 = 117648개의 정렬된 실행
 
+  
 </div>
 </details>
 
@@ -284,10 +288,14 @@ Algorithm Multi-Way Sort (file)
 <summary>접기/펼치기</summary>
 <div markdown="1">
 
+  
 (a) log2(3334) + 1 = 13 패스
+  
 (b) log4(4000) + 1 = 7 패스
+  
 (c) log16(117648) + 1 = 6 패스
 
+  
 </div>
 </details>
 
@@ -298,9 +306,13 @@ Algorithm Multi-Way Sort (file)
 <summary>접기/펼치기</summary>
 <div markdown="1">
 
+  
 (a) 2 * 10000 * 13 = 260,000
+  
 (b) 2 * 20000 * 7 = 280,000
+  
 (c) 2 * 2000000 * 6 = 24,000,000
 
+  
 </div>
 </details>
