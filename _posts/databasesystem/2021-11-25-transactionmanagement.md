@@ -213,24 +213,25 @@ toc_icon: "sticky-note"
 6) WRITE(B)
 ```
 
-- **원자성**
+- **원자성(Atomicity)**
     - 3) 단계 이후 및 6) 이전에 트랜잭션 T가 실패하면(S/W 또는 H/W 오류로 인해) T는 일시적으로 잘못된 A 값(즉, A = 900)을 갖습니다.
     - 시스템은 부분적으로 실행된 트랜잭션의 업데이트가 데이터베이스에 반영되지 않도록 해야 합니다.
     - T는 롤백되어야 하고(실패하기 전에 수행된 모든 작업을 취소(UNDO) 취소) A의 값을 이전 값으로 다시 변경해야 합니다(즉, A = 1,000).
 
-- **일관성**
+- **일관성(Consistency)**
     - A와 B의 합은 T의 실행에 의해 변경되지 않아야 합니다.
     - 트랜잭션 T는 실행을 시작할 때 일관된 데이터베이스를 확인해야 합니다. (즉, A = 1,000, B = 2,000)
     - 트랜잭션 실행 중 데이터베이스가 일시적으로 일치하지 않을 수 있습니다. (즉, A = 900, B = 2,000) 하지만 괜찮습니다.
     - T가 성공적으로 완료되면 데이터베이스도 일관성이 있어야 합니다(즉, A = 900, B = 2,100). 잘못된 트랜잭션 논리로 인해 불일치가 발생할 수 있습니다. 사용자의 책임!
 
-- **내구성**
+- **내구성(Durability)**
     - 사용자가 트랜잭션 T가 완료되었다는 알림을 받으면(즉, $100 전송이 발생함) 트랜잭션에 의한 데이터베이스 업데이트가 지속되어야 합니다.
     - 시스템은 A와 B의 최종 값(즉, A = 900, B = 2,100)이 H/W 장애가 있더라도 디스크에 안전하게 기록되어야 함을 보장해야 합니다. (REDO)
 
 <br>
 동시에 실행할 두 개의 트랜잭션 T1과 T2를 고려하십시오.
-    - A = 1,000, B = 2,000으로 초기값 가정
+
+- A = 1,000, B = 2,000으로 초기값 가정
 
 - T1
 
@@ -252,7 +253,7 @@ toc_icon: "sticky-note"
 6) PRINT(A+B)
 ```
 
-- **격리**
+- **격리(Isolation)**
     - 3단계와 6단계 사이에 다른 트랜잭션 T2가 부분적으로 업데이트된 데이터베이스에 액세스할 수 있는 경우 T2에 잘못된 값이 표시됩니다(즉, 합계 A + B는 $3,000 미만).
     - 트랜잭션을 직렬로 실행하여 격리를 보장할 수 있습니다. 즉, 차례로.
 
@@ -271,7 +272,7 @@ toc_icon: "sticky-note"
     - 동시성 제어를 위반하거나 다른 이유로 트랜잭션을 중단해야 합니다.
 - **Commit** : 트랜잭션이 성공적으로 종료되었습니다.
     - 트랜잭션에 의해 실행된 모든 변경 사항은 데이터베이스에 안전하게 기록될 수 있으며 실행 취소되지 않습니다.
-- **Rollback(or Abort) : 트랜잭션이 성공적으로 종료되지 않았습니다.
+- **Rollback(or Abort)** : 트랜잭션이 성공적으로 종료되지 않았습니다.
     - 트랜잭션에 의해 실행된 모든 변경 사항을 취소해야 합니다.
     - 트랜잭션을 죽여라!
 
@@ -327,16 +328,16 @@ toc_icon: "sticky-note"
 
 - 실제로 우리는 **동시성**과 **일관성**을 모두 보장함으로써 "**좋은**" schedule이 정말로 필요합니다.
 - schedule(n 트랜잭션 포함)은 일부 serial schedule과 **동일**한 경우 **serializable**할 수 있습니다. 따라서 serializable schedule도 일관됩니다.
-- n이 있습니다! 가능한 연속 일정 및 더 많은 가능한 비연속 일정; 비연속 일정을 두 개의 분리된 그룹으로 분류할 수 있습니다. serializable과 non-serializable
+- n 이 있습니다! 가능한 연속 일정 및 더 많은 가능한 비연속 일정; 비연속 일정을 두 개의 분리된 그룹으로 분류할 수 있습니다. serializable과 non-serializable
 - 그건 그렇고, "Equivalence"의 의미는 무엇입니까?; schedule들의 동등성을 정의하는 방법에는 여러 가지가 있습니다.
     - Result Equivalence (Not useful!)
     - Conflict Equivalence
     - View Equivalence
 
-![image](https://user-images.githubusercontent.com/55765292/143407656-baabe821-bc48-4cf4-a352-b952e967fc55.png){: width="80%" height="80%"}{: .align-center}
+![image](https://user-images.githubusercontent.com/55765292/143407656-baabe821-bc48-4cf4-a352-b952e967fc55.png){: width="50%" height="50%"}{: .align-center}
 
 
-### Conflicting Operations
+## Conflicting Operations
 
 - 일정의 두 **작업**은 다음 세 가지 조건을 모두 충족하는 경우 **충돌**하는 작업이라고 합니다.
     - **서로 다른 트랜잭션**에 속합니다.
@@ -363,3 +364,145 @@ toc_icon: "sticky-note"
         - T2는 T1이 이전에 **작성한** 데이터 항목을 **씁니다.**
 
 - 질문: 위의 충돌로 인해 발생한 문제는 무엇입니까?
+
+
+### Reading Uncommitted Data : WR conflicts
+
+![image](https://user-images.githubusercontent.com/55765292/143510860-79273fb3-6ece-4b86-a7eb-1a119cfe4918.png){: width="80%" height="80%"}{: .align-center}
+
+- T2는 T1이 진행 중인 동안 T1이 쓴 A의 값을 읽습니다. : Dirty Read
+
+
+### Unrepeatable Reads : RW Conflicts
+
+![image](https://user-images.githubusercontent.com/55765292/143510937-268be971-c5ac-43ce-bc65-df5a22feffcc.png){: width="80%" height="80%"}{: .align-center}
+
+- T2는 T1이 아직 진행 중인 동안 T1이 읽은 A의 값을 변경할 수 있습니다.
+- T1이 A의 값을 다시 읽으려고 하면 A를 수정하지 않았더라도 다른 결과를 얻게 됩니다.
+
+
+### Overwriting Uncommitted Data : WW Conflicts
+
+![image](https://user-images.githubusercontent.com/55765292/143510971-5b1dea90-9b09-404b-a98d-f6493e18278b.png){: width="80%" height="80%"}{: .align-center}
+
+- T2는 이미 진행 중인 T1에 의해 수정된 A의 값을 덮어썼습니다. T1에 의해 수정된 값은 손실됩니다. 이를 손실된 업데이트라고도 합니다.
+
+
+### Conflict Serializability
+
+- 두 schedules **S** 와 **S'**는 **충돌하는** 두 작업의 순서가 두 일정에 대해 **동일**한 경우 **conflict equivalent**입니다.
+
+- 즉, **충돌하지 않는** 명령어의 일련의 **교환**에 의해 일정 **S**가 일정 **S'**로 변환될 수 있다면 **S**와 **S'**는  **conflict equivalent**이라고 합니다.
+
+- 일정 **S는** 일부 직렬 일정 **S'**와 **conflict equivalent**인 경우 **conflict serializable** 가능합니다.
+
+- "**Conflicting serializable**" schedule은 **동시성**을 활용하여 항상 **일관성**을 보장할 수 있습니다.
+
+
+## Examples
+
+
+### Examples : Schedule
+
+- Serial Schedules - (a), (b)
+
+![image](https://user-images.githubusercontent.com/55765292/143511418-3148784c-a1e9-4063-a82d-45c583c6da51.png){: width="80%" height="80%"}{: .align-center}
+
+- Conflict Serializable Schedule - (c), Not Conflict Serializable Schedule - (d)
+
+![image](https://user-images.githubusercontent.com/55765292/143511451-cfe835bc-5aaa-4765-9448-63b7b0521d73.png){: width="80%" height="80%"}{: .align-center}
+
+
+### Another Examples : Schedules
+
+- T1
+
+```
+READ(A)
+A = A + 100
+WRITE(A)
+READ(B)
+B = B + 100
+WRITE(B)
+```
+
+- T2
+
+```
+READ(A)
+A = A * 2
+WRITE(A)
+READ(B)
+B = B * 2
+WRITE(B)
+```
+
+Assume Consistency Constraint
+- A와 B의 값은 같아야 합니다. 
+- 즉, A = B; A = 25, B = 25의 초기 값을 가정합니다.
+
+---
+
+**Serial Schedule**{: .text-center}
+
+![image](https://user-images.githubusercontent.com/55765292/143511670-2f681b65-38e2-4023-8f39-fe34b03819eb.png){: width="80%" height="80%"}{: .align-center}
+
+![image](https://user-images.githubusercontent.com/55765292/143511689-e48e2237-b61a-41ee-b2c2-4b5120995152.png){: width="80%" height="80%"}{: .align-center}
+
+---
+
+**Conflict Serializable Schedule**{: .text-center}
+
+![image](https://user-images.githubusercontent.com/55765292/143511748-03a08e5a-1f33-4db9-beab-359d9b0356e7.png){: width="80%" height="80%"}{: .align-center}
+
+- Schedule C 는 좋은 schedule이다
+
+![image](https://user-images.githubusercontent.com/55765292/143511780-72a33270-63ff-4690-9ac3-ae03e7e3cb74.png){: width="80%" height="80%"}{: .align-center}
+
+
+- 충돌하지 않는 작업을 바꾸는 것은 중요하지 않습니다.
+- 결국, 스케줄 C는 (T1 → T2)가 있는 일련의 스케줄과 충돌하는 것과 같습니다.
+
+---
+
+**Not Conflict Serializable Schedule**{: .text-center}
+
+![image](https://user-images.githubusercontent.com/55765292/143511927-a28b533f-8ce8-46c5-b8d3-51bd2690ecb8.png){: width="80%" height="80%"}{: .align-center}
+
+- 그러나 Schedule D 는 잘못된 schedule이다
+
+![image](https://user-images.githubusercontent.com/55765292/143511969-d3a8d71a-9cfc-4701-bbc4-d4a71aeb83f9.png){: width="80%" height="80%"}{: .align-center}
+
+- T1은 T2보다 먼저 와야 합니다(데이터 항목 A의 경우). T1 → T2
+- T2는 T1보다 먼저 와야 합니다(데이터 항목 B의 경우). T2 → T1
+- D와 동등한 다른 serial Schedule은 없습니다.
+- 따라서 스케줄 D는 conflict serializable하지 않습니다.
+
+---
+
+### Testing : Conflict Serializability
+
+- 주어진 Schedule S = {T1, T2, . . . , Tn}, precedence 그래프 G를 구성합니다.
+    - 각 트랜잭션 Ti에 대해 G에서 Ti로 표시된 꼭짓점을 만듭니다.
+    - 충돌하는 트랜잭션 Ti 및 Tj의 각 쌍에 대해 다음과 같이 가장자리를 만듭니다.
+        - Wi(X)가 Rj(X)보다 앞서면 edge를 생성(Ti → Tj)
+        - Ri(X)가 Wj(X)보다 앞서면 edge를 생성(Ti → Tj)
+        - Wi(X)가 Wj(X)보다 앞서면 edge를 생성(Ti → Tj)
+    - 그래프 G가 **acyclic**일 경우 스케줄 S는 **conflict serializable**합니다. 그 의미는; G에 **cycle**일 경우 S는 conflict serializable하지 **않습니다.**
+- 우선 순위 그래프가 **acyclic**일 경우 그래프의 **topological sorting**을 통해 serializability order를 얻을 수 있습니다. 이것은 그래프의 부분 차수와 일치하는 선형 차수입니다.
+
+![image](https://user-images.githubusercontent.com/55765292/143512868-934edaba-f033-497f-86c0-99e2bf48b406.png){: width="80%" height="80%"}{: .align-center}
+
+![image](https://user-images.githubusercontent.com/55765292/143512860-7a84810c-c8a0-417b-a357-4df86034c6a1.png){: width="80%" height="80%"}{: .align-center}
+
+
+## Use of Serializabilty
+
+
+- (Confilct) Serializable schedule은 항상 제공합니다.
+    - **Concurrency(동시성) + Consistency(일관성)**
+- 작업의 interleaving은 일반적으로 운영 체제에 의해 결정됩니다. 일반적인 영향 요인은 다음과 같습니다.
+    - 우선 순위, 제출 시간, 실행 시간 등
+- 따라서 serializability 테스트를 보장하기 위해 스케줄러의 작업이 사전에 인터리브되는 방법을 결정할 수 없습니다.
+- 트랜잭션이 마음대로 실행되고 결과 schedule이 serializability에 대해 테스트되는 경우 serializable이 불가능하면 schedule을 취소해야 합니다.
+- 우리는 프로토콜 기반 접근 방식을 채택합니다. 모든 일정이 이 프로토콜을 따른다면 serializability를 테스트할 필요가 없습니다.
