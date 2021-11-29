@@ -17,7 +17,7 @@ toc_icon: "sticky-note"
 
 ### Locking Approach
 
-![image](https://user-images.githubusercontent.com/55765292/143808147-02d404e5-1c60-4c1c-ae4b-b7552f61bd01.png){: width="80%" height="80%"}{: .align-center}
+![image](https://user-images.githubusercontent.com/55765292/143808147-02d404e5-1c60-4c1c-ae4b-b7552f61bd01.png){: width="70%" height="70%"}{: .align-center}
 
 
 ### Lock-Based Protocols
@@ -35,7 +35,7 @@ toc_icon: "sticky-note"
 
 ### Compatible Locking Table
 
-![image](https://user-images.githubusercontent.com/55765292/143809366-8e3a08b0-2c22-4d26-8e19-cf6a955adad4.png){: width="30%" height="30%"}{: .align-center}
+![image](https://user-images.githubusercontent.com/55765292/143809366-8e3a08b0-2c22-4d26-8e19-cf6a955adad4.png){: width="40%" height="40%"}{: .align-center}
 
 - **여러 개의** 트랜잭션이 해당 값을 **읽기** 위해 데이터 항목에 **S**-lock을 적용합니다. **하나**의 트랜잭션만 **쓰기**를 위해 데이터 항목에 **X**-lock을 적용합니다.
 - 예를 들어, Ti가 데이터 항목 A에 대해 **X**-LOCK을 보유하고 있다고 가정합니다. Tj가 A에 대해 **S**-LOCK을 요청하면 이 요청은 거부됩니다. Tj는 Ti가 **X**-LOCK을 해제할 때까지 기다려야 합니다.
@@ -164,7 +164,7 @@ UNLOCK(B)
 - 이런 locking protocol은 serializable schedule을 보장할 수 있는가?
     - 다음은 이를 위반하는 예제 이다.
 
-![image](https://user-images.githubusercontent.com/55765292/143810709-43978042-9cb7-4c51-81d5-48a7a33fadff.png){: width="80%" height="80%"}{: .align-center}
+![image](https://user-images.githubusercontent.com/55765292/143810709-43978042-9cb7-4c51-81d5-48a7a33fadff.png){: width="70%" height="70%"}{: .align-center}
 
 - 이 schedule은 직렬화할 수 없습니다(B(=150)의 최종 값이 잘못되었습니다). T1이 너무 일찍 잠금을 해제한 것 같습니다!
 
@@ -182,7 +182,7 @@ UNLOCK(B)
 - 트랜잭션은 잠금을 해제하면 추가 잠금을 요청할 수 없습니다.
 
 
-![image](https://user-images.githubusercontent.com/55765292/143811828-aa367d9b-312e-4e88-857c-cafb6102aedd.png){: width="80%" height="80%"}{: .align-center}
+![image](https://user-images.githubusercontent.com/55765292/143811828-aa367d9b-312e-4e88-857c-cafb6102aedd.png){: width="70%" height="70%"}{: .align-center}
 
 - 2PL scheduel은 **first unlocks**에 따른 serial 트랜잭션 순서와 conflict equivalent합니다. 이는 트랜잭션이 **축소** 단계에 들어가는 순서를 의미합니다.
 - schdule의 모든 트랜잭션이 **2PL을 따르는** 경우 conflict serializable합니다.
@@ -240,7 +240,7 @@ WRITE(B)
 UNLOCK(B)
 ```
 
-![image](https://user-images.githubusercontent.com/55765292/143812289-2479e73b-c05f-49ec-bd35-05a5d74a2c08.png){: width="80%" height="80%"}{: .align-center}
+![image](https://user-images.githubusercontent.com/55765292/143812289-2479e73b-c05f-49ec-bd35-05a5d74a2c08.png){: width="70%" height="70%"}{: .align-center}
 
 - 이제 스케줄 A는 serial 스케줄 T2 다음에 T1이 오는 것과 같기 때문에 conflict-serializable 합니다.
 
@@ -297,7 +297,7 @@ WRITE(B)
 UNLOCK(B)
 ```
 
-![image](https://user-images.githubusercontent.com/55765292/143812521-3028b289-fbf9-473e-99b4-a91711a619e6.png){: width="80%" height="80%"}{: .align-center}
+![image](https://user-images.githubusercontent.com/55765292/143812521-3028b289-fbf9-473e-99b4-a91711a619e6.png){: width="70%" height="70%"}{: .align-center}
 
 - 스케줄 B는 T1이 뒤따르는 serial 스케줄 T2와 동일하기 때문에 conflict-serializable 합니다.
 
@@ -308,7 +308,7 @@ UNLOCK(B)
 - 2PL은 이기적입니다. 장기 transaction에 유리할 수 있습니다.
 - T1이 A, B, C, D, E, . . , 순차적으로, T2는 B에 액세스합니다.
 
-![image](https://user-images.githubusercontent.com/55765292/143812908-93813d93-a081-467f-9a3f-9fdc735971cb.png){: width="50%" height="50%"}{: .align-center}
+![image](https://user-images.githubusercontent.com/55765292/143812908-93813d93-a081-467f-9a3f-9fdc735971cb.png){: width="40%" height="40%"}{: .align-center}
 
 - 이 시점에서 T2가 B에 대한 잠금을 요청하나 거부되었습니다.
 - T2는 T1이 모든 항목 C, D, E에 대한 모든 잠금을 해제할 때까지 기다려야 합니다...
@@ -356,14 +356,14 @@ UNLOCK(B)
 
 ### Deadlock Detection : Wait-For Graph
 
-**대기 그래프** 생성
-– 각 트랜잭션에 대해 노드를 생성합니다. Ti가 Tj를 기다리고 있는 경우 Ti에서 Tj까지 간선을 만듭니다.
-– 시스템은 교착 상태를 주기적으로 확인합니다. 결과 그래프에 주기가 있으면 교착 상태가 발생한 것입니다!
+- **대기 그래프** 생성
+    - 각 트랜잭션에 대해 노드를 생성합니다. Ti가 Tj를 기다리고 있는 경우 Ti에서 Tj까지 간선을 만듭니다.
+    - 시스템은 교착 상태를 주기적으로 확인합니다. 결과 그래프에 주기가 있으면 교착 상태가 발생한 것입니다!
  
-**피해자 선정**
-– 교착 상태를 해제하려면 주기에 있는 트랜잭션을 선택하고 중단하십시오.
-– 최소 비용의 거래를 희생양으로 선택합니다. (즉, 가장 적은 잠금, 가장 적은 작업, 완료에서 가장 먼 등)
-– 항상 동일한 트랜잭션이 희생자로 선택되면 기아(starvation)가 발생합니다.
-– 기아를 피하기 위해 중단 횟수를 계산합니다.
+- **피해자 선정**
+    - 교착 상태를 해제하려면 주기에 있는 트랜잭션을 선택하고 중단하십시오.
+    - 최소 비용의 거래를 희생양으로 선택합니다. (즉, 가장 적은 잠금, 가장 적은 작업, 완료에서 가장 먼 등)
+    - 항상 동일한 트랜잭션이 희생자로 선택되면 기아(starvation)가 발생합니다.
+    - 기아를 피하기 위해 중단 횟수를 계산합니다.
 
-![image](https://user-images.githubusercontent.com/55765292/143813838-ddb7f536-9cc4-4b8e-8ccf-4583e98df9f4.png){: width="80%" height="80%"}{: .align-center}
+![image](https://user-images.githubusercontent.com/55765292/143813838-ddb7f536-9cc4-4b8e-8ccf-4583e98df9f4.png){: width="70%" height="70%"}{: .align-center}
