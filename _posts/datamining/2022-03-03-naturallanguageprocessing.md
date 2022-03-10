@@ -103,6 +103,98 @@ The task of translating a sentence x from one language (the source language) to 
 
 ![image](https://user-images.githubusercontent.com/55765292/156530556-6071f1f0-1b59-4029-ad1e-b42724350ed3.png)
 
+![image](https://user-images.githubusercontent.com/55765292/157640577-3b8ac0ea-1346-4846-a4c2-c2d4ee1b5da5.png)
+
+### Information Retrieval
+
+the task of finding information that people want
+
+![image](https://user-images.githubusercontent.com/55765292/157640699-f8d93b5b-2ecf-4c7c-99b7-0f24c7cf63ce.png)
+
+![image](https://user-images.githubusercontent.com/55765292/157640753-7a109d70-da4f-4026-950e-48fddcb971ce.png)
+
+### Question Answering
+
+The task of answering a (natural language) question
+One of the oldest NLP taks (punched card systems in 1961)
+
+Idea: doing dependency parsing on question and searching most simillar answer
+
+![image](https://user-images.githubusercontent.com/55765292/157640946-ac5c7d87-60fd-4532-819e-ce2f2b534a53.png)
+
+![image](https://user-images.githubusercontent.com/55765292/157640966-d17ce238-4212-4b71-9ff8-ad1cdc8c34db.png)
+
+### Dialogue Systems
+
+The task of generating a response for making a conversation with human
+
+**Turing test**
+
+![image](https://user-images.githubusercontent.com/55765292/157641133-41ed7077-080c-4cc1-b964-9be8cabb70f5.png)
+
+Ability to understand and generate language - intelligence
+"Can machine think?"
+
+### Information Extraction
+
+The task of extracting structured information from unstructured documents
+
+![image](https://user-images.githubusercontent.com/55765292/157641334-52331edd-829f-4c80-80c3-591151230611.png)
+
+### Named Entity Recognition
+
+- Find entities in text
+- Classify entities in text
+- Example)
+
+![image](https://user-images.githubusercontent.com/55765292/157641523-f2a4ed20-b841-4cde-b871-0cc100d5c824.png)
+
+![image](https://user-images.githubusercontent.com/55765292/157641560-d204af48-bf1e-478a-8e31-5f11526da122.png)
+
+### Summarization
+
+The task of creating a summnary that represents the most importnat or relevant information within original text
+
+![image](https://user-images.githubusercontent.com/55765292/157641696-65e487a7-b50f-4100-9e76-b3b088367e4d.png)
+
+![image](https://user-images.githubusercontent.com/55765292/157641717-5920599e-2ab0-4469-9002-c0a7b2018d86.png)
+
+### Sentiment Analysis
+
+The task of classifying emotions in subjective data
+
+![image](https://user-images.githubusercontent.com/55765292/157641824-5803acae-ab37-4495-b38c-85e355654497.png)
+
+- Fine-grained sentiment analysis
+  - Identify a category of sentiment
+  - Ex) very positive, positive, neutral, negative, very negative
+- Emotion detection
+  - Identify emotions
+  - Ex) happiness, frustration, anger, sadness, ...
+- Aspect-based sentiment analysis
+  - Identify a category of sentiment in terms of aspect
+  - Ex) "The CPU is fast. The battery runs fast."
+
+![image](https://user-images.githubusercontent.com/55765292/157642174-dc3a9e66-91bc-482f-9f40-dd90fb0c5322.png)
+
+
+## Challenges in NLP
+
+### Learn bias
+
+### Lack of Reasoning
+
+### enerate rude response
+
+
+## Why NLP is hard?
+- Ambiguity
+- Expressivity
+- Scale
+- Variation
+- Sparsity
+- Unmodeled variables
+- Unknown representations
 
 
 
