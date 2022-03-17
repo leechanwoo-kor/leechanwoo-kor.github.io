@@ -1,13 +1,14 @@
 ---
-title: "[NLP] Word Representation"
+title: "[NLP] Word Representation (1)"
 categories:
   - NLP
 tags:
   - Word Representation
   - Word2Vec
+  - FastText
 toc: true
 toc_sticky: true
-toc_label: "Word Representation"
+toc_label: "Word Representation (1)"
 toc_icon: "sticky-note"
 ---
 
