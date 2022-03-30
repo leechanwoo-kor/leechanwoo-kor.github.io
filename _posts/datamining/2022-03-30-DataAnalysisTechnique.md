@@ -1,3 +1,16 @@
+---
+title: "[Data Mining] 대표적인 데이터 분석 테크닉"
+categories:
+  - Data Mining
+tags:
+  - Data Mining
+  - Data Analysis Technique
+toc: true
+toc_sticky: true
+toc_label: "대표적인 데이터 분석 테크닉"
+toc_icon: "sticky-note"
+---
+
 # 대표적인 데이터 분석 테크닉
 
 ## 1. Linear Regression
@@ -79,4 +92,6 @@ Regression이나 Decision Tree에서 설명 변수들 간 다중공선성 문제
 
 
 참고자료
+- https://en.wikipedia.org/wiki/K-means_clustering
+- kdnuggets.com
 - http://www.dodomira.com/2016/08/19/frequently_used_analyitic_method/
