@@ -6,7 +6,7 @@ tags:
   - NLP
 toc: true
 toc_sticky: true
-toc_label: "Word Representation (2)"
+toc_label: "NLP Practices"
 toc_icon: "sticky-note"
 ---
 
