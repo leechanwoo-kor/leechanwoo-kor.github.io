@@ -9,7 +9,7 @@ tags:
   - Perceptron
 toc: true
 toc_sticky: true
-toc_label: "딥러닝의 개발 과정"
+toc_label: "딥러닝의 기초 - 퍼셉트론, 인공신경망"
 toc_icon: "sticky-note"
 ---
 
