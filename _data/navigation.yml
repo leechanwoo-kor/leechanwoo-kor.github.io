@@ -16,3 +16,14 @@ main:
     url: "/categories/"
   - title: "Tags"
     url: /tags/
+sidebar:
+  - title: "datamining"
+    url: "/datamining/"
+    children:
+    - title: 
+  - title: "nlp"
+    url: "/nlp/"
+    children:
+      - title: "CNN"
+      - url: "nlp/cnn/"
+    
