@@ -16,7 +16,10 @@ main:
     url: "/categories/"
   - title: "Tags"
     url: /tags/
-sidebar:
+
+# main sidebar links
+
+main-sidebar:
   - title: "datamining"
     url: "/datamining/"
     children:
