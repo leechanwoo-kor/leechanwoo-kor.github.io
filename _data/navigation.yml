@@ -17,16 +17,13 @@ main:
   - title: "Tags"
     url: /tags/
 
-# main sidebar links
-
-main-sidebar:
+# test
+test:
   - title: "datamining"
-    url: "/datamining/"
     children:
-    - title: 
+    - title: "/datamining/test"
   - title: "nlp"
-    url: "/nlp/"
     children:
       - title: "CNN"
-      - url: "nlp/cnn/"
+      - url: "/nlp/cnn/"
     
