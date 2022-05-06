@@ -126,10 +126,57 @@ When I look at an article in Russian, I say:
 ![image](https://user-images.githubusercontent.com/55765292/167077269-ca4d6fb4-7481-4d0f-ac49-9f6c342f5b8f.png){: .align-center}
 
 ## Neural Machine Translation
+Encoder-decoder framework
 
-**Iference Methods**
+![image](https://user-images.githubusercontent.com/55765292/167087180-d9349af0-fc32-4e8d-aee3-300d32d7cf53.png){: .align-center}
+
+**Encoder**
+
+![image](https://user-images.githubusercontent.com/55765292/167087221-f4a2fd12-cd27-456d-a627-a99b9dff4f19.png){: .align-center}
+
+**Decoder**
+
+![image](https://user-images.githubusercontent.com/55765292/167087288-b34ebda6-c918-46d9-8889-42568658d92f.png){: .align-center}
+
+- we have a model, how can we generate transaltions?
+- Answers
+  - Sampling: generate a random sentence according to probability distribution
+  - Argmax: generate sentence with highest probability
+
+### Inference Methods
+- Greedy inference
+  - We just start at the left, and use our classifier at each position to assign a label
+  - One by one, pick single highest probability word
+- Problems
+  - Often generates easy words first
+  - Often prefers multiple common words to rare words
+
+![image](https://user-images.githubusercontent.com/55765292/167087683-e972ffb7-84cd-4c78-b99f-b7afdf0ea09e.png){: .align-center}
+
+### Beam inference
+- At each position keep the top *k* complete sequences
+- Extend each sequence in each local way
+- The extensions compete for the *k* slots at the next position
+
+![image](https://user-images.githubusercontent.com/55765292/167087951-fffdac01-4f58-46f2-96ba-bec17c779a23.png){: .align-center}
+
+### Neural Machine Translation
+Google's NMT System 2016
+
+![image](https://user-images.githubusercontent.com/55765292/167088055-7812cca7-7475-4a62-9823-383e906f671f.png){: .align-center}
+
+- Encoder and decoder are both transformers
+- Decoder consumes the previous generated token (and attends to input), but has no recurrent state
+
+![image](https://user-images.githubusercontent.com/55765292/167089884-b2f202be-1e14-47a9-b6f4-1a1e6ff5b9da.png){: .align-center}
 
 ## Evaluation
+- How good is a given machine translation system?
+- Many different translations acceptable
+- Evaluation metric
+  - Subjective judgments by human evaluators
+  - Automatic evaluation metrics
+  - Task-based evaluation
 
 ### Adequacy and Fluency
 
