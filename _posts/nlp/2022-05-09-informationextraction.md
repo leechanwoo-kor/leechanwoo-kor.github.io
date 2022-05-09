@@ -409,3 +409,32 @@ Checking if groupings of entities are instances of a relation
 
 ![image](https://user-images.githubusercontent.com/55765292/167371680-64280cd6-9655-4223-9208-2eef9a377e60.png){: .align-center}
 
+## Other topics in IE
+
+### Extracting Times
+- Temporal expression extraction
+- Temporal normalization
+
+![image](https://user-images.githubusercontent.com/55765292/167372024-8d6fab59-209d-4dce-beae-a7f4b49ae398.png){: .align-center}
+
+### Extracting Events and their Times
+
+Event extraction: identify mentions of events in text
+– An event mention is any expression denoting an event or state that can be assigned to a particular point, or interval, in time
+– Events are to be classified as actions, states, reporting events (say, report, tell, explain), perception reporting events, and so on
+
+![image](https://user-images.githubusercontent.com/55765292/167372200-dedc48a6-dfc2-488b-95e4-0a070c166e54.png){: .align-center}
+
+### Entitiy Linking
+Taks: Given a database of candidate referents, identify the correct referent for a mention in context
+
+![image](https://user-images.githubusercontent.com/55765292/167372310-9ae09078-1625-4467-8eb7-4031ee8cf349.png){: .align-center}
+
+![image](https://user-images.githubusercontent.com/55765292/167372341-645eec5d-8378-4604-8ae6-8c5f25547b6a.png){: .align-center
+
+![image](https://user-images.githubusercontent.com/55765292/167372388-4da57372-85a3-483d-8499-283a3e3ea3b3.png){: .align-center
+
+### Korean NER with BERT
+BERT + CRF (conditional random field)
+
+![image](https://user-images.githubusercontent.com/55765292/167372504-91dbacea-3e42-4f27-9ea3-b57b0d4e0413.png){: .align-center
