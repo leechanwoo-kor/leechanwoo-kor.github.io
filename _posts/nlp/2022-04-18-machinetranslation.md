@@ -180,4 +180,44 @@ Google's NMT System 2016
 
 ### Adequacy and Fluency
 
-...
+![image](https://user-images.githubusercontent.com/55765292/167323785-375c1ace-8240-4330-bd76-7827a8c6b811.png){: .align-center}
+
+![image](https://user-images.githubusercontent.com/55765292/167323797-ffaec126-cf5f-40d1-ae4b-25780daf9f2c.png){: .align-center}
+
+### Automatic Evaluation Metrics
+- Goal: computer program that computes quality of translations
+- Advantages: low cost, optimizable, consistent
+- Basic strategy
+  - Given: MT output
+  - Given: human reference translation
+  - Task: compute similarity between them
+
+### Precision and Recall of Words
+
+![image](https://user-images.githubusercontent.com/55765292/167327376-ccafe81e-0486-4e19-891b-385ac9d7b793.png){: .align-center}
+
+![image](https://user-images.githubusercontent.com/55765292/167327419-5d323176-f2ab-4922-89e7-3356ca9af30a.png){: .align-center}
+
+### Bilingual Evaluation Understudy (BLEU)
+- N-gram overlap between machine translation output and reference translation
+- Compute precision for n-grams of size 1 to 4
+- Add brevity penalty (for too short translations)
+
+![image](https://user-images.githubusercontent.com/55765292/167327569-f73e15a4-3b4d-440f-b3e6-091ff542523e.png){: .align-center}
+
+- Typically computed over the entire corpus, not single sentences
+
+### Drawbacks of Automatic Metrics
+- All words are treated as equally relevant
+- Operate on local level
+- Sceres are meaningless (absolute value not informative)
+- Human translators score low on BLEU
+
+**BLEU Correlate with Human Judgement**
+
+![image](https://user-images.githubusercontent.com/55765292/167327695-2357cbb8-ba00-4468-ab9c-479d360923f2.png){: .align-center}
+
+### BERTScore
+
+![image](https://user-images.githubusercontent.com/55765292/167327817-ea1f1374-90c0-487e-a074-f5ee991ddd29.png){: .align-center}
+
