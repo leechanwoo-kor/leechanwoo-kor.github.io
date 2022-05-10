@@ -430,11 +430,11 @@ Taks: Given a database of candidate referents, identify the correct referent for
 
 ![image](https://user-images.githubusercontent.com/55765292/167372310-9ae09078-1625-4467-8eb7-4031ee8cf349.png){: .align-center}
 
-![image](https://user-images.githubusercontent.com/55765292/167372341-645eec5d-8378-4604-8ae6-8c5f25547b6a.png){: .align-center
+![image](https://user-images.githubusercontent.com/55765292/167372341-645eec5d-8378-4604-8ae6-8c5f25547b6a.png){: .align-center}
 
-![image](https://user-images.githubusercontent.com/55765292/167372388-4da57372-85a3-483d-8499-283a3e3ea3b3.png){: .align-center
+![image](https://user-images.githubusercontent.com/55765292/167372388-4da57372-85a3-483d-8499-283a3e3ea3b3.png){: .align-center}
 
 ### Korean NER with BERT
 BERT + CRF (conditional random field)
 
-![image](https://user-images.githubusercontent.com/55765292/167372504-91dbacea-3e42-4f27-9ea3-b57b0d4e0413.png){: .align-center
+![image](https://user-images.githubusercontent.com/55765292/167372504-91dbacea-3e42-4f27-9ea3-b57b0d4e0413.png){: .align-center}
