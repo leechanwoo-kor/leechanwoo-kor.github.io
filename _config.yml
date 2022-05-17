@@ -299,6 +299,7 @@ defaults:
       comments: true
       share: true
       related: true
+      use_math: true
   # _pages
   - scope:
       path: "_pages"
