@@ -1,5 +1,5 @@
 ---
-title: "[Machine Learning] SVM(Support Vector Machine)"
+title: "[Machine Learning] SVM(Support Vector Machine) - 1. Introduction"
 categories:
   - Machine Learning
 tags:
