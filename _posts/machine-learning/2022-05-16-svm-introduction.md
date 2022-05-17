@@ -8,7 +8,7 @@ tags:
   - Support Vector Machine
 toc: true
 toc_sticky: true
-toc_label: "Question Answering"
+toc_label: "SVM(Support Vector Machine)"
 toc_icon: "sticky-note"
 ---
 
