@@ -190,23 +190,171 @@ class BinarySVC():
         return res
 ```
 
+### mySVM
+
+다음으로 mySVM 클래스는 분류와 회귀를 위한 서포트 벡터 머신을 구현한 클래스이다. 하나씩 살펴보자. 이 클래스는 초기값으로 서포트 벡터 머신을 회귀에 적용할지 분류에 적용할지 결정하는 변수 svm_type를 지정하고 커널과 커널에 대한 $\theta$값을 설정한다.
+
+```
+class mySVM():
+    def __init__(self, svm_type='classification', kernel=None, coef0=0):
+        assert svm_type in ['classification', 'regression']
+        self.svm_type = svm_type
+        self.kernel=kernel
+        self.X = None
+        self.y = None
+        self.coef0 = coef0
+        self.model_list = None
+        if kernel is not None
+            assert kernel in ['poly', 'rbf', 'sigmoid']
+```
+
+여기서도 두 벡터에 대한 커널 값을 계산하는 함수가 필요하다. 회귀를 위한 서포트 벡터 머신에서 사용하려고 한다.
+
+```
+class mySVM()
+    ## 중략
+    
+    def get_kernel_val(self, x, y):
+        X = self.X
+        coef0 = self.coef0
+        gamma = 1/(X.shape[1]*X.var())
+        if self.kernel == 'poly':
+            return (gamma*np.dot(x,y)+coef0)**2
+        elif self.kernel == 'rbf':
+            return np.exp(-gamma*np.square(np.linalg.norm(x-y)))
+        else:
+            return tanh(gamma*np.dot(x,y)+coef0)
+```
+
+mySVM 클래스에서 적합은 svm_type에 따라서 이루어진다.
+
+```
+class mySVM():
+    ## 중략
+    
+    def fit(self, X, y, C, epsilon=0.1):
+        if self.svm_type == 'classification':
+            self._fit_svc(X, y, C)
+        else:
+            self._fit_svr(X, y, C, epsilon)
+```
+
+\_fit_svc 함수는 분류를 위한 SVM 알고리즘을 수행한다. 다중 클래스인 경우 2 분류 문제로 바꾸어 One vs One 방식을 이용한다. 각 라벨의 조합에 대하여 데이터를 필터링하고 BinarySVC 클래스를 이용하여 SVM 모형을 적합한 뒤 이를 model_list에 저장한다.
+
+```
+class mySVM():
+    ## 중략
+    
+    def _fit_svc(self, X, y, C):
+        uniq_labels = np.unique(y)
+        label_combinations = list(combinations(uniq_labels, 2))
+        model_list = []
+        for lc in label_combinations:
+            target_idx = np.array([x in lc for x in y])
+            y_restricted = y[target_idx]
+            X_restricted = X[target_idx]
+            clf = BinarySVC(kernel=self.kernel, coef0=self.coef0)
+            clf.fit(X_restricted, y_restricted, C)
+            model_list.append(clf)
+        self.model_list = model_list
+        return
+```
+
+![image](https://user-images.githubusercontent.com/55765292/170923045-020bc4f3-18db-4cc6-bc5e-e613c1dbad1f.png){: .align-center}
+
+다음은 회귀를 위한 SVM을 적합하는 함수이다. 이때에도 위의 식을 이용하여 cvxopt가 계산하는 Quadratic Programming 표준 형식을 맞춰준다.
+
+![image](https://user-images.githubusercontent.com/55765292/170923130-cc9f75f6-9635-4cdf-b777-c0cf97f90730.png){: .align-center}
 
 
+여기서 $I$는 $n×n$ 단위행렬, $O=n×n$ 영행렬($n$은 데이터 개수이다), $e_k$는 1로 이루어진 $k$차원 벡터이다. 또한 $Q$는 $Q_{ij} = x^t_ix_j$인 $n×n$ 행렬이다(이는 변환 $\phi$나 커널 적용 여부에 따라 적절하게 변환하면 된다). 나머지는 BinarySVC에서 본 것과 동일하므로 추가 설명은 생략한다.
 
+```
+class mySVM():
+    ## 중략
+    
+    def _fit_svr(self, X, y, C, epsilon):
+        assert C >= 0, 'constant C must be non-negative'
+        assert epsilon > 0, 'epsilon C must be positive'
+        self.X = X
+        m, n = X.shape
+        y = y.reshape(-1,1)*1.
+        self.y = y
+        if self.kernel is not None:
+            Q = np.zeros((m,m))
+            for i in range(m):
+                for j in range(m):
+                    Q[i][j] = self.get_kernel_val(X[i], X[j])
+        else:
+            Q = X.dot(X.T)
+        I = np.eye(m)
+        O = np.zeros((m, m))
+        sub_Q = np.hstack([I, -I])
+        main_Q = sub_Q.T.dot(Q.dot(sub_Q))
+        P = cvxopt_matrix(main_Q)
+        q = cvxopt_matrix(epsilon*np.ones((2*m, 1)) - np.vstack([y, -y]))
+        
+        G = np.vstack([np.hstack([-I, O]), np.hstack([I, O]), np.hstack([O, -I]), np.hstack([O, I])])
+        G = cvxopt_matrix(G)
+        h = cvxopt_matrix(np.hstack([np.zeros(m), C*np.ones(m)]*2))
+        A = cvxopt_matrix(np.ones((m,1)).T.dot(sub_Q))
+        b = cvxopt_matrix(np.zeros(1))
+        
+        cvxopt_solvers.options['show_progress'] = False
+        sol = cvxopt_solvers.qp(P, q, G, h, A, b)
+        sol_root = np.array(sol['x'])
+        alphas = sol_root[:m]
+        alphas_star = sol_root[m:]
+        
+        S = (alphas>1e-4).flatten()
+        if self.kernel is not None:
+            sum_val = []
+            s_index = np.where(S==True)[0]
+            for s in S_index:
+                temp_vec = np.array([self.get_kernel_val(z, X[s]) for z in X])
+                temp_vec = np.expand_dims(temp_vec, axis=1)
+                sum_val.append(-epsilon + np.sum(y[s] - np.sum((alphas-alphas_star)*temp_vec)))
+            b = min(sum_val)
+            self.b = b
+        else:
+            w = alphas.T.dot(X)-alphas_star.T.dot(X)
+            w = w.reshape(-1,1)
+            b = -epsilon+np.min(y[S] - np.dot(X[S],w))
+            self.w = w
+            self.b = b
+        self.alphas = sol_root
+        return
+```
 
+마지막으로 예측해주는 함수를 만들어 주었다.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+```
+class mySVM():
+    ## 중략
+    
+    def predict(self, X):
+        if self.svm_type == 'classification':
+            model_list = self.model_list
+            prediction = [model.predict(X) for model in model_list]
+            prediction = [Counter(pred).most_common(1)[0][0] for pred in list(zip(*prediction))]
+        else:
+            prediction = [self._predict_reg(x) for x in X]
+        return prediction
+        
+    def _predict_reg(self, x):
+        if self.kernel is not None:
+            m, _ = self.X.shape
+            sol_root = self.alphas
+            alphas = sol_root[:m]
+            alphas_star = sol_root[m:]
+            
+            temp_vec = np.array([self.get_kernel_val(z, x) for z in X])
+            temp_vec = np.expand_dims(temp_vec, axis=1)
+            pred = np.sum((alphas-alphas_star)*temp_vec)+self.b
+        else:
+            w = self.w
+            b = self.b
+            pred = w.dot(x)+b
+            pred = pred[0]
+        return pred
+```
