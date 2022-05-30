@@ -59,7 +59,7 @@ class BinarySVC():
         self.alphas = None
         self.w = None
         self.b = None
-        self.codf0 = coef0
+        self.coef0 = coef0
         if kernel is not None:
             assert kernel in ['poly', 'rbf', 'sigmoid']
 ```
