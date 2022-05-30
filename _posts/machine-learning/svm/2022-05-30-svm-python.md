@@ -50,7 +50,7 @@ from cvxopt import solvers as cvxopt_solvers
 다음으로 이진 분류를 위한 BinarySVC 클래스를 만들어 준다. 커널 타입과 Polynomial, Sigmoid Kernel에서 $\theta$를 초기값으로 지정할 수 있다. 커널을 지정하지 않으면 자동으로 Soft-Margin Linear SVM 알고리즘이 작동된다.
 
 ```
-class Binary SVC():
+class BinarySVC():
     def __init__(self, kernel=None, coef0=0):
         self.labels_map = None
         self.kernel = kernel
@@ -88,7 +88,7 @@ class BinarySVC():
             raise
         return res
 
-    def get_kernel_val(self, x, y)
+    def get_kernel_val(self, x, y):
         X = self.X
         coef0 = self.coef0
         gamma = 1/(X.shape[1]*X.var())
@@ -123,7 +123,7 @@ class BinarySVC():
         assert len(uniq_labels) == 2, 'the number of labels is 2'
         self.make_label_map(uniq_labels)
         self.X = X
-        y = [self.transform_label(label, self,labels_map) for label in y] ## 1, -1로 변환
+        y = [self.transform_label(label, self.labels_map) for label in y] ## 1, -1로 변환
         y = np.array(y)
         
         ## formulating standard form
@@ -204,7 +204,7 @@ class mySVM():
         self.y = None
         self.coef0 = coef0
         self.model_list = None
-        if kernel is not None
+        if kernel is not None:
             assert kernel in ['poly', 'rbf', 'sigmoid']
 ```
 
@@ -223,7 +223,7 @@ class mySVM()
         elif self.kernel == 'rbf':
             return np.exp(-gamma*np.square(np.linalg.norm(x-y)))
         else:
-            return tanh(gamma*np.dot(x,y)+coef0)
+            return np.tanh(gamma*np.dot(x,y)+coef0)
 ```
 
 mySVM 클래스에서 적합은 svm_type에 따라서 이루어진다.
