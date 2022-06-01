@@ -4,25 +4,31 @@
 - Y
 
 ## 1-2 NLP is hard because it is dense.
-- 
+- F
 
 ## 1-3 Distributed prediction-based embeddings is created by training a classifier to distinguish near by and far-away words.
+- 
 
 ## 1-4 One word can have several meanings/roles depending on the context.
+- 
 
 ## 1-5 Human pay money to correlate words in one sentence or different regions of an image.
+-
 
 ## 1-6 Byte pair encoding algorithm is orginally compression algorithm, but it can be used in NLP too to encode subwords
+-
 
 ## 1-7 The prior gives us a way of discriminating between possible alternative parameters in classifier models.
+-
 
 ## 1-8 To measure the performance of classifiers, we use accuracy, precision, re-call, and F score.
 - Y
 
 ## 1-9 The task of named entitiy recognition is finding entities in text only.
+-
 
 ## 1-10 To train the machine translation models, we need parallel corpora which are the same meaning but different language sentence pairs.
-
+-
 
 # 2. 다음 질문을 읽고 답을 한 두 문장 내외로 작성해주세요
 
