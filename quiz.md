@@ -11,6 +11,8 @@ Quiz Week 3
 사람이 단어 뜻을 이해함에 있어 사용하는 방법에 대한 가설로 'You shall know a word by the company it keeps'로 설명되는 가설은 무엇?
 - Distributional Hypothesis
 
+
+
 Quiz Week 4
 
 4-1. word2vec, fasttext와 같은 모델은 한 단어의 가까이와 멀리 있는 단어들을 가지고 어떤 모델을 학습하는가?
@@ -24,6 +26,7 @@ Quiz Week 4
 - errata
 - n-gram
 - Token
+
 
 
 Quiz Week 5
@@ -41,6 +44,7 @@ Quiz Week 5
 - Accuracy
 
 
+
 Quiz Week 6
 
 6-1. LSTM, CNN으로 문맥 이해가 가능하다.
@@ -52,16 +56,17 @@ Quiz Week 6
 
 
 Quiz Week 7
-7-1. 
-7-2.
+7-1. Bag of words는 길이가 다양한 문서를 고정된 길이의 벡터 형태로 바꾸는 방식으로 단어 간 순서를 고려하지 않는다.
+- T
 
+7-2. Classifier 모델의 성능 측정으로 쓰이는 recall은 모델이 yes라고 대답한 것에 대하여 얼마나 맞추었는지 그 비율로 계산 된다.
+- F
 
 
 Quiz Week 8
 
-8-1. Byte Piar Encoding은 문자들을 나타낸 횟수에 따라 묶어 만드는 것이다.
+8-1. Byte Pair Encoding은 문자들을 나타낸 횟수에 따라 묶어 만드는 것이다.
 - Y
-
 
 8-2. Fasttext로 오탈자의 원 단어를 추론할 수 있다.
 - Y
@@ -75,6 +80,7 @@ Quiz Week 9
 
 9-2. 기계번역에 있어 언어 모델은 필요없다.
 - F
+
 
 
 Quiz Week 10
@@ -93,6 +99,7 @@ Given a database of candidate referents, identify the current referent for a men
 - Beam inference
 
 
+
 Quiz Week 11
 
 11-1. QA 중 하나로 정답이 주어진 문서 내의 특정 부분에 있는 형태의 것.
@@ -103,6 +110,7 @@ Quiz Week 11
 
 11-2. Is  Reading Comprehension Solved?
 - F
+
 
 
 Quiz Week 12
