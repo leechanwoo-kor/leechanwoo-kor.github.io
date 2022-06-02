@@ -7,34 +7,35 @@
 - F
 
 ## 1-3 Distributed prediction-based embeddings is created by training a classifier to distinguish near by and far-away words.
-- 
+- T
 
 ## 1-4 One word can have several meanings/roles depending on the context.
-- 
+- T
 
 ## 1-5 Human pay money to correlate words in one sentence or different regions of an image.
 -
 
 ## 1-6 Byte pair encoding algorithm is orginally compression algorithm, but it can be used in NLP too to encode subwords
--
+- T
 
 ## 1-7 The prior gives us a way of discriminating between possible alternative parameters in classifier models.
 -
 
 ## 1-8 To measure the performance of classifiers, we use accuracy, precision, re-call, and F score.
-- Y
+- T
 
 ## 1-9 The task of named entitiy recognition is finding entities in text only.
--
+- 
 
 ## 1-10 To train the machine translation models, we need parallel corpora which are the same meaning but different language sentence pairs.
--
+- T
 
 # 2. 다음 질문을 읽고 답을 한 두 문장 내외로 작성해주세요
 
 ## 2-1. NLP가 어려운 이유 중 하나 얘기해주세요
 
 ## 2-2. 단어 임베딩 만드는 시점에서 BERT는 Word2Vec과 어떤 차이가 있나요?
+- Word2Vec과 같은 모델에 비해 문맥을 고려한 임베딩이 된다.
 
 ## 2-3. 기계번역에서 왜 encode(부호화), decode(해독화)라는 표현을 쓰는가요?
 
