@@ -16,6 +16,8 @@ main:
     url: "/categories/"
   - title: "Tags"
     url: /tags/
+  - title: "Timeline"
+    url: /timeline/
 
 # test
 test:
