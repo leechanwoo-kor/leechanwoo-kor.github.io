@@ -90,15 +90,45 @@ $P(x\mid\theta)={\prod}_i^n{\theta}^{x_i}{(1-\theta)}^{1-x_i}$ -->
 
 ![image](https://user-images.githubusercontent.com/55765292/172305593-7b866f49-110d-40ff-9b3c-9f1fcda6c41a.png){: .align-center}
 
+## Latent Dirichlet Allocation
 
+![image](https://user-images.githubusercontent.com/55765292/172306538-753947f4-5dcc-4a1a-963c-7dca28c5f633.png){: .align-center}
 
+![image](https://user-images.githubusercontent.com/55765292/172306639-811ebd25-6c9a-44cb-90fb-e089277e0002.png){: .align-center}
 
+![image](https://user-images.githubusercontent.com/55765292/172306803-dc9a5cf1-13e7-4167-94f2-e98d99a66a7f.png){: .align-center}
 
+![image](https://user-images.githubusercontent.com/55765292/172306897-9e69846f-6111-4318-aee8-146d9d71ba32.png){: .align-center}
 
+![image](https://user-images.githubusercontent.com/55765292/172306930-d73c8e4b-341b-47f6-a949-e8f25d8cf835.png){: .align-center}
 
+![image](https://user-images.githubusercontent.com/55765292/172307016-1a4b6918-3e32-41e2-bc7e-c75866fdb706.png){: .align-center}
 
+![image](https://user-images.githubusercontent.com/55765292/172307065-7c1ca908-71c3-4ebe-8cb7-279f0c27d449.png){: .align-center}
 
+![image](https://user-images.githubusercontent.com/55765292/172307091-5f6b8729-60d5-42df-8bd1-217eddfb13da.png){: .align-center}
 
+- Q) Why does LDA work?
+- A)
+  - LDA trades off two goals
+    1. For each document, allocate its words to as few topics as possible
+    2. For each topic, assign high probability to as few terms as possible
+  - These goals are at odds
+    - Putting a document in a single topic makes #2 hard:
+      - All of its words must have probability under that topic.
+    - Putting very few words in each topic makes #1 hard:
+      - To cover a document's words, it must assign many topics to it.
+  - Trading off these goals finds groups of tightly co-occurring words
 
+## .. Topic Models
 
+### Bayesian Topic Models
 
+![image](https://user-images.githubusercontent.com/55765292/172307669-fe0c345e-c9ec-4312-b7a0-5eea90f1b9da.png){: .align-center}
+
+### Neural Topic Models
+
+![image](https://user-images.githubusercontent.com/55765292/172307754-3efa21e3-e295-4e62-b6d4-6824af304845.png){: .align-center}
+
+### Neural Topic Models
+![image](https://user-images.githubusercontent.com/55765292/172307858-d95cc2f2-747b-4e87-9a42-971826fdcf5b.png){: .align-center}
