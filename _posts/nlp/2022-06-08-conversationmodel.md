@@ -311,3 +311,105 @@ Training to maximize likelihood gives a system that prefers common responses
 #### BERTScore
 ![image](https://user-images.githubusercontent.com/55765292/172551083-fe62d81a-72df-4a57-b04e-668cca767682.png){: .align-center}
 
+
+## Conversation Model (3)
+![image](https://user-images.githubusercontent.com/55765292/172551284-f77eb951-5d83-469f-9855-e1a012096cae.png){: .align-center}
+
+### Motivation
+
+1. Responses of a conversation can be various
+![image](https://user-images.githubusercontent.com/55765292/172563562-9fa70237-46ba-4b38-8ea8-13f3e579afeb.png){: .align-center}
+
+2. Existing metrics (i.e. BLEU) cannot measure the diversity
+![image](https://user-images.githubusercontent.com/55765292/172563704-680529c5-1839-4fcb-84a6-d602cf83b913.png){: .align-center}
+
+3. Existing metrics that consider the given conversation
+  - High scores to non-appropriate responses
+  - Need human labeled score for responses to train the model
+![image](https://user-images.githubusercontent.com/55765292/172564003-394ece9d-ff8f-49a0-ab8b-3c495a681144.png){: .align-center}
+
+4. Human evaluation is resources-consuming
+  - Requires money and evaluation time
+  - Low scalability
+![image](https://user-images.githubusercontent.com/55765292/172564204-1a51f103-0dc6-4c5f-a014-2a20f02697c1.png){: .align-center}
+
+
+## SSREM (Speaker Sensitive Response Evaluation Model)
+![image](https://user-images.githubusercontent.com/55765292/172564426-710757cd-782c-4924-a8e3-d045d4576860.png){: .align-center}
+
+### SSREM - Train
+![image](https://user-images.githubusercontent.com/55765292/172564837-f9afd9f9-5e3f-4aa1-9e66-ecfad7921d6b.png){: .align-center}
+![image](https://user-images.githubusercontent.com/55765292/172565016-5d6f3b9c-013d-4242-adf8-12a28a5b6ff6.png){: .align-center}
+![image](https://user-images.githubusercontent.com/55765292/172565087-66e39bf6-3141-40db-85cb-e16c479a9c4a.png){: .align-center}
+
+- Same Conversation ($SC_A$): Speaker $A$'s utterances in a conversation
+- Same Partner ($SP_A$): $A$'s utterances in conversations with the same partner
+- Same Speaker ($SS_A$): $A$'s utterances
+- Random ($Rand_A$): Random utterances from speakers who are not $A$
+
+![image](https://user-images.githubusercontent.com/55765292/172565591-1c4072db-129b-43eb-97ee-08eb162658b0.png){: .align-center}
+![image](https://user-images.githubusercontent.com/55765292/172565695-f01425e5-30f3-47d5-963e-b60e1ea5b251.png){: .align-center}
+
+- Korean SAT English subject problem
+![image](https://user-images.githubusercontent.com/55765292/172565909-026e4d01-76a3-4c03-aead-3c4b2c1b8a16.png){: .align-center}
+![image](https://user-images.githubusercontent.com/55765292/172565953-d4e0a6fd-2a77-4511-b350-557cb20a4732.png){: .align-center}
+
+### Experiment 1
+- Goal: Correlation with human scores
+- Human scores
+  - Annotate the appropriateness of 1,200 responses
+  - Use Amazon MTurk
+- Comparison metrics
+  - BLEU [Papineni et al., ACL 2002]
+  - ROUGE-L [Lin, TSBO 2004]
+  - EMB [Liu et al., EMNLP 2016]
+  - RUBER [Tao etal., AAAI 2018]
+  - RSREM ($R_{cand}$={$r_A$,$rand_A^{(1)}$,$rand_A^{(2)}$,$rand_A^{(3)}$,$rand_A^{(4)}$})
+
+### Experiment 1 - Result
+- Correlation with human scores
+![image](https://user-images.githubusercontent.com/55765292/172568437-75d94020-612f-4505-a0cd-5d07953696c7.png){: .align-center}
+
+### Experiment 2
+- Goal: Identifying true/false responses
+- Responses
+  - True
+    - Ground truth (GT)
+  - False
+    - Same conversation (SC)
+    - Same Partner (SP)
+    - Same Speaker (SS)
+    - Random (Rand)
+- Comparison metrics
+  - RUBER [Tao etal., AAAI 2018]
+  - RSREM ($R_{cand}$={$r_A$,$rand_A^{(1)}$,$rand_A^{(2)}$,$rand_A^{(3)}$,$rand_A^{(4)}$})
+
+### Experiment 2 - Result
+![image](https://user-images.githubusercontent.com/55765292/172568917-77bee7c2-4de8-4192-8791-51ade6581347.png){: .align-center}
+
+### Experiment 3
+- Goal: applicability of SSREM
+- Data
+  - Train: Twitter conversation corpus
+  - Test: Movie script
+- Method
+  - Correlation with human scores
+  - Identifying true/false responses
+![image](https://user-images.githubusercontent.com/55765292/172569338-b39ed96f-3388-4ff0-8d74-c7e50f52b980.png){: .align-center}
+
+### Experiment 3 - Result
+- Correlation with human scores
+![image](https://user-images.githubusercontent.com/55765292/172569429-3edb3318-ef9c-4765-8611-eff3b6d082dc.png){: .align-center}
+![image](https://user-images.githubusercontent.com/55765292/172569488-0c91e350-8632-4e7e-b516-0cda221524e9.png){: .align-center}
+
+### Challenges
+- More robust on adversarial attacks
+  - How can we overcom various adversarial attacks?
+    - Copying a utterance in the context
+![image](https://user-images.githubusercontent.com/55765292/172569697-73158fce-da2e-4797-9dd8-ed5317b2cdd6.png){: .align-center}
+
+### Perplexity
+![image](https://user-images.githubusercontent.com/55765292/172569769-c2bd787e-b4f4-4872-a218-490d38b4e209.png){: .align-center}
+
+### ACUTE-Eval
+![image](https://user-images.githubusercontent.com/55765292/172569875-e1af7e84-2282-490a-a81c-a4823adf2206.png){: .align-center}
