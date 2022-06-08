@@ -108,3 +108,150 @@ Training to maximize likelihood gives a system that prefers common responses
   - Learns speakers' preference from own utterances
   - Infers the mixture of speakers' preference and the context
 
+## VHUCM
+- Variational Hierarchical User-based Conversation Model
+![image](https://user-images.githubusercontent.com/55765292/172517443-da5870a8-ff9b-4265-bf30-78ef316c513c.png){: .align-center}
+
+### VHUCM - Idea
+- Use a stochastic variable for the context from speakers
+- Provide speaker info to response generator indirectly
+![image](https://user-images.githubusercontent.com/55765292/172544513-e31273d8-d85f-443d-ae01-010c1141bff0.png){: .align-center}
+
+### Conversation Corpus
+- Requirements of corpus
+  - Naturally-occurring conversations
+  - Many conversations between two speakers
+  - Multiple conversation partners of a speaker
+
+#### Twitter Conversation Corpus
+- A Twitter conversation
+  - Five or more tweets
+  - At least two replies by each user
+- Statistics
+  - 27K users
+  - 107K dyads
+  - 770K conversations
+  - 6M tweets
+  - 7 years
+
+![image](https://user-images.githubusercontent.com/55765292/172545071-e9992e0d-4cd9-4947-9a32-04c5fd1bdd95.png){: .align-center}
+
+### Experiment - Personalized Response
+- Experiment Setup
+  - Set two users as questioner and answerer
+  - Ask demographic questions
+
+![image](https://user-images.githubusercontent.com/55765292/172545222-95f04e05-f031-426c-95b4-3dd8760222b4.png){: .align-center}
+
+### VHUCM - Result
+![image](https://user-images.githubusercontent.com/55765292/172545300-40ab1e27-bf8b-4231-b25b-655d81c45796.png){: .align-center}
+
+### Challenges
+- Experiment Setup
+  - Set two users as questioner and answerer
+  - Ask relationship questions
+![image](https://user-images.githubusercontent.com/55765292/172545456-f0fefb2a-e7e9-49cb-a807-fc94f4d2a292.png){: .align-center}
+
+- Top five answers of "Do you love me?" by VHUCM
+![image](https://user-images.githubusercontent.com/55765292/172545559-05f3d1c6-98eb-4c02-b681-417d8d8110f4.png){: .align-center}
+
+![image](https://user-images.githubusercontent.com/55765292/172545624-10303e82-a3ec-40f4-b1ef-e8946b499cbe.png){: .align-center}
+
+- Whoever asks, VHUCM always discloses personal information
+
+
+## Meena (Google, Jan 2010)
+![image](https://user-images.githubusercontent.com/55765292/172545797-70b62182-5fea-4b7a-a572-7bbc5f096759.png){: .align-center}
+
+### Model
+- Evolved Transformer seq2seq model
+- 2.6B parameters
+![image](https://user-images.githubusercontent.com/55765292/172545914-276cb966-3ec6-4e75-a8e6-afc8154f27f4.png){: .align-center}
+
+### Data
+- Social media conversation
+- 876M context-response pairs
+- 8K BPE unique subwords
+- 341GB text file
+- 61B BPE tokens (400B tokens for GPT-3)
+
+### Train
+- Device: 2048 TPU cores
+  - 16GB memory (only 8 examples can be loaded)
+- Data: 61B BPE tokens
+- Time: 30 days
+- Optimizer: Adafactor
+  - keep the initial learning rate for the first 10K steps
+  - Decay with the inverse square root of the number of steps
+- Others
+  - 0.1 dropout
+  - Tensor2Tensor code base
+
+### BeamSearch
+![image](https://user-images.githubusercontent.com/55765292/172546490-0c76790f-9052-4880-864f-3a1dcc16bb72.png){: .align-center}
+
+### Sample-and-Rank
+![image](https://user-images.githubusercontent.com/55765292/172546516-25899df1-d9cb-4a0a-aea8-ce5ed4abe08d.png){: .align-center}
+
+
+## LaMDA (Google, May 2021)
+![image](https://user-images.githubusercontent.com/55765292/172546831-3dc239cc-e9dd-4734-8644-20bfb3720424.png){: .align-center}
+
+- Model: Transformers (similar to Meena)
+- Data: Conversation corpus (Web documents for GPT-3)
+- Features
+  - Specificity
+  - Factuality
+  - Interestingness (related to emotion)
+  - Sensibleness (related to emotion)
+
+
+## BlenderBot (Facebook, Apr 2020)
+![image](https://user-images.githubusercontent.com/55765292/172547126-8084d8f4-0cc8-43a7-8981-c9fe75b78b7f.png){: .align-center}
+
+### Model
+- Generate standard seq2seq transformer model (BART)
+- Retrieve candidate responses for a given dialogue
+- Blend above together
+![image](https://user-images.githubusercontent.com/55765292/172547186-aabfd40b-cc8a-4310-a275-a80a9595342e.png){: .align-center}
+![image](https://user-images.githubusercontent.com/55765292/172547353-03d2ccaf-0c94-4bab-8719-7c4ae93fa03e.png){: .align-center}
+
+### Data
+- Pretraining
+  - Reddit discussion
+  - 1.5B comments
+  - 88.8B BPE tokens (61B for Meena, 400B for GPT-3)
+- Fine-tuning
+  - ConvAI2 (140k utterances)
+  - Empathetic Dialogue (50k utterances)
+  - Wizard of Wikipedia (194k utterances)
+
+### Training
+- Model size: 9.4B parameters (Meena: 2.6B)
+- Platform: Fairseq toolkit
+- Data: 88.8B BPE tokens
+- Time: 200k SGD updates (with 2400 warmup steps)
+- Optimizer: Adam
+
+
+## BlenderBot 2.0 (Facebook, July 2021)
+![image](https://user-images.githubusercontent.com/55765292/172548014-71b844d9-afb7-4d45-a5e7-6f89114abadd.png){: .align-center}
+
+### Model
+- Memorize context of multi-turn conversation
+- Augment external knowledge from internet
+![image](https://user-images.githubusercontent.com/55765292/172548224-6d98194c-5a3a-48ec-945f-79daa0b4cc3a.png){: .align-center}
+
+### Data
+- Long-term Memory
+  - Multi-turn conversation with summary
+  - 300K utterances
+- Internet-Augmented
+  - Wizard-Apprentice relationship
+  - 93K utterances
+
+---
+
+![image](https://user-images.githubusercontent.com/55765292/172548452-cc97ea44-efd1-4f09-a1f2-dec5feb8b494.png){: .align-center}
+
+
