@@ -50,7 +50,7 @@ Ability to understand and generate language - intelligence
 ![image](https://user-images.githubusercontent.com/55765292/172515015-4e6b7272-166c-43dd-a0dd-886907cec744.png){: .align-center}
 
 
-## Conversation Model
+## Conversation Model (1)
 
 ### Data-Driven Approaches
 - Can treat as a machine translation problem
@@ -254,4 +254,60 @@ Training to maximize likelihood gives a system that prefers common responses
 
 ![image](https://user-images.githubusercontent.com/55765292/172548452-cc97ea44-efd1-4f09-a1f2-dec5feb8b494.png){: .align-center}
 
+
+## Conversation Model (2)
+![image](https://user-images.githubusercontent.com/55765292/172548654-d3a9f315-fecd-4e8b-8370-af1cfcff15e6.png){: .align-center}
+
+### Evaluation Metrics in Machine Learning
+- Classification - Class
+  - Accuracy
+  - Precision, Recall, F1
+  - Area Under Curve
+  - $\ldots$
+- Regression - Number
+  - Mean Squared Error
+  - $R^2$
+  - Explained Variance
+  - $\ldots$
+![image](https://user-images.githubusercontent.com/55765292/172549283-7bb81dc9-93f1-49c2-8bed-5ec6c970989b.png){: .align-center}
+
+- Clustering - Cluster
+  - Purity
+  - Davies-Bouldin Index
+  - Jaccard Index
+  - $\ldots$
+- Reinforcement Learning - Policy
+  - Total rewards
+  - Dispersion of Fixed Policy
+  - Conditional Value at Risk
+  - $\ldots$
+![image](https://user-images.githubusercontent.com/55765292/172549788-5e7522cd-d151-4439-97c9-2585d5db622d.png){: .align-center}
+![image](https://user-images.githubusercontent.com/55765292/172549811-3686164d-13b7-4f36-8b21-6950b0a1d0ad.png){: .align-center}
+
+### Natural Language Generation
+- Generate natural language **text**
+  - Machine transaltion
+  - Automatic summarization
+  - Conversation model
+  - Image captioning
+  - $\ldots$
+![image](https://user-images.githubusercontent.com/55765292/172549999-93759ac4-efe6-4c2c-a47f-387589522d3a.png){: .align-center}
+
+### Evaluation Metrics in Natural Language Generation
+- Task-based evaluation
+  - Ask human to rate the usefulness of the generated text for a specific task
+- Human evaluation
+  - Ask human to rate the quality of the generated text
+- Automatic evaluation
+  - Measure the correspondence between the generated text and ground truth text
+    - BLEU, ROUGE, METEOR, $\ldots$
+    - Averaged word embedding, $\ldots$
+    - BERTScore, BLEURT, $\ldots$
+    - $\ldots$
+
+#### BLEU
+![image](https://user-images.githubusercontent.com/55765292/172550982-a6e5b8c6-98fe-4c10-90a6-8ad469fb68be.png){: .align-center}
+
+#### BERTScore
+![image](https://user-images.githubusercontent.com/55765292/172551083-fe62d81a-72df-4a57-b04e-668cca767682.png){: .align-center}
 
