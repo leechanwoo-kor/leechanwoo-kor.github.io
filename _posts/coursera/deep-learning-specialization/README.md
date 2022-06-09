@@ -10,4 +10,4 @@
 ### 2. Improving Deep Neural Networks: Hyperparameter Tuning, Regularization and Optimization
 ### 3. Structuring Machine Learning Projects
 ### 4. Convolutional Neural Networks
-### 5. Sequence Model
+### 5. Natural Language Processing: Building sequence models
