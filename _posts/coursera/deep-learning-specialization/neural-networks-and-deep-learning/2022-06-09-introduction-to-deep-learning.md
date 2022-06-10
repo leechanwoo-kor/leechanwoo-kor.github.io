@@ -20,7 +20,7 @@ toc_icon: "sticky-note"
 ## Introduction to Deep Learning
 
 ### What is a Neural Network?
-딥 러닝 이라는 용어는 신경망, 때로는 매우 큰 신경망을 훈련시키는 것을 의미합니다. 그렇다면 신경망이란 정확히 무엇을 뜻하는 걸까요? 이번에는 몇 가지 기본적인 직관들을 겠습니다.
+딥 러닝 이라는 용어는 신경망, 때로는 매우 큰 신경망을 훈련시키는 것을 의미합니다. 그렇다면 신경망이란 정확히 무엇을 뜻하는 걸까요? 이번에는 몇 가지 기본적인 직관들을 다뤄보겠습니다.
 
 
 ![image](https://user-images.githubusercontent.com/55765292/172767922-38d8ef9a-9c0b-4d98-857a-c86dd2187899.png){: .align-center}
@@ -74,7 +74,7 @@ toc_icon: "sticky-note"
 신경망이 요즘 선풍적인 인기를 끌고 있습니다. 잘 작동되고 있기 때문에 아마 이런 인기 정도는 예상할 수 있었는데요. 하지만 지금까지 신경망에 의해 창출된 거의 모든 경제적 가치는 지도 학습이라는 한가지 유형의 머신 러닝을 통해 만들어진 것입니다. 이게 무슨 뜻인지 살펴보고 사례도 같이 보도록 하겠습니다.
 
 
-![image](https://user-images.githubusercontent.com/55765292/172789494-084d5f79-e345-4738-8639-a790f512318a.png)
+![image](https://user-images.githubusercontent.com/55765292/172789494-084d5f79-e345-4738-8639-a790f512318a.png){: .align-center}
 
 
 지도 학습에서는 일부 입력값 $x$가 있고 일부 출력값 $y$에 대한 함수 매핑을 학습하려고 합니다. 예를 들어, 우리는 방금 주택 가격 예측하는 애플리케이션을 보았습니다. 주택의 특성을 입력하고 가격을 산출하거나 추정하려고 합니다.
@@ -104,7 +104,7 @@ toc_icon: "sticky-note"
 📌 **Neural Network examples**
 
 
-![image](https://user-images.githubusercontent.com/55765292/172785593-8b48264a-3712-4e25-bad0-918542893a3a.png)
+![image](https://user-images.githubusercontent.com/55765292/172785593-8b48264a-3712-4e25-bad0-918542893a3a.png){: .align-center}
 
 
 먼저 표준 신경망이 있습니다. CNN은 이미지 데이터에 자주 쓰입니다. RNN은 시간적 요소가 있을 수 있는 이러한 유형의 1차원 시퀀스 데이터에 매우 적합합니다.
@@ -114,7 +114,7 @@ CNN은 나중에 자세히 알아보겠습니다. 이 그림이 무얼 의미하
 ---
 
 
-![image](https://user-images.githubusercontent.com/55765292/172788792-94ae47f3-be7a-4082-9768-ef2e4eb518c8.png)
+![image](https://user-images.githubusercontent.com/55765292/172788792-94ae47f3-be7a-4082-9768-ef2e4eb518c8.png){: .align-center}
 
 
 정형 데이터와 비정형 데이터 모두에 머신 러닝을 적용하는 애플리케이션에 대해서도 들어보셨을 겁니다. 구조화된 데이터는 기본적으로 데이터베이스의 데이터를 의미합니다. 예를 들어, 주택 가격 예측하는데 주택의 크기와 침실의 수를 알려주는 데이터베이스나 컬럼이 있을 수 있습니다. 이것은 구조화된 데이터입니다. 또는 사용자가 광고를 클릭할지 여부를 예측할 때 연령, 광고에 대한 일부 정보, 그리고 예측하려는 이유를 레이블로 표시할 수 있습니다. 이것은 구조화된 데이터입니다. 즉, 집의 크기, 침실의 수, 그리고 사용자의 나이와 같은 각각의 특징들은 매우 명확한 의미를 가지고 있습니다.
@@ -132,3 +132,7 @@ CNN은 나중에 자세히 알아보겠습니다. 이 그림이 무얼 의미하
 
 
 ### Why is Deep Learning taking off?
+
+![image](https://user-images.githubusercontent.com/55765292/172992154-84f7dad3-9e4c-452a-ad06-d5f75165a00f.png){: .align-center}
+
+![image](https://user-images.githubusercontent.com/55765292/172992180-bfced034-f654-45a5-8445-efb41de1634c.png){: .align-center}
