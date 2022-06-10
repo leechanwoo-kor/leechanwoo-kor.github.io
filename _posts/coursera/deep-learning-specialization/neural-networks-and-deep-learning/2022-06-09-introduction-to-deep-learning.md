@@ -20,7 +20,7 @@ toc_icon: "sticky-note"
 ## Introduction to Deep Learning
 
 ### What is a Neural Network?
-딥 러닝 이라는 용어는 신경망, 때로는 매우 큰 신경망을 훈련시키는 것을 의미합니다. 그렇다면 신경망이란 정확히 무엇을 뜻하는 걸까요? 이번에는 몇 가지 기본적인 직관들을 보여드리겠습니다.
+딥 러닝 이라는 용어는 신경망, 때로는 매우 큰 신경망을 훈련시키는 것을 의미합니다. 그렇다면 신경망이란 정확히 무엇을 뜻하는 걸까요? 이번에는 몇 가지 기본적인 직관들을 겠습니다.
 
 
 ![image](https://user-images.githubusercontent.com/55765292/172767922-38d8ef9a-9c0b-4d98-857a-c86dd2187899.png){: .align-center}
@@ -131,7 +131,4 @@ CNN은 나중에 자세히 알아보겠습니다. 이 그림이 무얼 의미하
 
 
 
-
-
- 
 ### Why is Deep Learning taking off?
