@@ -1,5 +1,5 @@
 ---
-title: "[Ⅰ. Neural Networks and Deep Learning] Introduction to Deep Learning"
+title: "[Ⅰ. Neural Networks and Deep Learning] Introduction to Deep Learning (1)"
 categories:
   - Deep Learning Specialization
 tags:
@@ -7,7 +7,7 @@ tags:
   - Deep Learning Specialization
 toc: true
 toc_sticky: true
-toc_label: "Introduction to Deep Learning"
+toc_label: "Introduction to Deep Learning (1)"
 toc_icon: "sticky-note"
 ---
 
@@ -128,11 +128,3 @@ CNN은 나중에 자세히 알아보겠습니다. 이 그림이 무얼 의미하
 그러므로 이번에 다룰 많은 기술들은 정형 데이터와 비정형 데이터 모두에 적용됩니다. 알고리즘을 설명하기 위해 비정형 데이터를 이용한 사례를 조금 더 다뤄보도록 하겠습니다. 그러나 각각 신경망의 애플리케이션을 생각하면서 정형 데이터와 비정형 데이터 모두에서 이러한 신경망의 용도를 찾으시기 바랍니다.
 
 신경망은 지도 학습에 큰 변화를 가져다 주었는데요. 그러면서 동시에 엄청난 경제적 가치도 창출하고 있습니다. 그러나 신경망 이면의 기본적인 기술적 아이디어는 사실 수십 년 전부터 존재해 왔습니다. 그렇다면 그들은 왜 이제서야 상용화되고 제대로 작동하고 있는 것일까요? 다음은 왜 최근에서야 신경망이 우리가 사용할 수 있는 강력한 도구가 되었는지에 대해 설명하겠습니다.
-
-
-
-### Why is Deep Learning taking off?
-
-![image](https://user-images.githubusercontent.com/55765292/172992154-84f7dad3-9e4c-452a-ad06-d5f75165a00f.png){: .align-center}
-
-![image](https://user-images.githubusercontent.com/55765292/172992180-bfced034-f654-45a5-8445-efb41de1634c.png){: .align-center}
