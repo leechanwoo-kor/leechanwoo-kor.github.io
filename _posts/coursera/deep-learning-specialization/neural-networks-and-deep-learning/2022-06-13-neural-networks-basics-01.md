@@ -42,7 +42,9 @@ toc_icon: "sticky-note"
 
 ---
 
-![image](https://user-images.githubusercontent.com/55765292/173289088-22ddcd64-4a5a-42e1-8203-32dfc254fd26.png)
+#### Notation
+
+![image](https://user-images.githubusercontent.com/55765292/173308708-f00e6cf4-ec22-493e-b8e2-5630d1d9f0fc.png)
 
 하나의 훈련 표본은 $(x,y)$쌍으로 표기되며 여기서 $x$는 $x$차원을 가진 특징 벡터이고 $y$는 $0$ 혹은 $1$중에 하나의 값을 가지는 레이블입니다. 훈련 세트는 소문자 $m$ 훈련 예제로 구성되어 있습니다. 그래서 당신의 훈련 세트는 $(x^{(1)}, y^{(1)})$로 작성될 것이며 이는 첫 번째 훈련 예제 $(x^{(2)}, y^{(2)})$의 입력값과 출력값이며 마지막 훈련 표본 $(x^m, y^m)$으로 적을 수가 있습니다. 그리고 그것은 모두 당신의 전체 훈련 세트입니다.
 
@@ -58,7 +60,7 @@ toc_icon: "sticky-note"
 
 이제 로지스틱 회귀에 대해 알아보겠습니다. 이것은 지도 학습 문제에서 결과값 레이블 $y$가 $0$ 이거나 $1$ 인 경우 사용하는 학습 알고리즘입니다. 즉 이진 분류 문제의 경우이죠.
 
-![image](https://user-images.githubusercontent.com/55765292/173299685-d259acfa-1f16-44bb-ba7b-619c70522a9c.png)
+![image](https://user-images.githubusercontent.com/55765292/173308859-befab9c9-eddf-403b-b3d5-f0fa12a3abcb.png)
 
 입력 특성 벡터 $x$가 고양이이거나 고양이가 아닌것으로 인식하려는 이미지에 해당하는 경우 결과값을 예측하는 알고리즘이 필요할 것입니다. 이것을 $\hat{y}$ (y hat) 이라고 하고 이것은 y의 추청치입니다. 공식적으로는, $\hat{y}$이 입력 특성 $x$를 감안할 때 $y$가 $1$과 같을 확률이 되기를 원합니다.
 
