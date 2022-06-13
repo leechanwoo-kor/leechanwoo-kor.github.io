@@ -1,6 +1,12 @@
-## Deep Learning Specialization
+## Deep Learning Specialization on Coursera
+
+**Master Deep Learning, and Break into AI**
+
+Instructor: [Andrew Ng](http://www.andrewng.org/)
 
 <img src='https://user-images.githubusercontent.com/55765292/172779277-74c759a2-ec30-4331-bd1c-4e2ad530c1b5.png' width=250 height=250>
+
+[Deep Learning Specialization on Coursera](https://www.coursera.org/specializations/deep-learning).
 
 ### 1. Neural Networks and Deep Learning
 >In the first course of the Deep Learning Specialization, you will study the foundational concept of neural networks and deep learning.
