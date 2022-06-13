@@ -1,3 +1,14 @@
+# Deep Learning Specialization on Coursera
+
+[Deep Learning Specialization on Coursera](https://www.coursera.org/specializations/deep-learning).
+
+**Master Deep Learning, and Break into AI**
+
+Instructor: [Andrew Ng](http://www.andrewng.org/)
+
+
+---
+
 ## Introduction to Deep Learning
 - Analyze the major trends driving the rise of deep learning, and give examples of where and how it is applied today.
 
