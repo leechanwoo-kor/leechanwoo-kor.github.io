@@ -177,3 +177,16 @@
 - [ ] A dataset with short poems.
 - [x] **A dataset of weight, age, the sugar, level in the blood, and arterial pressure.**
 - [ ] A set of audio recordings of a person saying a single word. 
+
+
+### 18. Which of these are reasons for Deep Learning recently taking off? (Check the three options that apply.)
+- [ ] Neural Networks are a brand new field.
+- [x] We have access to a lot more computational power.
+```
+📌 The develpoment of hardware, perhaps especially GPU computing, has significantly improved deep learning algorithms' performance.
+```
+- [x] Deep learning has resulted in significant improvements in important applications such as online advertising, speech recognition, and image recognition.
+- [x] We have access to a lot more data.
+```
+📌 The digitalization of our society has played a huge role in this.
+```
