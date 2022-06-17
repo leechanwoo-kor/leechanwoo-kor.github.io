@@ -1,0 +1,110 @@
+---
+title: "[Ⅰ. Neural Networks and Deep Learning] Neural Networks Basics (7)"
+categories:
+  - Deep Learning Specialization
+tags:
+  - Coursera
+  - Deep Learning Specialization
+toc: true
+toc_sticky: true
+toc_label: "Neural Networks Basics (7)"
+toc_icon: "sticky-note"
+---
+
+![image](https://user-images.githubusercontent.com/55765292/172768350-41a6b2f0-9468-4b13-bc94-4a38f89ce5e6.png){: width="50%" height="50%"}{: .align-center}
+
+<br><br>
+
+# Neural Networks Basics
+
+## Python and Vectorization
+
+### Vectorization
+벡터화는 기본적으로 코딩에서 명시적 for 루프를 제거하는 기술인데요. 딥 러닝 시대, 특히 실제로 딥 러닝에서 여러분은 비교적 큰 데이터 세트에 대한 훈련을 받습니다. 딥 러닝 알고리즘이 빛을 발하는 시기이기 때문입니다.
+
+그렇기 때문에 코드를 빨리 진행하는 것이 매우 중요합니다. 빅데이터 세트를 훈련하는 경우 그렇지 않으면 코드를 실행하는 데 오랜 시간이 걸리고 결과를 얻기 위해 매우 오랜 시간을 기다려야 하기 때문입니다.
+
+그래서 딥러닝 시대에는 벡터화를 수행하는 능력이 핵심 기술이 된 것 같습니다. 예를 들어 시작해 보겠습니다.
+
+
+![image](https://user-images.githubusercontent.com/55765292/174236387-bb020e9e-3c73-40ca-a810-03ad5c6fa1a3.png)
+
+그렇다면 벡터화란 무엇일까요? 로지스틱 회귀에서 $z = w^Tx + b$와 같음을 계산해야 합니다. $w$는 열벡터 였고 $x$도 마찬가지입니다. 특징이 많으면 매우 큰 벡터일 수 있습니다. 그래서, $w$ 및 $x$는 모두 $\mathbb{R}^{n_x}$에 속합니다.
+
+따라서 $w^T$를 계산하기 위해서 비벡터화된 구현이 있는 경우 다음과 같은 작업을 합니다.
+
+**Non-vectorized**
+```
+z = 0
+for i in range(n_x):
+  z += w[i]*x[i]
+z += b
+```
+
+그러면 이게 정말 느리단걸 알게 되실 겁니다. 대조적으로, 벡터화된 구현은 $w^T$를 직접 계산합니다.
+
+**Vectorzied**
+```
+z = np.dot(w,x) + b
+```
+
+간단한 데모를 통해 이를 설명하겠습니다.
+
+---
+
+```
+import numpy as np
+
+a = np.array([1,2,3,4])
+print(a)
+```
+
+먼저 numpy 라이브러리를 import합니다. 그리고 예를 들어 a와 같은 배열을 생성할 수 있습니다.
+
+---
+
+```
+import time
+
+a = np.random.rand(1000000)
+b = np.random.rand(1000000)
+
+tic = time.time()
+c = np.dot(a,b)
+toc = time.time()
+
+print("Vectorized version:" + str(1000*(toc-tic)) + "ms")
+
+c = 0
+tic = time.time()
+for i in range(1000000):
+    c += a[i]*b[i]
+toc = time.time()
+
+print("For loop:" + str(1000*(toc-tic)) + "ms")
+```
+
+먼저 벡터화 데모도 한번 해보겠습니다. 시간을 측정하기 위해서 time 라이브러리를 가져옵니다. 그리고 배열 a,b를 무작위로 백만 차원 배열을 생성합니다. 그리고 이제 tic, c, toc를 측정합니다. 결과는 밀리초 단위로 표시됩니다.
+
+추가로 비벡터화 버전을 보겠습니다. c=0입니다. for 루프를 구현해보죠 i를 위한 1000000범위에서 숫자를 고르겠습니다. tic, toc을 측정하고 소요되는 시간을 프린트 합니다.
+
+결과를 살펴보면 벡터화 버전이 비벡터화 버전보다 300배 정도 더 빠릅니다. 이 예제를 통해 코드를 벡터화하는 것만 기억하면 실제로 300배 이상 빠르게 실행된다는 것을 알 수 있습니다.
+
+---
+
+300배면 엔진 x의 속도가 느려지면 코드를 실행하는 데 1분이 걸리는 것과 실행하는 데 5시간이 걸리는 것의 차이입니다. 그리고 딥러닝 알고리즘을 구현할 때 결과를 더 빨리 얻을 수 있습니다. 코드를 벡터화하면 훨씬 빠릅니다.
+
+GPU나 그래픽 처리 장치에서 많은 확장 가능한 딥러닝 구현이 이루어지고 있다는 것을 들어보셨을 것입니다. 하지만 코드를 통해 본 데모를 주피터 노트북에서 실행하면 실제로 CPU에 연결되었 있을 것입니다. 그리고 GPU와 CPU 모두 병렬화 명링이 있는 것으로 나타났습니다. SIMD 명령어라고도 합니다. 이것은 단일 명령 다중 데이터를 타나냅니다.
+
+그러나 이것이 기본적으로 의미하는 것은 이 np.function과 같은 내장 함수나 for 루프를 명시적으로 구현할 필요가 없는 다른 함수를 사용한다는 것입니다. 파이썬 numpy는 병렬 처리를 훨씬 더 잘 활용하여 계산을 훨씬 빠르게 수행할 수 있습니다.
+
+이는 CUP에 대한 계산과 GPU에 대한 계산 모두에 해당됩니다. GPU는 이러한 SIMD 계산에 매우 능숙하지만 CPU도 실제로 그렇게 나쁘지 않습니다. GPU보단 조금 못하지만 말입니다.
+
+여러분은 벡터화로 코드 속도를 크게 높일 수 있는 방법을 보고 있습니다. 기억하실 경험 의거 규칙은 가능하면, 명시작 for 루프를 사용하지 마십시오. 다음으로 몇 가지 예제를 더 보고 로지스틱 회귀를 벡터화해보겠습니다.
+
+
+
+
+
+
+
