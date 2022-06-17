@@ -127,11 +127,11 @@ $n$은 $2$와 같고, 그렇지 않으면 $dw_1$에 대해 $dw_2, dw_3, ..$ 등�
 
 따라서, 이 모든 계산들을 마친 후 기울기 하강의 한 단계를 구현하기 위해
 
-$w_1 := w_1 - \alpha dw_1$
+$w_1 := w_1 - \alpha \cdot dw_1$
 
-$w_2 := w_2 - \alpha dw_2$
+$w_2 := w_2 - \alpha \cdot dw_2$
 
-$b := b - \alpha db$
+$b := b - \alpha \cdot db$
 
 로 계산됩니다.
 
