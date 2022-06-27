@@ -71,6 +71,12 @@ toc_icon: "sticky-note"
 따라서 이러한 공식에서 활성화 함수의 도함수나 기울기를 계산해야 합니다. 이제 기본 빌딩 블록이 되는 내용을 다루었으니 여러분은 어떻게 신경망을 위해 기울기 하강을 구현할 수 있는지 보실 준비가 되었습니다.
 
 
+### Gradient descent for neural networks
+
+![image](https://user-images.githubusercontent.com/55765292/175843291-af0dbcec-ed2f-48a3-b358-79847c4904b1.png)
+
+![image](https://user-images.githubusercontent.com/55765292/175843339-a82e3d7f-a936-4eb7-bdb2-d0f7d3c58b02.png)
+
 
 
 
