@@ -46,3 +46,10 @@ toc_icon: "sticky-note"
 
 이제 지수 가중 평균에서의 편향 수정도 알게됐습니다. 계속해서 이를 사용하여 더 나은 최적화 알고리즘을 구축해보겠습니다.
 
+
+### Gradient Descent with Momentum
+모멘텀 또는 기울기 하강과 모멘텀이라고하는 알고리즘이 있는데요. 일반적인 기울기 하강 알고리즘 보다 거의 항상 더 빨리 작동합니다. 한 문장으로 말하자면, 기본 아이디어는 기울기의 지수 가중 평균을 산출하는 것인데요. 그 다음에 이 기울기를 이용해서 가중을 업데이트하는 것입니다. 이번에는 한 문장으로 표현한 이 설명을 풀어서 해석하고 어떻게 도입하는지 한번 보겠습니다.
+
+![image](https://user-images.githubusercontent.com/55765292/178394003-862ffbbd-a0a3-4514-97ed-4ae6f00f8c2f.png)
+
+![image](https://user-images.githubusercontent.com/55765292/178394040-9fe480d9-cf56-4d1a-8d28-1ad83258f7a1.png)
