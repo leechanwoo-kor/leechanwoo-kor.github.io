@@ -63,14 +63,14 @@ toc_icon: "sticky-note"
 
 ---
 
-```
+```python
 import numpy as np
 import tensorflow as tf
 ```
 
 TensorFlow를 시작하기 위해서 여러분은 numpy를 np로, tensorflow를 tf로 가져옵니다.
 
-```
+```python
 w = tf.Variable(0, dtype=tf.tloat32)
 optimizer = tf.zeras.optimizers.Adam(0.1)
 
@@ -83,7 +83,7 @@ def train_step():
 
 print(w)
 ```
-`tf.Variable 'Variable:0' shape=() dtype=float32, numpy=0.0>`
+`> <tf.Variable 'Variable:0' shape=() dtype=float32, numpy=0.0>`
 
 다음으로 할 일은 파라미터 w를 정의하는겁니다. `w = tf.Variable(0, dtype=tf.tloat32)`를 사용하여 변수를 0으로 초기화하고 dtype = tf.float 32로 ensorFlow 부동 소수점을 나타냅니다.
 
@@ -103,20 +103,20 @@ Gradient Tape라는 이름의 직관력은 구식 카세트 테이프와 유사�
 
 목록을 학습할 수 있는 변수로서 이 변수들을 쌍으로 구성하여 함수가 목록 두 개를 취하여 해당 요소를 쌍으로 묶을 수 있도록 합니다. 우리가 아직 train_step을 실행하지 않은 w의 초기 값을 인쇄하기 위해 여기에 print(w)를 입력하겠습니다. w는 처음에 초기화한 0의 값이며, 우리가 초기화한 것입니다.
 
-```
+```python
 train_step()
 print(w)
 ```
-`tf.Variable 'Variable:0' shape=() dtype=float32, numpy=0.9999997>`
+`> <tf.Variable 'Variable:0' shape=() dtype=float32, numpy=0.9999997>`
 
 이제 작은 학습 알고리즘의 한 단계를 실행해서 그리고 w의 새로운 값을 출력해 보니 0에서 약 0.1로 약간 증가했습니다.
 
-```
+```python
 for i in range(1000):
   train_step()
 print(w)
 ```
-`tf.Variable 'Variable:0' shape=() dtype=float32, numpy=5.000001>`
+`> <tf.Variable 'Variable:0' shape=() dtype=float32, numpy=5.000001>`
 
 이제 train_step을 1000번 반복합시다. 만약 제가 1000개의 train_step print(w)를 준비한다면, 무슨 일이 벌어질지 봅시다. 꽤 빠르게 실행합니다. 이제 w는 거의 거의 5이며, 우리가 아는것은 이 비용의 최소한의 기능이었습니다.
 
@@ -124,7 +124,7 @@ print(w)
 
 ---
 
-```
+```python
 w = tf.Variable(0, dtype=tf.float32)
 x = np.array([1.0, -10.0, 25.0], dtype=np.float32)
 optimizer = tf.keras.optimizers.Adam(0.1)
@@ -140,6 +140,6 @@ der training(x, w, optimizer):
 w = training(x, ,w, optimizer)
 print(w)
 ```
-`tf.Variable 'Variable:0' shape=() dtype=float32, numpy=5.000001>`
+`> <tf.Variable 'Variable:0' shape=() dtype=float32, numpy=5.000001>`
 
 ![image](https://user-images.githubusercontent.com/55765292/179642364-698ced4e-3765-42f3-8a57-21948f753c7b.png)
