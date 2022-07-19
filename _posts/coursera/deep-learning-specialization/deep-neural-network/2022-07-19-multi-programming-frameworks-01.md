@@ -63,9 +63,6 @@ toc_icon: "sticky-note"
 
 ---
 
-![image](https://user-images.githubusercontent.com/55765292/179642364-698ced4e-3765-42f3-8a57-21948f753c7b.png)
-
-
 ```
 import numpy as np
 import tensorflow as tf
@@ -144,3 +141,5 @@ w = training(x, ,w, optimizer)
 print(w)
 ```
 `tf.Variable 'Variable:0' shape=() dtype=float32, numpy=5.000001>`
+
+![image](https://user-images.githubusercontent.com/55765292/179642364-698ced4e-3765-42f3-8a57-21948f753c7b.png)
