@@ -124,3 +124,23 @@ print(w)
 이제 train_step을 1000번 반복합시다. 만약 제가 1000개의 train_step print(w)를 준비한다면, 무슨 일이 벌어질지 봅시다. 꽤 빠르게 실행합니다. 이제 w는 거의 거의 5이며, 우리가 아는것은 이 비용의 최소한의 기능이었습니다.
 
 몇 가지 주목해야 할 사항이 있는데요. w는 최적화하고자 하는 매개변수입니다. 이것이 변수로 선언한 이유입니다. 해야 할 일은 기울기 테이프를 사용하여 비용 함수를 계산하는 데 필요한 작업 순서를 기록하기만 하면 되고 그리고 그것이 유일한 문제이자 TensorFlow 비용 함수와 관련하여 미분을 취하는 방법을 자동으로 알아낼 수 있었습니다. 그래서 TensorFlow에서 단지 순전파를 구현하고 기울기 계산을 어떻게 하는지 알아내는 겁니다.
+
+---
+
+```
+w = tf.Variable(0, dtype=tf.float32)
+x = np.array([1.0, -10.0, 25.0], dtype=np.float32)
+optimizer = tf.keras.optimizers.Adam(0.1)
+
+der training(x, w, optimizer):
+  def cost_fn():
+    return x[0] * w ** 2 + x[1] * w + x[2]
+  for i in range(1000):
+    optimizer.minimize(cost_fn, [w])
+  
+  return w
+
+w = training(x, ,w, optimizer)
+print(w)
+```
+`tf.Variable 'Variable:0' shape=() dtype=float32, numpy=5.000001>`
