@@ -24,14 +24,14 @@ name                     : "이찬우(Lee Chanwoo)"
 description              : "leechanwoo-kor Blog"
 url                      : "https://leechanwoo-kor.github.io" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
-repository               : "https://github.com/leechanwoo-kor/leechanwoo-kor.github.io.git" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
+repository               : "https://github.com/leechanwoo-kor/leechanwoo-kor.utterances" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : # "/assets/images/profile.gif"
 logo                     : # "/assets/images/profile.gif"
 masthead_title           : "Release notes for" # overrides the website title displayed in the masthead, use " " for no title
 # breadcrumbs            : false # true, false (default)
 words_per_minute         : 200
 comments:
-  provider               : "disqus" # false (default), "disqus", "discourse", "facebook", "staticman", "staticman_v2", "utterances", "giscus", "custom"
+  provider               : "utterances" # false (default), "disqus", "discourse", "facebook", "staticman", "staticman_v2", "utterances", "giscus", "custom"
   disqus:
     shortname            : "leechanwoo-kor-github-io" # https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-
   discourse:
@@ -42,8 +42,8 @@ comments:
     num_posts            : # 5 (default)
     colorscheme          : # "light" (default), "dark"
   utterances:
-    theme                : # "github-light" (default), "github-dark"
-    issue_term           : # "pathname" (default)
+    theme                : "github-light" # "github-light" (default), "github-dark"
+    issue_term           : "pathname" # "pathname" (default)
   giscus:
     repo_id              : # Shown during giscus setup at https://giscus.app
     category_name        : # Full text name of the category
@@ -104,7 +104,7 @@ analytics:
 author:
   name             : "Lee Chanwoo"
   avatar           : "/assets/images/profile1x1.gif"
-  bio              : "**📝 Blog 2022 version 1.1.5**<br>**🔖 June 19, 2022**"
+  bio              : "**📝 Blog 2022 version 1.2.0**<br>**🔖 July 24, 2022**"
   location         : "Republic of Korea"
   email            :
   links:
