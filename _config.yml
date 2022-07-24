@@ -24,7 +24,7 @@ name                     : "이찬우(Lee Chanwoo)"
 description              : "leechanwoo-kor Blog"
 url                      : "https://leechanwoo-kor.github.io" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
-repository               : "https://github.com/leechanwoo-kor/leechanwoo-kor.utterances" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
+repository               : "leechanwoo-kor/leechanwoo-kor.utterances" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : # "/assets/images/profile.gif"
 logo                     : # "/assets/images/profile.gif"
 masthead_title           : "Release notes for" # overrides the website title displayed in the masthead, use " " for no title
