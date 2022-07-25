@@ -1,5 +1,5 @@
 ---
-title: "[Ⅲ. Structuring Machine Learning Projects] Introduction to ML Strategy (1)"
+title: "[Ⅲ. Structuring Machine Learning Projects] Setting Up your Goal (1)"
 categories:
   - Deep Learning Specialization
 tags:
@@ -12,7 +12,7 @@ tags:
   - Decision-Making
 toc: true
 toc_sticky: true
-toc_label: "Introduction to ML Strategy (1)"
+toc_label: "Setting Up your Goal (1)"
 toc_icon: "sticky-note"
 ---
 
@@ -22,9 +22,9 @@ toc_icon: "sticky-note"
 
 # Structuring Machine Learning Projects
 
-## Introduction to ML Strategy
+## Setting Up your Goal
 
-### Why ML Strategy
+### Satisficing and Optimizing Metric
 하이퍼 파라미터를 튜닝하거나 알고리즘 교육에 다른 아이디어를 시도하거나 머신러닝 시스템을 만드는 데 있어 다양한 옵션을 시도하는 등 어떤 경우라도 단일 실수 평가 지표가 있다면 진행 속도가 훨씬 빨라지는 것을 보게 될 것입니다. 이 지표는 새롭게 시도한 것들이 더 잘 작동하는지 더 안 좋은 결과를 내는지 알려 주기 때문입니다. 그래서 보통 팀들이 머신러닝 프로젝트를 시작할 때 단일 실수 평가 지표를 사용할 것을 권장합니다.
 
 ---
