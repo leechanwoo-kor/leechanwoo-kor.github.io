@@ -22,7 +22,7 @@ toc_icon: "sticky-note"
 
 # Structuring Machine Learning Projects
 
-## Error Analysis
+## Mismatched Training and Dev/Test Set
 
 ### Bias and Variance with Mismatched Data Distributions
 
