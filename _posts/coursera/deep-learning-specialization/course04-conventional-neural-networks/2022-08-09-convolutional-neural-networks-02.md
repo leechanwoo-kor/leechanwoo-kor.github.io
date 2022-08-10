@@ -1,5 +1,5 @@
 ---
-title: "[Ⅵ. Convolutional Neural Networks] Convolutional Neural Networks (2)"
+title: "[Ⅳ. Convolutional Neural Networks] Convolutional Neural Networks (2)"
 categories:
   - Deep Learning Specialization
 tags:
