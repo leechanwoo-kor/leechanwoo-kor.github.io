@@ -1,0 +1,380 @@
+:root {
+    /* Change this to change the appearance of the hexaons */
+    --hex-width: 100px;
+    --hex-between: 10px;
+
+    /* Other hexagon dimentions */
+    --hex-height: calc(var(--hex-width) / 1.73
+            /* sqrt(3) */
+        );
+    --hex-margin: calc(var(--hex-width) / 2);
+    --hex-border: calc(var(--hex-margin) / 1.73
+            /* sqrt(3) */
+        );
+    --hex-transition: all .2s ease;
+
+    /* Colors */
+    --color-hex-default: #000000;
+    --color-hex-hover: #ffffff;
+    --color-java: #007396;
+    --color-intellijidea: #66595c;
+    --color-bootstrap: #7952b3;
+    --color-css: #1572b6;
+    --color-git: #f34f29;
+    --color-github: #181717;
+    --color-githubaction: #2088FF;
+    --color-javascript: #f0db4f;
+    --color-python: #3776ab;
+    --color-gradle: #cc6699;
+    --color-postcss: #dd3a0a;
+    --color-html: #E34F26;
+    --color-vuejs: #4fc08d;
+    --color-webpack: #8dd6f9;
+    --color-docker: #2496ed;
+    --color-kubernetes: #326ce5;
+    --color-vscode: #007acc;
+    --color-spring: #6db33f;
+    --color-intellijidea: #fb2046;
+    --color-hexo: #0e83cd;
+    --color-go: #00add8;
+    --color-linux: #fcc624;
+    --color-alpinelinux: #0d597f;
+    --color-windows: #0078d6;
+    --color-postgres: #336791;
+    --color-sqlite: #003b57;
+    --color-elasticsearch: #005571;
+    --color-redis: #DC382D;
+    --color-jenkins: #d33834;
+    --color-aws: #232f3e;
+    --color-ubuntu: #e95420;
+    --color-sonarqube: #4e9bcd;
+    --color-sonarlint: #cb2029;
+    --color-eslint: #4b32c3;
+    --color-prettier: #f7b93e;
+    --color-gradle: #02303a;
+    --color-mosquitto: #3C5280;
+    --color-prometheus: #E6522C;
+    --color-grafana: #F46800;
+}
+
+/* Hexagons */
+.hexagon-container {
+    display: grid;
+    grid-template-columns: var(--hex-width) var(--hex-width) var(--hex-width) var(--hex-width);
+    grid-auto-rows: calc(var(--hex-width) - 28.87px/2);
+    grid-gap: var(--hex-between) var(--hex-between);
+    padding-top: var(--hex-height);
+    padding-bottom: var(--hex-height);
+    justify-content: center;
+}
+
+.hexagon {
+    align-items: center;
+    background-color: var(--color-hex-default);
+    cursor: pointer;
+    display: flex;
+    fill: white;
+    height: var(--hex-height);
+    justify-content: center;
+    margin: var(--hex-border) 0;
+    position: relative;
+    transition: var(--hex-transition);
+    width: var(--hex-width);
+}
+
+.hexagon::after,
+.hexagon::before {
+    border-left: var(--hex-margin) solid transparent;
+    border-right: var(--hex-margin) solid transparent;
+    content: "";
+    left: 0;
+    position: absolute;
+    transition: var(--hex-transition);
+    width: 0;
+}
+
+.hexagon::after {
+    border-top: var(--hex-border) solid var(--color-hex-default);
+    top: 100%;
+    width: 0;
+}
+
+.hexagon::before {
+    border-bottom: var(--hex-border) solid var(--color-hex-default);
+    bottom: 100%;
+}
+
+.hexagon:hover {
+    background-color: var(--color-hex-hover);
+}
+
+.hexagon:hover::after,
+.hexagon:hover::before {
+    border-top-color: var(--color-hex-hover);
+    border-bottom-color: var(--color-hex-hover);
+}
+
+.hexagon:nth-child(8n + 5),
+.hexagon:nth-child(8n + 6),
+.hexagon:nth-child(8n + 7),
+.hexagon:nth-child(8n + 8) {
+    margin-left: calc(var(--hex-width) / 2 + var(--hex-between) / 2);
+}
+
+.hexagon>svg {
+    height: 75%;
+    transition: var(--hex-transition);
+}
+
+/* Colors */
+.color-gradle {
+    background-color: var(--color-gradle);
+}
+
+.color-gradle::after,
+.color-gradle::before {
+    border-top-color: var(--color-gradle);
+    border-bottom-color: var(--color-gradle);
+}
+
+.color-gradle:hover {
+    fill: var(--color-gradle);
+}
+
+.color-angular {
+    background-color: var(--color-angular);
+}
+
+.color-angular::after,
+.color-angular::before {
+    border-top-color: var(--color-angular);
+    border-bottom-color: var(--color-angular);
+}
+
+.color-angular:hover {
+    fill: var(--color-angular);
+}
+
+.color-gulp {
+    background-color: var(--color-gulp);
+}
+
+.color-gulp::after,
+.color-gulp::before {
+    border-top-color: var(--color-gulp);
+    border-bottom-color: var(--color-gulp);
+}
+
+.color-gulp:hover {
+    fill: var(--color-gulp);
+}
+
+.color-postgres {
+    background-color: var(--color-postgres);
+}
+
+.color-postgres::after,
+.color-postgres::before {
+    border-top-color: var(--color-postgres);
+    border-bottom-color: var(--color-postgres);
+}
+
+.color-postgres:hover {
+    fill: var(--color-postgres);
+}
+
+.color-git {
+    background-color: var(--color-git);
+}
+
+.color-git::after,
+.color-git::before {
+    border-top-color: var(--color-git);
+    border-bottom-color: var(--color-git);
+}
+
+.color-git:hover {
+    fill: var(--color-git);
+}
+
+.color-html {
+    background-color: var(--color-html);
+}
+
+.color-html::after,
+.color-html::before {
+    border-top-color: var(--color-html);
+    border-bottom-color: var(--color-html);
+}
+
+.color-html:hover {
+    fill: var(--color-html);
+}
+
+.color-javascript {
+    background-color: var(--color-javascript);
+}
+
+.color-javascript::after,
+.color-javascript::before {
+    border-top-color: var(--color-javascript);
+    border-bottom-color: var(--color-javascript);
+}
+
+.color-javascript:hover {
+    fill: var(--color-javascript);
+}
+
+.color-java {
+    background-color: var(--color-java);
+}
+
+.color-java::after,
+.color-java::before {
+    border-top-color: var(--color-java);
+    border-bottom-color: var(--color-java);
+}
+
+.color-java:hover {
+    fill: var(--color-java);
+}
+
+.color-vuejs {
+    background-color: var(--color-vuejs);
+}
+
+.color-vuejs::after,
+.color-vuejs::before {
+    border-top-color: var(--color-vuejs);
+    border-bottom-color: var(--color-vuejs);
+}
+
+.color-vuejs:hover {
+    fill: var(--color-vuejs);
+}
+
+.color-spring {
+    background-color: var(--color-spring);
+}
+
+.color-spring::after,
+.color-spring::before {
+    border-top-color: var(--color-spring);
+    border-bottom-color: var(--color-spring);
+}
+
+.color-spring:hover {
+    fill: var(--color-spring);
+}
+
+.color-webpack {
+    background-color: var(--color-webpack);
+}
+
+.color-webpack::after,
+.color-webpack::before {
+    border-top-color: var(--color-webpack);
+    border-bottom-color: var(--color-webpack);
+}
+
+.color-webpack:hover {
+    fill: var(--color-webpack);
+}
+
+.color-css {
+    background-color: var(--color-css);
+}
+
+.color-css::after,
+.color-css::before {
+    border-top-color: var(--color-css);
+    border-bottom-color: var(--color-css);
+}
+
+.color-css:hover {
+    fill: var(--color-css);
+}
+
+.color-postcss {
+    background-color: var(--color-postcss);
+}
+
+.color-postcss::after,
+.color-postcss::before {
+    border-top-color: var(--color-postcss);
+    border-bottom-color: var(--color-postcss);
+}
+
+.color-postcss:hover {
+    fill: var(--color-postcss);
+}
+
+.color-python {
+    background-color: var(--color-python);
+}
+
+.color-python::after,
+.color-python::before {
+    border-top-color: var(--color-python);
+    border-bottom-color: var(--color-python);
+}
+
+.color-python:hover {
+    fill: var(--color-python);
+}
+
+.color-vscode {
+    background-color: var(--color-vscode);
+}
+
+.color-vscode::after,
+.color-vscode::before {
+    border-top-color: var(--color-vscode);
+    border-bottom-color: var(--color-vscode);
+}
+
+.color-vscode:hover {
+    fill: var(--color-vscode);
+}
+
+.color-bootstrap {
+    background-color: var(--color-bootstrap);
+}
+
+.color-bootstrap::after,
+.color-bootstrap::before {
+    border-top-color: var(--color-bootstrap);
+    border-bottom-color: var(--color-bootstrap);
+}
+
+.color-bootstrap:hover {
+    fill: var(--color-bootstrap);
+}
+
+.color-intellijidea {
+    background-color: var(--color-intellijidea);
+}
+
+.color-intellijidea::after,
+.color-intellijidea::before {
+    border-top-color: var(--color-intellijidea);
+    border-bottom-color: var(--color-intellijidea);
+}
+
+.color-intellijidea:hover {
+    fill: var(--color-intellijidea);
+}
+
+.color-postcss {
+    background-color: var(--color-postcss);
+}
+
+.color-postcss::after,
+.color-postcss::before {
+    border-top-color: var(--color-postcss);
+    border-bottom-color: var(--color-postcss);
+}
+
+.color-postcss:hover {
+    fill: var(--color-postcss);
+}
