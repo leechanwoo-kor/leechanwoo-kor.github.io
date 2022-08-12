@@ -1,0 +1,173 @@
+@import "./hexagon";
+@import "./variables";
+@import "./mixin";
+
+// :root {
+//     --body-color: $body-bg-color;
+// }
+
+// html {
+//     min-height: 100%;
+//     background-color: $body-bg-color;
+// }
+
+// body {
+//     font-family: "Roboto", sans-serif;
+//     height: 100vh;
+//     width: 100%;
+//     padding: 0;
+//     margin: 0;
+//     color: #ededed;
+
+//     @include mobile {
+//         font-family: 'HangeulNuri-Bold', sans-serif;
+//     }
+// }
+
+// h1 {
+//     font-size: 5rem;
+//     font-weight: 800;
+//     margin-top: 1rem;
+
+//     @include mobile {
+//         font-size: 2.5rem;
+//     }
+// }
+
+// h2 {
+//     font-size: 3.2rem;
+//     font-weight: 600;
+
+//     @include mobile {
+//         font-size: 1.8rem;
+//     }
+// }
+
+// h3 {
+//     font-size: 2.5rem;
+
+//     @include mobile {
+//         font-size: 1.6rem;
+//     }
+// }
+
+// h4 {
+//     font-size: 2rem;
+
+//     @include mobile {
+//         font-size: 1.4rem;
+//     }
+// }
+
+// h5 {
+//     font-size: 1.5rem;
+
+//     @include mobile {
+//         font-size: 1.3rem;
+//     }
+// }
+
+// h6 {
+//     font-size: 1rem;
+// }
+
+// h1,
+// h2,
+// h3,
+// h4,
+// h5,
+// h6 {
+//     margin-bottom: 1rem;
+// }
+
+// p {
+//     margin-bottom: 1rem;
+// }
+
+// a {
+//     color: #e1e1e1;
+// }
+
+// a:hover {
+//     color: #cdcdcd;
+// }
+
+// .text-center {
+//     text-align: center;
+// }
+
+// .text-muted {
+//     color: #e1e1e1;
+// }
+
+// main {
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     width: 100%;
+//     height: 100%;
+// }
+
+// #hello {
+//     margin: 5rem 0;
+
+//     @include mobile {
+//         padding-left: 15px;
+//         padding-right: 15px;
+//     }
+// }
+
+.initial-content-about {
+
+    background-color: #000000;
+
+}
+
+#education,
+#skills,
+#project {
+
+    @include mobile {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    h2 {
+        color: #ededed;
+        font-size: 3.2rem;
+        font-weight: 600;
+
+        @include mobile {
+            font-size: 1.8rem;
+        }
+    }
+
+    .bar {
+        background: #e1e1e1;
+        height: 8px;
+        width: 70px;
+        margin: 0 auto;
+    }
+}
+
+.education-container,
+.project-container {
+    p {
+        color: #ededed;
+    }
+
+    margin: 0 auto;
+    margin-top: 2rem;
+    width: fit-content;
+}
+
+// .h-100 {
+//     height: 100% !important;
+// }
+
+// @include mobile {
+//     :root {
+//         --hex-width: 50px;
+//         --hex-between: 10px;
+//     }
+// }
