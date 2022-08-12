@@ -1,0 +1,29 @@
+@media (max-width: 767px) {
+    /* 브라우저 사이즈 767px 이하일때*/
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    /* 브라우저 사이즈 768px이상, 1023px이하 일때,*/
+}
+
+/*반응형 mixin으로 깔끔하게 사용하기*/
+@mixin mobile {
+    @media (max-width: 767px) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media (min-width: 768px) and (max-width: 1023px) {
+        @content;
+    }
+}
+
+
+@include mobile {
+    /*브라우저 사이즈767px이하일때*/
+}
+
+@include tablet {
+    /*브라우저 사이즈768px이상, 1023px 이하일때*/
+}
