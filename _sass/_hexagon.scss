@@ -1,0 +1,785 @@
+:root {
+    /* Change this to change the appearance of the hexaons */
+    --hex-width: 100px;
+    --hex-between: 10px;
+
+    /* Other hexagon dimentions */
+    --hex-height: calc(var(--hex-width) / 1.73
+            /* sqrt(3) */
+        );
+    --hex-margin: calc(var(--hex-width) / 2);
+    --hex-border: calc(var(--hex-margin) / 1.73
+            /* sqrt(3) */
+        );
+    --hex-transition: all .2s ease;
+
+    /* Colors */
+    --color-hex-default: #000000;
+    --color-hex-hover: #ffffff;
+    --color-anaconda: #44A833;
+    --color-android: #3DDC84;
+    --color-androidstudio: #3DDC84;
+    --color-apachekafka: #231F20;
+    --color-apachemaven: #C71A36;
+    --color-apachetomcat: #F8DC75;
+    --color-bootstrap: #7952B3;
+    --color-confluence: #172B4D;
+    --color-csharp: #239120;
+    --color-css: #1572B6;
+    --color-eclipseide: #2C2255;
+    --color-git: #F05032;
+    --color-github: #181717;
+    --color-githubpages: #222222;
+    --color-googlecolab: #F9AB00;
+    --color-gradle: #02303A;
+    --color-html: #E34F26;
+    --color-intellijidea: #000000;
+    --color-java: #007396;
+    --color-javascript: #F7DF1E;
+    --color-jirasoftware: #0052CC;
+    --color-junit5: #25A162;
+    --color-jupyter: #F37626;
+    --color-jquery: #0769AD;
+    --color-mysql: #4479A1;
+    --color-nodejs: #339933;
+    --color-numpy: #013243;
+    --color-oracle: #F80000;
+    --color-pandas: #150458;
+    --color-postcss: #DD3A0A;
+    --color-postgres: #4169E1;
+    --color-postman: #FF6C37;
+    --color-pycharm: #000000;
+    --color-python: #3776AB;
+    --color-pytorch: #EE4C2C;
+    --color-scikitlearn: #F7931E;
+    --color-sonarqube: #4E9BCD;
+    --color-spring: #6DB33F;
+    --color-springboot: #6DB33F;
+    --color-tensorflow: #FF6F00;
+    --color-unity: #181717;
+    --color-visualstudio: #5C2D91;
+    --color-visualstudiocode: #007ACC;
+    --color-vuejs: #4FC08D;
+    --color-webpack: #8DD6F9;
+}
+
+@media (max-width: 757px) {
+    :root {
+        --hex-width: 50px;
+        --hex-between: 10px;
+    }
+}
+
+/* Hexagons */
+.hexagon-container {
+    display: grid;
+    grid-template-columns: var(--hex-width) var(--hex-width) var(--hex-width) var(--hex-width) var(--hex-width) var(--hex-width);
+    grid-auto-rows: calc(var(--hex-width) - 28.87px/2);
+    grid-gap: var(--hex-between) var(--hex-between);
+    padding-top: var(--hex-height);
+    padding-bottom: var(--hex-height);
+    justify-content: center;
+}
+
+@media (max-width: 768px) {
+    .hexagon-container {
+        grid-template-columns: var(--hex-width) var(--hex-width) var(--hex-width) var(--hex-width);
+        grid-auto-rows: calc(var(--hex-width) - 22.87px / 2);
+        margin-left: -28px;
+    }
+}
+
+.hexagon {
+    align-items: center;
+    background-color: var(--color-hex-default);
+    cursor: pointer;
+    display: flex;
+    fill: white;
+    height: var(--hex-height);
+    justify-content: center;
+    margin: var(--hex-border) 0;
+    position: relative;
+    transition: var(--hex-transition);
+    width: var(--hex-width);
+}
+
+.hexagon::after,
+.hexagon::before {
+    border-left: var(--hex-margin) solid transparent;
+    border-right: var(--hex-margin) solid transparent;
+    content: "";
+    left: 0;
+    position: absolute;
+    transition: var(--hex-transition);
+    width: 0;
+}
+
+.hexagon::after {
+    border-top: var(--hex-border) solid var(--color-hex-default);
+    top: 100%;
+    width: 0;
+}
+
+.hexagon::before {
+    border-bottom: var(--hex-border) solid var(--color-hex-default);
+    bottom: 100%;
+}
+
+.hexagon:hover {
+    background-color: var(--color-hex-hover);
+}
+
+.hexagon:hover::after,
+.hexagon:hover::before {
+    border-top-color: var(--color-hex-hover);
+    border-bottom-color: var(--color-hex-hover);
+}
+
+@media (min-width: 768px) {
+
+    .hexagon:nth-child(12n + 7),
+    .hexagon:nth-child(12n + 8),
+    .hexagon:nth-child(12n + 9),
+    .hexagon:nth-child(12n + 10),
+    .hexagon:nth-child(12n + 11),
+    .hexagon:nth-child(12n + 12) {
+        margin-left: calc(var(--hex-width) / 2 + var(--hex-between) / 2);
+    }
+}
+
+@media (max-width: 768px) {
+
+    .hexagon:nth-child(8n + 5),
+    .hexagon:nth-child(8n + 6),
+    .hexagon:nth-child(8n + 7),
+    .hexagon:nth-child(8n + 8) {
+        margin-left: calc(var(--hex-width) / 2 + var(--hex-between) / 2);
+    }
+}
+
+.hexagon>svg {
+    height: 75%;
+    transition: var(--hex-transition);
+}
+
+/* Colors */
+.color-default {
+    background-color: var(--color-default);
+}
+
+.color-default::after,
+.color-default::before {
+    border-top-color: var(--color-default);
+    border-bottom-color: var(--color-default);
+}
+
+.color-default:hover {
+    fill: var(--color-default);
+}
+
+/** default */
+.color-postman {
+    background-color: var(--color-postman);
+}
+
+.color-postman::after,
+.color-postman::before {
+    border-top-color: var(--color-postman);
+    border-bottom-color: var(--color-postman);
+}
+
+.color-postman:hover {
+    fill: var(--color-postman);
+}
+
+.color-visualstudio {
+    background-color: var(--color-visualstudio);
+}
+
+.color-visualstudio::after,
+.color-visualstudio::before {
+    border-top-color: var(--color-visualstudio);
+    border-bottom-color: var(--color-visualstudio);
+}
+
+.color-visualstudio:hover {
+    fill: var(--color-visualstudio);
+}
+
+.color-eclipseide {
+    background-color: var(--color-eclipseide);
+}
+
+.color-eclipseide::after,
+.color-eclipseide::before {
+    border-top-color: var(--color-eclipseide);
+    border-bottom-color: var(--color-eclipseide);
+}
+
+.color-eclipseide:hover {
+    fill: var(--color-eclipseide);
+}
+
+.color-springboot {
+    background-color: var(--color-springboot);
+}
+
+.color-springboot::after,
+.color-springboot::before {
+    border-top-color: var(--color-springboot);
+    border-bottom-color: var(--color-springboot);
+}
+
+.color-springboot:hover {
+    fill: var(--color-springboot);
+}
+
+.color-apachekafka {
+    background-color: var(--color-apachekafka);
+}
+
+.color-apachekafka::after,
+.color-apachekafka::before {
+    border-top-color: var(--color-apachekafka);
+    border-bottom-color: var(--color-apachekafka);
+}
+
+.color-apachekafka:hover {
+    fill: var(--color-apachekafka);
+}
+
+.color-apachemaven {
+    background-color: var(--color-apachemaven);
+}
+
+.color-apachemaven::after,
+.color-apachemaven::before {
+    border-top-color: var(--color-apachemaven);
+    border-bottom-color: var(--color-apachemaven);
+}
+
+.color-apachemaven:hover {
+    fill: var(--color-apachemaven);
+}
+
+.color-apachetomcat {
+    background-color: var(--color-apachetomcat);
+}
+
+.color-apachetomcat::after,
+.color-apachetomcat::before {
+    border-top-color: var(--color-apachetomcat);
+    border-bottom-color: var(--color-apachetomcat);
+}
+
+.color-apachetomcat:hover {
+    fill: var(--color-apachetomcat);
+}
+
+.color-sonarqube {
+    background-color: var(--color-sonarqube);
+}
+
+.color-sonarqube::after,
+.color-sonarqube::before {
+    border-top-color: var(--color-sonarqube);
+    border-bottom-color: var(--color-sonarqube);
+}
+
+.color-sonarqube:hover {
+    fill: var(--color-sonarqube);
+}
+
+.color-confluence {
+    background-color: var(--color-confluence);
+}
+
+.color-confluence::after,
+.color-confluence::before {
+    border-top-color: var(--color-confluence);
+    border-bottom-color: var(--color-confluence);
+}
+
+.color-confluence:hover {
+    fill: var(--color-confluence);
+}
+
+.color-jirasoftware {
+    background-color: var(--color-jirasoftware);
+}
+
+.color-jirasoftware::after,
+.color-jirasoftware::before {
+    border-top-color: var(--color-jirasoftware);
+    border-bottom-color: var(--color-jirasoftware);
+}
+
+.color-jirasoftware:hover {
+    fill: var(--color-jirasoftware);
+}
+
+.color-nodejs {
+    background-color: var(--color-nodejs);
+}
+
+.color-nodejs::after,
+.color-nodejs::before {
+    border-top-color: var(--color-nodejs);
+    border-bottom-color: var(--color-nodejs);
+}
+
+.color-nodejs:hover {
+    fill: var(--color-nodejs);
+}
+
+.color-jquery {
+    background-color: var(--color-jquery);
+}
+
+.color-jquery::after,
+.color-jquery::before {
+    border-top-color: var(--color-jquery);
+    border-bottom-color: var(--color-jquery);
+}
+
+.color-jquery:hover {
+    fill: var(--color-jquery);
+}
+
+.color-mysql {
+    background-color: var(--color-mysql);
+}
+
+.color-mysql::after,
+.color-mysql::before {
+    border-top-color: var(--color-mysql);
+    border-bottom-color: var(--color-mysql);
+}
+
+.color-mysql:hover {
+    fill: var(--color-mysql);
+}
+
+.color-gradle {
+    background-color: var(--color-gradle);
+}
+
+.color-gradle::after,
+.color-gradle::before {
+    border-top-color: var(--color-gradle);
+    border-bottom-color: var(--color-gradle);
+}
+
+.color-gradle:hover {
+    fill: var(--color-gradle);
+}
+
+.color-oracle {
+    background-color: var(--color-oracle);
+}
+
+.color-oracle::after,
+.color-oracle::before {
+    border-top-color: var(--color-oracle);
+    border-bottom-color: var(--color-oracle);
+}
+
+.color-oracle:hover {
+    fill: var(--color-oracle);
+}
+
+.color-gulp {
+    background-color: var(--color-gulp);
+}
+
+.color-gulp::after,
+.color-gulp::before {
+    border-top-color: var(--color-gulp);
+    border-bottom-color: var(--color-gulp);
+}
+
+.color-gulp:hover {
+    fill: var(--color-gulp);
+}
+
+.color-postgres {
+    background-color: var(--color-postgres);
+}
+
+.color-postgres::after,
+.color-postgres::before {
+    border-top-color: var(--color-postgres);
+    border-bottom-color: var(--color-postgres);
+}
+
+.color-postgres:hover {
+    fill: var(--color-postgres);
+}
+
+.color-git {
+    background-color: var(--color-git);
+}
+
+.color-git::after,
+.color-git::before {
+    border-top-color: var(--color-git);
+    border-bottom-color: var(--color-git);
+}
+
+.color-git:hover {
+    fill: var(--color-git);
+}
+
+.color-github {
+    background-color: var(--color-github);
+}
+
+.color-github::after,
+.color-github::before {
+    border-top-color: var(--color-github);
+    border-bottom-color: var(--color-github);
+}
+
+.color-github:hover {
+    fill: var(--color-github);
+}
+
+.color-gitpages {
+    background-color: var(--color-gitpages);
+}
+
+.color-gitpages::after,
+.color-gitpages::before {
+    border-top-color: var(--color-gitpages);
+    border-bottom-color: var(--color-gitpages);
+}
+
+.color-gitpages:hover {
+    fill: var(--color-gitpages);
+}
+
+.color-html {
+    background-color: var(--color-html);
+}
+
+.color-html::after,
+.color-html::before {
+    border-top-color: var(--color-html);
+    border-bottom-color: var(--color-html);
+}
+
+.color-html:hover {
+    fill: var(--color-html);
+}
+
+.color-javascript {
+    background-color: var(--color-javascript);
+}
+
+.color-javascript::after,
+.color-javascript::before {
+    border-top-color: var(--color-javascript);
+    border-bottom-color: var(--color-javascript);
+}
+
+.color-javascript:hover {
+    fill: var(--color-javascript);
+}
+
+.color-java {
+    background-color: var(--color-java);
+}
+
+.color-java::after,
+.color-java::before {
+    border-top-color: var(--color-java);
+    border-bottom-color: var(--color-java);
+}
+
+.color-java:hover {
+    fill: var(--color-java);
+}
+
+.color-vuejs {
+    background-color: var(--color-vuejs);
+}
+
+.color-vuejs::after,
+.color-vuejs::before {
+    border-top-color: var(--color-vuejs);
+    border-bottom-color: var(--color-vuejs);
+}
+
+.color-vuejs:hover {
+    fill: var(--color-vuejs);
+}
+
+.color-spring {
+    background-color: var(--color-spring);
+}
+
+.color-spring::after,
+.color-spring::before {
+    border-top-color: var(--color-spring);
+    border-bottom-color: var(--color-spring);
+}
+
+.color-spring:hover {
+    fill: var(--color-spring);
+}
+
+.color-webpack {
+    background-color: var(--color-webpack);
+}
+
+.color-webpack::after,
+.color-webpack::before {
+    border-top-color: var(--color-webpack);
+    border-bottom-color: var(--color-webpack);
+}
+
+.color-webpack:hover {
+    fill: var(--color-webpack);
+}
+
+.color-css {
+    background-color: var(--color-css);
+}
+
+.color-css::after,
+.color-css::before {
+    border-top-color: var(--color-css);
+    border-bottom-color: var(--color-css);
+}
+
+.color-css:hover {
+    fill: var(--color-css);
+}
+
+.color-postcss {
+    background-color: var(--color-postcss);
+}
+
+.color-postcss::after,
+.color-postcss::before {
+    border-top-color: var(--color-postcss);
+    border-bottom-color: var(--color-postcss);
+}
+
+.color-postcss:hover {
+    fill: var(--color-postcss);
+}
+
+.color-python {
+    background-color: var(--color-python);
+}
+
+.color-python::after,
+.color-python::before {
+    border-top-color: var(--color-python);
+    border-bottom-color: var(--color-python);
+}
+
+.color-python:hover {
+    fill: var(--color-python);
+}
+
+.color-visualstudiocode {
+    background-color: var(--color-visualstudiocode);
+}
+
+.color-visualstudiocode::after,
+.color-visualstudiocode::before {
+    border-top-color: var(--color-visualstudiocode);
+    border-bottom-color: var(--color-visualstudiocode);
+}
+
+.color-visualstudiocode:hover {
+    fill: var(--color-visualstudiocode);
+}
+
+.color-bootstrap {
+    background-color: var(--color-bootstrap);
+}
+
+.color-bootstrap::after,
+.color-bootstrap::before {
+    border-top-color: var(--color-bootstrap);
+    border-bottom-color: var(--color-bootstrap);
+}
+
+.color-bootstrap:hover {
+    fill: var(--color-bootstrap);
+}
+
+.color-intellijidea {
+    background-color: var(--color-intellijidea);
+}
+
+.color-intellijidea::after,
+.color-intellijidea::before {
+    border-top-color: var(--color-intellijidea);
+    border-bottom-color: var(--color-intellijidea);
+}
+
+.color-intellijidea:hover {
+    fill: var(--color-intellijidea);
+}
+
+.color-csharp {
+    background-color: var(--color-csharp);
+}
+
+.color-csharp::after,
+.color-csharp::before {
+    border-top-color: var(--color-csharp);
+    border-bottom-color: var(--color-csharp);
+}
+
+.color-csharp:hover {
+    fill: var(--color-csharp);
+}
+
+.color-unity {
+    background-color: var(--color-unity);
+}
+
+.color-unity::after,
+.color-unity::before {
+    border-top-color: var(--color-unity);
+    border-bottom-color: var(--color-unity);
+}
+
+.color-unity:hover {
+    fill: var(--color-unity);
+}
+
+.color-android {
+    background-color: var(--color-android);
+}
+
+.color-android::after,
+.color-android::before {
+    border-top-color: var(--color-android);
+    border-bottom-color: var(--color-android);
+}
+
+.color-android:hover {
+    fill: var(--color-android);
+}
+
+.color-androidstudio {
+    background-color: var(--color-androidstudio);
+}
+
+.color-androidstudio::after,
+.color-androidstudio::before {
+    border-top-color: var(--color-androidstudio);
+    border-bottom-color: var(--color-androidstudio);
+}
+
+.color-androidstudio:hover {
+    fill: var(--color-androidstudio);
+}
+
+.color-android:hover {
+    fill: var(--color-android);
+}
+
+.color-numpy {
+    background-color: var(--color-numpy);
+}
+
+.color-numpy::after,
+.color-numpy::before {
+    border-top-color: var(--color-numpy);
+    border-bottom-color: var(--color-numpy);
+}
+
+.color-numpy:hover {
+    fill: var(--color-numpy);
+}
+
+.color-pandas {
+    background-color: var(--color-pandas);
+}
+
+.color-pandas::after,
+.color-pandas::before {
+    border-top-color: var(--color-pandas);
+    border-bottom-color: var(--color-pandas);
+}
+
+.color-pandas:hover {
+    fill: var(--color-pandas);
+}
+
+.color-anaconda {
+    background-color: var(--color-anaconda);
+}
+
+.color-anaconda::after,
+.color-anaconda::before {
+    border-top-color: var(--color-anaconda);
+    border-bottom-color: var(--color-anaconda);
+}
+
+.color-anaconda:hover {
+    fill: var(--color-anaconda);
+}
+
+.color-jupyter {
+    background-color: var(--color-jupyter);
+}
+
+.color-jupyter::after,
+.color-jupyter::before {
+    border-top-color: var(--color-jupyter);
+    border-bottom-color: var(--color-jupyter);
+}
+
+.color-jupyter:hover {
+    fill: var(--color-jupyter);
+}
+
+.color-tensorflow {
+    background-color: var(--color-tensorflow);
+}
+
+.color-tensorflow::after,
+.color-tensorflow::before {
+    border-top-color: var(--color-tensorflow);
+    border-bottom-color: var(--color-tensorflow);
+}
+
+.color-tensorflow:hover {
+    fill: var(--color-tensorflow);
+}
+
+.color-pytorch {
+    background-color: var(--color-pytorch);
+}
+
+.color-pytorch::after,
+.color-pytorch::before {
+    border-top-color: var(--color-pytorch);
+    border-bottom-color: var(--color-pytorch);
+}
+
+.color-pytorch:hover {
+    fill: var(--color-pytorch);
+}
+
+.color-scikitlearn {
+    background-color: var(--color-scikitlearn);
+}
+
+.color-scikitlearn::after,
+.color-scikitlearn::before {
+    border-top-color: var(--color-pytoscikitlearnrch);
+    border-bottom-color: var(--color-scikitlearn);
+}
+
+.color-scikitlearn:hover {
+    fill: var(--color-scikitlearn);
+}
