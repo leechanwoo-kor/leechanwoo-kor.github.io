@@ -1,5 +1,5 @@
 ---
-title: "[Ⅳ. Convolutional Neural Networks] Deep Convolutional Models (2)"
+title: "[Ⅳ. Convolutional Neural Networks] Deep Convolutional Models (3)"
 categories:
   - Deep Learning Specialization
 tags:
@@ -12,7 +12,7 @@ tags:
   - Object Detection and Segmentation
 toc: true
 toc_sticky: true
-toc_label: "Deep Convolutional Models (2)"
+toc_label: "Deep Convolutional Models (3)"
 toc_icon: "sticky-note"
 ---
 
