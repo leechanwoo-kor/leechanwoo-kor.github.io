@@ -5,11 +5,11 @@ categories:
 tags:
   - Coursera
   - Deep Learning Specialization
-  - Deep Learning
-  - Facial Recognition System
-  - Convolutional Neural Network
-  - Tensorflow
-  - Object Detection and Segmentation
+  - Natural Language Processing
+  - Long Short Term Memory (LSTM)
+  - Gated Recurrent Unit (GRU)
+  - Recurrent Neural Network
+  - Attention Models
 toc: true
 toc_sticky: true
 toc_label: "Recurrent Neural Networks (4)"
