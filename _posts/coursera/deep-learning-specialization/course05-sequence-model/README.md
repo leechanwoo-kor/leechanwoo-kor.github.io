@@ -54,3 +54,18 @@
 - Train a trigger word detection model and make predictions
 - Synthesize and process audio recordings to create train/dev datasets
 - Structure a speech recognition project
+
+
+## Transformer Network
+
+### 학습 목표
+
+- Create positional encodings to capture sequential relationships in data
+- Calculate scaled dot-product self-attention with word embeddings
+- Implement masked multi-head attention
+- Build and train a Transformer model
+- Fine-tune a pre-trained transformer model for Named Entity Recognition
+- Fine-tune a pre-trained transformer model for Question Answering
+- Im-plement a QA model in TensorFlow and PyTorch
+- Fine-tune a pre-trained transformer model to a custom dataset
+- Perform extractive Question Answering
