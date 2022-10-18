@@ -1,0 +1,332 @@
+---
+title: "[NLP] 텍스트 데이터의 문자열 처리"
+categories:
+  - R Programming
+tags:
+  - R Programming
+toc: true
+toc_sticky: true
+toc_label: "tidyr / dplyr"
+toc_icon: "sticky-note"
+---
+
+![image](https://user-images.githubusercontent.com/55765292/196322694-37aa45dd-c985-4514-8ba4-dd447a6486a6.png)
+
+<br>
+# 텍스트 데이터의 문자열 처리
+
+<br>
+## 텍스트 데이터 형태
+- 구조화된 문서 (Document)
+  - HTML
+  - XML
+  - CSV
+  - JSON
+- 구조화되지 않은 문서
+  - 자연어 (Natural Language)
+
+<br>
+## 문자열 (String)
+- 문자, 문자열 모두 --> 문자열
+- 텍스트를 작음따옴표나 큰따옴표로 감싸주면 됨
+- 문자열 생성하기
+
+```Python
+'hello world'
+"hello world"
+"I'd love to change the world"
+"3"
+```
+
+- 문자열 연산
+  - 문자열 합치기 (더하기)
+  - 문자열 반복 (곱하기)
+- 문자열 길이 구하기
+
+<br>
+### 실습 - 문자열 연산 및 길이 구하기
+
+```Python
+    string1 = "welcome"
+    string2 = ' to'
+    string3 = " python"
+    
+    print('-'*17)
+    print(string1 + string 2 + string3)
+    print('-'*17)
+    print(len(string1))
+    print(len(string2))
+    print(len(string3))
+
+## -----------------
+## welcome to python
+## -----------------
+## 7
+## 3
+## 7
+```
+
+<br>
+## 문자열 인덱싱 (Indexing)
+- 문자열에서 한 글자를 가져오는 것
+- [] 기호를 사용하여 가져오고자 하는 글자가 위치하는 순서를 표기함
+- [] 인덱스 번호는 0부터 시작함
+
+```R
+    stirng = "Let's go to the hangang. Have a good time."
+    string[12]
+## 't'
+```
+
+<br>
+## 문자열 슬라이싱 (Slicing)
+- 문자열에서 한 글자 이상을 가져오는 것
+- [] 기호를 사용하여 가져오고자 하는 부분의 [시작 인덱스:끝 인덱스]를 표기함
+- 끝 인덱스에 해당하는 문자는 추출되지 않음
+
+```Python
+    stirng = "Let's go to the Hangang. Have a good time."
+    string[12:23]
+    
+## 'the Hangang
+```
+
+- 뒤에서부터 인덱싱 및 슬라이싱 할 때는 -1 부터 시작함
+- 뒤에서부터 문자열 슬라이싱
+
+```Python
+    stirng = "Let's go to the hangang. Have a good time."
+    string[-10:-1]
+    
+## 'good time'
+```
+
+- : 앞에 인덱스 번호를 생략한다면 앞 문자열 전체를 의미
+- : 뒤에 인덱스 번호를 생략한다면 뒤 문자열 전체를 의미
+
+```Python
+    stirng = "Let's go to the hangang. Have a good time."
+    string[:12]
+    
+## Let's go to '
+
+    stirng = "Let's go to the hangang. Have a good time."
+    string[12:]
+    
+## the hangang. Have a good time.
+```
+
+<br>
+## 문자열 함수
+
+![image](https://user-images.githubusercontent.com/55765292/196339861-e15e118e-fc8f-4f97-81a6-8db013ee5a8c.png)
+
+<br>
+### 실습 - 문자열 함수
+
+```Python
+    # string.upper()
+    # string.lower()
+    stirng = "Let's go to the hangang. Have a good time."
+    print(string.upper())
+    print(string.lower())
+## LET'S GO TO THE HANGANG. HAVE A GOOD TIME.
+## let's go to the hangang. Have a good time.
+
+    # string.index()
+    stirng = "Let's go to the hangang. Have a good time."
+    print(string.index('g'))
+    print(string.index('good'))
+## 6
+## 32
+
+    # string.replace()
+    stirng = "Let's go to the hangang. Have a good time."
+    string.replace('good','nice')
+## 'Let's go to the Hangang. Have a nice time.'
+
+    # string.lstrip()
+    # string.rstrip()
+    # string.strip()
+    stirng = "Let's go to the hangang. Have a good time."
+    print(string.lstrip())
+    print(string.rstrip())
+    print(string.strip())
+## go   to the Han  gang 
+##  go   to the Han  gang
+## go   to the Han  gang
+```
+
+<br>
+## 출력 포매팅
+- print 함수를 사용하여 문자열을 출력할 때 출력 형식을 정의할 수 있음
+
+```Python
+    # 포매팅 코드
+    name = '이찬우'; year = 2
+    print("제 이름은 %s이고, %d학년입니다." %(name, year))
+## 제 이름은 이찬우이고, 2학년입니다.
+
+    # format 메서드
+    name = '이찬우'; year = 2
+    print("제 이름은 {}이고, {}학년입니다.".format(name, year))
+## 제 이름은 이찬우이고, 2학년입니다.
+
+    # f string
+    name = '이찬우'; year = 2
+    print(f"제 이름은 {name}이고, {year}학년 입니다.")
+## 제 이름은 이찬우이고, 2학년입니다.    
+```
+
+- 출력 형식을 정의할 수 있는 코드
+
+![image](https://user-images.githubusercontent.com/55765292/196340896-f1b9df4b-2eaf-40ab-b48d-98adb9c85401.png)
+
+<br>
+- print 함수를 사용하여 문자열을 출력할 때 이탈문자를 사용할 수 있음
+
+![image](https://user-images.githubusercontent.com/55765292/196340941-eb2bd60a-59ed-45a0-bc7c-9161fbe12bfc.png)
+
+<br>
+### 실습
+- 문자열에서 개별 문자들을 추출하기
+
+```Python
+    s = 'Monty Python'
+    s[0]
+## 'M'
+
+    s[6:10]
+## 'Pyth'
+    s[-12:-7]
+## 'Monty'
+
+    t = s[:-2]
+    t
+## 'Monty Pyth'
+
+    t = s[-2:]
+    t
+## 'on'
+
+    s[:-2] + s[-2:]
+## 'Monty Python'
+```
+
+<br>
+- 문자열에서 개별 단어들을 추출하기
+
+```Python
+    s = 'Welcome to Python'\
+    s.split()
+## ['Welcome', 'to', 'Python']
+
+    s = '2021.8.15'
+    s.split('.')
+## '2021', '8', '15']
+
+    s = 'Hello, World!'
+    s.split(',')
+## ['Hello', 'World!']
+
+    s = 'Welcome, to,  Python, and ,  bla, bla   '
+    [x.strip() for x in s.split(',')]
+## 'Welcome', 'to', 'Python', 'and', 'bla', 'bla']
+
+    list('Hello, World!')
+## ['H' 'e', 'l', 'l', 'o', ',', ' ', 'W', 'o', 'r', 'l', 'd', '!']
+```
+
+<br>
+
+- 문자열을 이어 붙이기
+
+```Python
+    ','.join(['apple', 'grape', 'banana'])
+## 'apple,grape,banana'
+
+    '-',join('010.1234.5678'.split('.'))
+## '010-1234-5678'
+
+    '010.1234.5678'.replcae('.','-')
+## '010-1234-5678'
+```
+
+<br>
+
+- 대문자, 소문자 변환하기
+
+```Python
+    s = 'Hello, World!'
+    s.lower()
+## 'hello, world!'
+    s.upper()
+## 'HELLO, WORLD!'
+
+    s = '   Hello, World!   '
+    s.strip()       # 왼쪽과 오른쪽의 공백문자를 모두 제거한다
+## 'Hello, World!'
+    s.lstrip()      # 왼쪽의 공백문자만 제거한다
+## 'Hello, World!   '
+    s.rstrip()      # 오른쪽의 공백문자만 제거한다
+## '   Hello, World!'
+
+    s = '########this is an example#####'
+    s.lstrip('#')
+## 'this is an example####'
+    s.rstrip('#')
+## '#######this is an example'
+    s.strip('#').capitalize()   # 샵문자를 제거하고 문장의 첫글자를 대문자로 만든다
+## 'This is an example'
+```
+
+<br>
+## 실습 - 워드 클라우드
+- 워드 클라우드로 표현하기
+
+`!pip install matplotlib pandas wikipedia wordcloud`
+
+```Python
+import wikipedia
+
+# 위키백과 사전의 컨텐츠 제목을 명시해 준다
+wiki = wikipedia.page('Artificial intelligence')
+# 이 페이지의 텍스트 컨텐츠를 추출하도록 한다
+text = wiki.content
+```
+
+```Python
+from wordcloud import WordCloud
+
+# 워드 클라우드를 생성하기 위해 위의 코드를 삽입할 것
+wordcloud = WordCloud(width = 2000, height = 1500).generate(text)
+```
+
+```Python
+import matplotlib.pyplot as plt
+
+plt.figure(figsize=(40,30)
+# 화면에 이미지를 그려준다
+plt.imshow(wordcloud)
+plt.show()
+```
+
+<br>
+
+- 워드 클라우드 (불용어 처리)
+
+```Python
+from wordcloud import WordCloud, STOPWORDS
+# 중지어가 제외된 워드 클라우드를 만들자
+s_words = STOPWORD.union( {'one', 'using', 'first', 'two', 'make', 'use'} )
+wordcloud = WordCloud(width = 2000, height = 1500,
+                      stopwords = s_words).generate(text)
+```
+
+```Python
+import matplotlib.pyplot as plt
+plt.figure(figsize=(40, 30))
+# 화면에 이미지를 그려준다
+plt.imshow(wordcloud)
+plt.show()
+```
