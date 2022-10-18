@@ -53,7 +53,7 @@ toc_icon: "sticky-note"
 ### 실습
 - 텍스트의 토큰화
 
-```Python
+```python
 from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 from tensorflow.keras.models import Sequential
@@ -87,7 +87,7 @@ print("\n토큰화:\n", result)
 
 - 단어 빈도수 세기
 
-```Python
+```python
 # 단어 빈도수 세기
 
 # 전처리하려는 세 개의 문장을 정합니다.
@@ -114,7 +114,7 @@ print("\n각 단어에 매겨진 인덱스 값:\n", token.word_index)
 
 - 단어의 원-핫 인코딩
 
-```Python
+```python
 text = "오랫동안 꿈꾸는 이는 그 꿈을 닮아간다"
 token = Tokenizer()
 token.fit_on_texts([text])
@@ -123,14 +123,14 @@ print(token.word_index)
 
 `{'오랫동안': 1, '꿈꾸는': 2, '이는': 3, '그': 4, '꿈을': 5, '닮아간다': 6}`
 
-```Python
+```python
 x = token.texts_to_sequences([text])
 print(x)
 ```
 
 `[[1, 2, 3, 4, 5, 6]]`
 
-```Python
+```python
 # 인덱스 수에 하나를 추가해서 원-핫 인코딩 배열 만들기
 word_size = len(token.word_index) + 1
 x = to_categorical(x, num_classes=word_size)

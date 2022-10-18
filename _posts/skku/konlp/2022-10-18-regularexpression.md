@@ -25,7 +25,7 @@ toc_icon: "sticky-note"
 
 - 파이썬에서 정규식을 사용하려면 re 모듈을 포함시켜야 함
 
-```Python
+```python
     import re
     txt1 = 'Life is too short, you need python.'
     txt2 = 'The best moments of my life.'
@@ -53,21 +53,21 @@ toc_icon: "sticky-note"
 ### 실습
 - | (vertical bar)
 
-```Python
+```python
     print(re.search('Life|life', txt2))   # 문장 안에 Life 또는 life가 있는가 검사함
 ## <_sre.SRE_Match object; span=(23, 24), match='life'>
 ```
 
 - [  ] (문자열 범위를 표시, - 를 사용할 수 있음)
 
-```Python
+```python
     print(re.search('[Ll]ife, txt2))    # 문장 안에 Life 혹은 life가 있는가 검사함
 ## <_sre.SRE_Match object; span=(23, 27), match='life'>
 ```
 
 - ^ (첫 문자 검색)
 
-```Python
+```python
     txt1 = 'Life is too short, you need python'
     txt2 = 'The best moments of my life'
     txt3 = "My Life My Choice."
@@ -81,7 +81,7 @@ toc_icon: "sticky-note"
 
 - $ (끝 문자 검색)
 
-```Python
+```python
     txt1 = 'Who are you to judge the life I live'
     txt2 = 'The best moments of my life'
     print(re.search('life$', txt1))   # life가 마지막 단어로 포함되어 있는가 검사
@@ -92,7 +92,7 @@ toc_icon: "sticky-note"
 
 - . (임의의 문자 한 개)
 
-```Python
+```python
     re.search('A..A', 'ABA')            # 조건에 맞지 않음
     re.search('A..A', 'ABBA')           # 조건에 맞음
 ## <_sre.SRE_Match object; span=(0, 4), match='ABBA'>
@@ -117,7 +117,7 @@ toc_icon: "sticky-note"
 
 - ? (직전에 있는 임의의 문자를 0회 또는 1회 반복되는 패턴에 매치)
 
-```Python
+```python
     re.search('AB?', 'A')                 # 'A'라는 문자열이 조건에 맞음
 ## <_sre.SRE_Match object; span=(0, 1), match='A'>
     re.search('AB?', 'AA')                # 'A'라는 문자열이 조건에 맞음
@@ -133,7 +133,7 @@ toc_icon: "sticky-note"
 
 - \+ (직전에 있는 임의의 패턴을 1회이상 반복되는 패턴에 매치)
 
-```Python
+```python
     re.search('AB+', 'A')                 # 조건에 맞지 않음
     re.search('AB+', 'AA')                # 조건에 맞지 않음
     re.search('AB+', 'J-HOPE')            # 조건에 맞지 않음
@@ -146,7 +146,7 @@ toc_icon: "sticky-note"
 
 - findall() : 정규식을 만족하는 모든 문자열을 추출
 
-```Python
+```python
     txt3 = 'My life my life my life in the sunshine'
     re.findall('[Mm]y', txt3)
 ## ['My', 'my', 'my']
@@ -164,7 +164,7 @@ toc_icon: "sticky-note"
 
 ![image](https://user-images.githubusercontent.com/55765292/196346878-dcef8a62-c4b3-40bb-9cd7-f8c97a93f4da.png)
 
-```Python
+```python
 import re
 
 # 멀티라인 텍스트는 세 개의 따옴표를 사용하여 표현한다
@@ -184,7 +184,7 @@ print(s)
 
 ![image](https://user-images.githubusercontent.com/55765292/196347174-f3ef9504-c022-42a1-9b02-6ea92dc47864.png)
 
-```Python
+```python
 import re
 
 # 멀티라인 텍스트는 세 개의 따옴표를 사용하여 표현한다
@@ -209,7 +209,7 @@ s = re.findall('[A-Z]{3}', text)print(s)
 
 ![image](https://user-images.githubusercontent.com/55765292/196347517-30570a5a-b7fd-4388-a1e4-520b5938bf33.png)
 
-```Python
+```python
 import re
 txt = 'abc@facebook.com와 bbc@google.com에서 이메일이 도착하였습니다.'
 output - re.findall('\S+@[a-z.]+', txt)
@@ -228,7 +228,7 @@ for text in output:
 <br>
 ### 특정 문자를 대체하기
 
-```Python
+```python
     import re
     s = 'I like BTS!'
     re.sub('BTS', 'Black Pink', s)
