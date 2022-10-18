@@ -39,7 +39,7 @@ toc_icon: "sticky-note"
 <br>
 ### 설치하기
 
-```Python
+```python
 !pip install nltk
 
 import nltk
@@ -49,23 +49,23 @@ nltk.download('popular')
 <br>
 ### 단어 토크나이징
 
-```Python
+```python
 from nltk. tokenize import word_tokenize
 
 tokens = word_tokenize("Hello World!, This is a dog.")
 ```
 
-```Python
+```python
 print(tokens)
 ```
 
 `['Hello', 'World', '!', ',', 'This', 'is', 'a', 'dog', '.']`
 
-```Python
+```python
 words = [word for word in tokens if word.isalpha()]
 ```
 
-```Python
+```python
 print(words)
 ```
 
@@ -74,7 +74,7 @@ print(words)
 <br>
 ### 문장 토크나이징 (Sentence tokenizing)
 
-```Python
+```python
 from nltk.tokenize import sent_tokenize
 
 text = "Welcome to Python. This is Python World."
@@ -90,7 +90,7 @@ print(sent_tokenize(text))
   - 특수문자 필터링
   - 소문자로 변환
 
-```Python
+```python
 from tensorflow.keras.preprocessing.text import *
 
 print(text_to_word_sequence("Welcome to Python!!! This is Python World."))
@@ -101,11 +101,11 @@ print(text_to_word_sequence("Welcome to Python!!! This is Python World."))
 <br>
 ## spaCy
 
-```Python
+```python
 import spacy
 ```
 
-```Python
+```python
 # Load English tokenizer, tagger, parser and NER
 nlp = spacy.load("en_core_web_sm")
 
@@ -119,16 +119,16 @@ text = ("When Sebastian Thrun started working on self-driving cars at "
 doc = nlp(text)
 ```
 
-```Python
+```python
 word_tokenized = [token.text for token in doc]
 print(word_tokenized)
 ```
 
-```Python
+```python
 sent_tokenized = [sent.text for sent in doc.sents]
 ```
 
-```Python
+```python
 print(sent_tokenized)
 ```
 
@@ -151,7 +151,7 @@ print(sent_tokenized)
 ### 영어 토크나이징 (표준)
 - TreebankWordTokenizer (https://www.nltk.org/_modules/nltk/tokenize/treebank.html)
 
-```Python
+```python
 from nltk.tokenize import TreebankWordTokenizer
 
 tokenizer = TreebankWordTokenizer()
@@ -216,15 +216,15 @@ print('text5 :',tokenizer.tokenize(text5))
 <br>
 ### 한글 형태소 단위 단어 토크나이징 하기
 
-```Python
+```python
 from konlpy.tag import Otk, Komoran, Mecab, Hannanum, Kkma
 ```
 
-```Python
+```python
 text = "우리는 민족중흥의 역사적 사명을 띠고 이땅에 태어났다"
 ```
 
-```Python
+```python
 tokenizer = Okt()
 tokenizer.morphs(text)
 tokenizer.pos(text)
@@ -250,7 +250,7 @@ token_mecab.pos(text)
 <br>
 ### KSS(Korean Sentence Splitter)
 
-```Python
+```python
 import kss
 
 text1 = "환영합니다. 파이썬 월드. 지금부터 시작합니다."
@@ -283,12 +283,12 @@ https://velog.io/@metterian/%ED%95%9C%EA%B5%AD%EC%96%B4-%ED%98%95%ED%83%9C%EC%86
 
 ### 불용어 (stopword) 확인하기
 
-```Python
+```python
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 ```
 
-```Python
+```python
 stop_words_list = stopwords.words('english')
 print('불용어 개수 :', len(stop_words_list))
 print('불용어 10개 출력 :', stop_words_list[:10])
@@ -300,7 +300,7 @@ print('불용어 10개 출력 :', stop_words_list[:10])
 
 ### 불용어 (stopword) 제거하기
 
-```Python
+```python
 example = "Family is not an important thing. It's everything."
 stop_words = set(stopwords.words('english'))
 
