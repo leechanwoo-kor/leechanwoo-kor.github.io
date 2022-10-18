@@ -1,9 +1,9 @@
 ---
 title: "[NLP] 텍스트 데이터의 문자열 처리"
 categories:
-  - R Programming
+  - NLP
 tags:
-  - R Programming
+  - NLP
 toc: true
 toc_sticky: true
 toc_label: "tidyr / dplyr"
