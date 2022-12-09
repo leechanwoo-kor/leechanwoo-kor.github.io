@@ -292,9 +292,9 @@ labels = df.label.values
 
 ## 3.1. BERT Tokenizer
 
-BERT에 텍스트를 공급하려면 토큰으로 분할한 다음 토큰을 토큰화기 어휘의 인덱스에 매핑해야 합니다.
+BERT에 텍스트를 공급하려면 토큰으로 분할한 다음 토큰을 Tokenizer 어휘의 인덱스에 매핑해야 합니다.
 
-토큰화는 BERT에 포함된 토큰화기에서 수행해야 합니다. 아래 셀에서 다운로드합니다. 여기서는 "케이스 없는" 버전을 사용할 것입니다.
+토큰화는 BERT에 포함된 Tokenizer에서 수행해야 합니다. 아래 셀에서 다운로드합니다. 여기서는 "케이스 없는" 버전을 사용할 것입니다.
 
 ```Python
 from transformers import BertTokenizer
@@ -314,7 +314,7 @@ Downloading: 100%
 570/570 [00:00<00:00, 7.98kB/s]
 ```
 
-출력을 보기 위해 한 문장에 토큰화기를 적용해 봅시다.
+출력을 보기 위해 한 문장에 Tokenizer를 적용해 봅시다.
 
 ```Python
 # Print the original sentence.
