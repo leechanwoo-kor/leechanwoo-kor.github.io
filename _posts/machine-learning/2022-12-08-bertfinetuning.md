@@ -58,7 +58,7 @@ toc_icon: "sticky-note"
 
 ## BERT란 무엇인가?
 
-2018년 말에 출시된 BERT(Bidirectional Encoder Representations from Transformers)는 NLP에서 transfer learning 모델을 사용하기 위한 더 나은 이해와 실용적인 지침을 제공하기 위해 사용할 모델이다. BERT는 언어 표현을 pre training하는 방법으로 모델을 만드는 데 사용되었다. 이러한 모델을 통해 텍스트 데이터에서 특징을 추출하거나 분류, 질의응답 등에 사용할 수 있다.
+2018년 말에 출시된 BERT(Bidirectional Encoder Representations from Transformers)는 NLP에서 transfer learning 모델을 사용하기 위한 더 나은 이해와 실용적인 지침을 제공하기 위해 사용할 모델이다. BERT는 언어 표현을 pre training하는 방법으로 모델을 만드는 데 사용되었다. 이러한 모델을 통해 텍스트 데이터에서 특징을 추출하거나 분류, 질의응답 등에 사용할 수 있습니다.
 
 ## Fine-Tuning의 장점
 
@@ -68,7 +68,7 @@ BERT를 사용하여 텍스트 분류기를 학습합니다. 구체적으로 pre
     - 첫째, pre-training된 BERT 모델 가중치는 이미 우리 언어에 대한 많은 정보를 인코딩한다. 결과적으로 fine-tuning된 모델을 훈련하는 데 훨씬 적은 시간이 소요된다. 이는 이미 네트워크의 하단 계층을 광범위하게 훈련한 것과 같으며 분류 작업에 대한 기능으로 출력을 사용하면서 조정만 하면 된다.
 
 2. 적은 데이터
-    - 또한 pre-training된 가중치 때문에 이 방법을 사용하면 처음부터 구축된 모델에 필요한 것보다 훨씬 작은 데이터 세트에서 작업을 fine-tuning할 수 있다. 처음부터 구축된 NLP 모델의 주요 단점은 네트워크를 합리적인 정확도로 훈련시키기 위해 종종 엄청나게 큰 데이터 세트가 필요하다는 것이다. 즉, 데이터 세트를 만드는 데 많은 시간과 에너지가 투입되어야 한다는 것이다. BERT를 fine-tuning함으로써 이제 훨씬 적은 양의 학습 데이터에서 우수한 성능을 발휘하도록 모델을 학습하는 것에서 벗어날 수 있다.
+    - 또한 pre-training된 가중치 때문에 이 방법을 사용하면 처음부터 구축된 모델에 필요한 것보다 훨씬 작은 데이터 세트에서 작업을 fine-tuning할 수 있습니다. 처음부터 구축된 NLP 모델의 주요 단점은 네트워크를 합리적인 정확도로 훈련시키기 위해 종종 엄청나게 큰 데이터 세트가 필요하다는 것이다. 즉, 데이터 세트를 만드는 데 많은 시간과 에너지가 투입되어야 한다는 것이다. BERT를 fine-tuning함으로써 이제 훨씬 적은 양의 학습 데이터에서 우수한 성능을 발휘하도록 모델을 학습하는 것에서 벗어날 수 있습니다.
 
 3. 더 좋은 결과
     - 마지막으로, 이 간단한 fine-tuning 절차는 분류, 언어 추론, 의미론적 유사성, 질의 응답 등 다양한 작업에 대한 최소한의 작업별 조정으로 우수한 결과를 달성하는 것으로 나타났다. 특정 작업에서 잘 작동하는 것으로 표시된 사용자 지정 및 때로는 모호한 아키텍처를 구현하기보다는 단순히 BERT를 fine-tuning하는 것이 더 나은 또는 최소한 동일한 대안인 것으로 나타났다.
@@ -77,7 +77,7 @@ BERT를 사용하여 텍스트 분류기를 학습합니다. 구체적으로 pre
 
 transfer learning으로의 이러한 변화는 이전에 컴퓨터 비전에서 일어난 것과 같은 변화와 유사하다. 컴퓨터 비전 작업을 위한 좋은 딥 러닝 네트워크를 만드는 것은 수백만 개의 매개 변수를 필요로 하며 훈련하는 데 매우 비용이 많이 든다.
 
-연구자들은 심층 네트워크가 낮은 계층은 단순한 특징을 높은 계층은 점점 더 복잡한 특징을 갖는 계층적 특징 표현을 학습한다는 것을 발견했다. 매번 새로운 네트워크를 처음부터 훈련시키는 대신, 일반화된 이미지 기능을 가진 훈련된 네트워크의 하위 계층을 복사하고 전송하여 다른 작업을 수행하는 다른 네트워크에서 사용할 수 있다.
+연구자들은 심층 네트워크가 낮은 계층은 단순한 특징을 높은 계층은 점점 더 복잡한 특징을 갖는 계층적 특징 표현을 학습한다는 것을 발견했다. 매번 새로운 네트워크를 처음부터 훈련시키는 대신, 일반화된 이미지 기능을 가진 훈련된 네트워크의 하위 계층을 복사하고 전송하여 다른 작업을 수행하는 다른 네트워크에서 사용할 수 있습니다.
 
 pre-training된 심층 네트워크를 다운로드하고 새로운 작업을 위해 신속하게 재학습하거나 네트워크를 처음부터 훈련시키는 값비싼 프로세스보다 훨씬 더 나은 추가 계층을 추가하는 것이 곧 일반적인 관행이 되었다.
 
@@ -147,7 +147,7 @@ We will use the GPU: Tesla T4
 
 현재, Hugging Face 라이브러리는 BERT와 함께 작업하기 위한 가장 널리 받아들여지고 강력한 pytorch 인터페이스인 것 같다. 라이브러리는 다양한 pre-training된 transformers 모델을 지원할 뿐만 아니라 특정 작업에 적합한 이러한 모델의 사전 구축된 수정도 포함한다. 예를 들어 이번 분석에서는 `BertForSequenceClassification`을 사용합니다.
 
-또한 라이브러리에는 토큰 분류, 질문 답변, 다음 문장 예측 등을 위한 작업별 클래스가 포함되어 있다. 이러한 미리 작성된 클래스를 사용하면 목적에 맞게 BERT를 수정하는 프로세스가 간소화됩니다.
+또한 라이브러리에는 토큰 분류, 질문 답변, 다음 문장 예측 등을 위한 작업별 클래스가 포함되어 있습니다. 이러한 미리 작성된 클래스를 사용하면 목적에 맞게 BERT를 수정하는 프로세스가 간소화됩니다.
 
 ```Python
 !pip install transformers
@@ -263,7 +263,7 @@ Number of training sentences: 8,551
 
 우리가 실제로 관심을 갖는 두 가지 속성은 `문장`과 그 `라벨`이며, 이를 "수용성 판단(acceptability judgment)"(0=불수용(unacceptable), 1=수용(acceptable))이라고 한다.
 
-여기 문법적으로 허용되지 않는 것으로 분류된 다섯 개의 문장이 있다. 감정 분석과 같은 것보다 이 작업이 얼마나 더 어려운지 볼 수 있습니다.
+여기 문법적으로 허용되지 않는 것으로 분류된 다섯 개의 문장이 있습니다. 감정 분석과 같은 것보다 이 작업이 얼마나 더 어려운지 볼 수 있습니다.
 
 ```Python
 df.loc[df.label == 0].sample(5)[['sentence', 'label']]
@@ -373,7 +373,7 @@ Token IDs:  [2256, 2814, 2180, 1005, 1056, 4965, 2023, 4106, 1010, 2292, 2894, 1
 
 > "모든 시퀀스의 첫 번째 토큰은 항상 스페셜 분류 토큰([CLS])입니다. 이 토큰에 해당하는 최종 은닉 상태는 분류 작업의 집계 시퀀스 표현으로 사용됩니다."([BERT 논문](https://arxiv.org/pdf/1810.04805.pdf)에서)
 
-최종 임베딩에 대해 풀링 전략을 시도해 볼 수 있지만, 이것은 필요하지 않다. BERT는 분류에만 이 [CLS] 토큰을 사용하도록 훈련되었기 때문에, 우리는 모델이 분류 단계에 필요한 모든 것을 단일 768 값 임베딩 벡터로 인코딩하도록 동기를 부여했다는 것을 알고 있다. 우리를 위한 풀링은 이미 끝났어요!
+최종 임베딩에 대해 풀링 전략을 시도해 볼 수 있지만, 이것은 필요하지 않다. BERT는 분류에만 이 [CLS] 토큰을 사용하도록 훈련되었기 때문에, 우리는 모델이 분류 단계에 필요한 모든 것을 단일 768 값 임베딩 벡터로 인코딩하도록 동기를 부여했다는 것을 알고 있습니다. 우리를 위한 풀링은 이미 끝났어요!
 
 ### 문장 길이 및 어텐션 마스크
 
@@ -570,7 +570,7 @@ BertForQuestionAnswering
 
 [BertForSequenceClassification](https://huggingface.co/transformers/v2.2.0/model_doc/bert.html#bertforsequenceclassification)을 사용합니다. 이것은 문장 분류기로 사용할 분류를 위해 위에 단일 선형 레이어가 추가된 일반 BERT 모델이다. 입력 데이터를 공급함에 따라 pre-training된 BERT 모델 전체와 훈련되지 않은 추가 분류 계층이 특정 작업에 대해 훈련된다.
 
-몇 가지 다른 pre-training된 BERT 모델을 사용할 수 있다. "bert-base-ascased"는 소문자만 있는 버전을 의미하며, 둘 중 작은 버전("base" vs "large")입니다.
+몇 가지 다른 pre-training된 BERT 모델을 사용할 수 있습니다. "bert-base-ascased"는 소문자만 있는 버전을 의미하며, 둘 중 작은 버전("base" vs "large")입니다.
 
 `from_pretrained`에 대한 문서는 [여기](https://huggingface.co/transformers/v2.2.0/main_classes/model.html#transformers.PreTrainedModel.from_pretrained)에서 찾을 수 있으며, 추가 매개 변수는 [여기](https://huggingface.co/transformers/v2.2.0/main_classes/configuration.html#transformers.PretrainedConfig)에서 정의됩니다.
 
@@ -595,7 +595,7 @@ model.cuda()
 [간소화를 위해 이 output은 삭제했습니다.]
 ```
 
-호기심을 위해, 우리는 여기서 모델의 모든 매개변수를 이름별로 찾아볼 수 있다.
+호기심을 위해, 우리는 여기서 모델의 모든 매개변수를 이름별로 찾아볼 수 있습니다.
 
 아래 셀에서 다음에 대한 가중치의 이름과 치수를 출력했습니다.
 
@@ -1118,7 +1118,7 @@ plt.show()
 
 이제 학습 세트에서 수행한 것처럼 홀드아웃 데이터 세트를 읽고 인풋을 준비합니다. 그런 다음 [Matthew의 상관 계수](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.matthews_corrcoef.html)를 사용하여 예측을 평가할 것이다.
 
-왜냐하면 이것은 CoLA의 성능을 평가하기 위해 더 넓은 NLP 커뮤니티에서 사용되는 메트릭이기 때문이다. 이 메트릭을 사용하면 +1이 가장 좋은 점수이고 -1이 가장 나쁜 점수입니다. 이러한 방식으로, 우리는 이 특정 작업에 대한 최신 모델에 대해 우리가 얼마나 잘 수행하는지 알 수 있다
+왜냐하면 이것은 CoLA의 성능을 평가하기 위해 더 넓은 NLP 커뮤니티에서 사용되는 메트릭이기 때문이다. 이 메트릭을 사용하면 +1이 가장 좋은 점수이고 -1이 가장 나쁜 점수입니다. 이러한 방식으로, 우리는 이 특정 작업에 대한 최신 모델에 대해 우리가 얼마나 잘 수행하는지 알 수 있습니다.
 
 
 ## 5.1. 데이터 준비
@@ -1276,7 +1276,7 @@ Calculating Matthews Corr. Coef. for each batch...
 
 최종 점수는 전체 테스트 세트를 기반으로 하지만 배치 간 메트릭의 변동성을 파악하기 위해 개별 배치의 점수를 살펴보도록 하겠습니다.
 
-각 배치에는 32개의 문장이 포함되어 있으며, 마지막 배치에는 (516 % 32) = 4개의 테스트 문장만 포함되어 있다.
+각 배치에는 32개의 문장이 포함되어 있으며, 마지막 배치에는 (516 % 32) = 4개의 테스트 문장만 포함되어 있습니다.
 
 ```Python
 # Create a barplot showing the MCC score for each batch of test samples.
@@ -1313,7 +1313,7 @@ print('Total MCC: %.3f' % mcc)
 Total MCC: 0.498
 ```
 
-좋습니다. 30분 정도면 초 매개변수 조정(학습 속도, 에포크, 배치 크기, ADAM 속성 등)을 하지 않아도 좋은 점수를 얻을 수 있다.
+좋습니다. 30분 정도면 초 매개변수 조정(학습 속도, 에포크, 배치 크기, ADAM 속성 등)을 하지 않아도 좋은 점수를 얻을 수 있습니다.
 
 > 참고: 점수를 최대화하려면 "검증 세트"(학습 대상 기간을 결정하는 데 사용)를 제거하고 전체 학습 세트에 대해 학습해야 합니다.
 
@@ -1326,7 +1326,9 @@ Total MCC: 0.498
 
 # 결론
 
-사전 훈련된 BERT 모델을 사용하면 관심 있는 특정 NLP 작업에 관계없이 파이토치 인터페이스를 사용하여 최소한의 노력과 훈련 시간으로 고품질 모델을 빠르고 효과적으로 만들 수 있음을 보여준다.
+- 사전 훈련된 BERT 모델을 사용하면 관심 있는 특정 NLP 작업에 관계없이 Pytorch 인터페이스를 사용하여 최소한의 노력과 훈련 시간으로 고품질 모델을 빠르고 효과적으로 만들 수 있음을 보여준다.
+- MCC score는 실행마다 상당히 다른 것으로 보인다. 여러 번 실행하고 분산을 표시하는 게 좋아 보인다.
+- 이번에는 CoLA(The Corpus of Linguistic Acceptability)를 데이터 세트로 사용하면서 영문에서의 성능만 다뤘지만 추후에는 국문 데이터 세트로도 학습시켜 보면 좋을 것 같다.
 
 
 # 부록
@@ -1450,15 +1452,22 @@ optimizer_grouped_parameters = [
 # the names.
 ```
 
-# 추가 작업
 
-- validation accuracy를 위해 MCC score를 사용하는 것이 더 합리적일 수 있지만, 나는 노트에서 그것을 설명할 필요가 없도록 생략했다.
+## 인용
 
-- 시드 – 학습 루프를 시작할 때 시드 값을 설정하는 것이 실제로 재현 가능한 결과를 창출하는지 확신할 수 없습니다.
-
-- MCC score는 실행마다 상당히 다른 것으로 보인다. 이 예제를 여러 번 실행하고 분산을 표시하는 것이 좋습니다.
-
-
-# 인용
-
-Chris McCormick and Nick Ryan. (2019, July 22). BERT Fine-Tuning Tutorial with PyTorch. Retrieved from [http://www.mccormickml.com](http://www.mccormickml.com)
+1.	Chris McCormick and Nick Ryan. (2019, July 22). BERT Fine-Tuning Tutorial with PyTorch. http://www.mccormickml.com
+2.	BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding, 2019. https://arxiv.org/pdf/1810.04805.pdf
+3.	https://huggingface.co/docs/transformers/main_classes/tokenizer?highlight=encode_plus#transformers.PreTrainedTokenizer.encode_plus
+4.	https://huggingface.co/transformers/v2.2.0/model_doc/bert.html
+5.	https://huggingface.co/transformers/v2.2.0/model_doc/bert.html#bertforsequenceclassification
+6.	https://huggingface.co/transformers/v2.2.0/main_classes/model.html#transformers.PreTrainedModel.from_pretrained
+7.	https://huggingface.co/transformers/v2.2.0/main_classes/configuration.html#transformers.PretrainedConfig
+8.	https://github.com/huggingface/transformers/blob/5bfcd0485ece086ebcbed2d008813037968a9e58/examples/run_glue.py#L109
+9.	https://github.com/huggingface/transformers/blob/5bfcd0485ece086ebcbed2d008813037968a9e58/examples/run_glue.py#L128
+10.	https://stackoverflow.com/questions/51433378/what-does-model-train-do-in-pytorch
+11.	https://stackoverflow.com/questions/48001598/why-do-we-need-to-call-zero-grad-in-pytorch
+12.	https://huggingface.co/transformers/v2.2.0/model_doc/bert.html#transformers.BertForSequenceClassification
+13.	https://scikit-learn.org/stable/modules/generated/sklearn.metrics.matthews_corrcoef.html
+14.	https://gluebenchmark.com/leaderboard/submission/zlssuBTm5XRs0aSKbFYGVIVdvbj1/-LhijX9VVmvJcvzKymxy
+15.	https://github.com/huggingface/transformers/blob/35ff345fc9df9e777b27903f11fa213e4052595b/examples/run_glue.py#L495
+16.	https://github.com/huggingface/transformers/blob/5bfcd0485ece086ebcbed2d008813037968a9e58/examples/run_glue.py#L102
