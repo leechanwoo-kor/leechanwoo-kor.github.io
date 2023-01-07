@@ -84,7 +84,7 @@ Row count is 64186394
 csv_gen = (row for row in open(file_name))
 ```
 
-이것은 `csv_gen` 리스트를 만드는 더 간단한 방법입니다. 곧 Python yield 문에 대해 더 자세히 알게 될 것입니다. 지금은 다음과 같은 주요 차이점을 기억하세요
+이것은 `csv_gen` 리스트를 만드는 더 간단한 방법입니다. 곧 파이썬 yield 문에 대해 더 자세히 알게 될 것입니다. 지금은 다음과 같은 주요 차이점을 기억하세요
 - `yield`를 사용하면 제너레이터 개체가 생성됩니다.
 - `return`을 사용하면 파일의 첫 번째 줄만 표시됩니다.
 
@@ -167,7 +167,7 @@ def is_palindrome(num):
         return False
 ```
 
-이 코드에서 기본 수학을 이해하는 것에 대해 걱정하지 마세요. 이 함수는 입력 번호를 가져와서 반전하고 반전된 번호가 원래 번호와 동일한지 확인합니다. 이제 무한 시퀀스 제너레이터를 사용하여 모든 숫자 회문의 실행 목록을 가져올 수 있습니다.
+이 코드에서 기본 수학을 이해하는 것에 대해 걱정하지 마세요. 이 함수는 입력 번호를 가져와서 반전하고 반전된 번호가 원래 번호와 동일한지 확인합니다. 이제 무한 시퀀스 제너레이터를 사용하여 모든 숫자 회문의 실행 리스트을 가져올 수 있습니다.
 
 ```Python
 >>> for i in infinite_sequence():
@@ -194,3 +194,145 @@ Traceback (most recent call last):
 이 경우 콘솔에 인쇄되는 숫자는 앞으로 또는 뒤로 동일한 숫자뿐입니다.
 
 이제 무한 시퀀스 제너레이터에 대한 간단한 사용 사례를 살펴보았으므로 제너레이터의 작동 방식에 대해 자세히 알아보겠습니다.
+
+## Understanding Generators
+
+지금까지 제너레이터를 만드는 두 가지 주요 방법, 즉 제너레이터 함수와 제너레이터 식을 사용하는 방법에 대해 살펴보았습니다. 제너레이터가 어떻게 작동하는지 직관적으로 이해할 수도 있습니다.
+
+제너레이터 함수는 일반 함수와 동일하게 생겼고 작동하지만 한 가지 정의된 특성이 있습니다. 제너레이터 함수는 `return` 대신 파이썬 `yield` 키워드를 사용합니다. 이전에 작성한 제너레이터 함수를 기억해보세요.
+
+```Python
+def infinite_sequence():
+    num = 0
+    while True:
+        yield num
+        num += 1
+```
+
+이는 파이썬의 yield문과 같은 코드를 제외하고는 전형적인 함수 정의처럼 보입니다. `yield`는 값이 호출자에게 다시 전송되는 위치를 나타내지만 `return`과 달리 이후에는 함수를 종료하지 않습니다.
+
+대신 함수의 **상태(state)** 가 기억됩니다. 이런식으로 `next()`가 생성자 객체에서 호출될 때(명시적으로 또는 암시적으로 `for` 루프 내에서) 이전에 생성된 변수 `num`은 증가한 다음 다시 생성됩니다. 제너레이터 함수는 다른 함수와 비슷하게 생겼으며, 제너레이터 식이 파이썬에서 사용할 수 있는 다른 컴프리헨션과 매우 유사하다고 가정할 수 있습니다.
+
+### Building Generators With Generator Expressions
+
+리스트 컴프리헨션과 마찬가지로 제너레이터 식을 사용하면 코드의 몇 줄만으로 제너레이터 객체를 빠르게 만들 수 있습니다. 또한 리스트 컴프리헨션이 사용되는 동일한 경우에도 유용하며, 반복하기 전에 전체 개체를 메모리에 저장하고 빌드하지 않고도 생성할 수 있습니다. 즉, 제너레이터 식을 사용할 때 메모리 패널티가 없습니다. 일부 숫자를 제곱하는 예를 들어보겠습니다.
+
+```Python
+>>> nums_squared_lc = [num**2 for num in range(5)]
+>>> nums_squared_gc = (num**2 for num in range(5))
+```
+
+`nums_squared_lc`와 `nums_squared_gc는 기본적으로 동일하게 보이지만 한 가지 주요 차이점이 있습니다. 찾을 수 있겠나요? 다음 각 개체를 검사할 때 어떤일이 일어나는지 봅시다.
+
+```Python
+>>> nums_squared_lc
+[0, 1, 4, 9, 16]
+>>> nums_squared_gc
+<generator object <genexpr> at 0x107fbbc78>
+```
+
+첫 번째 개체는 대괄호를 사용하여 리스트를 작성했고, 두 번째 개체는 괄호를 사용하여 제너레이터 식을 작성했습니다. 출력은 제너레이터 객체를 생성했으며 이 개체가 리스트와 다르다는 것을 확인합니다.
+
+### Profiling Generator Performance
+
+제너레이터가 메모리를 최적화하는 좋은 방법이라는 것을 앞에서 살펴봤습니다. 무한 시퀀스 생성기가 이러한 최적화의 극단적인 예이지만, 방금 본 숫자 제곱 예제를 확대하고 결과 개체의 크기를 검사해 보겠습니다. `sys.getsizeof()`에 대한 호출을 사용하여 이 작업을 수행할 수 있습니다.
+
+```Python
+>>> import sys
+>>> nums_squared_lc = [i ** 2 for i in range(10000)]
+>>> sys.getsizeof(nums_squared_lc)
+87624
+>>> nums_squared_gc = (i ** 2 for i in range(10000))
+>>> print(sys.getsizeof(nums_squared_gc))
+120
+```
+
+이 경우 리스트 컴프리헨션에서 얻을 수 있는 리스트 87,624바이트인 반면 제너레이터 개체는 120바이트에 불과합니다. 이것은 그 리스트가 제너레이터 객체보다 700배 이상 크다는 것을 의미합니다.
+
+하지만 한 가지 명심해야 할 것이 있습니다. 리스트가 실행 중인 시스템의 사용 가능한 메모리보다 작으면 리스트 컴프리헨션이 동등한 제너레이터 식을 계산하는 것보다 더 빠를 수 있습니다. 이를 탐구하기 위해 위의 두 가지 컴프리헨션의 결과를 종합하여 요약해 보겠습니다. 
+
+```Python
+>>> import cProfile
+>>> cProfile.run('sum([i * 2 for i in range(10000)])')
+         5 function calls in 0.001 seconds
+
+   Ordered by: standard name
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.001    0.001    0.001    0.001 <string>:1(<listcomp>)
+        1    0.000    0.000    0.001    0.001 <string>:1(<module>)
+        1    0.000    0.000    0.001    0.001 {built-in method builtins.exec}
+        1    0.000    0.000    0.000    0.000 {built-in method builtins.sum}
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+
+
+>>> cProfile.run('sum((i * 2 for i in range(10000)))')
+         10005 function calls in 0.003 seconds
+
+   Ordered by: standard name
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+    10001    0.002    0.000    0.002    0.000 <string>:1(<genexpr>)
+        1    0.000    0.000    0.003    0.003 <string>:1(<module>)
+        1    0.000    0.000    0.003    0.003 {built-in method builtins.exec}
+        1    0.001    0.001    0.003    0.003 {built-in method builtins.sum}
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}
+```
+
+여기서 리스트 컴프리헨션의 모든 값을 합치는 데 제너레이터 전체를 합치는 데 약 3분의 1이 소요되었음을 알 수 있습니다. 속도가 문제이고 메모리가 문제가 아니라면 리스트 컴프리헨션이 작업에 더 나은 도구일 가능성이 높습니다.
+
+리스트 컴프리헨션은 전체 리스트를 반환하고 제너레이터 식은 제너레이터를 반환합니다. 제너레이터는 함수 또는 식을 기반으로 구축되었든 동일하게 작동합니다. 식을 사용하면 각 내부 반복의 끝에 가정된 `yield`을 가진 단일 라인에서 단순 제너레이터를 정의할 수 있습니다.
+
+파이썬 yield문은 확실히 제너레이터의 모든 기능이 의존하는 린치핀이므로, `yield`이 파이썬에서 어떻게 작동하는지에 대해 자세히 알아보겠습니다.
+
+## Understanding the Python Yield Statement
+
+전반적으로 `yield`는 상당히 간단합니다. 주요 작업은 `return` 문과 유사한 방식으로 제너레이터 함수의 흐름을 제어하는 것입니다. 그러나 위에서 간단히 언급한 바와 같이 파이썬 yield 문에는 몇 가지 트릭이 있습니다.
+
+제너레이터 함수를 호출하거나 제너레이터 식을 사용할 때 제너레이터라는 특별한 이터레이터를 반환합니다. 이 제너레이터를 사용하기 위해 변수에 할당할 수 있습니다. `next()`와 같은 특별한 메소드를 호출하면 함수 내의 코드가 `yield`까지 실행됩니다.
+
+파이썬 yield문이 히트하면 프로그램은 함수 실행을 중단하고 반환된 값을 호출자에게 반환합니다. 반면에 `return`은 함수 실행을 완전히 중지합니다. 함수가 일시 중단되면 해당 함수의 상태가 저장됩니다. 여기에서 제너레이터, 명령 포인터, 내부 스택 및 예외 처리에 대한 로컬 변수 바인딩이 포함됩니다.
+
+이렇게 하면 제너레이터의 메소드 중 하나를 호출할 때 마다 함수 실행을 다시 시작할 수 있습니다. 이러한 방식으로 모든 기능 평가는 yield 직후에 다시 활성화됩니다. 여러 파이썬 yield문을 사용하여 이를 확인할 수 있습니다.
+
+```Python
+>>> def multi_yield():
+...     yield_str = "This will print the first string"
+...     yield yield_str
+...     yield_str = "This will print the second string"
+...     yield yield_str
+...
+>>> multi_obj = multi_yield()
+>>> print(next(multi_obj))
+This will print the first string
+>>> print(next(multi_obj))
+This will print the second string
+>>> print(next(multi_obj))
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+StopIteration
+```
+
+`next()`에 대한 마지막 호출을 자세히 살펴보겠습니다. 추적을 통해서 실행이 확대된 것을 볼 수 있습니다. 모든 이터레이터와 마찬가지로 제너레이터가 소진될 수 있기 때문입니다. 제너레이터가 무한하지 않은 한 제너레이터를 한 번만 반복할 수 있습니다. 모든 값이 평가되면 반복이 중지되고 `for` 루프가 종료됩니다. `next()`를 사용한 경우, 대신 명시적인 `StopIteration` 예외가 발생합니다.
+
+---
+
+`StopIteration`은 이터레이터의 끝을 알리기 위해 발생하는 자연스러운 예외입니다. 예를 들어 `for` 루프의 경우 `StopIteration`을 중심으로 작성됩니다. `while` 루프를 사용하여 자신만의 `for` 루프를 구현할 수도 있습니다.
+
+```Python
+>>> letters = ["a", "b", "c", "y"]
+>>> it = iter(letters)
+>>> while True:
+...     try:
+...         letter = next(it)
+...     except StopIteration:
+...         break
+...     print(letter)
+...
+a
+b
+c
+y
+```
+
+`yield`는 제너레이터의 실행 흐름을 제어하는 데 여러 가지 방법으로 사용될 수 있습니다. 창의성이 허용하는 한 여러 파이썬 yield문을 사용할 수 있습니다.
