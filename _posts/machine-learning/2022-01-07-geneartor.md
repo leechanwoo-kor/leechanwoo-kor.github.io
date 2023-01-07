@@ -18,7 +18,7 @@ toc_icon: "sticky-note"
 
 ## 제너레이터 사용
 
-[PEP 255](https://peps.python.org/pep-0255/)에 도입된 제너레이터 함수는 [lazy iterator](https://en.wikipedia.org/wiki/Lazy_evaluation)를 반환하는 특수한 종류의 함수입니다. 리스트처럼 반복할 수 있는 개체입니다. 그러나 리스트와 달리 lazy iterator는 내용을 메모리에 저장하지 않습니다.
+[PEP 255](https://peps.python.org/pep-0255/)에 도입된 제너레이터 함수는 [lazy iterator](https://en.wikipedia.org/wiki/Lazy_evaluation)를 반환하는 특별한 종류의 함수입니다. 리스트처럼 반복할 수 있는 개체입니다. 그러나 리스트와 달리 lazy iterator는 내용을 메모리에 저장하지 않습니다.
 
 이제 제너레이터가 무엇을 하는지 대략적으로 알게 되었으니, 두 가지 예를 통해서 살펴보겠습니다. 첫 번째로, 제너레이터가 어떻게 작동하는지 조감도에서 볼 것입니다. 그런 다음 각 예제를 통해 자세히 살펴보겠습니다.
 
@@ -336,3 +336,132 @@ y
 ```
 
 `yield`는 제너레이터의 실행 흐름을 제어하는 데 여러 가지 방법으로 사용될 수 있습니다. 창의성이 허용하는 한 여러 파이썬 yield문을 사용할 수 있습니다.
+
+## Using Advanced Generator Methods
+
+제너레이터의 가장 일반적인 용도와 구조를 살펴보았지만, 몇 가지 더 다룰 수 있는 기술이 있습니다. 제너레이터 객체는 `yield`외에도 다음과 같은 방법을 사용할 수 있습니다.
+- .send()
+- .throw()
+- .close()
+
+### How to Use .send()
+
+이 프로그램은 이전과 같이 숫자 회문을 출력하지만 몇 번의 수정을 통해 출력합니다. 회문을 만나면 새로운 프로그램은 숫자를 추가하고 거기서 다음 숫자를 찾기 시작할 것입니다. 또한 `.throw()`를 사용하여 예외를 처리하고 `.close()`를 사용하여 주어진 숫자가 지나면 제너레이터를 중지합니다. 먼저 회문 탐지기의 코드를 보겠습니다.
+
+```Python
+def is_palindrome(num):
+    # Skip single-digit inputs
+    if num // 10 == 0:
+        return False
+    temp = num
+    reversed_num = 0
+
+    while temp != 0:
+        reversed_num = (reversed_num * 10) + (temp % 10)
+        temp = temp // 10
+
+    if num == reversed_num:
+        return True
+    else:
+        return False
+```
+
+이 코드는 이전에 보았던 코드와 동일하지만, 이제 프로그램은 완전히 `True` 또는 `False`를 반환합니다. 또한 다음과 같이 원래 무한 시퀀스 제너레이터를 수정해야 합니다.
+
+```Python
+def infinite_palindromes():
+    num = 0
+    while True:
+        if is_palindrome(num):
+            i = (yield num)
+            if i is not None:
+                num = i
+        num += 1
+```
+
+여기는 많은 변화가 있습니다. 첫 번째로 보이는 것은 5행에 있습니다. `i = (yield num)`. 앞에서 `yield`이 문이라는 것을 배웠지만 그것이 전부는 아닙니다.
+
+파이썬 2.5에서 `yield`는 문이 아닌 **식expression**입니다. 물론, 여전히 그것을 문으로 사용할 수 있습니다. 그러나 이제 위의 코드 블록에서 보는 것처럼 이를 사용할 수 있습니다. 여기서 `i`는 산출된 값을 사용합니다. 이렇게 하면 산출된 값을 조작할 수 있습니다. 더 중요한 것은 값을 제너레이터로 다시 `.send()`할 수 있다는 것입니다. `yield` 후 실행이 되면 전송된 값을 취할 것입니다.
+
+또한 `i`가 None이 아닌지 확인할 수 있습니다. 이는 제너레이터 개체에서 `next()`가 호출될 경우 발생할 수 있습니다. `for` 루프를 반복할 때도 이 문제가 발생할 수 있습니다. 값이 있으면 `num`을 새 값으로 업데이트합니다. 그러나 `i`가 값을 보유하는지 여부에 관계없이 `num`을 증가시키고 루프를 다시 시작합니다.
+
+이제, 다른 숫자와 함께 가장 낮은 숫자를 제너레이터로 다시 전송하는 주 함수 코드를 살펴보겠습니다. 예를 들어, 회문이 121이면 `.send()` 1000이 됩니다.
+
+```Python
+pal_gen = infinite_palindromes()
+for i in pal_gen:
+    digits = len(str(i))
+    pal_gen.send(10 ** (digits))
+```
+
+이 코드를 사용하여 제너레이터 객체를 생성하고 이 객체를 반복합니다. 이 프로그램은 회문이 발견된 후에만 값을 산출합니다. `len()`을 사용하여 회문의 자릿수를 결정합니다. 그런 다음 `10 ** digits`을 제너레이터로 전송합니다. 이렇게 하면 실행이 다시 제너레이터 로직으로 되돌아오고 `10 ** digits`가 `i`에 할당됩니다. 이제 `i`값이 있기 때문에 프로그램은 `num`을 업데이트하고 증가시키고 다음 회문을 다시 확인합니다.
+
+코드가 다른 회문을 발견하고 생성하면 `for` 루프를 통해 반복됩니다. 이것은 `next()`를 반복하는 것과 같습니다. 또한 제너레이터는 라인 5에서 `i = (yield num)`로 픽업합니다. 하지만 명시적으로 값을 보내지 않았기 때문에 지금 `i`는 None입니다.
+
+여기서 생성한 것은 **코루틴** 또는 데이터를 전달할 수 있는 제너레이터 함수입니다. 이는 데이터 파이프라인을 구축하는 데 유용하지만 곧 알게 되겠지만 데이터 파이프라인을 구축하는 데 필요하지는 않습니다
+
+이제 `.send()`를 봤으니 `.throw()`를 살펴보겠습니다.
+
+### How to Use .throw()
+
+`.throw()`는 제너레이터에 예외를 적용할 수 있습니다. 아래 예제에서는 6행에서 예외를 제기합니다. 이 코드는 `digits`가 5에 도달하면 `ValueError`을 발생시킵니다.
+
+```Python
+pal_gen = infinite_palindromes()
+for i in pal_gen:
+    print(i)
+    digits = len(str(i))
+    if digits == 5:
+        pal_gen.throw(ValueError("We don't like large palindromes"))
+    pal_gen.send(10 ** (digits))
+```
+
+이것은 이전 코드와 동일하지만 이제 `digits`이 5인지 확인할 것입니다. 그렇다면 `ValueError`를 `.throw()`하게 됩니다. 이 기능이 예상대로 작동하는 확인하려면 코드 출력을 확인하십시오
+
+```
+11
+111
+1111
+10101
+Traceback (most recent call last):
+  File "advanced_gen.py", line 47, in <module>
+    main()
+  File "advanced_gen.py", line 41, in main
+    pal_gen.throw(ValueError("We don't like large palindromes"))
+  File "advanced_gen.py", line 26, in infinite_palindromes
+    i = (yield num)
+ValueError: We don't like large palindromes
+```
+
+`.throw()`는 예외 처리를 해야하는 모든 영역에 유용합니다. 이 예제에서는 `.throw()`를 사용하여 제너레이터를 통해 반복을 중지하는 시기를 제어했습니다. `.close()`를 사용하여 보다 우아하게 작업할 수 있습니다.
+
+### How to Use .close()
+
+이름에서 알 수 있듯이 `.close()`를 사용하면 제너레이터를 중지할 수 있습니다. 이것은 무한 시퀀스 제너레이터를 제어할 때 특히 유용할 수 있습니다. 반복을 중지하기 위해 `.throw()`를 `.close()`로 변경하여 위의 코드를 업데이트 해보겠습니다.
+
+```Python
+pal_gen = infinite_palindromes()
+for i in pal_gen:
+    print(i)
+    digits = len(str(i))
+    if digits == 5:
+        pal_gen.close()
+    pal_gen.send(10 ** (digits))
+```
+
+6행에서 `.throw()`를 호출하는 대신 `.close()`를 사용합니다. `close()`를 사용하면 유한 이터레이터의 끝을 알리는 데 사용되는 예외인 `StopIteration`이 증가한다는 장점이 있습니다.
+
+```Python
+11
+111
+1111
+10101
+Traceback (most recent call last):
+  File "advanced_gen.py", line 46, in <module>
+    main()
+  File "advanced_gen.py", line 42, in main
+    pal_gen.send(10 ** (digits))
+StopIteration
+```
+
+이제 제너레이터와 함께 제공되는 특별한 방법에 대해 자세히 알아보았스므로 이제 제너레이터를 사용하여 데이터 파이프라인을 구축하는 방법에 대해 알아보겠습니다.
