@@ -465,3 +465,127 @@ StopIteration
 ```
 
 이제 제너레이터와 함께 제공되는 특별한 방법에 대해 자세히 알아보았스므로 이제 제너레이터를 사용하여 데이터 파이프라인을 구축하는 방법에 대해 알아보겠습니다.
+
+## Creating Data Pipelines With Generators
+
+데이터 파이프라인을 사용하면 컴퓨터의 메모리를 최대화하지 않고도 대규모 데이터 세트 또는 데이터 스트림을 처리하기 위해 코드를 함께 문자열화할 수 있습니다. 대용량 CSV 파일이 있다고 가정해 보겠습니다.
+
+```CSV
+permalink,company,numEmps,category,city,state,fundedDate,raisedAmt,raisedCurrency,round
+digg,Digg,60,web,San Francisco,CA,1-Dec-06,8500000,USD,b
+digg,Digg,60,web,San Francisco,CA,1-Oct-05,2800000,USD,a
+facebook,Facebook,450,web,Palo Alto,CA,1-Sep-04,500000,USD,angel
+facebook,Facebook,450,web,Palo Alto,CA,1-May-05,12700000,USD,a
+photobucket,Photobucket,60,web,Palo Alto,CA,1-Mar-05,3000000,USD,a
+```
+
+이 예는 TechCrunch Continental USA 세트에서 가져온 것입니다. 이 세트는 미국에 기반을 둔 다양한 스타트업에 대한 자금 조달 라운드와 금액을 설명합니다.
+
+파이썬에서 처리할 시간입니다. 제너레이터로 파이프라인을 구축하는 방법을 시연하기 위해, 데이터 세트에서 모든 시리즈 A 라운드의 총합 및 평균을 얻기 위해 이 파일을 분석할 것입니다.
+
+전략을 생각해 봅시다.
+- 파일의 모든 줄을 읽습니다.
+- 각 행을 값 리스트로 분할합니다.
+- 열 이름을 추출합니다.
+- 열 이름과 리스트를 사용하여 딕셔너리를 만듭니다.
+- 관심 없는 라운드는 걸러냅니다.
+- 관심 있는 라운드의 총합 및 평균 값을 계산합니다.
+
+일반적으로 `pandas`와 같은 패키지로 이 기능을 수행할 수 있지만 몇 개의 제너레이터로도 이 기능을 수행할 수 있습니다. 제너레이터 식으로 파일의 각 행을 읽는 것으로 시작합니다.
+
+```Python
+file_name = "techcrunch.csv"
+lines = (line for line in open(file_name))
+```
+
+그런 다음 이전 제너레이터 식과 함께 다른 제너레이터 식을 사용하여 각 행을 리스트로 분할합니다.
+
+```Python
+list_line = (s.rstrip().split(",") for s in lines)
+```
+
+여기서 첫 번째 제너레이터 라인을 반복하는 제너레이터 `list_line`을 생성했습니다. 이것은 제너레이터 파이프라인을 설계할 때 사용하는 일반적인 패턴입니다. 그런 다음 `techcrunch.csv`에서 열 이름을 가져옵니다. 열 이름은 CSV 파일의 첫 번째 줄을 구성하는 경향이 있으므로 `next()` 같은 호출을 사용하여 열 이름을 가져올 수 있습니다.
+
+```Python
+cols = next(list_line)
+```
+
+`next()`에 대한 호출은 `list_line` 제너레이터를 통해 이터레이터를 한 번 진행합니다. 이 모든 것을 합치면. 당신의 코드는 다음과 같을 것입니다.
+
+```Python
+file_name = "techcrunch.csv"
+lines = (line for line in open(file_name))
+list_line = (s.rstrip().split(",") for s in lines)
+cols = next(list_line)
+```
+
+이를 요약하기 위해 먼저 제너레이터 식 `lines`을 만들어 파일의 각 행을 생성합니다. 그런 다음 각 줄을 값 목록으로 변환하는 `list_line`이라는 다른 제너레이터 식의 정의 내에서 해당 제너레이터를 반복합니다. 그런 다음 `next()`를 사용하여 `list_line`의 반복을 한 번만 진행하여 CSV 파일에서 열 이름 목록을 가져옵니다.
+
+데이터를 필터링하고 작업을 수행하는 데 도움이 되도록 사전을 만들 수 있습니다. 여기서 키는 CSV의 열 이름입니다.
+
+```Python
+company_dicts = (dict(zip(cols, data)) for data in list_line)
+```
+
+이 제너레이터 식을 `list_line`에서 생성한 리스트에서 반복합니다. 그런 다음 `zip()` 및 `dict()`를 사용하여 위에서 지정한 대로 사전을 만듭니다. 이제 네 번째 제너레이터를 사용하여 원하는 자금 조달 라운드를 필터링하고 `raisedAmt`도 끌어옵니다.
+
+```Python
+funding = (
+    int(company_dict["raisedAmt"])
+    for company_dict in company_dicts
+    if company_dict["round"] == "a"
+)
+```
+
+이 코드 스니펫에서 제너레이터 식은 `company_dicts`의 결과를 반복하고 `round` 키가 `a`인 `company_dict`에 대해 `raisedAmt`를 취합니다.
+
+제너레이터 식에서 이 모든 것을 한 번에 반복하는 것은 아닙니다. 실제로 `for`루프나 `sum()`과 같은 반복 가능한 함수를 사용하기 전까지는 어떤 것도 반복하지 않습니다. 실제로 제너레이터를 통해 반복하려면 지금 `sum()`를 입력하세요.
+
+```Python
+total_series_a = sum(funding)
+```
+
+이 모든 것을 종합하면 다음과 같은 스크립트를 생성할 수 있습니다.
+
+```Python
+file_name = "techcrunch.csv"
+lines = (line for line in open(file_name))
+list_line = (s.rstrip()split(",") for s in lines)
+cols = next(list_line)
+company_dicts = (dict(zip(cols, data)) for data in list_line)
+funding = (
+    int(company_dict["raisedAmt"])
+    for company_dict in company_dicts
+    if company_dict["round"] == "a"
+)
+total_series_a = sum(funding)
+print(f"Total series A fundraising: ${total_series_a}")
+```
+
+이 스크립트는 구축한 모든 제너레이터를 한데 모아 하나의 빅 데이터 파이프라인 역할을 합니다. 다음은 한 줄 한 줄 분석입니다.
+
+- **Line 2** 파일의 각 행을 읽습니다.
+- **Line 3** 각 행을 값으로 나누고 값을 리스트에 넣습니다.
+- **Line 4** `next()`를 사용하여 열 이름을 리스트에 저장합니다.
+- **Line 5** 은 사전을 만들고 `zip()` 호출로 통합합니다.
+  - **The keys** 는 line 4의 열 이름 `cols`입니다.
+  - **The values** 는 line 3에 작성된 리스트 형식의 행입니다.
+- **Line 6** 각 회사의 A 시리즈 자금 지원 금액을 받는다. 그것은 또한 다른 인상된 금액 걸러낸다.
+- **Line 11** 은 `sum()`을 호출하여 CSV에서 발견된 시리즈 A 자금의 총 금액을 얻는 것으로 반복 프로세스를 시작한다.
+
+`techcrunch.csv`에서 이 코드를 실행하면 시리즈 A 펀딩 라운드에서 총 4,376,015,000달러가 모금 되었음을 알 수 있다.
+
+더 깊이 파고들려면, 시리즈 A 라운드에서 회사당 평균 모금액을 알아보세요. 이건 좀 더 까다롭기 때문에 여기 몇 가지 힌트가 있습니다.
+- 제너레이터는 완전히 반복된 후에 스스로 소멸됩니다.
+- `sum()` 함수가 여전히 필요합니다.
+
+## Conclusion
+
+이번에 **제너레이터 함수**와 **제너레이터 식**에 대해 살펴봤습니다.
+- 제너레이터 함수 및 제너레이터 식을 사용하고 쓰는 방법
+- 매우 중요한 파이썬 yield문을 사용하는 방법
+- 제너레이터 함수에서 여러 파이썬 yield문을 사용하는 방법
+- .send()를 사용하여 데이터를 제너레이터로 보내는 방법
+- .throw()를 사용하여 제너레이터 예외를 발생시키는 방법
+- .close()를 사용하여 제너레이터의 반복을 중지하는 방법
+- 대용량 CSV 파일을 효율적으로 처리하기 위해 제너레이터 파이프라인을 구축하는 방법
