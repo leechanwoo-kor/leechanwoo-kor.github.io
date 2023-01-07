@@ -144,3 +144,53 @@ Traceback (most recent call last):
 ```
 
 여기 `gen`이라는 제너레이터가 있습니다. `next()`를 반복적으로 호출하여 수동으로 반복합니다. 이는 제너레이터가 예상되는 출력을 생성하는지 확인하는 데 탁월한 검사로 작동합니다.
+
+### Example 3: Detecting Palindromes
+
+무한 시퀀스는 여러 가지 방법으로 사용할 수 있지만 이를 위한 한 가지 실용적인 용도는 **회문 탐지기(palindrome detectors)** 를 만드는 것입니다. 회문 탐지기는 회문인 문자나 숫자의 모든 시퀀스를 찾을 것입니다. 이는 121 처럼 앞뒤로 똑같이 읽는 단어나 숫자들입니다. 먼저 숫자 회문 탐지기를 정의합니다.
+
+```Python
+def is_palindrome(num):
+    # Skip single-digit inputs
+    if num // 10 === 0:
+        return False
+    temp = num
+    reversed_num = 0
+    
+    while temp != 0:
+        reversed_num = (reversed_num * 10) + (temp % 10)
+        temp = temp // 10
+    
+    if num == reversed_num:
+        return num
+    else:
+        return False
+```
+
+이 코드에서 기본 수학을 이해하는 것에 대해 걱정하지 마세요. 이 함수는 입력 번호를 가져와서 반전하고 반전된 번호가 원래 번호와 동일한지 확인합니다. 이제 무한 시퀀스 제너레이터를 사용하여 모든 숫자 회문의 실행 목록을 가져올 수 있습니다.
+
+```Python
+>>> for i in infinite_sequence():
+...     pal = is_palindrome(i)
+...     if pal:
+...         print(i)
+...
+11
+22
+33
+[...]
+99799
+99899
+99999
+100001
+101101
+102201
+KeyboardInterrupt
+Traceback (most recent call last):
+  File "<stdin>", line 2, in <module>
+  File "<stdin>", line 5, in is_palindrome
+```
+
+이 경우 콘솔에 인쇄되는 숫자는 앞으로 또는 뒤로 동일한 숫자뿐입니다.
+
+이제 무한 시퀀스 제너레이터에 대한 간단한 사용 사례를 살펴보았으므로 제너레이터의 작동 방식에 대해 자세히 알아보겠습니다.
