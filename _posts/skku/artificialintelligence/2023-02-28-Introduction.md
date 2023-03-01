@@ -17,7 +17,7 @@ toc_icon: "sticky-note"
 
 <br>
 
-# Database System
+# Introduction to Aritificial Intelligence
 
 > "Artificial Intelligence is concerned with intelligent behavior in artifacts. Intelligent behavior involves perception, reasoning, learning, communication, and acting in complex environments." *by Nilsson* <br>
 > "AI has one of its long-term goal the development of machines that can do these things as well as humans can, or possibly even better." *by Nilsson* <br>
