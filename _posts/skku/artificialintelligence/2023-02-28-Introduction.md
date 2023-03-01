@@ -4,9 +4,8 @@ categories:
   - Artificial Intelligence
 tags:
   - Artificial Intelligence
-  - Database
-  - DBMS
-  - File System
+  - Turing Test
+  - Neural Network
 toc: true
 toc_sticky: true
 toc_label: "Introduction to Aritificial Intelligence"
