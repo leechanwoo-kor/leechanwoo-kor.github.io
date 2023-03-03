@@ -75,7 +75,7 @@ toc_icon: "sticky-note"
 - Output: n sorted integers in array A[0..n-1]
 - Method: Selection Sort
 
-![image](https://user-images.githubusercontent.com/55765292/222599378-a7db16c2-7969-45d1-ba14-5bdfd14ae14e.png)
+![image](https://user-images.githubusercontent.com/55765292/222599378-a7db16c2-7969-45d1-ba14-5bdfd14ae14e.png){: .align-center}
 
 <br>
 
@@ -92,6 +92,6 @@ toc_icon: "sticky-note"
   - Non-Linear Types: Stored in non-linear order
     - 예: Trees, Graphs
 
-![image](https://user-images.githubusercontent.com/55765292/222599531-6d0fec46-2999-4d09-9a5f-03fb3aba5442.png)
+![image](https://user-images.githubusercontent.com/55765292/222599531-6d0fec46-2999-4d09-9a5f-03fb3aba5442.png){: .align-center}
 
 
