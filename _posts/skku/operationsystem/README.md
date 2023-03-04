@@ -2,7 +2,7 @@
 
 ## Computer systems internals
 
-![image](https://user-images.githubusercontent.com/55765292/222903586-0160b7f2-8f9d-4da2-b972-78fce1e66778.png){: .align-center}
+![image](https://user-images.githubusercontent.com/55765292/222903586-0160b7f2-8f9d-4da2-b972-78fce1e66778.png)
 
 ## Functions of OS
 - User(Application) interface (for user convenience)
@@ -10,7 +10,7 @@
 - **Process management**
 - + Security & protection / networking
 
-![image](https://user-images.githubusercontent.com/55765292/222903629-02357165-f215-4079-bfd0-5dcb6f45f18c.png){: .align-center}
+![image](https://user-images.githubusercontent.com/55765292/222903629-02357165-f215-4079-bfd0-5dcb6f45f18c.png)
 
 ## Topics
 - **Introduction/Overview**
