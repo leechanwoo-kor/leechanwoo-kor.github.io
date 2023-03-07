@@ -70,5 +70,130 @@ toc_icon: "sticky-note"
 
 ### Search Tree for the 8 puzzle problem
 
+- States: a state description specifies the location of robot, sensory input values
+- Operators: move north, south, east, west
+- Goal test: state matches the goal location
+- Path cost: each step costs 1 Path cost is the length of the path
+
 ![image](https://user-images.githubusercontent.com/55765292/222057967-47bc28aa-a4e0-443c-bc89-8c45ce3555b7.png)
 
+<br>
+
+### Robot in a Two Dimensional Grid World
+
+- Boundary
+- Solid object
+- The robot senses whether the eight surrounding cells are free for it to occupy
+
+![image](https://user-images.githubusercontent.com/55765292/223384894-63b7c893-f405-4794-89b7-21bbca3e82e8.png)
+
+- Large, unmovable objects(obstacles)
+- Move from start state to the goal state avoiding obstacles
+- Robot is able to sense whether or not the eight cells surrounding it are free
+- Sensory inputs: s1,s2,…,s8. Either 0 or 1, 0 if cell is free
+- Four actions - move north, south, east, west
+
+<br>
+
+- States: a state description specifies the location of robot, sensory input values
+- Operators: move north, south, east, west
+- Goal test: state matches the goal location
+- Path cost: each step costs 1. Path cost is the length of the path
+
+<br>
+
+### Travelling Salesperson Problem
+
+- Each city must be visited exactly once.
+- The aim is to find shortest path.
+- In Romania Map
+- State: in Oradea, visited {Arad, Sibiu}
+
+![image](https://user-images.githubusercontent.com/55765292/223385383-9e473d84-c1e3-4737-b922-a5d0a403782e.png)
+
+<br>
+
+## Search Tree and Graph
+
+- Find a path from Arad to Bucharest
+  - initial state Arad
+  - after expanding Arad
+  - after expanding Sibiu
+
+<br>
+
+#### Tree search example
+
+![image](https://user-images.githubusercontent.com/55765292/223387254-87a01aac-611f-4400-b8f0-b76810839456.png)
+
+<br>
+
+![image](https://user-images.githubusercontent.com/55765292/223387436-a972b22d-f0b6-445b-8922-37fc374fda98.png)
+
+<br>
+
+## Search Tree and Graph
+
+<br>
+
+### Generating Action Sequences
+
+- Apply operators to the current state => generate new set of states. : Expanding state
+- Choose a state
+- Test if this is a goal state
+- If it is not expand it.
+- Choosing → testing → Expanding
+
+- **The choice of which state to expand first is determined by the
+search strategy**
+
+<br>
+
+### Search Strategies
+
+- To formalize a little we can define four criteria used to measure search strategies
+  - Completeness : Is the strategy guaranteed to find a solution?
+  - Time Complexity : How long does it take to find a solution?
+  - Space Complexity : How much memory does it take to perform the search?
+  - Optimality : Does the strategy find the optimal solution where there are several solutions?
+
+<br>
+
+### Graph Notation
+
+- Consists of nodes
+- Connected by arcs
+- Directed arc
+- Nodes: states
+- Arcs: operators
+- Parent node
+- Child node
+- Edges: undirected graph
+- Directed tree: each node(except one) has exactly one parent
+- Root node
+
+<br>
+
+### Search Tree and Graph
+
+- Node in the tree having no successors: leaf node
+- Depth of node: 0 for root node $depth$(node)= $depth$(parent)+1
+- Undirected tree is an undirected graph in which there is one and only one path along edges between any pair of nodes
+- If all nodes except leaf nodes have the same number $b$ of successors, $b$ is called $branching factor$ of the tree
+
+<br>
+
+- A sequence of nodes $(n_1, n_2, \dots, n_k)$
+  Path of length $k-1$ from node to $n_1$ to $n_k$
+- If a path exists from node $n_i$ to $n_j$ , then $n_j$ is accessible from node $n_i$
+- $C(a)$: cost of an arc $a$
+- Cost of a path between two nodes: sum of the costs of all of the arcs connecting nodes on the path
+- Optimal path: path having minimal cost
+
+<br>
+
+#### Graph
+
+![image](https://user-images.githubusercontent.com/55765292/223391792-110185eb-d64a-4892-bd4c-58a3f17fd758.png)
+
+<br>
