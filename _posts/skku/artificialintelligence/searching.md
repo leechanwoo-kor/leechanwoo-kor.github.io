@@ -268,7 +268,47 @@ $g(Successor(n)) >= g(n)$
 
 <br>
 
+### Depth-first search (DFS)
 
+- Expand one of the nodes at the deepest level of the tree.
+- When the search hits a dead end (a non goal node with no expansion) ,search go back and expand nodes at shallower levels.
+- Modest memory requirements.
+- $bm$ nodes
+- $b$: branching factor, $m$ :maximum depth
+
+<br>
+
+- Time complexity
+- For problems that have many solutions, depth first may be faster than breadth-first
+- Get stuck: infinite depth
+- Not complete
+- Not optimal
+
+<br>
+
+#### Depth-First Search with a depth-limit
+
+<img width="723" alt="image" src="https://user-images.githubusercontent.com/55765292/223398204-fa3a6249-359f-42e7-ac86-d1710f2eeba6.png">{: .align-center}
+
+<br>
+
+<img width="707" alt="image" src="https://user-images.githubusercontent.com/55765292/223399322-aab246d9-d455-49a3-a820-103376604bda.png">
+
+<br>
+
+### Depth-limited search.
+- Impose a cutoff on the maximum depth of a path
+- Map of Romania, 20 cities
+- Solution must be of length 19 at the longest
+- Complete
+- Not optimal
+- If we choose depth limit that is too small,
+  - >Complete? Optimal?
+- Time complexity $O(b^l)$
+- Space complexity $O(bl)$
+- $l$: depth limit
+
+<br>
 
 
 
