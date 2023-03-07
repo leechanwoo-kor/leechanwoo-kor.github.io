@@ -303,7 +303,7 @@ $g(Successor(n)) >= g(n)$
 - Complete
 - Not optimal
 - If we choose depth limit that is too small,
-  - >Complete? Optimal?
+  - Complete? Optimal?
 - Time complexity $O(b^l)$
 - Space complexity $O(bl)$
 - $l$: depth limit
