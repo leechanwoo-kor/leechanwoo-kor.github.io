@@ -292,11 +292,11 @@ $g(Successor(n)) >= g(n)$
 
 <br>
 
-<img width="707" alt="image" src="https://user-images.githubusercontent.com/55765292/223399322-aab246d9-d455-49a3-a820-103376604bda.png">
+<img width="707" alt="image" src="https://user-images.githubusercontent.com/55765292/223399322-aab246d9-d455-49a3-a820-103376604bda.png">{: .align-center}
 
 <br>
 
-### Depth-limited search.
+### Depth-limited search
 - Impose a cutoff on the maximum depth of a path
 - Map of Romania, 20 cities
 - Solution must be of length 19 at the longest
@@ -310,5 +310,16 @@ $g(Successor(n)) >= g(n)$
 
 <br>
 
+### Iterative deepening search
 
+<br>
 
+### Comparing search strategies
+
+<br>
+
+## Search in Neural Network
+
+<br>
+
+### Gradient Descent (경사하강법)
