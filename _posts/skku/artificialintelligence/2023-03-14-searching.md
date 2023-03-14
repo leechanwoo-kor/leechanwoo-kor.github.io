@@ -312,14 +312,98 @@ $g(Successor(n)) >= g(n)$
 
 ### Iterative deepening search
 
+- Good limit?
+- Any city can be reached from any other city at most 9 steps.
+  - leads to a more efficient depth –limited search
+- We will not know a good depth limit.
+- Try all possible depth limits
+- Depth 0, depth 1, depth 2,….
+- Combines the benefits of depth-first and breadth-first search
+- Optimal and complete
+
 <br>
 
+ Modest memory requirements of depth first search
+- Many states are expanded multiple times
+- Time complexity?
+- It does not matter much that the upper levels are expanded multiple times
+
+- Cf. Number of expansions in **depth-limited search** to depth d with branching factor b
+
+<img width="413" alt="image" src="https://user-images.githubusercontent.com/55765292/224965071-8f5cb078-bce7-461e-bfeb-7ba8f7d926fb.png">
+
+
+<br>
+
+- For b=10, d=5
+- Cf. Depth-limited search
+
+1+10+100+1000+10,000+100,000=111,111
+
+- Iterative deepening search, nodes on the bottom level are expanded once
+- Nodes on the next to bottom level are expanded twice Root of the search tree, expanded d+1 times
+- Total number of expansions
+
+$(d+1)1+(d)b+(d-1)b^2+ \dots + 3b^{d-2}+2b^{d-1}+1b^d$
+
+<br>
+
+- For b=10, d=5
+- total number of expanded nodes in iterative deepening search
+- 6+50+400+3,000+20,000+100,000=123,456
+- 11% more nodes are expanded
+- Space complexity : $O(db)$
+- Time complexity : $O(b^d)$
+
+
 ### Comparing search strategies
+
+<img width="804" alt="image" src="https://user-images.githubusercontent.com/55765292/224963131-7f4642cb-9d3e-4a43-b7d1-865aaf2ee8a6.png">{: .align-center}
+
+- b:branching factor, d:depth of solution,
+- m:maximum depth of search tree, l:depth limit
 
 <br>
 
 ## Search in Neural Network
 
+- $x$: parameter we are adjusting
+- $P(x)$: performance index
+- Develop algorithm to optimize a performance index $P(x)$
+- Find value of $x$ that minimizes $P(x)$
+- Iterative algorithm
+- Initial guess, $x_0$
+- Update guess
+
+<img width="380" alt="image" src="https://user-images.githubusercontent.com/55765292/224964335-4cb99a0d-bb59-4fd3-a2e3-ea7ea077380a.png">
+
+- $\gamma(n)$: positive scalar, learning rate
+– $\delta(n)$: search direction. Choice of $\delta(n)$ ?
+
 <br>
 
 ### Gradient Descent (경사하강법)
+
+<img width="651" alt="image" src="https://user-images.githubusercontent.com/55765292/224965228-e17cb186-f4fc-4742-8e20-b62e86200cf4.png">{: .align-center}
+
+<br>
+
+<img width="533" alt="image" src="https://user-images.githubusercontent.com/55765292/224966852-79fa262b-1eb7-49be-919b-24aa747af544.png">{: .align-center}
+
+- Increase learning rate $\gamma$ : converges to optimal point rapidly
+- Too large learning rate - algorithm becomes unstable, performance oscillates instead of decaying
+
+<br>
+
+<img width="554" alt="image" src="https://user-images.githubusercontent.com/55765292/224967000-a1265db8-2d1a-4461-800e-cbd485ce80a6.png">{: .align-center}
+
+<br>
+
+<img width="748" alt="image" src="https://user-images.githubusercontent.com/55765292/224967235-4dd668c4-8133-4473-9ad1-4bbffd7f7e5b.png">{: .align-center}
+
+<br>
+
+<img width="723" alt="image" src="https://user-images.githubusercontent.com/55765292/224968236-f05f6b5b-09d7-40d5-8189-dbad2cdd9f96.png">{: .align-center}
+
+Fig. Steepest descent algorithms for two variable function
+{: .text-center}
