@@ -534,7 +534,7 @@ toc_icon: "sticky-note"
 - OS classification
   - Open system, Proprietary system
   - Criteria
-    - # of concurrent users, # of concurrent processes
+    - \# of concurrent users, \# of concurrent processes
     - Job processing mechanisms (Computing paradigm)
 - OS structure and functions
   - Kernel, Utilities
