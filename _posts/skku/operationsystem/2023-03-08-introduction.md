@@ -415,3 +415,128 @@ toc_icon: "sticky-note"
 <br>
 
 ## Virtualization
+
+<br>
+
+### Hardware virtualization
+
+- **Hardware virtualization or platform virtualization** refers to the creation of a virtual machine that acts like a real computer with an operating system. Software executed on these virtual machines is separated from the underlying hardware resources
+- In hardware virtualization, the host machine is the machine that is used by the virtualization, and the guest machine is the virtual machine
+- Abstraction of the HW of a single computer into several different **execution environments,** thereby creating the illusion that each separate execution environment is running its own private computer
+  - Each process is provided with a virtual copy of the underlying computer
+  - Share the same H/W, yet run several different execution environments (different OSs) concurrently
+
+<br>
+
+### OS virtualization
+
+- OS virtualization is a server virtualization method where the kernel allows for multiple isolated user-space instances
+  - Such instances, sometimes called containers, virtual private servers (VPS), or jails, may look and feel like a real server from the point of view of its owners and users
+- OS virtualization usually imposes little to no overhead, because programs in virtual partitions use the OS’s normal system call interface and do not need to be subjected to emulation or be run in an intermediate virtual machine
+
+<br>
+
+### Concept (Hardware virtualization)
+
+<img width="885" alt="image" src="https://user-images.githubusercontent.com/55765292/225270190-d2d34e1e-705e-4424-9a59-86160ec0c652.png">{: .align-center}
+
+<br>
+
+<img width="755" alt="image" src="https://user-images.githubusercontent.com/55765292/225271493-8b8238b6-d996-4fea-91d1-fb2e8bd8205b.png">{: .align-center}
+
+<br>
+
+### Types of Virtualization
+
+- Para-virtualization
+  - Modified guest OS
+- Full-virtualization
+  - Unmodified (native) guest OS
+- Hybrid virtualization
+  - Modification for some components of guest OS and no modification for others
+
+<br>
+
+<img width="338" alt="image" src="https://user-images.githubusercontent.com/55765292/225272097-d3790b8b-239f-49a6-9b41-be188a359688.png">{: .align-center}
+
+<br>
+
+### Types of VMM (Hypervisor)
+
+- Type-1 (baremetal)
+  - VMM runs directly on hardware
+- Type-2 (hosted)
+  - VMM runs on a host OS
+- Type-3 (hybrid)
+
+<br>
+
+<img width="912" alt="image" src="https://user-images.githubusercontent.com/55765292/225272655-e7297362-71f0-457d-9d7a-1e098e73ecfe.png">{: .align-center}
+
+<br>
+
+### Benefits
+
+- Server consolidation
+  - Underutilized servers to VMs
+  - Significant cost savings (equipment, space, power)
+  - Can be used for virtual desktops
+- Simplified management
+  - Datacenter provisioning and monitoring
+  - Dynamic load balancing
+- Improved availability/reliability
+  - Automatic restart, fault tolerance, disaster recovery
+- SW development
+  - Testing
+
+<br>
+
+- Example
+  - VMware
+  - Xen (Citrix → Linux Foundation)
+  - KVM (Red Hat)
+  - Virtual box (Oracle)
+  - Etc
+
+<br>
+
+## Cloud Computing
+
+<br>
+
+### Cloud computing
+
+- Type of computing that delivers computing, storage, and even applications as a service across a network
+- Logical extension of a virtualization
+
+<br>
+
+<img width="375" alt="image" src="https://user-images.githubusercontent.com/55765292/225277374-eb29d8a1-adde-4191-9a85-3e40fafba7f7.png">{: .align-center}
+
+<br>
+
+### Types of cloud computing
+
+- SaaS
+  - One or more applications available via the Internet
+- PaaS
+  - A SW stack ready for application use via the Internet
+- IaaS
+  - Servers or storages available over the Internet
+
+<br>
+
+## Summary
+
+- OS functions
+  - Resource management, process management
+  - User interface
+- OS classification
+  - Open system, Proprietary system
+  - Criteria
+    - # of concurrent users, # of concurrent processes
+    - Job processing mechanisms (Computing paradigm)
+- OS structure and functions
+  - Kernel, Utilities
+- Dual mode operations, system calls, and interrupts
+- Virtualization
