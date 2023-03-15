@@ -16,17 +16,161 @@ toc_icon: "sticky-note"
 
 # Introduction and System Structures
 
+<br>
+
+## Operating System
+
+<br>
+
+### Definition (Wiki, 2012)
+
+- An **operating system** is an **interface between hardware and user**
+- An OS is responsible for the **mgmt and coordination of activities** and the **sharing of the resources** of the computer
+- The OS acts as a host forcomputing applications run on the machine
+  - As a host, one of the purposes of an operating system is to **handle the details of the operation of the hardware.** This **relieves application programs from having to manage these details** and **makes it easier to write applications**
+- Almost all computers (including handheld computers, desktops, supercomputers, video game consoles) as well as some robots, domestic appliances (dishwashers, washing machines), and portable media players use an operating system of some type
+
+<br>
+
+### Definition (Wiki, Now)
+
+- An OS is a system software that **manages computer hardware, software resources,** and **provides common services** for computer programs
+- The operating system acts as an intermediary between programs and the computer hardware, although the application code is usually executed directly by the hardware and frequently makes system calls to an OS function or is interrupted by it
+- Operating systems are found on many devices that contain a computer, from cellular phones and video game consoles to web servers and supercomputers
+
+<br>
+
+### Market share (~ Now ~)
+
+- General-purpose personal systems OS
+  - MS Windows 75+%
+  - MacOS 15+%
+  - Linux ~2%
+- Mobile OS
+  - Google Android 70~90%
+  - Apple iOS 10+%
+  - Others ~1%
+- Server and supercomputing systems OS
+  - Linux distributions are dominant
+
+<br>
+
 ##  OS functions
-### Resource management, process management
-### User interface
+
+- User interface (for user convenience)
+  - System call interface
+- Resource management(for efficiency)
+- Process management
+- + Networking / Security & Protection
+
+![image](https://user-images.githubusercontent.com/55765292/225205418-f14ad32f-1230-440a-8d59-51e2ee0406b1.png){: .align-center}
+
+<br>
+
+### User interface (for user convenience)
+
+- CLI(Command Line Interface)
+  - CUI(Character(Text)User Interface)
+- GUI(Graphical User Interface)
+- EUCI(End-User Comfortable Interface)
+  - HCI(Human-Computer Interaction)
+  - UX(User eXperience)
+
+<br>
+
+### Resource management (for efficiency)
+
+- Processor management
+- Memory management
+- File management
+- I/O management
+
+<br>
+
+### Process management
+
+- Process management
+- Thread management
+
++ Networking/Security+Protection
+
+<br>
+
+### Compute System Organization
+
+![image](https://user-images.githubusercontent.com/55765292/225206137-b6d8f1a7-58f6-4c20-a3f0-2b9850e8a412.png){: .align-center}
+
+<br>
+
+![image](https://user-images.githubusercontent.com/55765292/225206216-8dbb0210-7214-4a7c-a40b-fffa7c4482d8.png){: .align-center}
+
+
+<br>
 
 ## OS classification
-### Open system, Proprietary system
-### Criteria
-#### # of concurrent users, # of concurrent processes
-#### Job processing mechanisms (Computing paradigm)
 
-// 여기까지가 1주차..
+<br>
+
+### OS Classification Criteria
+
+- Number of concurrent users
+  - Single-user system
+  - Multi-user system
+- Number of concurrent processes
+  - Single-tasking system
+  - Multi-tasking system (Multiprogramming system)
+
+<br>
+
+- Job processing mechanism (Computing paradigm)
+  - Batch systems
+  - Interactive systems (Time-sharing systems)
+  - Personal computing
+  - Parallel/Distributed computing
+  - Real-time system
+  - Mobile computing
+  - Cloud computing
+  - Ubiquitous computing
+
+<br>
+
+### Single-user system vs. Multi-user system
+
+- Single-user system
+  - Only one user can use the system at a time
+  - The user owns all the system resources
+    - Simple protection mechanism
+  - Mainly used for micro-computers or personal computers
+  - MS-DOS, MS Windows 95/98/.../10
+- Multi-user system
+  - Several users can use the system simultaneously
+  - **Protection mechanisms are necessary to control access to system resources (including files)**
+  - Requires multi-tasking
+  - Requires more complex OS functions/facilities
+  - Unix, Linux
+
+<br>
+
+### Single-tasking system vs. Multi-tasking system
+
+- Single-tasking system
+  - Only one process can exist in the system at a time
+    - A process can start execution only after current process leaves the system
+  - Single-user system
+  - Simple OS structure
+  - Mainly used for micro-computers or personal computers
+  - MS-DOS
+- Multi-tasking system
+  - Multiple processes can exist in the system simultaneously
+  - **Requires concurrency control and synchronization mechanisms**
+  - Complex OS structure
+  - Unix, Linux
+
+<br>
+
+### Computing Paradigm
+
+![image](https://user-images.githubusercontent.com/55765292/225207962-2ad3a2aa-3288-4920-8a01-3a328bc2a514.png){: .align-center}
 
 <br>
 
@@ -269,11 +413,5 @@ toc_icon: "sticky-note"
 <img width="807" alt="image" src="https://user-images.githubusercontent.com/55765292/223693208-fac515be-98d7-42db-b9c1-ec776aa8fe81.png">
 
 <br>
-
-
-
-
-
-
 
 ## Virtualization
