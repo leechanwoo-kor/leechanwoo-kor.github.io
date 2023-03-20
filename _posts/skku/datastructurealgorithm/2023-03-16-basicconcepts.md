@@ -324,30 +324,179 @@ problem
   if there are positive constants c and $n_0$ such that<br>
   f(n) ≤ c·g(n) for all n ≥ $n_0$
    
-<img width="761" alt="image" src="https://user-images.githubusercontent.com/55765292/223990129-e099dd0d-e3b5-4a8a-8622-093a9e726487.png">: .align-center}
+<img width="761" alt="image" src="https://user-images.githubusercontent.com/55765292/223990129-e099dd0d-e3b5-4a8a-8622-093a9e726487.png">{: .align-center}
 
 - c는 H/W 혹은 S/W 환경 변화에 따른 값이며, c의 값이 바뀌어도 growth rate에는 영향을 미치지 않음.
 - n의 값이 임계 값 n0 이상이 되면 (즉 input size가 계속 커질수록) g(n)이 항상 f(n) 보다 크다.
 
 <br>
 
-연습 : Big Oh(O) Notation
+### 연습 : Big Oh(O) Notation
 
 If we want show f(n) is O(g(n)); we only need to find one pair (c, $n_0$).
 - 예 1: 100n = O($n^2$)
   - We need c and $n_0$ such that 100n ≤ c·n2
   - Pick c = 1 and n0 = 100
-◆ 예 2: 7n – 2 = O(n)
-▪ We need c and n0 such that 7n – 2 ≤ c·n for n ≥ n0
-▪ Pick c = 7 and n0 = 1
-◆ 예 3: 3n
-3 + 20n2 + 5 = O(n3
-)
-▪ We need c and n0 such that 3n
-3 + 20n2 + 5 ≤ c·n3
-for n ≥ n0
-▪ Pick c = 4 and n0 = 21
-◆ 예 4: 3n
-2 = O(100n) 은 성립 안 함.
-▪ 3n
-3 ≤ c·100n for n ≥ n0 을 만족하는 c 와 n0 값이 존재하지 않음.
+- 예 2: 7n – 2 = O(n)
+  - We need c and $n_0$ such that 7n – 2 ≤ c·n for n ≥ $n_0$
+  - Pick c = 7 and $n_0$ = 1
+- 예 3: $3n^3 + 20n^2 + 5 = O(n^3)$
+  - We need c and $n_0$ such that $3n^3 + 20n^2 + 5 ≤ c·n^3 for n ≥ n_0$
+  - Pick c = 4 and $n_0$ = 21
+- 예 4: $3n^2 = O(100n)$ 은 성립 안 함.
+  - $3n^3 ≤ c·100n for n ≥ n_0$ 을 만족하는 c 와 $n_0$ 값이 존재하지 않음.
+
+<br>
+
+### Big Oh and Growth Rate
+
+- “Big Oh” notation gives an upper bound on the growth rate of a function f(n) for large n.
+- “f(n) = O(g(n))” means that growth rate of f(n) is no more than the growth rate of g(n).
+
+![image](https://user-images.githubusercontent.com/55765292/226283946-21fb34f2-78b9-42f1-9a25-f6fa3315c068.png){: .align-center}
+
+<br>
+
+### Big Oh Rules
+
+- If $f(n) = a_kn^k + ... + a_1n + a_0$, (k > 0), then $f(n) = O(n^k)$
+
+- Big Oh Rules
+  - (1) Drop lower order terms
+  - (2) Drop constant factors
+- If n is sufficiently large, the only importance is the order of complexity;
+  - For example, $2n^3 + 100n^2 + 4n + 5 = O(n^3)$
+
+<br>
+
+- Use the smallest possible class of functions; For example, “2n is O(n)” instead of “2n is O($n^2$)”
+
+- 1, 3, 100, . . . . ➔ O(1)
+- $0.5n, log_2n + n, 10000n, \dots$ ➔ O(n)
+- $n^2, 0.5n^2, 10n^2 + 5n + 20, 100n^2, \dots$ ➔ O($n^2$)
+- $2log_2n, log_2n + 10, \dots$ ➔ O($log_2n$)
+- $4nlog_2n, nlog_2n + 5log_2n + 10, \dots$ ➔ O($nlog_2n$)
+- $100n^3, 4n^3 + 50n^2 + 7n + 5, \dots$ ➔ O($n^3$)
+
+<br>
+
+### Time Analysis: Prefix-Average
+
+![image](https://user-images.githubusercontent.com/55765292/226284998-93569ec7-77cd-433f-be1b-a442b3589767.png){: .align-center}
+
+- Time: $n + n + (1 + 2 + . . n-1) + (1 + 2 + . . n-1) +n + 1 = n^2 + 2n + 1 = O(n^2)$
+
+![image](https://user-images.githubusercontent.com/55765292/226285151-0795505d-f69e-4ba4-af6f-03d3ad3d3250.png){: .align-center}
+
+- Time: $1 + n + n + n + 1 = 3n + 2 = O(n)$
+
+<br>
+
+- Algorithm 1: O($n^2$); (Redundant computations)
+- Algorithm 2: O(n); (Saving intermediate results)
+
+<br>
+
+## Exercise: Searching
+
+- Problem : Find an integer X among n integers.
+
+
+- Algorithm 1 :
+  - Data Structure : Unsorted n integers in array list.
+  - Method : Linear Search
+- Algorithm 2:
+  - Data Structure : Sorted n integers in array list.
+  - Method : Binary Search
+
+- Which algorithm is better?
+  - Searching Cost?
+  - Insertion Cost?
+  - Deletion Cost?
+
+<br>
+
+### Binary Search
+
+- left, right는 각각 list의 왼쪽, 오른쪽 위치를 가리키는 변수임
+
+<br>
+
+![image](https://user-images.githubusercontent.com/55765292/226285537-054808ed-128a-4d14-9340-3d30f266f4f2.png){: .align-center}
+
+<br>
+
+- 위 알고리즘의 Time 분석을 하라.
+  (Hint: T(1) = 1, T(n) = T(n/2) + 1)
+
+<br>
+
+### Class of Time Complexities
+
+- Polynomial Time (Tractable)
+  - O(1) : Constant
+  - O($log_2n$) : Logarithmic
+  - O(n) : Linear
+  - O($n·log_2n$): Logarithmic Linear
+  - O($n^2$) : Square
+  - O($n^3$) : Cubic
+  - . . . . . .
+  - O($n^k$) :
+
+- Exponential Time (Intractable)
+  - O($2^n$)
+  - O(n!)
+  - O($n^n$)
+
+- Ordering of complexities
+  - $O(1) < O(log_2n) < O(n) < O(nlog_2n) < O(n^2) < O(n^3) < O(2^n) < O(n!)$
+
+<br>
+
+- 다음 비교 결과의 의미는? 효율성에서 어느 정도 차이?
+  예: $n = 10, n = 10^3, n = 10^6, n = 10^9$
+  - O(1) vs. O(n)
+  - O(n) vs. O($log_2n$)
+  - O($n^2$) vs. O($n·log_2n$)
+
+- 다음 중 어느 것이 더 클까? 현실적으로 풀 수 있는지?
+  - $O(n^k) vs. O(2^n)$
+
+- Polynomial time 계층은 다루기 쉬운(tractable) 문제들; 잘 알려진 유용하게 사용되는 많은 문제들이 O(n3) 이하로 해결됨.
+- Exponential time 계층은 다루기 어려운(intractable) 문제들.
+- 어떠한 Polynomial time 알고리즘도 (현재까지 알려진 바로는) 존재하지 않는 문제들도 존재함
+
+<br>
+
+### Orders of Magnitude
+
+![image](https://user-images.githubusercontent.com/55765292/226286333-2032bc25-e763-463c-bef0-8609ac24623e.png){: .align-center}
+
+<br>
+
+### Growth of Function Values
+
+![image](https://user-images.githubusercontent.com/55765292/226286378-f3511627-d0f2-468e-8fe0-296b38147707.png){: .align-center}
+
+<br>
+
+### Class of Time Complexities
+
+![image](https://user-images.githubusercontent.com/55765292/226286470-4b6b317d-4971-4c96-9758-b1a2deb04042.png){: .align-center}
+
+<br>
+
+### Practical Complexities
+
+- Linear Search: O(n)
+- Binary Search: O($log_2n$)
+- Multi-way Search: O($log_bn$), b >> 2
+- Find Maximum: O(n) or O($log_2n$)
+- Insertion Sort: O($n^2$)
+- Merge Sort: O($n·log_2n$)
+- Shortest Paths: O($n^2$)
+- All Pairs Shortest Paths: O($n^3$)
+- Matrix Addition: O($n^2$)
+- Matrix Multiplication: O($n^3$) or O($n^{2∙81}$)
+- Hamiltonian Cycle: O(n!)
+- ......
