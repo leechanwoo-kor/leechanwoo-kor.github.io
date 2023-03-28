@@ -171,21 +171,97 @@ Atoms: T,F, countably infinite set of strings ,that begin with a capital letter 
 #### Quantification
 
 - Every object has a certain property.
-  Clear(B1) && Clear(B2) && Clear(B3) && Clear(B4) ...
+  - Clear(B1) && Clear(B2) && Clear(B3) && Clear(B4) ...
 - At least one object has a certain property
-  Clear(B1) || Clear(B2) || Clear(B3) || Clear(B4) ...
+  - Clear(B1) || Clear(B2) || Clear(B3) || Clear(B4) ...
 - Variable symbols
 - Quantifier symbols
 
 <br>
 
-– Existential quantifier : ∃
-(∃x) On(x,B) There is a block on Block B.
-(∃x) Greater_than(x,0)
-– Universal quantifier : ∀
-(∀x) Man (Father(x)) Father is a man for all x
-(∀x) Attends (x,( ))
+- Quantifier(한정사)
+  – Existential quantifier (존재 한정사) : ∃
+    - (∃x) On(x,B) There is a block on Block B.
+    - (∃x) Greater_than(x,0)
+  – Universal quantifier (전체 한정사) : ∀
+    - (∀x) Man (Father(x)) Father is a man for all x
+    - (∀x) Attends (x,(CS221 && CS157))
 
-[ Ex 4.2] (∃x ) Odd(x)
-true : if domain of x is a set of integers
-false : if domain of x is a set of imaginary numbers
+[Ex 4.2] (∃x ) Odd(x)
+- true : if domain of x is a set of integers
+- false : if domain of x is a set of imaginary numbers
+
+---
+
+[ex 4.4] write each statement as a predicate wff (the domain is whole world)
+- D(x) is “x is a day”, M is “Monday”
+- S(x) is “x is sunny”, T is “Tuesday”
+- R(x) is “x is rainy”,
+
+① All days are sunny. (∀x)(D(x)→S(x))
+② some days are not rainy. (∃x)[D(x)∧R(x)'] or [(∀x)(D(x)→R(x))]'
+③ Every day that is sunny is not rainy. (∀x)[D(x)∧S(x)→R(x)']
+④ Some days are sunny and rainy. (∃x)[D(x)∧S(x)∧R(x)]
+⑤ No day is both sunny and rainy. (∀x)[D(x)→(S(x)∧R(x))'] or (∀x)[D(x)∧S(x)∧R(x)]'
+
+<br>
+
+### Fuzzy Logic
+
+*Ref. Adaptive Pattern Recognition and Neural Networks,Yoh-Han Pao,Addison Wesley*
+
+- Fuzzy Logic
+  - “physically active” : a vague or fuzzy quantity
+  - Defining this quantity as a fuzzy set
+  - Crisp set
+    - A={1, 3, 5, 7}
+    - A={x | x is integer, 3<x<7}
+    - If the element $x_1$ belongs to the set A($x_1$ A ), the degree of membership is 1
+    - Otherwise ($x_1$ A ) , 0. 
+
+---
+
+- Membership Function : $\mu_{A^0}(x_i)$
+  - $x_i$가 $A^0$ 집합에 속하는 정도 
+
+I. The grade of membership of x in $A^O$
+II. The fuzzy set $A^O$ : a set of ordered pairs of and
+III. a continuous or discrete membership function
+
+For example, among 10 objects {x1, x2, … x10}, a set of
+heavy objects, $A^O$
+
+<img width="716" alt="image" src="https://user-images.githubusercontent.com/55765292/228199356-6ca866b9-f364-49c4-b977-7807bb241f4d.png">{: .align-center}
+
+→ a discrete membership function
+
+---
+
+- A continuous membership function : defining a fuzzy set in terms of membership function
+
+<img width="410" alt="image" src="https://user-images.githubusercontent.com/55765292/228199524-ab41a6a6-4dff-4099-a4a1-a7b0d4ccf356.png">{: .align-center}
+
+<br>
+
+<img width="734" alt="image" src="https://user-images.githubusercontent.com/55765292/228197925-f644eda0-19a2-42c8-8938-0bcb9bf08ba8.png">{: .align-center}
+
+<br>
+
+#### Fuzzy Arithmetic (Intersection)
+
+- Product or intersection of two fuzzy sets
+  - Membership function of the intersection
+
+<img width="681" alt="image" src="https://user-images.githubusercontent.com/55765292/228198424-bab8e3a5-6b97-46a8-a11e-d2a02bc24c4b.png">{: .align-center}
+
+---
+
+<img width="835" alt="image" src="https://user-images.githubusercontent.com/55765292/228198507-b3848f2a-2a29-41d0-a55a-33842569a2c7.png">{: .align-center}
+
+<br>
+
+#### Fuzzy Arithmetic (Union)
+
+<img width="835" alt="image" src="https://user-images.githubusercontent.com/55765292/228199073-0ae79df4-49c5-4eef-8318-3519507d2149.png">{: .align-center}
+
+1
