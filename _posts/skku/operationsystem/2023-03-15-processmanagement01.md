@@ -212,7 +212,8 @@ struct task_struct {
   - Transition from asleep state to ready state
   - Due to allocation of resources or occurrence of events
 
-  Immediate transition from asleep state to running state is not allowed. Why?{: .notice--warning}
+  Immediate transition from asleep state to running state is not allowed. Why?
+  {: .notice--warning}
 
 <br>
 
