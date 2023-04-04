@@ -133,3 +133,41 @@ e
 
 ...
 
+### Prove Theorem
+
+Package Delivery Problem
+
+(a) All of the packages in room 27 are smaller than any of the ones in room 28
+
+$(\forall x, y) [P(x) \wedge P(y) \wedge I(x, 27) \wedge I(y, 28) \rightarrow S(x, y)]$
+
+clause form $~P(x) \vee ~P(y) \vee ~I(x,27) \vee ~I(y,28) \vee S(x,y)$
+
+(b) $P(A)$
+(c) $P(B)$
+(d) $I(A,27) \vee I(A,28)$
+(e) $I(B,27)$
+(f) Package B is not smaller than package A, $~S(B,A)$
+
+---
+
+- Prove that package A is in room 27
+
+~$I(A,27)$
+
+```
+총 6개의 절 집합으로 증명해야함
+I(A,27)
+
+
+
+1. 먼저 ~$\omega$ 로 부정을 취해야한다.
+2. ~$\omega$ 이 nil이 된다면 **증명**
+3. 
+```
+
+### Resolution Refutation
+
+$\~I(A,27),I(A,27) \vee I(A,28) \Rightarrow I(A,28)$
+
+<img width="866" alt="image" src="https://user-images.githubusercontent.com/55765292/229755102-864ba473-f552-46bc-99ca-c336e16eb122.png">{: .align-center}
