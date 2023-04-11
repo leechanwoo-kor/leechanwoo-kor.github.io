@@ -88,8 +88,8 @@ The sum of the red and blue areas is 1
 
 <br>
 
-- The prior(사전) (unconditional) probability of an event a is the degree of belief accorded to it in the absence of any other information. P(Suit = hearts) = P(hearts) = 0.25
-- The posterior(사후) (conditional) probability of a is the degree of belief we have in a, given that we know b: P(a|b) P(hearts| redCard) = 0.5
+The prior(사전) (unconditional) probability of an event a is the degree of belief accorded to it in the absence of any other information. P(Suit = hearts) = P(hearts) = 0.25<br>
+The posterior(사후) (conditional) probability of a is the degree of belief we have in a, given that we know b: P(a|b) P(hearts| redCard) = 0.5
 {: .notice--warning}
 
 <br>
@@ -161,9 +161,9 @@ eg. $P(A = true, B = true, C = true)$
 
 <img width="915" alt="image" src="https://user-images.githubusercontent.com/55765292/231128278-39d1c117-7478-4468-9543-463f91490d88.png">{: .align-center}
 
-- Each node Xi has a conditional probability distribution
-- P(Xi | Parents(Xi )) that quantifies the effect of the parents on the node
-- The parameters are the probabilities in these conditional probability tables (CPTs)
+Each node Xi has a conditional probability distribution <br>
+P(Xi | Parents(Xi )) that quantifies the effect of the parents on the node <br>
+The parameters are the probabilities in these conditional probability tables (CPTs)
 {: .notice--danger}
 
 <br>
@@ -193,4 +193,21 @@ eg. $P(A = true, B = true, C = true)$
 <br>
 
 ## Inference
+
+- Using a Bayesian network to compute probabilities is called inference
+- In general, inference involves queries of the form:
+
+<img width="463" alt="image" src="https://user-images.githubusercontent.com/55765292/231132005-cb117648-43d4-4273-b45f-f31ce221e807.png">
+
+<br>
+
+- An example of a query would be:
+  P( HasPneumonia = true | HasFever = true, HasCough = true)
+- Note: Even though HasDifficultyBreathing and ChestXrayPositive are in the Bayesian network, they are not given values in the query (i.e. they do not appear either as query variables or evidence variables)
+- They are treated as unobserved variables
+
+<img width="855" alt="image" src="https://user-images.githubusercontent.com/55765292/231132715-a2a788ab-c502-434e-bf85-200cc05ffc6c.png">{: .align-center}
+
+<br>
+
 
