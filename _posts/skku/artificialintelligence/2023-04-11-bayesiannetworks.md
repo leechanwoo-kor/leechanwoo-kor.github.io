@@ -141,5 +141,56 @@ eg. $P(A = true, B = true, C = true)$
 
 ## Bayesian Network
 
+- A BN is the marriage between probability theory and graph theory and consists of two parts:
+- Qualitative part
+  - Random variables (constituting the nodes in the graph).
+  - Directed edges (showing dependencies between nodes).
+- Quantitative part
+  - Conditional probability tables (CPTs) quantifying the effect that any parent nodes have on the node in question.
+
+
+<img width="179" alt="image" src="https://user-images.githubusercontent.com/55765292/231127550-d524bac0-dbb8-413f-9f9b-c1000769ad9c.png">{: .align-center}
+
+- A Bayesian network is made up of:
+  - 1. A Directed Acyclic Graph
+  - 2. A set of tables for each node in the graph
+
+<img width="852" alt="image" src="https://user-images.githubusercontent.com/55765292/231127856-f71c0c99-44e7-47cc-b676-65e930601e18.png">{: .align-center}
+
+<br>
+
+<img width="915" alt="image" src="https://user-images.githubusercontent.com/55765292/231128278-39d1c117-7478-4468-9543-463f91490d88.png">{: .align-center}
+
+- Each node Xi has a conditional probability distribution
+- P(Xi | Parents(Xi )) that quantifies the effect of the parents on the node
+- The parameters are the probabilities in these conditional probability tables (CPTs)
+{: .notice--danger}
+
+<br>
+
+- Conditional Probability Distribution for C given B
+
+<img width="852" alt="image" src="https://user-images.githubusercontent.com/55765292/231129362-afbf8733-3182-4270-9248-6607ce5db9fc.png">{: .align-center}
+
+- If you have a Boolean variable with k Boolean parents, this table has 2k+1 probabilities (but only 2k need to be stored)
+
+<br>
+
+#### Conditional Independence
+
+- The Markov condition: given its parents (P1, P2), a node (X) is conditionally independent of its non-descendants (ND1, ND2)
+
+<img width="489" alt="image" src="https://user-images.githubusercontent.com/55765292/231129703-dd3a9f2a-cb8a-4dcc-ba1a-47eae4cc13ab.png">{: .align-center}
+
+<br>
+
+- Two important properties:
+- 1. Encodes the conditional independence relationships between the variables in the graph structure
+- 2. Is a compact representation of the joint probability distribution over the variables
+
+<img width="929" alt="image" src="https://user-images.githubusercontent.com/55765292/231130404-1bbdd0b5-d7bf-4045-bee6-a63635f47e3f.png">{: .align-center}
+
+<br>
+
 ## Inference
 
