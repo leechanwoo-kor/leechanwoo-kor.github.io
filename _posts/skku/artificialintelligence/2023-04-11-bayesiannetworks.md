@@ -178,7 +178,7 @@ The parameters are the probabilities in these conditional probability tables (CP
 
 #### Conditional Independence
 
-- The Markov condition: given its parents (P1, P2), a node (X) is conditionally independent of its non-descendants (ND1, ND2)
+- **The Markov condition**: given its parents (P1, P2), a node (X) is conditionally independent of its non-descendants (ND1, ND2)
 
 <img width="489" alt="image" src="https://user-images.githubusercontent.com/55765292/231129703-dd3a9f2a-cb8a-4dcc-ba1a-47eae4cc13ab.png">{: .align-center}
 
@@ -210,4 +210,62 @@ The parameters are the probabilities in these conditional probability tables (CP
 
 <br>
 
+- Propositions
+- B: the battery is charged
+- L: the block is liftable
+- M: the arm moves
+- G: the gauge indicates that the battery is charged
 
+<br>
+
+<img width="659" alt="image" src="https://user-images.githubusercontent.com/55765292/231133232-61dd4986-2f46-497e-86a8-91b7e630b518.png">
+
+<br>
+
+### Causal (top down) inference
+
+- L: evidence, M: query node
+- L: cause of M → causal reasoning
+- P(M|L) = P(M,B|L)+P(M,~B|L) / marginal probability
+- P(M|L) = P(M|B,L)P(B|L)+P(M|~B,L)P(~B|L) / chain rule
+- P(B|L) = P(B) from structure / M.con.
+- P(~B|L) = P(~B)
+- P(M|L) = P(M|B,L)P(B)=P(M|~B,L)P(~B) = 0.855
+
+<br>
+
+**How is the Bayesian network created?**
+
+- Get an expert to design it
+  – Expert must determine the structure of the Bayesian network
+    - This is best done by modeling direct causes of a variable as its parents
+  – Expert must determine the values of the CPT entries
+    - These values could come from the expert’s informed opinion
+    - Or an external source eg. census information
+    - Or they are estimated from data
+    - Or a combination of the above
+  - This is the hardest part for a domain expert when it comes to construction of a BN!
+
+- Learn it from data
+  - This is a much better option but it usually requires a large amount of data
+  - This is where Bayesian statistics comes in!
+
+<br>
+
+### Learning Bayesian Networks from Data
+
+- Given a data set, can you learn what a Bayesian network with variables A, B, C and D would look like?
+
+<br>
+
+<img width="277" alt="image" src="https://user-images.githubusercontent.com/55765292/231135780-bd76521f-e65b-4631-b0af-bf87b14b4dd3.png">
+
+<br>
+
+<img width="516" alt="image" src="https://user-images.githubusercontent.com/55765292/231135828-44f96c51-f7e1-4b90-9f40-2597ed41715c.png">
+
+<br>
+
+- Each possible structure contains information about the conditional independence relationships between A, B, C and D
+- We would like a structure that contains conditional independence relationships that are supported by the data
+- Note that we also need to learn the values in the CPTs from data
