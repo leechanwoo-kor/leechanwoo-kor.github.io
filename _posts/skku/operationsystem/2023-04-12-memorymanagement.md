@@ -175,8 +175,8 @@ toc_icon: "sticky-note"
 
 <br>
 
-**Ordinary file system**
-Discontiguous allocation of the file data blocks
+**Ordinary file system** <br>
+Discontiguous allocation of the file data blocks <br>
 Focuses on the efficient file system space management
 {: .notice--warning}
 
@@ -187,3 +187,51 @@ Focuses on the efficient file system space management
 <img width="967" alt="image" src="https://user-images.githubusercontent.com/55765292/231431474-5d7497e8-1ac4-4c8a-8218-f67b1fd47c0f.png">{: .align-center}
 
 <br>
+
+## Contiguous Memory Allocation
+
+- Basic policies
+  - Each process (context) is contained in a single contiguous section of memory
+- Policies for memory organization
+  - Number of processes in memory
+    - Affects multiprogramming degree
+  - Amount of memory space allocated for each process
+  - Memory partition methods
+    - Fixed(static) partition multiprogramming
+    - Variable(dynamic) partition multiprogramming
+
+<br>
+
+### Uniprogramming
+
+- Only 1 process in memory
+- Simple memory management scheme
+
+<img width="857" alt="image" src="https://user-images.githubusercontent.com/55765292/231433288-da400d68-dcd4-4743-982e-3ac33258a0d5.png">{: .align-center}
+
+<br>
+
+- Issue-1
+  - Program-size > memory-size
+    - Uses **overlay structure**
+    - Requires support from compiler/linker/loader
+
+<img width="857" alt="image" src="https://user-images.githubusercontent.com/55765292/231433611-38d5639c-7980-44de-ae01-2a488108eb0c.png">{: .align-center}
+
+<br>
+
+- Issue-2
+  - Kernel protection
+    - Boundary register
+
+<img width="857" alt="image" src="https://user-images.githubusercontent.com/55765292/231433709-16942ffb-232c-47db-ad0f-6c948c074c2d.png">{: .align-center}
+
+<br>
+
+- Issue-3
+  - Low system resource utilization
+  - Low system performance
+  - Solution
+    - Multiprogramming → FPM or VPM
+
+<br> 
