@@ -16,16 +16,17 @@ toc_icon: "sticky-note"
 
 <br>
 
-# Introduction to Aritificial Intelligence
-
-> "Artificial Intelligence is concerned with intelligent behavior in artifacts. Intelligent behavior involves perception, reasoning, learning, communication, and acting in complex environments." *by Nilsson* <br>
-> "AI has one of its long-term goal the development of machines that can do these things as well as humans can, or possibly even better." *by Nilsson* <br>
+> "Artificial Intelligence is concerned with intelligent behavior in artifacts. Intelligent behavior involves perception, reasoning, learning, communication, and acting in complex environments." *by Nilsson*
 
 <br>
 
-## The Turing Test
+> "AI has one of its long-term goal the development of machines that can do these things as well as humans can, or possibly even better." *by Nilsson*
 
-![image](https://user-images.githubusercontent.com/55765292/222048778-d66d2d48-4528-4e5b-beab-e80d2fca4e7c.png)
+<br>
+
+# The Turing Test
+
+![image](https://user-images.githubusercontent.com/55765292/222048778-d66d2d48-4528-4e5b-beab-e80d2fca4e7c.png){: .align-center}
 
 > "Computing machinery and intelligence", Alan Turing, British mathematician, 1950
 
@@ -44,7 +45,7 @@ toc_icon: "sticky-note"
 
 <br>
 
-### Eugene Goostman
+## Eugene Goostman
 
 ![image](https://user-images.githubusercontent.com/55765292/222049322-e4202b2d-225c-4813-9fd4-65ccab5ebade.png)
 
@@ -67,37 +68,37 @@ Eugene > Tell me more about Capital. I like to learn about different places!
 
 <br>
 
-## Approaches to Artificial Intelligence
+# Approaches to Artificial Intelligence
 - Symbol Processing Approaches
 - Subsymbolic Approaches
 
 <br>
 
-### Symbol Processing Approaches
+## Symbol Processing Approaches
 - Physical Symbol System Hypothesis: Newell and Simon
   - Physical Symbol System has the necessary and sufficient means for general intelligent action.
 - Physical Symbol System: machine capable of manipulating symbolic data-adding numbers, rearranging lists of symbols, replacing some symbols of others.
 - Declarative knowledge base(first order logic)
 - Logical operations(logical reasoning to deduce consequences of knowledge)
-- Real Problem -requires substantial knowledge of the domain -called a Knowledge based approach.
+- Real Problem - requires substantial knowledge of the domain - called a Knowledge based approach.
 - LISt oriented Programming language(LISP)
 
 <br>
 
-### Subsymbolic Approaches
+## Subsymbolic Approaches
 - Processing of Signals not symbols
 - Recognition of familiar faces
-  - Treating images as multidimesional signals not as symbols\
+  - Treating images as multidimesional signals not as symbols
 - Bottom up approach
-- Lowest level: duplicating signal processing abilities and control systems of simpler animals-insects
-- Proceed in steps up the evolutionary ladder
-- Neural Networks inspired by biological models
+  - Lowest level: duplicating signal processing abilities and control systems of simpler animals-insects
+  - Proceed in steps up the evolutionary ladder
+- Neural Networks inspired by biological models
 - Interesting for their ability to learn.
 - Interconnected Networks of Simple Units => **(connectionism)**
 
 <br>
 
-## Neural Network
+# Neural Network
 
 - Origin of Neural Network
   - MuCulloch and Pitts(1943) showed that networks of artificial neurons could compute arithmetic or logical functionPropose abstract model of Neuron
@@ -114,7 +115,7 @@ Eugene > Tell me more about Capital. I like to learn about different places!
 
 <br>
 
-## History of Artificial Neural Networks
+# History of Artificial Neural Networks
 - McCulloch and Pitts (1943): **first neural network model**
 - Hebb (1949): **proposed a mechanism for learning**, as increasing the synaptic weight between two neurons, by repeated activation of one neuron by the other across that synapse (lacked the inhibitory connection)
 - Rosenblatt (1958): **Perceptron network and the associated learning rule**
