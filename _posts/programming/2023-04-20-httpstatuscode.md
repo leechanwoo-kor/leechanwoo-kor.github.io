@@ -84,7 +84,9 @@ toc_icon: "sticky-note"
 - 308 Permanent Redirect
   - 요청한 리소스가 다른 URI에 위치하고 있음 301과 동일한 의미를 가지나, HTTP 메소드도 변경하면 안됨
 
-※ 최초의 요청 방법(HTTP Method)를 유지하지 않고 GET으로 변경시키며 리다이렉트 하는 것이 301 또는 302이고, 원래의 HTTP Method를 유지하면서 리다이렉트 시키는 것이 307 또는 308이다. ※{: .notice--warning}
+<p class="notice--warning">
+※ 최초의 요청 방법(HTTP Method)를 유지하지 않고 GET으로 변경시키며 리다이렉트 하는 것이 301 또는 302이고, 원래의 HTTP Method를 유지하면서 리다이렉트 시키는 것이 307 또는 308이다. ※
+</p>
 
 <br>
 
