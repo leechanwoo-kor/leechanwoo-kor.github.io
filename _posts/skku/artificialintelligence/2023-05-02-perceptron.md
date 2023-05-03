@@ -1,12 +1,12 @@
 ---
-title: "[Artificial Intelligence] 결정트리(ID3)"
+title: "[Artificial Intelligence] 퍼셉트론(Perceptiron)"
 categories:
   - Artificial Intelligence
 tags:
-  - ID3
+  - Perceptiron
 toc: true
 toc_sticky: true
-toc_label: "Bayesian Networks"
+toc_label: "퍼셉트론(Perceptiron)"
 toc_icon: "sticky-note"
 ---
 
