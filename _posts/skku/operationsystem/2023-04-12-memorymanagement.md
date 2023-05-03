@@ -14,9 +14,7 @@ toc_icon: "sticky-note"
 
 <br>
 
-# Memory Management
-
-## Background
+# Background
 
 - Types of memories in computer systems
   - Processor registers
@@ -37,28 +35,29 @@ toc_icon: "sticky-note"
 
 <br>
 
-- Cache
-  - CPU register access time
-    - Generally takes 0~1 cycles of the CPU clock
-  - Memory access time
-    - Generally takes 50~200 cycles of the CPU clock
-    - CPU normally needs to stall during the memory access
-    - Intolerable because of the frequency of memory accesses
-  - Cache memory
-    - Used to accommodate the speed differentia
-  - Intel Core i7 cache :
+## Cache
+
+- CPU register access time
+  - Generally takes 0~1 cycles of the CPU clock
+- Memory access time
+  - Generally takes 50~200 cycles of the CPU clock
+  - CPU normally needs to stall during the memory access
+  - Intolerable because of the frequency of memory accesses
+- Cache memory
+  - Used to accommodate the speed differentia
+- Intel Core i7 cache :
 
 <img width="476" alt="image" src="https://user-images.githubusercontent.com/55765292/231422203-f9dbb8a3-59c6-4746-863a-80c8fce10549.png">{: .align-center}
 
 <br>
 
-- CPU-memory performance gap
+## CPU-memory performance gap
 
 <img width="864" alt="image" src="https://user-images.githubusercontent.com/55765292/231422999-f885893b-f47f-4669-b4e8-b3e240934542.png">{: .align-center}
 
 <br>
 
-### Address binding
+## Address binding
 
 <img width="864" alt="image" src="https://user-images.githubusercontent.com/55765292/231423473-63d868e9-01bf-475d-b4bc-bc3c35865b63.png">{: .align-center}
 
@@ -111,14 +110,14 @@ toc_icon: "sticky-note"
 
 <br>
 
-### Dynamic linking
+## Dynamic linking
 
 - **Linking is postponed until execution time**
 - Usually used with system libraries
   - Without this facility, each executable on a system must include a copy of its library
     - Wastes both disk space and main memory
 
-- Uses **stub* concept
+- Uses **stub** concept
   - Included in the image for each library routine reference
   - Small piece of code that indicates how to locate or load the appropriate library routine (in memory or from the library)
   - Replaces itself with the code that contains the address of the routine and executes the routine
@@ -147,7 +146,7 @@ toc_icon: "sticky-note"
 
 <br>
 
-### Swapping
+## Swapping
 
 - A process can be swapped temporarily out of memory to a **backing store (swap device(swap file system))** 
 
@@ -182,7 +181,7 @@ Focuses on the efficient file system space management
 
 <br>
 
-### Memory Management
+## Memory Management
 
 <img width="967" alt="image" src="https://user-images.githubusercontent.com/55765292/231431474-5d7497e8-1ac4-4c8a-8218-f67b1fd47c0f.png">{: .align-center}
 
@@ -211,28 +210,31 @@ Focuses on the efficient file system space management
 
 <br>
 
-- Issue-1
-  - Program-size > memory-size
-    - Uses **overlay structure**
-    - Requires support from compiler/linker/loader
+### Issue-1
+
+- Program-size > memory-size
+  - Uses **overlay structure**
+  - Requires support from compiler/linker/loader
 
 <img width="857" alt="image" src="https://user-images.githubusercontent.com/55765292/231433611-38d5639c-7980-44de-ae01-2a488108eb0c.png">{: .align-center}
 
 <br>
 
-- Issue-2
-  - Kernel protection
-    - Boundary register
+### Issue-2
+
+- Kernel protection
+  - Boundary register
 
 <img width="857" alt="image" src="https://user-images.githubusercontent.com/55765292/231433709-16942ffb-232c-47db-ad0f-6c948c074c2d.png">{: .align-center}
 
 <br>
 
-- Issue-3
-  - Low system resource utilization
-  - Low system performance
-  - Solution
-    - Multiprogramming → FPM or VPM
+### Issue-3
+
+- Low system resource utilization
+- Low system performance
+- Solution
+  - Multiprogramming → FPM or VPM
 
 <br> 
 
@@ -431,7 +433,7 @@ Focuses on the efficient file system space management
 - Logical address
   - **v = (p, d)**
     - **p**: page number
-    - v  d: page offset (displacement)
+    - **d**: page offset (displacement)
 - Address mapping
   - Logical address → physical address
   - Hidden from the user and controlled by the OS
@@ -439,6 +441,8 @@ Focuses on the efficient file system space management
     - A page table for each process
 
 <br>
+
+- Paging hardware and address mapping
 
 <img width="909" alt="image" src="https://user-images.githubusercontent.com/55765292/234550537-6b1925ce-df2d-4bec-a3b5-adc4bf93c4b4.png">
 
@@ -491,8 +495,8 @@ Focuses on the efficient file system space management
 - Contiguous memory allocation
   - Uniprogramming
   - Multiprogramming
-  - FPM
-  - VPM
+    - FPM
+    - VPM
 - Discontiguous memory allocation
   - Paging
   - Segmentation
