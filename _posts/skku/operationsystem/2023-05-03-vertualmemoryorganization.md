@@ -273,8 +273,177 @@ toc_icon: "sticky-note"
 <br>
 
 
-## Hybrid paging/segmentation
+### Hybrid direct/associative mapping
 
+- Uses direct mapping and associative mapping, simultaneously
+  - Low hardware cost
+  - Take advantage of associative mapping
+- Small TLB
+  - Full PMT: maintained in kernel space of the memory
+  - Subset of PMT entries: maintained in TLB
+    - Entries of the recently used pages
 
+<br>
 
+<img width="920" alt="image" src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/30cb9043-94de-4b9a-8251-7f080ed5a8ea">
+
+> Locality - 한 번 접근된 페이지는 또 다시 접근될 가능성이 많다.
+
+<br>
+
+<img width="920" alt="image" src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/403cea4b-8175-4087-9f35-e3e56f76e299">
+
+<br>
+
+<img width="920" alt="image" src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/b3613db7-c761-41ce-b128-053d7deb2a71">
+
+<br>
+
+### Effective memory access time (EAT)
+
+- TLB search: 20ns
+- Memory access time: 100ns
+- TLB hit ratio: 80%
+  - EAT = 0.8*(20 + 100) + 0.2*(20 + 100 + 100) = 140ns
+  - 40% slowdown in memory access time
+- TLB hit ratio: 98%
+  - EAT = 0.98*(20 + 100) + 0.02*(20 + 100 + 100) = 122ns
+  - 22% slowdown in memory access time
+
+<br>
+
+### Other page table structures
+- Page-table registers
+- Hierarchical paging
+- Hashed page table
+- Inverted page table
+
+<br>
+
+# Issues in Demand Paging
+
+<br>
+
+## Page Sharing
+
+<br>
+
+### Sharable pages
+
+- Procedure pages
+  - Pure code (reentrant code)
+- Data page
+  - Read-only data
+    - Sharable without any restriction
+  - Read-write data
+    - Sharable under the concurrency control mechanism
+
+<br>
+
+<img width="920" alt="image" src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/bc09b1a7-7406-4f4e-b1c4-1d6c70adac10">
+
+<br>
+
+<img width="920" alt="image" src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/59aef4ee-66e4-4362-a286-d901d0e9b9b0">
+
+<br>
+
+<img width="920" alt="image" src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/f7d7af00-81f0-4111-82f5-9482963c5b7b">
+
+<br>
+
+## Page Fault Handling
+
+- A crucial requirement for demand paging
+  - Restart any instruction after a page fault
+  - Example (steps to execute and instruction)
+
+<img width="920" alt="image" src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/7fa5120f-0f21-4272-81f3-34e3667e58fa">
+
+<br>
+
+##  Performance of Paging System
+
+<br>
+
+### Effective access time
+
+- Memory access time
+  - 10 ~ 200 nanoseconds (Assume 100ns)
+- Average paging service time: about 8 milliseconds
+- Page fault rate: p (0  p  1)
+- EAT(Effective Access Time)
+  - EAT = (1-p)ma + ppagingTime
+    - = (1-p)100 + p8,000,000
+    - = 100 + 7,999,900p
+  - When p = 1/1000, EAT = 8.1 microseconds ( 80ma)
+- If we want less than 10% degradation,
+  - EAT = 100 + 7,999,900p < 110
+  - p < 0.00000125 ( 1/800,000)
+
+<br>
+
+### ....
+
+<br>
+
+# Segmentation & Hybrid Paging/Segmentation
+
+<br>
+
+## Segmentation system
+
+- Partition user program into logical blocks with possibly different sizes
+- Segment
+  - Logically partitioned block
+- Characteristics
+  - Pre-partition of main memory is not good in this case
+  - Main memory management can be done similarly to VPM
+  - Easy segment sharing and protection
+  - Larger overhead in address mapping and memory management
+
+<br>
+
+<img width="920" alt="image" src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/ca08f65f-0227-4ed1-b95d-4db5a19024e1">
+
+<br>
+
+## Address mapping
+
+- Virtual address in segmentation system: v = (s, d)
+  - s = segment number
+  - d = displacement in a segment
+- SMT(Segment Map Table)
+- Address mapping mechanisms
+  - Similar to them of paging system
+
+<br>
+
+<img width="920" alt="image" src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/c80e3291-54c7-40bd-9576-b64104de5b0e">
+
+<br>
+
+## Address Mapping in Seg. System
+
+<br>
+
+### Direct mapping
+
+- Assumptions
+  - SMT in kernel space of memory
+  - Entry size of SMT = entrySize
+
+<br>
+
+<img width="920" alt="image" src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/bc7b5628-f626-457a-8910-6db33ad2c44a">
+
+<br>
+
+<img width="920" alt="image" src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/79535714-f355-4836-9682-fd0c559cc384">
+
+<br>
+
+## Memory Mgm’t in Seg. Systems
+
+<br>
 
