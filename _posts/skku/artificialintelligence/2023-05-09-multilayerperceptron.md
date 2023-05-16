@@ -267,10 +267,200 @@ is the target value for dimension k. We want to know how to modify weights in or
 <br>
 
 - All biases set to 1. Will not draw them for clarity.
-- Learning rate  = 0.1
+- Learning rate $\eta$ = 0.1
 
 <img width="955" alt="image" src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/82fb7ff4-7d60-4db3-8cf6-28ba9b3d7e73">
 
 Have input [0 1] with target [1 0]. 
 
 <br>
+
+- Forward pass. Calculate $1^{st}$ layer activations:
+
+<img width="950" alt="image" src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/fd5b5b92-3362-4cb4-9284-6242a104c4eb">
+
+- $u_1 = -1 \times 0 + 0 \times 1 + 1 = 1$
+- $u_2 = 0 \times 0 + 1 \times 1 + 1 = 2$
+
+<br>
+
+- Calculate first layer outputs by passing activations thru activation functions
+
+<img width="950" alt="image" src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/c8a0d84b-6887-44c2-93b2-a7cf19092d52">
+
+- $z_1 = g(u_1) = 1$
+- $z_2 = g(u_2) = 2$
+
+<br>
+
+- Calculate $2^{nd}$ layer outputs (weighted sum thru activation functions):
+
+<img width="950" alt="image" src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/00a8d85b-3370-49d2-bf47-c063614c964a">
+
+- $y_1 = a_1 = 1 \times 1 + 0 \times 2 + 1 = 2$
+- $y_2 = a_2 = -1 \times 1 + 1 \times 2 + 1 = 2$
+
+<br>
+
+<img width="950" alt="image" src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/169fab27-830f-4f60-9027-1c311305dfc3">
+
+- So
+  - $\Delta_1 = (d_1 - y_1) = 1 – 2 = -1$
+  - $\Delta_2 = (d_2 - y_2) = 0 – 2 = -2$
+
+<br>
+
+- Calculate weight changes for $1^{st}$ layer (cf perceptron learning):
+
+<img width="950" alt="image" src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/fad5188d-33c6-48d3-946f-7e041ba23a74">
+
+<br>
+
+<img width="950" alt="image" src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/a4770f37-092e-4e4c-8f55-1a420dcb5b9c">
+
+<br>
+
+<img width="950" alt="image" src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/c69a17df-3293-4e51-9bab-8e26af3205a0">
+
+<br>
+
+<img width="950" alt="image" src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/125d70b2-3238-4e75-a02d-89b2535074fd">
+
+- $\delta_1 = - 1 + 2 = 1$
+- $\delta_2 = 0 – 2 = -2$
+
+<br>
+
+<img width="950" alt="image" src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/47c5e7c8-74b6-4d57-a05d-33284595b755">
+
+<br>
+
+Finally change weights:
+
+<img width="950" alt="image" src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/26403f23-2092-417b-8067-79618db509f5">
+
+- Note that the weights multiplied by the zero input are unchanged as they do not contribute to the error We have also changed biases (not shown)
+
+<br>
+
+- Now go forward again (would normally use a new input vector):
+
+<img width="950" alt="image" src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/8d13dab1-3081-4e4d-af17-ffff4c4e8f9f">
+
+<br>
+
+- Now go forward again (would normally use a new input vector):
+
+<img width="950" alt="image" src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/d03a084b-3323-4402-9c9e-d8b903859ffb">
+
+- Outputs now closer to target value [1, 0]
+
+<br>
+
+<img width="950" alt="image" src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/f1a2f172-f575-4ffb-9b0a-7c353767132d">
+
+<br>
+
+<img width="950" alt="image" src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/e7c48cad-f97f-40be-8267-13e6b8c72a13">
+
+<br>
+
+## Selecting initial weight values 
+
+- Choice of initial weight values is important as this decides starting position in weight space. That is, how far away from global minimum
+- Select weight values randomly from uniform probability distribution
+
+<br>
+
+## Momentum
+
+- 수렴속도를 높이면서 불안정성을 줄이는 기법
+- 가중치 갱신식에 이전 가중치 수정치의 비례값을 더함
+- 수정된 가중치 갱신식
+
+<img width="950" alt="image" src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/d5741d07-60f7-4b0d-8c93-828f159d33bb">
+
+<br>
+
+- $\alpha$ is momentum constant and controls how much notice is taken of recent history
+
+- Effect of momentum term
+  - 가중치의 수정치가 이전 수정치와 같은 부호를 가지면, 관성항은 수정을 많이 하여 수렴속도를 높임.
+  - 만약 수정치가 이전의 수정치와 반대부호를 가지면, 관성항은 수정치를 줄여서 속도를 늦추어 진동을 방지한다. (안정화)
+  - 지역적 최소치를 회피하도록 도움
+
+<br>
+
+## Adaptive Learning Rate
+
+- Learning rate $\eta$
+  - mostly less than or equal to 0.2
+  - can be made adaptive for faster convergence
+  - kept large when learning takes place and decreased when learning slows down
+
+<br>
+
+<img width="950" alt="image" src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/c4570d9b-392c-40c4-8c03-6aa461d5cb40">
+
+<br>
+
+## Overtraining
+
+<img width="950" alt="image" src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/7114d7d0-a2ff-4e84-8434-59b16294711f">
+
+- where
+  -  n = number of training patterns,
+  -  m = number of output units
+
+- Could stop training when rate of change of E is small, suggesting convergence
+
+- However, aim is for new patterns to be classified correctly 
+
+<br>
+
+<img width="950" alt="image" src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/b0e09844-dcd6-4205-9a6b-8f2fb2d3256e">
+
+<br>
+
+- Typically, though error on training set will decrease as training continues generalisation error (error on unseen data) hitts a minimum then increases (cf model complexity etc)
+- Therefore want more complex stopping criterion
+
+<br>
+
+- Cross-validation
+  - Method for evaluating generalisation performance of networks in order to determine which is best using of available data
+- Hold-out method
+  - Simplest method when data is not scare
+- Divide available data into sets
+  - Training data set
+    - used to obtain weight and bias values during network training
+  - Validation data
+    - used to periodically test ability of network to generalize
+    - > suggest ‘best’ network based on smallest error
+
+- Cf . Test data
+
+<br>
+
+<img width="950" alt="image" src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/6c935a90-5076-4d0e-ac2a-fcadec171c78">
+
+<br>
+
+## Weka
+
+Choose classify-functions-multilayer perceptron
+1. hidden layer 의 노드 수의 설정방법
+popup 창의 choose 난의 multilayer perceptron을 클릭
+hiddenLayers 에 은닉층의 노드수 입력
+예 2,4 입력
+: 1째 은닉층의 노드수 2개
+2째 은닉층의 노드수 4개
+2. choose 난의 multilayer perceptron을 클릭
+popup 창의 GUI 난을 true 로 하면 MLP 구조가 보임
+
+## MLP regressor (cpu performance)
+
+## MLP classifier(iris)
+
+
+
