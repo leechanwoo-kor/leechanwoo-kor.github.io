@@ -447,3 +447,101 @@ toc_icon: "sticky-note"
 
 <br>
 
+- Memory management
+  - Similar to VPM
+  - Initially, 1 partition in memory
+  - Placement strategies
+    - First fit
+    - Best fit
+    - Worst fit
+    - Next fit
+
+<br>
+
+<img width="920" alt="image" src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/70c72254-ab86-45a9-bccf-708f0efcec28">
+
+<br>
+
+## Hybrid Paging/Segmentation
+
+<br>
+
+### Paging System
+
+- Advantages
+  - Simple and low overhead
+- Disadvantages
+  - No logical concept in partitioning programs
+  - Complicated page sharing mechanism
+
+<br>
+
+### Segmentation System
+
+- Advantages
+  - Logical concept in partitioning programs
+  - Simple and easy sharing mechanism
+- Disadvantages
+  - Management overhead
+
+<br>
+
+### Hybrid paging/segmentation
+
+- Take advantages of the paging/segmentation systems
+- Program partition
+  - User program is partitioned into logical segments
+  - Each segment is partitioned again into pages
+- Loading
+  - Loading unit: page
+
+<br>
+
+<img width="920" alt="image" src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/2d469381-14b1-4fdc-847e-0182dabca3f4">
+
+<br>
+
+### Address mapping
+
+- Virtual address in hybrid systems: v = (s, p, d)
+  - s = segment number
+  - p = page number in a segment
+  - d = offset in a page
+- Uses both SMT and PMT
+  - One SMT for each process
+  - One PMT for each segment in the program
+- Address mapping
+  - Direct, associative, etc.
+- Memory
+  - Pre-partitioned into page frames
+
+<br>
+
+<img width="920" alt="image" src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/980257ef-5e53-4f86-b914-13dce0df1930">
+
+<br>
+
+<img width="920" alt="image" src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/5a976ad1-d778-4d07-922c-621ac50ba872">
+
+<br>
+
+<img width="920" alt="image" src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/0c6e69bf-f892-49ae-a9c6-c2dd42275d2f">
+
+<br>
+
+<img width="920" alt="image" src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/e55e745f-c726-47a7-86ab-825a9d2104ab">
+
+<br>
+
+# Summary
+
+- Virtual memory concept
+- Address mapping
+- Demand paging
+  - Address mapping
+    - Direct mapping, associative mapping, hybrid mapping, page table registers, hierarchical paging, hashed page table, inverted page table
+  - Issues in demand paging
+    - Page sharing, page fault handling, performance, copy-on-write, memory-mapped files, kernel memory allocation
+- Segmentation
+- Hybrid paging/segmentation
+
