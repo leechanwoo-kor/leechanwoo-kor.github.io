@@ -235,4 +235,141 @@ toc_icon: "sticky-note"
 
 <br>
 
+# Locality
+
+<br>
+
+## Definition
+
+- Process intensively access some portion of the program/data it executes/references
+  - Programs tend to use data and instructions with addresses near or equal to those they have used recently
+  - Loop structure in program
+  - Use of data structures such as array and structure
+
+<br>
+
+## Locality
+
+- Classification of locality
+  - Temporal locality
+    - Recently referenced items are likely to be referenced again in the near future
+  - ![image](https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/c2d22e38-2fff-4941-9a0e-19507dc40d83)
+  - Spatial locality
+    - Items with nearby addresses tend to be referenced close together in time
+  - ![image](https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/c3f08458-a8e7-4a8f-babe-481c3424770e)
+
+<br>
+
+### Locality example
+
+![image](https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/f30e1728-8bde-4786-8ee9-e0cc12c7cd62)
+
+- Data references
+  - Reference array elements in succession / Spatial locality
+  - Reference variable **sum** each iteration / Temporal locality
+- Instruction references
+  - Reference instructions in sequence / Spatial locality
+  - Cycle through the loop repeatedly / Temporal locality
+
+<br>
+
+# Replacement Strategies
+
+<br>
+
+## Local replacement
+
+- Each process select a victim (replacement frame) from only its own set of allocated frames
+- Fixed allocation based replacement
+  - MIN(OPT, B0) algorithm
+  - Random algorithm
+  - FIFO(First In First Out) algorithm
+  - LRU(Least Recently Used) algorithm
+  - Additional reference-bits algorithm
+  - LFU(Least Frequently Used) algorithm
+  - NUR(Not Used Recently) algorithm
+  - Clock algorithm
+  - Enhanced clock algorithm
+
+<br>
+
+## Global replacement
+
+- Allows a process to select a victim (replaceme nt frame) from the set of all frames, even if that frame is currently allocated to another process
+  - One process can take a frame from another
+- **Variable allocation based replacement**
+  - VMIN(Variable MIN) algorithm
+  - WS(Working Set) algorithm
+  - PFF(Page Fault Frequency) algorithm
+- More common method
+  - Generally results in greater system throughput
+
+<br>
+
+# Replacement Strategies (FA)
+
+<br>
+
+## MIN algorithm (OPT, B0 algorithm)
+
+- Proposed by Belady in 1966
+- Minimizes page fault frequency (proved)
+- Scheme
+  - Replace the page that will not be used for the longest period of time
+  - Tie-breaking rule
+    - Page with greatest (or smallest) page number
+- Unrealizable
+  - Can be used only when the process’s reference string is known apriori
+- Usage
+  - Performance measurement tool for replacement schemes
+
+![image](https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/c5c79264-056a-403b-8127-93a926bcc558)
+
+<br>
+
+- 4 page frames allocated, initially empty
+
+![image](https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/d9f8d71a-cce6-4fb4-bcdf-772a712c7a84)
+
+<br>
+
+## Random algorithm
+
+- Randomly select the page to be displaced
+- Low overhead
+- No policy
+
+![image](https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/3e999165-b1bc-4d13-8e1e-d47efdc7767f)
+
+<br>
+
+## FIFO algorithm
+
+- Choose the page to be replaced based on when the page is previously loaded into memory
+- Scheme
+  - Replace the oldest page
+- Requirements
+  - Timestamping (memory load time for each page) is necessary
+- Characteristics
+  - May replace frequently used pages
+- **FIFO anomaly (Belady’s anomaly)**
+  - In FIFO algorithm, page fault frequency may increase even if more memory frames are allocated
+
+<br>
+
+![image](https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/f5fba536-8801-4500-8ba3-07978360ad2e)
+
+<br>
+
+- 4 page frames allocated, initially empty
+
+![image](https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/d9d839ee-93b5-4e4b-93b0-fc2e6eee61e6)
+
+<br>
+
+- Anomaly example
+
+![image](https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/bf1fe1f3-ab61-418f-ab2b-a6ff09d60391)
+
+<br>
 
