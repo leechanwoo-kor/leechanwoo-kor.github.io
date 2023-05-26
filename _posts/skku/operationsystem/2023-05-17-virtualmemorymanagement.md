@@ -373,3 +373,137 @@ toc_icon: "sticky-note"
 
 <br>
 
+## LRU(Least Recently Used) algorithm
+
+- Choose the page to be replaced based on the reference time
+- Scheme
+  - Replace the page that has not been used for the longest period of time
+- Requirements
+  - Timestamping (page reference time) is necessary
+- Characteristics
+  - Based on program locality
+  - Approximates to the performance of MIN algorithm
+- **Used in most practical systems**
+
+<br>
+
+![image](https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/451589d1-94d3-45c4-8b01-77ce0d573e16)
+
+<br>
+
+- 4 page frames allocated, initially empty
+
+![image](https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/6195ae68-7277-418a-a466-d05fcbf7c216)
+
+<br>
+
+## LFU(Least Frequently Used) algorithm
+
+- Counting-based page replacement
+  - Choose the page to be replaced based on the page reference frequency
+  - Scheme
+    - Replace the page with the smallest reference counts
+    - Tie-breaking rule
+      - LRU
+  - Requirements
+    - Page reference count should be accumulated
+  - Characteristics
+    - Less overhead than LRU, while exploiting program locality
+
+<br>
+
+- Drawbacks
+  - May replace recently loaded pages even if they have high probability of reference
+  - Page reference count accumulation overhead
+
+<br>
+
+![image](https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/25ecc9cb-9705-496b-b271-2f3998d24ca7)
+
+<br>
+
+- 4 page frames allocated, initially empty
+
+<br>
+
+![image](https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/1999e600-3909-4ba2-963e-621ded8bd8d6)
+
+<br>
+
+## NUR(Not Used Recently) algorithm
+
+- LRU approximation scheme
+- Lower overhead than LRU algorithm
+- Uses bit vectors
+  - Reference bit vector
+  - Update bit vector
+- Scheme
+  - Check reference/update bit and choose a victim page
+  - Order of replacement (reference bit: r, update bit: m)
+    - ① Replace the page with (r, m) = (0, 0)
+    - ② Replace the page with (r, m) = (0, 1)
+    - ③ Replace the page with (r, m) = (1, 0)
+    - ④ Replace the page with (r, m) = (1, 1)
+
+<br>
+
+![image](https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/e9848eda-28c3-4019-9500-e93f8dbdcd11)
+
+<br>
+
+## Additional reference-bits algorithm
+
+- LRU approximation
+- **History register** for each page
+- Recording the reference bits at regular intervals
+  - Timer interrupts at regular intervals
+  - OS shifts the reference bit for each page into the high-order bit of its history register, shifting the other bits right by one bit and discarding the low-order bit
+- Replacement based on the value of history register
+  - Interpret the value of the history register as unsigned integers
+  - Choose the page with smallest value as a victim
+
+<br>
+
+- Example
+  - Value of the 8-bit history registers
+    - 00000000
+      - No reference during 8 time periods
+    - 11111111
+      - Referenced at least once in each period
+    - Page a with 01100100 and page b with 00110111
+      - Page a has been used more recently than page b
+
+<br>
+
+## Clock algorithm
+
+- Used for IBM VM/370 OS
+- Uses reference bit
+  - No periodical reset for reference bits
+- Choose the page to be replaced using pointer that circulates the list of pages (frames) in memory
+
+<br>
+
+![image](https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/33cad2c3-3f04-4b93-acf0-b164fdeab183)
+
+<br>
+
+- Scheme
+  - Choose the page to be replaced with the pointer moving clockwise
+  - Mechanism
+    - ① Check the reference bit r of the page that the pointer points
+    - ② If r == 0, select the page as a victim
+    - ③ If r == 1, reset the reference bit to 0 and advances the pointer goto setp-①
+
+<br>
+
+- Characteristics
+  - Earlier memory load time
+    - → higher probability of displacement
+    - Similar to FIFO algorithm
+  - Page replacement based on the reference bit
+    - Similar to LRU (or NUR) algorithm
+
+<br>
+
+![image](https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/9f53a1d2-ebc3-405e-96b1-ca813e9d1210)
