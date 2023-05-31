@@ -507,3 +507,209 @@ toc_icon: "sticky-note"
 <br>
 
 ![image](https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/9f53a1d2-ebc3-405e-96b1-ca813e9d1210)
+
+<br>
+
+## Enhanced clock algorithm
+
+- Similar to clock algorithm
+- Considers update bit as well as reference bit
+
+<br>
+
+<img width="830" alt="image" src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/2f74dae4-ed07-461a-86b0-4b02c1d24f47">
+
+<br>
+
+### Scheme
+
+- Choose the page to be replaced with the pointer moving clockwise
+- Mechanism
+  - ① Check (r, m) of the page that the pointer points
+    - ② (0, 0): select the page as a victim, advances the pointer
+    - ③ (0, 1): set (r, m) to (0, 0), put the page on the cleaning list, goto setp-⑥
+    - ④ (1, 0): set (r, m) to (0, 0), goto setp-⑥
+    - ⑤ (1, 1): set (r, m) to (0, 1), goto setp-⑥
+  - ⑥ Advances the pointer, goto setp-①
+
+<br>
+
+<img width="920" alt="image" src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/dce24c7b-a410-4d7f-bae6-8ddb0c398118">
+
+<br>
+
+## Other algorithms
+
+- MRU(Most Recently Used) algorithm
+  - $\leftrightarrow$ LRU algorithm
+- MFU(Most Frequently Used) algorithm
+  - $\leftrightarrow$ LFU algorithm
+  - Thinks that the page with smallest reference counts was probably just brought in
+
+<br>
+
+## Consideration on page replacement algorithms
+
+- Whether the scheme is based on **reasonable criteria**
+- **Overhead**
+
+<br>
+
+## Implementation of page replacement schemes
+
+- FIFO algorithm
+  - Time-stamping
+  - Queue
+- LRU algorithm
+  - Time-stamping
+  - Stack (LRU stack)
+
+<br>
+
+...
+
+<br>
+
+# Replacement Strategies (VA)
+
+<br>
+
+## Working set memory management
+
+- Proposed by Denning in 1968
+- Working set
+  - Set of pages that the process intensively references at a time
+  - Set of pages in the most recent time interval of length $\Delta$
+  - Working set of a process changes as time goes
+
+<img width="920" alt="image" src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/c8a94da9-f511-4190-a396-2261657bc757">
+
+<br>
+
+<img width="920" alt="image" src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/b08ef836-7ea8-43a7-aeaa-f3d21f2de14a">
+
+<br>
+
+- Based on locality
+- Let the working set to resided in memory every time
+  - Reduces page fault rate (reduces thrshing)
+  - Improve system performance
+
+<br>
+
+<img width="920" alt="image" src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/75d8c090-a4a2-4049-905c-a31ea951d3d8">
+
+<br>
+
+<img width="790" alt="image" src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/3dd6eaa0-6894-4dc3-b0da-2184f96d5996">
+
+<br>
+
+<img width="790" alt="image" src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/9411930d-8727-4164-abd0-669ffafca80f">
+
+<br>
+
+<img width="821" alt="image" src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/d0fdaf95-9ec9-49c3-a7fc-442d0fb73452">
+
+<br>
+
+- Should consider **other measures** as well as "number of page faults"
+
+<br>
+
+<img width="910" alt="image" src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/a9af15d0-2ec8-4801-82de-680895ecaa85">
+
+<br>
+
+- Characteristics
+   - A page can be displaced without incoming page
+   - No page may be displaced for incoming page
+ - Disadvantages
+   - Overhead
+     - Residence set, set of pages that reside in memory, should be updated for every page reference
+     - Residence set update independent of page faults
+
+<br>
+
+## PFF(Page Fault Frequency) scheme
+
+<br>
+
+## VMIN algorithms
+
+<br>
+
+# Other Considerations
+
+<br>
+
+- Page size
+- Program restructuring
+- TLB reach
+
+<br>
+
+## Page size
+
+- General range of page size
+  - 2^7 (128) Bytes ~ 2^22 (4M) Bytes
+- Pros and cons
+  - Smaller page size
+    - Smaller internal fragmentation
+    - Match program locality more accurately
+      - Reduction in total I/O
+      - Better utilization of memory (Less total allocation of memory)
+    - Larger page table size
+    - Increase in I/O time
+    - Increase in the number of page faults
+
+<br>
+
+## Program restructuring
+
+- System performance can be improved if the user (or compiler/linker/loader) has an awareness of the paged nature of memory or underlying demand paging system
+- Program restructuring by user or compiler/linker/loader
+
+<br>
+
+...
+
+<br>
+
+## TLB Reach
+
+- TLB Reach
+  - The amount of memory accessible from the TLB
+    - (the number of entries)  (page size)
+- For increasing TLB hit-ratio
+  - Increase the number of entries in TLB
+    - Expensive
+- Increase the size of page or provide multiple page sizes
+  - Solaris: 8KB/4MB
+    - With 64-entry TLB, TLB reach ranges 512KB~256MB
+  - OS should manage TLB to support multiple page sizes
+
+<br>
+
+- Multiple page size
+  - Requires OS support
+    - One of the fields in TLB entry must indicate the size of the page corresponding to the TLB entry
+  - Software managed TLB
+    - UltraSparc, MIPS, Alpha
+  - Hardware managed TLB
+    - PowerPC, Pentium
+
+<br>
+
+# Summary
+
+- Virtual memory management
+- Cost model
+- HW/SW components
+- Locality
+- Virtual memory management schemes
+  - FA-based schemes
+  - VA-based schemes
+- Other considerations
+- Case studies
+  - MS Windows, Solaris, Linux
