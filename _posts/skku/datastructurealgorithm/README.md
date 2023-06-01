@@ -60,3 +60,38 @@
   - Dynamic Programming
  
  
+---
+
+📝 memo...
+
+(1) 쉬운문제, trackable.., p, polynomial..
+- 다항식으로 풀리는
+- O(n^k)
+
+좋은 알고리즘
+- 좋은 자료구조
+  - ex) 최대값 - MaxHeap
+- 좋은 기법
+  - Quick sort, .. 등
+
+(2) 어려운문제, np, non..? polynomial
+- 다항식 시간 알고리즘이 존재하지 않음(현재까지는!)
+- O(2^n)
+- O(n!)
+- O(n^n)
+
+- 최단거리 vs 최장거리
+  - O(n^2) vs O()
+- 오일러사이클 vs 헤밍턴사이클
+  - O(
+- Graph Coloric?
+  - 인접한 vertex는 같은색 X
+
+(3) 풀 수 없는 문제, unsolvable, 
+- 알고리즘이 존재하지 않음.
+  - 멈춤(holding) 문제
+
+---
+
+- 문제 갯수 - uncountable, 실수
+- 알고리즘 - countalbe, 정수
