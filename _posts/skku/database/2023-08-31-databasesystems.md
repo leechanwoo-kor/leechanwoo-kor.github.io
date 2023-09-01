@@ -151,11 +151,24 @@ toc_icon: "sticky-note"
 
 ## Database Query Language
 
-..
+- Database Query Language consist of two parts:
+  - (1) **DDL** (Data Definition Language)
+    - Define schema, table, and views
+    - CREATE, DROP, ALTER
+  - (2) **DML** (Data Manipulation Language)
+    - Retrieve and modify database instances
+    - SELECT, INSERT, DELETE, UPDATE
+- SQL is the most widely used query language
+
+<br>
 
 ## Storing Database
 
-..
+- Typical Database Files (= Physical Structures)
+  - Heap File
+  - Sequential File
+  - Indexing File : B+ Tree
+  - Hashing File
 
 <br>
 
