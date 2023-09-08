@@ -56,4 +56,55 @@ Sheet music **visuallizes** a musical work.
 
 ---
 
+![image](https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/cfc28c85-edf7-4cd9-a653-a8909534f7d7)
 
+<br>
+
+![image](https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/b891e1bf-2832-4517-b322-e6e34a70bc7f)
+
+<br>
+
+![image](https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/972d7a50-a9a7-48f1-b914-b7390222c9a3)
+
+<br>
+
+![image](https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/3527e734-d407-4775-97ea-efebe482d587)
+
+<br>
+
+### Why Interactive “Data” Visualization?
+
+- Data is abundant and growing rapidly.
+  - Data storages are getting cheaper!
+  - Scalable data processing technologies: cloud/parallel/distributed computing
+- Gaining insights from the abundant amount of data
+  - Finding relationships, discover structures, identify pattens/outliers, tell a story, …
+  - Decision making
+  - Needle in haystack?
+ 
+<br>
+
+- However, our perceptual and cognitive abilities are relatively constant!
+- We need support!
+  - The use of external representation
+  - Visualization provides one means of combating information overload.
+
+<br>
+
+### Why Interactive Data “Visualization”?
+
+- Sensing stimuli from outside: human sensory organs
+  - Eyes (vision): 10,000,000 bps (1.25 MB/sec)
+  - Skin (touch, tactition ): 1,000,000 bps
+  - Ears (hearing, audition): 100,000 bps
+  - Nose (smell, olfaction): 100,000 bps
+  - Mouth (taste, gustation): 1,000 bps
+- From The Nervous System in the Context of Information Theory
+
+<br>
+
+- Static visualization vs interactive visualization
+- Data are too complex to be shown in a single static view.
+- More views / dimensions / analytic methods
+
+![image](https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/37939bbe-d68f-4a1c-ae06-9e9282a76319)
