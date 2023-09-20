@@ -108,3 +108,29 @@ Sheet music **visuallizes** a musical work.
 - More views / dimensions / analytic methods
 
 ![image](https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/37939bbe-d68f-4a1c-ae06-9e9282a76319)
+
+<br>
+
+### Statistics?
+
+- We have many statistical methods to summarize data. Do we really need visualization?
+
+<br>
+
+![image](https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/759c2703-807b-4375-bf3e-52338f437e95)
+
+<br>
+
+![image](https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/42295a1d-2eb3-4bda-b372-c89c8130e5c0)
+
+<br>
+
+![image](https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/9df29ed8-dfe0-4d8f-91e6-7b923eedefd1)
+
+<br>
+
+# Information Visualization ( InfoVis)
+
+- In a board sense, it is visualization of information.
+- Sometimes, interchangeable with data visualization.
+- In a narrow sense, we have several concrete definitions of InfoVis Data
