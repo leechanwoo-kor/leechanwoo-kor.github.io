@@ -1,4 +1,4 @@
-![image](https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/80fbe8f4-49bb-4413-918b-6f21c451b5fc)---
+---
 title: "[Data Visualization] Arrange Table"
 categories:
   - Data Visualization
