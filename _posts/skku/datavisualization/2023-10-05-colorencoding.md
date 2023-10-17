@@ -1,3 +1,4 @@
+---
 title: "[Data Visualization] Colors (Encoding)"
 categories:
   - Data Visualization
