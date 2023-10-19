@@ -134,27 +134,70 @@
 
 - The last two pertain to specific types of datasets.
 
+<br>
 
+# 마크와 채널(Marks and Channels)
 
+- **Marks** are basic geometric elements that depict items or links.
+  - Points, lines, areas, ...
+- **Channels** control the appearance of marks to convey data.
+  - Position, color (hue, luminance, saturation), size, shape, tilt, motion, ...
 
+- Expressiveness and effectiveness
+- Channels can be ranked according to their effectiveness.
+  - Accuracy, discriminability, separability, popout, and gruoping
+  - Visual popout or preattentive processing
+- Humans are good at relative judgements (Weber's Law).
 
+<br>
 
+# 색깔(Color)
 
+## Perception
 
+- Rods for black and white, Cones for color
+- Three types of cones: S(blue), M(green), L(red)
+- Metamerism
+- Color-matching experiment with "a standard observer" and three primaries
+  - Negative weights (for light whose wavelength is ~500 nm)
+- CIEXYZ calibrates these negative weights and assigns positive weights XYZ to all human-visible colors.
+- CIELab models a perceptually uniform color space.
+  - L: black-white, a: green-red, b: blue-yellow
+- Opponent Process Theory and color deficiency
 
+<br>
 
+## Encoding
 
+- **Luminance**: physical intensity of light per area
+- **Brightness**: perceptual luminance
+- **Lightness**: perceptual relectance (needs a surface)
 
+- Use the hue channel for identity or categorical data.
+- Use the luminance and saturation channels for magnitude or quantitative data.
 
+- Rainbow is bad!
+  - Perceptually non-linear, hue is not for quantitative data, no ordering
 
+<br>
 
+# 테이블 데이터 시각화(Arrange Tables)
 
+- **Arrange**: how to use spatial position channels
+- **1 Key + 1 Value**: bar charts, streamgraphs, dot charts, and line charts, stacked bar charts
+- **2 Keys + 1 Value**: heatmaps and cluster heatmaps
+- **2 Values**: scatterplot
+- **Multiple Values**: scatterplot matrix, parallel coordinate (parallel layout), polar area charts (single item, radial layout), radar charts (single item, radial layout)
+- **Percentage Comparison**: pie charts and normalized stacked bar charts
 
+<br>
 
+# 공간, 네트워크, 트리 데이터 시각화(Arrange Spatial Data, Trees, and Networks)
 
+- **A node-link diagram** uses connection marks.
+  - Force-directed layout
+  - Intuitive, topology understanding, unsearchable, no order, not scalable
+- **An adjacency matrix** uses area marks in 2D matrix alignment.
+  - Detailed Task, estimating # of nodes, searchable, better scalability, unfamiliar
+- **A Treemap** uses area marks and containment with rectilinear layout.
 
-
-마크와 채널(Marks and Channels)
-색깔(Color)
-테이블 데이터 시각화(Arrange Tables)
-공간, 네트워크, 트리 데이터 시각화(Arrange Spatial Data, Trees, and Networks)
