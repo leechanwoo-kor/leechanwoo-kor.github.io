@@ -177,7 +177,7 @@ $Result = \pi_{교수명} (T \bowtie_{과목번호=과목번호} 강의)$ // T�
 
 # 9. 앞의 그림 3.6의 COMPANY 데이터베이스를 참조하여, 다음 각 query에 대해 Relational Algebra 명령문을 작성하고, 각 query의 결과값이 무엇인지 적어라.
 
-## 9.1 Retrieve the names of employees in department 5 who work more than 10 hours per week on the 'ProductX' project
+## 9.1. Retrieve the names of employees in department 5 who work more than 10 hours per week on the 'ProductX' project
 
 - $TEMP1 = (\sigma_{Pname='ProductX'} (PROJECT)) \bowtie_{Pnumber=Pno} (WORKS_ON)$
 - $TEMP2 = EMPLOYEE \bowtie_{SSN=ESSN} (\sigma_{Hours > 10} (TEMP1))$
@@ -192,10 +192,55 @@ $Result = \pi_{교수명} (T \bowtie_{과목번호=과목번호} 강의)$ // T�
 
 <br>
 
-## 9.2
+## 9.2. Retrieve the names of employees that are directly supervised by 'Franklin Wong'.
+
+- $TEMP1 = \pi_{SSN} (\sigma_{Fname = 'Franklin' AND Lname = 'Wong'} (EMPLOYEE))$
+- $TEMP2 = (EMPLOYEE) \bowtie_{SuperSSN = SSN} (TEMP1)$
+- RESULT = \pi_{Lname, Fname} (TEMP2)$c
+
+<br>
+
+## 9.3. Retrieve the names of employees who have a dependent with the same sex as themselves.
+
+- $TEMP1 = (EMPLOYEE) \bowtie_{(SSN = ESSN) AND (sex = sex)} (DEPENDENT)$
+- $RESULT = \pi_{Lname, Fname} (TEMP1)$
+
+- Result:
+
+|Lname|Fname|
+|:---:|:---:|
+|Smith|John|
+|Franklin|Wong|
+
+<br>
+
+## 9.4. Retrieve the names of employees who work on every project whose location is in ‘Houston’.
+
+- $TEMP1 = \pi_{ESSN, Pno} (WORKS_ON)$
+- $TEMP2 = \pi Pnumber(\sigma_{ Plocation = ‘Houston'} (PROJECT))$
+- $TEMP3 = TEMP1 \div TEMP2$
+- $RESULT = \pi_{Lname, Fname} (EMPLOYEE \bowtie_{SSN = ESSN} TEMP3)$
+
+- Result:
+
+|Lname|Fname|
+|:---:|:---:|
+|Franklin|Wong|
+
+<br>
+
+## 9.5. List the names of department managers who have no dependents.
+
+- $TEMP1 = \pi_{Mgr-SSN} (DEPARTMENT)$
+- $TEMP2 = \pi_{ESSN} (DEPENDENT)$
+- $TEMP3 = TEMP1 – TEMP2$
+- RESULT = \pi_{Lname, Fname} (EMPLOYEE \bowtie_{SSN = Mgr-SSN} TEMP3)
+
+- Result:
+
+|Lname|Fname|
+|:---:|:---:|
+|Borg|James|
 
 
-
-
-
-
+## 9.6.
