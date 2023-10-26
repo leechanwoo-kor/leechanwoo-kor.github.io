@@ -242,5 +242,63 @@ $Result = \pi_{교수명} (T \bowtie_{과목번호=과목번호} 강의)$ // T�
 |:---:|:---:|
 |Borg|James|
 
+<br>
 
-## 9.6.
+## 9.6. Retrieve the names and addresses of employees who work on at least one project located in Houston, but whose department has no location in Houston.
+
+- $TEMP1 = \pi_{ESSN} (WORKS_ON \bowtie_{Pno=Pnumber} (\sigma_{Plocation='Houston’} (PROJECT)))$
+- $TEMP2 = \pi_{Dnumber}(DEPARTMENT) – \pi_{Dnumber}(\sigma_{Dlocation='Houston'} (DEPARTMENT))$
+- $TEMP3 = \pi_{SSN}(EMPLOYEE \bowtie_{Dno = Dnumber} (TEMP2))$
+- $TEMP4 = TEMP1 \cap TEMP3$
+- $RESULT = \pi_{Lname,Fname,Address} (EMPLOYEE \bowite_{SSN = ESSN} TEMP4)$
+
+- Result:
+
+|Lname|Fname|Address|
+|:---:|:---:|:---:|
+|Wallace|Jennifer|291 Berry, Bellaire, TX|
+
+<br>
+
+## 9.7. Retrieve the last names of employees who do not work on any project.
+
+- $TEMP1 = \pi_{SSN} (EMPLOYEE)$
+- $TEMP2 = \pi_{ESSN} (WORKS_ON)$
+- $TEMP3 = TEMP1 – TEMP2$
+- RESULT = \pi_{Lname} (EMPLOYEE \bowtie_{SSN = SSN} (TEMP3))
+
+- Result: Empty
+
+|Lname|
+|:---:|
+|NULL|
+
+<br>
+
+# 10. 다음의 ER schema를 relational schema로 변환하라. 각 relation schema 에서 반드시 PK를 명시하고, FK (혹시 있는 경우만)를 또한 명시할 것
+
+![image](https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/617c8aa1-79c8-4763-8d46-b17ff42646e3)
+
+<br>
+
+- BANK (**Code**, Name, Addr), FK: 없음
+- BANK_BRANCH (**Branch-No, Code**, Addr),  FK: {Code}
+- ACCOUNT (**AccNo**, Balance, Type, Branch-No, Code), FK: {BranchNo, Code}
+- CUSTOMER (**SSN**, Name, Phone, Age), FK: 없음
+- A-C (**Acc-No, SSN**), FK: {AccNo}, {SSN}
+- LOAN (**Loan-No, Branch-No, Code, Amount, Type**), FK: {BranchNo, Code}
+- L-C (**LoanNo, SSN**), FK: {LoanNo}, {SSN}
+
+<br>
+
+# 11. 다음의 relation들을 참조하여, 아래의 각 relational algebra 표현식과 동등한 SQL 표현식으로 변환하라.
+
+R (A, B, C)
+S (D, E, F)
+
+- (1) $\pi_{A}(R)
+  - SELECT DISTINCT A FROM R
+- (2) $\sigma_{A = 17} ((\sigma_{C = 17} (R)))$
+  - SELECT * FROM R WHERE C = 17 AND A = 17
+- (3) $\pi_{A, F} (\sigma_{C = D} (R × S))$
+  - SELECT A, F FROM R, S WHERE R.C = S.D
