@@ -1,4 +1,4 @@
-![image](https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/b927cd78-32c4-48af-8bb8-11a672925627)# 1. 다음 relation은 모두 4 개의 tuple들로만 이루어졌다고 가정한다.
+# 1. 다음 relation은 모두 4 개의 tuple들로만 이루어졌다고 가정한다.
 
 ![image](https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/13f45497-f354-40fb-adb4-c83fda2247d6)
 
@@ -296,7 +296,7 @@ $Result = \pi_{교수명} (T \bowtie_{과목번호=과목번호} 강의)$ // T�
 R (A, B, C)
 S (D, E, F)
 
-- (1) $\pi_{A}(R)
+- (1) $\pi_{A}(R)$
   - SELECT DISTINCT A FROM R
 - (2) $\sigma_{A = 17} ((\sigma_{C = 17} (R)))$
   - SELECT * FROM R WHERE C = 17 AND A = 17
