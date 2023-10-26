@@ -196,7 +196,7 @@ $Result = \pi_{교수명} (T \bowtie_{과목번호=과목번호} 강의)$ // T�
 
 - $TEMP1 = \pi_{SSN} (\sigma_{Fname = 'Franklin' AND Lname = 'Wong'} (EMPLOYEE))$
 - $TEMP2 = (EMPLOYEE) \bowtie_{SuperSSN = SSN} (TEMP1)$
-- RESULT = \pi_{Lname, Fname} (TEMP2)$c
+- $RESULT = \pi_{Lname, Fname} (TEMP2)$
 
 <br>
 
@@ -234,7 +234,7 @@ $Result = \pi_{교수명} (T \bowtie_{과목번호=과목번호} 강의)$ // T�
 - $TEMP1 = \pi_{Mgr-SSN} (DEPARTMENT)$
 - $TEMP2 = \pi_{ESSN} (DEPENDENT)$
 - $TEMP3 = TEMP1 – TEMP2$
-- RESULT = \pi_{Lname, Fname} (EMPLOYEE \bowtie_{SSN = Mgr-SSN} TEMP3)
+- $RESULT = \pi_{Lname, Fname} (EMPLOYEE \bowtie_{SSN = Mgr-SSN} TEMP3)$
 
 - Result:
 
@@ -244,13 +244,13 @@ $Result = \pi_{교수명} (T \bowtie_{과목번호=과목번호} 강의)$ // T�
 
 <br>
 
-## 9.6. Retrieve the names and addresses of employees who work on at least one project located in Houston, but whose department has no location in Houston.
+## 9.6. Retrieve the names and addresses of employees who work on at least one project located in Houston, but whose department has no location in Houston.F
 
 - $TEMP1 = \pi_{ESSN} (WORKS_ON \bowtie_{Pno=Pnumber} (\sigma_{Plocation='Houston’} (PROJECT)))$
 - $TEMP2 = \pi_{Dnumber}(DEPARTMENT) – \pi_{Dnumber}(\sigma_{Dlocation='Houston'} (DEPARTMENT))$
 - $TEMP3 = \pi_{SSN}(EMPLOYEE \bowtie_{Dno = Dnumber} (TEMP2))$
 - $TEMP4 = TEMP1 \cap TEMP3$
-- $RESULT = \pi_{Lname,Fname,Address} (EMPLOYEE \bowite_{SSN = ESSN} TEMP4)$
+- $RESULT = \pi_{Lname,Fname,Address} (EMPLOYEE \bowtie_{SSN = ESSN} TEMP4)$
 
 - Result:
 
@@ -265,7 +265,7 @@ $Result = \pi_{교수명} (T \bowtie_{과목번호=과목번호} 강의)$ // T�
 - $TEMP1 = \pi_{SSN} (EMPLOYEE)$
 - $TEMP2 = \pi_{ESSN} (WORKS_ON)$
 - $TEMP3 = TEMP1 – TEMP2$
-- RESULT = \pi_{Lname} (EMPLOYEE \bowtie_{SSN = SSN} (TEMP3))
+- $RESULT = \pi_{Lname} (EMPLOYEE \bowtie_{SSN = SSN} (TEMP3))$
 
 - Result: Empty
 
