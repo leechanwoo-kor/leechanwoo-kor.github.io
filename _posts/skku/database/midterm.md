@@ -12,14 +12,16 @@
 (2) 위 relation에서 key들 만을 모두 찾아 적어라.
 - {B}, {C}, {F}, {A, D}, {D, E}
 
-### 2. 수업시간때 배운 ER → relation mapping guidelineguideline을 준수하여 다음 ER schema schema를 relation 구조로 변환하라. 밑줄은 PK, 전화는 multi valuedvalued임 변환된 relationrelation에 primary key와 foreign key (있는 경우)를 명시 요함.
+### 2. 수업시간때 배운 ER → relation mapping guideline을 준수하여 다음 ER schema를 relation 구조로 변환하라. 밑줄은 PK, 전화는 multi valued임 변환된 relation에 primary key와 foreign key (있는 경우)를 명시 요함.
 
-- 학생(학번, 학생명)
-- 과목(과목#, 과목명)
-- 교수(교수명, 나이, 전화)
-- 수강(학번, 과목, 강의실)
-- 강의(교수명, 과목#)
-- 지도(교수명, 학번)
+<img width="1079" alt="image" src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/81e47926-b400-44bf-861e-a75faaa475ed">
+
+- 학생(**학번**, 학생명), FK: 없음
+- 과목(**과목#**, 과목명), FK: 없음
+- 교수(**교수명**, 나이, 전화), FK: 없음
+- 수강(**학번, 과목#**, 강의실), FK: {학번, 과목#}
+- 강의(**교수명, 과목#**), FK: {교수명, 과목#}
+- 지도(**교수명, 학번**), FK: {교수명, 학번}
 
 ### 3. 다음의 병원에 관한 relation들과 요구사항을 참조하라.
 
@@ -36,19 +38,19 @@
 - 각 의사는 관리하는 병동이 반드시 있어야 한다.
 
 (1) 위의 relation들에서 Primary Key와 Foreign Key를 명시하라.
-- 환자(**환자코드**, 환자명, 의사코드), Foreign Key(의사코드)
-- 입원(**환자코드, 병동코드, 날짜**), Foreign Key(환자코드, 병동코드)
-- 의사(**의사코드**, 의사명, 병동코드), Foreign Key(병동코드)
+- 환자(**환자코드**, 환자명, 의사코드), FK: {의사코드}
+- 입원(**환자코드, 병동코드, 날짜**), FK: {환자코드, 병동코드}
+- 의사(**의사코드**, 의사명, 병동코드), FK: {병동코드}
 - 병동(**병동코드**, 병동명)
 
 (2) (b)
 
 ### 4. R(A, B)와 S(C, D) 2 개의 relation이 있다. A와 C는 각각 primary key이고, B는 C를 참조하는 foreign key이다. 이제 R와 S의 모든 tuple들이 참조 무결성을 만족하다고 하면, 다음 중 어느 것이 맞는지 모두 골라라.
-- 1) $\pi_B(R) – \pi_C(S) = \emptyset$    O
-- 2) $\pi_B(R) = \pi_C(S)$                X
-- 3) $\pi_B(R) \subseteq \pi_C(S)$        O
-- 4) $\pi_C(S) – \pi_B(R) = \emptyset$    X
-- 5) $\pi_B(R) \subset \pi_C(S)$          X
+- $\pi_B(R) – \pi_C(S) = \emptyset$    (O)
+- $\pi_B(R) = \pi_C(S)$                (X)
+- $\pi_B(R) \subseteq \pi_C(S)$        (O)
+- $\pi_C(S) – \pi_B(R) = \emptyset$    (X)
+- $\pi_B(R) \subset \pi_C(S)$          (X)
 
 ### 5. 다음은 영화 정보에 대한 relation들이다. 다음 relational algebra 식은 무엇을 구하는 query인지 설명하라. (정확히 묘사할 것) 밑줄은 primary key.
 - 고객(**고객번호**, 고객명)
@@ -56,17 +58,17 @@
 - 영화(**영화번호**, 영화명, 감독명)
 
 - $T1 \leftarrow \pi_{고객번호}(관람)$
-  - 영화를 관람한 고객의 고객번호
-- $T2 \leftarrow \pi_{영화번호}(\sigma (감독명 = ‘박찬욱’) (영화))$
-  - 감독명이 '박찬욱'인 영화의 영화번호
+  - 영화를 관람한 고객들의 고객번호들
+- $T2 \leftarrow \pi_{영화번호}(\sigma_{(감독명 = ‘박찬욱’)} (영화))$
+  - 감독명이 '박찬욱'인 영화들의 영화번호들
 - $T3 \leftarrow T1 ☓ T2$
-  - 감독명이 '박찬욱'인 영화를 관람한 고객
+  - 영화를 관람한 고객들의 고객번호들 + 감독명이 '박찬욱'인 영화들을 관람한 고객들의 고객번호들
 - $T4 \leftarrow \pi_{고객번호} (T3 - 관람)$
-  - 감독명이 '박찬욱'인 영화를 관람하지 않은 고객
+  - 감독명이 '박찬욱'인 영화들을 관람한 고객들의 고객번호들
 - $T5 \leftarrow T1 - T4$
-  - 영화를 관람한 고객들 중 감독명이 '박찬욱'인 영화를 관람하지 않은 고객
+  - 감독명이 '박찬욱'인 영화들을 관람하지 않은 고객들의 고객번호들
 - $Result \leftarrow \pi_{고객명} (T5 \bowtie_{T5.고객번호 = 고객.고객번호} 고객)$
-  - 감독명이 '박찬욱'인 영화를 관람하지 않은 고객의 고객명
+  - 감독명이 '박찬욱'인 영화들을 관람하지 않은 고객들의 고객명들
 
 ### 6. 다음은 어떤 회사의 사원들과 그 사원보다 직급이 높은 상사들의 정보에 대한 relation들이다. 다음 relational algebra 식은 무엇을 구하는 query 인지 설명하라. (정확히 묘사해야 함) 밑줄은 primary key.
 
@@ -74,21 +76,21 @@
 - 상사(**사번, 사원명**, 나이)
 
 - $T1 \leftarrow \pi_{사번} (사원)$
-  - 사원들의 사번
+  - 사원들의 사번들
 - $T2 \leftarrow \pi_{사번} (사원 \bowtie_{(사원.사번 = 상사.사번) AND (사원.나이 <= 상사.나이)} 상사)$
-  - 사원보다 상사의 나이가 많거나 큰 사원들의 사번
+  - 사원의 상사 보다 나이가 작거나 같은 사원들의사번들
 - $T3 \leftarrow T1 – T2$
-  - 사원보다 상사의 나이가 적은 사원들의 사번
+  - 사원의 상사 보다 나이가 많은 사원들의사번들
 - $Result \leftarrow \pi_{사원명} (T3 \bowtie_{T3.사번 = 사원.사번} 사원)$
-  - 사원보다 상사의 나이가 적은 사원들의 사번들의 사원명
+  - 사원의 상사 보다 나이가 많은 사원들의 사원명
 
-### 7. 아래의 relation들을 참조하라. 여기서 밑줄은 primary key, 이태릭체는 foreign key.를 나타낸다. 다음의 Query를 구하는 Relational Algebra를 이용하여 작성하라.
+### 7. 아래의 relation들을 참조하라. 여기서 밑줄은 primary key, 이태릭체는 foreign key를 나타낸다. 다음의 Query를 구하는 Relational Algebra를 이용하여 작성하라.
 
 - Query : ‘홍길동’의 장인어른의 어머니의 이름을 검색하라. (즉 홍길동 아내의 아버지의 어머니 이름)
 - 사람(주민번호, 이름, 부친-주민번호, 모친-주민번호)
 - 결혼(남편-주민번호, 아내-주민번호, 날짜)
 
-- $T1 \leftarrow \pi_{주민번호}(\sigma_{이름='홍길동'}(사람))$
+- $T1 \leftarrow \pi_{주민번호}(\sigma_{(이름='홍길동')}(사람))$
 - $T2 \leftarrow \pi_{아내-주민번호}(T1 \bowtie_{T1.주민번호=결혼.남편-주민번호} 결혼)$
 - $T3 \leftarrow \pi_{부친-주민번호}(T2 \bowtie_{T2.아내-주민번호=사람.주민번호} 사람)$
 - $T4 \leftarrow \pi_{모친-주민번호}(T3 \bowtie_{T3.부친-주민번호=사람.주민번호} 사람)$
