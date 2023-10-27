@@ -1,4 +1,4 @@
-1. 다음 relation을 참조하라.
+### 1. 다음 relation을 참조하라.
 
 |A|B|C|D|E|F|
 |:---:|:---:|:---:|:---:|:---:|:---:|
@@ -12,7 +12,7 @@
 (2) 위 relation에서 key들 만을 모두 찾아 적어라.
 - {B}, {C}, {F}, {A, D}, {D, E}
 
-2. 수업시간때 배운 ER → relation mapping guidelineguideline을 준수하여 다음 ER schema schema를 relation 구조로 변환하라. 밑줄은 PK, 전화는 multi valuedvalued임 변환된 relationrelation에 primary key와 foreign key (있는 경우)를 명시 요함.
+### 2. 수업시간때 배운 ER → relation mapping guidelineguideline을 준수하여 다음 ER schema schema를 relation 구조로 변환하라. 밑줄은 PK, 전화는 multi valuedvalued임 변환된 relationrelation에 primary key와 foreign key (있는 경우)를 명시 요함.
 
 - 학생(학번, 학생명)
 - 과목(과목#, 과목명)
@@ -21,7 +21,7 @@
 - 강의(교수명, 과목#)
 - 지도(교수명, 학번)
 
-3. 다음의 병원에 관한 relation들과 요구사항을 참조하라.
+### 3. 다음의 병원에 관한 relation들과 요구사항을 참조하라.
 
 - 환자(환자코드, 환자명, 의사코드)
 - 입원(환자코드, 병동코드, 날짜)
@@ -43,14 +43,14 @@
 
 (2) (b)
 
-4. R(A, B)와 S(C, D) 2 개의 relation이 있다. A와 C는 각각 primary key이고, B는 C를 참조하는 foreign key이다. 이제 R와 S의 모든 tuple들이 참조 무결성을 만족하다고 하면, 다음 중 어느 것이 맞는지 모두 골라라.
+### 4. R(A, B)와 S(C, D) 2 개의 relation이 있다. A와 C는 각각 primary key이고, B는 C를 참조하는 foreign key이다. 이제 R와 S의 모든 tuple들이 참조 무결성을 만족하다고 하면, 다음 중 어느 것이 맞는지 모두 골라라.
 - 1) $\pi_B(R) – \pi_C(S) = \emptyset$    O
 - 2) $\pi_B(R) = \pi_C(S)$                X
 - 3) $\pi_B(R) \subseteq \pi_C(S)$        O
 - 4) $\pi_C(S) – \pi_B(R) = \emptyset$    X
 - 5) $\pi_B(R) \subset \pi_C(S)$          X
 
-5. 다음은 영화 정보에 대한 relation들이다. 다음 relational algebra 식은 무엇을 구하는 query인지 설명하라. (정확히 묘사할 것) 밑줄은 primary key.
+### 5. 다음은 영화 정보에 대한 relation들이다. 다음 relational algebra 식은 무엇을 구하는 query인지 설명하라. (정확히 묘사할 것) 밑줄은 primary key.
 - 고객(**고객번호**, 고객명)
 - 관람(**고객번호, 영화번호**)
 - 영화(**영화번호**, 영화명, 감독명)
@@ -68,7 +68,7 @@
 - $Result \leftarrow \pi_{고객명} (T5 \bowtie_{T5.고객번호 = 고객.고객번호} 고객)$
   - 감독명이 '박찬욱'인 영화를 관람하지 않은 고객의 고객명
 
-6. 다음은 어떤 회사의 사원들과 그 사원보다 직급이 높은 상사들의 정보에 대한 relation들이다. 다음 relational algebra 식은 무엇을 구하는 query 인지 설명하라. (정확히 묘사해야 함) 밑줄은 primary key.
+### 6. 다음은 어떤 회사의 사원들과 그 사원보다 직급이 높은 상사들의 정보에 대한 relation들이다. 다음 relational algebra 식은 무엇을 구하는 query 인지 설명하라. (정확히 묘사해야 함) 밑줄은 primary key.
 
 - 사원(**사번**, 사원명, 나이)
 - 상사(**사번, 사원명**, 나이)
@@ -82,7 +82,7 @@
 - $Result \leftarrow \pi_{사원명} (T3 \bowtie_{T3.사번 = 사원.사번} 사원)$
   - 사원보다 상사의 나이가 적은 사원들의 사번들의 사원명
 
-7. 아래의 relation들을 참조하라. 여기서 밑줄은 primary key, 이태릭체는 foreign key.를 나타낸다. 다음의 Query를 구하는 Relational Algebra를 이용하여 작성하라.
+### 7. 아래의 relation들을 참조하라. 여기서 밑줄은 primary key, 이태릭체는 foreign key.를 나타낸다. 다음의 Query를 구하는 Relational Algebra를 이용하여 작성하라.
 
 - Query : ‘홍길동’의 장인어른의 어머니의 이름을 검색하라. (즉 홍길동 아내의 아버지의 어머니 이름)
 - 사람(주민번호, 이름, 부친-주민번호, 모친-주민번호)
@@ -94,7 +94,7 @@
 - $T4 \leftarrow \pi_{모친-주민번호}(T3 \bowtie_{T3.부친-주민번호=사람.주민번호} 사람)$
 - $Result \leftarrow \pi_{이름}(T4 \bowtie_{T4.모친-주민번호=사람.주민번호} 사람)$
 
-8.
+### 8.
 (1) 은행과 지점 이라는 두 개의 entity type에 대해 다음의 요구사항을 참조하여 ER schema를 그려라. (단, Total/Partial 참여, 몇 대 몇 인지의 관계, Key 등을 명시할 것)
 - 각 지점은 ‘지점번호’와 ‘지점위치’의 두 개의 attribute들로 구성된다.
 - 한 은행에는 같은 ‘지점번호’ 를 갖는 지점들은 있을 수 없으나, 같은 ‘지점위치’를 갖는 지점들이 있을 수 있다.
@@ -107,7 +107,7 @@
 
 (3) 만약 어떤 은행이 DB에서 삭제되면, 어떤 일이 발생하는지 설명하라.
 
-9. 다음의 relation들을 참조하여 각 Query 를 Relational Algebra 식으로 작성하라.
+### 9. 다음의 relation들을 참조하여 각 Query 를 Relational Algebra 식으로 작성하라.
 
 사원(사원명, 나이, 도시명)
 근무(사원명, 회사명, 봉급)
