@@ -1,4 +1,4 @@
-# 1. 다음 relation은 모두 4 개의 tuple들로만 이루어졌다고 가정한다.
+### 1. 다음 relation은 모두 4 개의 tuple들로만 이루어졌다고 가정한다.
 
 ![image](https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/13f45497-f354-40fb-adb4-c83fda2247d6)
 
@@ -19,14 +19,14 @@
  
 <br>
 
-# 2. 다음은 Relation들이 준수해야 하는 무결성(integrity) 제약조건이다. 각 무결성의 의미가 무엇인지 설명하라.
+### 2. 다음은 Relation들이 준수해야 하는 무결성(integrity) 제약조건이다. 각 무결성의 의미가 무엇인지 설명하라.
 - Key Integrity
 - Entity Integrity
 - Referential Integrity
 
 <br>
 
-# 3. 다음 relation들을 참조하라. 단, 밑줄은 Primary Key를 나타낸다.
+### 3. 다음 relation들을 참조하라. 단, 밑줄은 Primary Key를 나타낸다.
 
 학생(**학번**, 학생명, 전공)
 수강(**학번, 과목번호**)
@@ -43,7 +43,7 @@
 
 <br>
 
-# 4. 다음의 relation들을 참조하여 Foreign Key를 나타내라. 단, 밑줄은 Primary Key를 나타낸다.
+### 4. 다음의 relation들을 참조하여 Foreign Key를 나타내라. 단, 밑줄은 Primary Key를 나타낸다.
 
 서적 (**서적번호**, 서적명, 가격)
 저자 (**저자명**, 주소, 전화)
@@ -60,7 +60,7 @@
  
 <br>
 
-# 5. 다음의 relation들과 주어진 제약조건을 참조하라.
+### 5. 다음의 relation들과 주어진 제약조건을 참조하라.
 
 선수 (선수명, 소속팀명, 나이)
 자동차 (번호판, 모델명, 소유자명, 직장명)
@@ -74,7 +74,7 @@
 
 <br>
 
-## 5.1. 위의 각 relation에 tuple들의 예를 각각 5 개 이상 기입하라.
+#### 5.1. 위의 각 relation에 tuple들의 예를 각각 5 개 이상 기입하라.
 
 - 선수
 
@@ -98,7 +98,7 @@
 
 <br>
 
-## 5.2. 위의 relation에서 primary key와 foreign key를 명시하라.
+#### 5.2. 위의 relation에서 primary key와 foreign key를 명시하라.
 
 - 선수 :
   - Primary Key: {선수명, 소속팀명}
@@ -107,7 +107,7 @@
   - Primary Key: {번호판}
   - Foreign Key: {소유자명, 직장명}
 
-## 5.3. 위의 relation들을 ER schema로 변환하여 그려라. 즉 원래의 ER schema가 무엇이었는지 그려라. 
+#### 5.3. 위의 relation들을 ER schema로 변환하여 그려라. 즉 원래의 ER schema가 무엇이었는지 그려라. 
 
 ![image](https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/0b6152a4-36db-418f-bbf9-7523bdc47eb5)
 
@@ -118,7 +118,7 @@
 
 <br>
 
-# 6. 다음의 각 연산을 수행한 결과에 생성될 수 있는 tuple의 최소 개수와 최대 개수를 각각 계산하라. Relation R1 과 R2의 tuple 개수는 각각 N1 과 N2이고, N1 > N2 > 0 이다.
+### 6. 다음의 각 연산을 수행한 결과에 생성될 수 있는 tuple의 최소 개수와 최대 개수를 각각 계산하라. Relation R1 과 R2의 tuple 개수는 각각 N1 과 N2이고, N1 > N2 > 0 이다.
 
 - (1) R1 – R2
   - 최소: N1 - N2
@@ -132,7 +132,7 @@
 
 <br>
 
-# 7. 다음 각 연산을 Relation R에 수행한 결과에 생성되는 tuple들의 최소 개수와 최대 개수를 각각 계산하라. 단 R의 tuple들의 수는 N이다. (단 A, B는 R에 있는 임의의 attribute 이름이다.)
+### 7. 다음 각 연산을 Relation R에 수행한 결과에 생성되는 tuple들의 최소 개수와 최대 개수를 각각 계산하라. 단 R의 tuple들의 수는 N이다. (단 A, B는 R에 있는 임의의 attribute 이름이다.)
 
 - (1) $\sigma_{A=5 AND B=5}(R)$
   - 최소: 0 개
@@ -143,19 +143,19 @@
 
 <br>
 
-# 8. 다음 relation 들을 참조하여, 각 query를 relational algebra 식으로 표현하라.
+### 8. 다음 relation 들을 참조하여, 각 query를 relational algebra 식으로 표현하라.
 
-교수 (교수명, 나이)
-수강 (학번, 과목번호)
-학생 (학번, 학생명)
-강의 (교수명, 과목번호)
+- 교수 (교수명, 나이)
+- 수강 (학번, 과목번호)
+- 학생 (학번, 학생명)
+- 강의 (교수명, 과목번호)
 
-## 8.1. ‘김응모’가 강의하는 과목들을 강의하는 교수들의 이름을 검색하라.
+#### 8.1. ‘김응모’가 강의하는 과목들을 강의하는 교수들의 이름을 검색하라.
 
-$T = \pi_{과목번호}(\sigma_{교수명=김응모}(강의))$ // 김응모가 강의하는 과목들의 과목번호들
-$Result = \pi_{교수명} (T \bowtie_{과목번호=과목번호} 강의)$ // T에 있는 과목들을 강의하는 교수명들
+- $T = \pi_{과목번호}(\sigma_{교수명=김응모}(강의))$ // 김응모가 강의하는 과목들의 과목번호들
+- $Result = \pi_{교수명} (T \bowtie_{과목번호=과목번호} 강의)$ // T에 있는 과목들을 강의하는 교수명들
 
-## 8.2. ‘김응모’가 강의하지 않는 과목들만을 모두 듣는 학생들의 이름을 검색하라.
+#### 8.2. ‘김응모’가 강의하지 않는 과목들만을 모두 듣는 학생들의 이름을 검색하라.
 
 - $T1 = \pi_{과목번호} (강의)$ // 현재 개설된 모든 과목들의 과목번호들
 - $T2 = \pi_{과목번호} (\sigma_{교수명=김응모}(강의))$ // 김응모가 강의하는 과목들의 과목 번호들
@@ -175,9 +175,9 @@ $Result = \pi_{교수명} (T \bowtie_{과목번호=과목번호} 강의)$ // T�
 
 <br>
 
-# 9. 앞의 그림 3.6의 COMPANY 데이터베이스를 참조하여, 다음 각 query에 대해 Relational Algebra 명령문을 작성하고, 각 query의 결과값이 무엇인지 적어라.
+### 9. 앞의 그림 3.6의 COMPANY 데이터베이스를 참조하여, 다음 각 query에 대해 Relational Algebra 명령문을 작성하고, 각 query의 결과값이 무엇인지 적어라.
 
-## 9.1. Retrieve the names of employees in department 5 who work more than 10 hours per week on the 'ProductX' project
+#### 9.1. Retrieve the names of employees in department 5 who work more than 10 hours per week on the 'ProductX' project
 
 - $TEMP1 = (\sigma_{Pname='ProductX'} (PROJECT)) \bowtie_{Pnumber=Pno} (WORKS_ON)$
 - $TEMP2 = EMPLOYEE \bowtie_{SSN=ESSN} (\sigma_{Hours > 10} (TEMP1))$
@@ -192,7 +192,7 @@ $Result = \pi_{교수명} (T \bowtie_{과목번호=과목번호} 강의)$ // T�
 
 <br>
 
-## 9.2. Retrieve the names of employees that are directly supervised by 'Franklin Wong'.
+#### 9.2. Retrieve the names of employees that are directly supervised by 'Franklin Wong'.
 
 - $TEMP1 = \pi_{SSN} (\sigma_{Fname = 'Franklin' AND Lname = 'Wong'} (EMPLOYEE))$
 - $TEMP2 = (EMPLOYEE) \bowtie_{SuperSSN = SSN} (TEMP1)$
@@ -200,7 +200,7 @@ $Result = \pi_{교수명} (T \bowtie_{과목번호=과목번호} 강의)$ // T�
 
 <br>
 
-## 9.3. Retrieve the names of employees who have a dependent with the same sex as themselves.
+#### 9.3. Retrieve the names of employees who have a dependent with the same sex as themselves.
 
 - $TEMP1 = (EMPLOYEE) \bowtie_{(SSN = ESSN) AND (sex = sex)} (DEPENDENT)$
 - $RESULT = \pi_{Lname, Fname} (TEMP1)$
@@ -214,7 +214,7 @@ $Result = \pi_{교수명} (T \bowtie_{과목번호=과목번호} 강의)$ // T�
 
 <br>
 
-## 9.4. Retrieve the names of employees who work on every project whose location is in ‘Houston’.
+#### 9.4. Retrieve the names of employees who work on every project whose location is in ‘Houston’.
 
 - $TEMP1 = \pi_{ESSN, Pno} (WORKS_ON)$
 - $TEMP2 = \pi Pnumber(\sigma_{ Plocation = ‘Houston'} (PROJECT))$
@@ -229,7 +229,7 @@ $Result = \pi_{교수명} (T \bowtie_{과목번호=과목번호} 강의)$ // T�
 
 <br>
 
-## 9.5. List the names of department managers who have no dependents.
+#### 9.5. List the names of department managers who have no dependents.
 
 - $TEMP1 = \pi_{Mgr-SSN} (DEPARTMENT)$
 - $TEMP2 = \pi_{ESSN} (DEPENDENT)$
@@ -244,7 +244,7 @@ $Result = \pi_{교수명} (T \bowtie_{과목번호=과목번호} 강의)$ // T�
 
 <br>
 
-## 9.6. Retrieve the names and addresses of employees who work on at least one project located in Houston, but whose department has no location in Houston.F
+#### 9.6. Retrieve the names and addresses of employees who work on at least one project located in Houston, but whose department has no location in Houston.F
 
 - $TEMP1 = \pi_{ESSN} (WORKS_ON \bowtie_{Pno=Pnumber} (\sigma_{Plocation='Houston’} (PROJECT)))$
 - $TEMP2 = \pi_{Dnumber}(DEPARTMENT) – \pi_{Dnumber}(\sigma_{Dlocation='Houston'} (DEPARTMENT))$
@@ -260,7 +260,7 @@ $Result = \pi_{교수명} (T \bowtie_{과목번호=과목번호} 강의)$ // T�
 
 <br>
 
-## 9.7. Retrieve the last names of employees who do not work on any project.
+#### 9.7. Retrieve the last names of employees who do not work on any project.
 
 - $TEMP1 = \pi_{SSN} (EMPLOYEE)$
 - $TEMP2 = \pi_{ESSN} (WORKS_ON)$
@@ -275,7 +275,7 @@ $Result = \pi_{교수명} (T \bowtie_{과목번호=과목번호} 강의)$ // T�
 
 <br>
 
-# 10. 다음의 ER schema를 relational schema로 변환하라. 각 relation schema 에서 반드시 PK를 명시하고, FK (혹시 있는 경우만)를 또한 명시할 것
+### 10. 다음의 ER schema를 relational schema로 변환하라. 각 relation schema 에서 반드시 PK를 명시하고, FK (혹시 있는 경우만)를 또한 명시할 것
 
 ![image](https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/617c8aa1-79c8-4763-8d46-b17ff42646e3)
 
@@ -291,7 +291,7 @@ $Result = \pi_{교수명} (T \bowtie_{과목번호=과목번호} 강의)$ // T�
 
 <br>
 
-# 11. 다음의 relation들을 참조하여, 아래의 각 relational algebra 표현식과 동등한 SQL 표현식으로 변환하라.
+### 11. 다음의 relation들을 참조하여, 아래의 각 relational algebra 표현식과 동등한 SQL 표현식으로 변환하라.
 
 R (A, B, C)
 S (D, E, F)
