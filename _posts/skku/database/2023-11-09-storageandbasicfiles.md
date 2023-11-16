@@ -1,4 +1,4 @@
-<img width="1080" alt="image" src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/24290ea6-d03d-44fd-b5a1-577b0d3c24cf">---
+---
 title: "[Database] Storage and Basic Files"
 categories:
   - Database
