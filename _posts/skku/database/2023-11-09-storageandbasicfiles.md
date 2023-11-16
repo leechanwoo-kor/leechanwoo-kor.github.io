@@ -327,6 +327,168 @@ toc_icon: "sticky-note"
 
 <br>
 
+
+
+# Representing Table as File
+
+- Suppose we created the following table by using SQL;
+
+<img width="1110" alt="image" src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/f2b3b5eb-61bd-4941-9635-80c5e581d1c5">
+
+<br>
+
+## Files of Records
+
+- High level DBMS manages tables of tuples; In disk, such tables are implemented as **files of records**;
+  - A **file** consists of one or more **blocks**.
+  - Each **block** contains one or more **records**
+  - Each **record** corresponds to one **tuple**:
+  - Each **attribute** corresponds to one **field**
+- Representing data types as fields; Typically,
+  - Integer : 2 ~ 4 bytes, Float : 4 ~ 8 bytes, Char(n) : n bytes array;
+- Types of Records
+  - If every record in the file has exactly the same size, the file is made up of **fixed-length records**.
+  - If different records in the file have different sizes, the file is made up of **variable-length records**.
+
+<br>
+
+## Types of Records
+
+(a) A fixed-length record with 6 fields and size of 71 bytes
+(b) A record with 2 variable-length fields and 3 fixed-length fields 
+
+<img width="1080" alt="image" src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/fbb0ac54-2552-4143-8fa9-11aa87325039">
+
+<br>
+
+## Blocking Factor
+
+- The records in a file must be stored on disk blocks because a block is the unit of data transfer.
+- Suppose block size is **B** bytes; For fixed length records of R bytes, we can store **bfr = B/R** records per block; The bfr is called **blocking factor** (= **the number of records** stored **per block**)
+  - **Bfr = B/R** where B : block size, R : record size
+  - For example, B = 1,024 bytes, R = 100 bytes,
+  - Then, bfr = B/R = 1024/100 = 10 records/block (24 bytes in each block are unused space)
+- Given the **number of records(r), how many blocks (b)** are needed?
+  - **b = r/Bfr**
+  - For example, r = 10,000 records
+  - Then, b = r/Bfr = 10,000/10 = 1,000 blocks
+ 
+<br>
+
+## Placing Records on Blocks
+
+- There may be unused space in each block equal to B – (bfr * R) bytes. To utilize this unused space, we can store a part of a record on one block and the rest on another. This is called spanned. Whenever R > B, (i.e, image, audio, . . ), we must use spanned organization.
+- If records are not allowed to cross block boundaries, leaving possibly unused space in each block, this is called unspanned. This method is used with fixed-length records having B > R.
+- For variable-length records, either spanned or unspanned organization can be used. If the average record size is large, it is better to use spanning to reduce the lost space in each block.
+- For variable-length records, using spanned organization, each block may store different number of records; In this case, blocking factor means average number of records per block.
+
+<br>
+
+<img width="1080" alt="image" src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/1b7518b4-e924-4aef-ab75-c352ed6ebc59">
+
+<br>
+
+## How many blocks do we need?
+
+- Employee file의 number of records(r) = 10^6 records 이고, 각 record-size(R) = 100 bytes 일 때, Spanned 와 Unspanned 방식으로 저장할 때 필요한 block의 개수(b)를 각각 계산하라. 단, block size(B) = 2,048 bytes 이다.
+  - (1) Unspanned 방식
+    - bfr = B/R = 2048/100 = 20 records/block (48 bytes: unused space)
+    - b = (r/bfr) = 106 /20 = 50,000 blocks
+  - (2) Spanned 방식
+    - b = total file size / block size (No unused space)
+    -   = (r*R)/B = 106 *100/2048 = 48,829 blocks
+   
+<br>
+
+# Typical File Operations
+
+<img width="1115" alt="image" src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/966e4335-7eba-4699-9c82-b838e7d88471">
+
+<br>
+
+# Typical File Organizations
+
+- The followings are typical file organizations supported by DBMS;
+  - Heap Files : Records are kept by randomly.
+  - Sequential Files : Records are kept by sorted order.
+  - Hashing Files : Records are kept by using hash function.
+  - Tree Indexed Files : Records are kept by using tree indexes.
+- We need to consider which file organizations are efficient for support various file operations?
+
+<br>
+
+## Heap File : Unsorted
+
+- Records are stored by the order of arrival.
+  - New records are **randomly** are inserted in a file.
+  - Records are kept with no specific order
+- Scan
+  - We just read all **b** (=50,000) blocks.
+- Find-Equality
+  - We must use **linear search**;
+  - On average, we must read **0.5b**(= 25,000)
+  - blocks into memory; Very inefficient!
+- Find-Range
+  - We must use **linear search**;
+  - We must read all b(= 50,000) blocks into
+  - memory; Very inefficient!
+
+<br>
+
+- Insert
+  - We just append a new record at the end (after last block) of file.
+  - **Two** (read/write) block access; Very efficient!
+- Delete
+  - We must find the correct block using linear search.
+  - There are two methods; **Immediate** deletion;
+  - This may result in waste of spaces;
+  - Another method is to use **deletion marker** (extra bit);
+  - A record is deleted by setting the bit certain value;
+  - This is called **deferred** deletion
+  - Both method needs periodic file reorganization;
+
+<br>
+
+## Sequential File : Sorted
+
+- Records are physically sorted by some ordering field.
+  - Ordering field : key or non-key
+  - Records are kept with sorted order
+- Scan
+  - We must also read all **b** (=50,000) blocks.
+- Find-Equality
+  - We can use **binary search** effectively, because the file is sorted by ‘age’.
+  - We read only **log2b** (= 16) blocks into
+  - memory; Very efficient!
+- Find-Range
+  - We can also use **binary search** effectively,
+  - We read **log2b** (= 16) + **#matching blocks** into memory;
+
+<br>
+
+<img width="1080" alt="image" src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/da233b91-e2af-498e-89f5-0c5cfc46c286">
+
+<br>
+
+<img width="1080" alt="image" src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/4a8e61e1-3714-416b-8a81-2c2550e02773">
+
+<br>
+
+<img width="1080" alt="image" src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/cd77e094-80ee-4b66-bf12-3b27341ea5d4">
+
+<br>
+
+- Insert
+  - First, we must find the correct block using binary search.
+  - If there is no space, we need to shift 0.5b (25,000) block after insertion;
+  - We must read and write b (50,000) blocks between memory and disk; Very inefficient!
+- Delete
+  - First, we must find the correct block using binary search.
+  - After deletion, we need to shift 0.5b blocks.
+  - We must read and write b blocks between memory and disk; Very inefficient!
+
+<br>
+
 <img width="1110" alt="image" src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/f695a647-a55a-4e31-ae0a-3b0a78ec3534">
 
 <br>
