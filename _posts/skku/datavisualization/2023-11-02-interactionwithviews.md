@@ -1,4 +1,5 @@
-![image](https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/aff7981e-6cf2-4c48-ae54-52a43fa8b541)![image](https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/18ad4826-fcfe-4b8a-b41e-1bcc440a9165)title: "[Data Visualization] Interacting with Views"
+---
+title: "[Data Visualization] Interacting with Views"
 categories:
   - Data Visualization
 tags:
