@@ -28,7 +28,7 @@ toc_icon: "sticky-note"
 
 파이프(`|`), 하이픈(`-`)을 이용하여 column들과 헤더를 생성 및 구분할 수 있다.
 
-```Markdown
+```
 <작성 방법>
 
 | First Header | Second Header |
@@ -48,7 +48,7 @@ toc_icon: "sticky-note"
 셀 너비는 내용에 맞게 알아서 정해지므로 굳이 Markdown 소스 상에서 맞추지 않아도 된다.<br>
 헤더를 구분할 때는 - 를 각 column에 3개 이상 사용해야한다.<br>
 
-```Markdown
+```
 <작성 방법>
 
 | Command    | Description                                    |
@@ -70,7 +70,7 @@ toc_icon: "sticky-note"
 
 표 내에서도 링크, 인라인 코드, 텍스트 스타일과 같은 [서식](https://leechanwoo-kor.github.io/markdown/markdown/)을 기본적으로 사용 가능하다.
 
-```Markdown
+```
 <작성 방법>
 
 | Command      | Description                                        |
@@ -90,7 +90,7 @@ toc_icon: "sticky-note"
 
 헤더 행의 하이픈`-`의 오른쪽, 왼쪽, 양쪽에 콜론`:`을 포함시켜서 오른쪽, 왼쪽, 중앙 정렬할 수 있다.
 
-```Markdown
+```
 <작성 방법>
 
 | Left-aligned | Center-aligned | Right-aligned |
@@ -110,7 +110,7 @@ toc_icon: "sticky-note"
 
 파이프를 셀 내용에 포함시키려면 이스케이프`\`를 사용하면 된다.
 
-```Markdown
+```
 <작성 방법>
 
 | Name     | Character |
