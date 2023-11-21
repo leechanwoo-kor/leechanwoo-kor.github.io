@@ -72,4 +72,4 @@ VSCode 를 이용하여 `.md`파일을 작성하면 자동완성이 적용되어
 
 - [개발일기 - [Markdown] 마크다운 문서 내부 링크 이동](https://a1010100z.tistory.com/8)
 - [마크다운 문서에서 목차 만들기](https://png93.github.io/markdown-link/)
-- https://young-cow.tistory.com/21
+- [https://young-cow.tistory.com/21](https://young-cow.tistory.com/21)
