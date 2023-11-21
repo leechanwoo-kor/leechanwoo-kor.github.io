@@ -37,8 +37,6 @@ toc_icon: "sticky-note"
 | Content Cell | Content Cell  |
 ```
 
-<br>
-
 > | First Header | Second Header |
 > | ------------ | ------------- |
 > | Content Cell | Content Cell  |
@@ -58,8 +56,6 @@ toc_icon: "sticky-note"
 | git status | List all new or modified files                 |
 | git diff   | Show file differences that haven't been staged |
 ```
-
-<br>
 
 > | Command    | Description                                    |
 > | ---------- | ---------------------------------------------- |
@@ -83,8 +79,6 @@ toc_icon: "sticky-note"
 | `git diff`   | Show file differences that **haven't been** staged |
 ```
 
-<br>
-
 > | Command      | Description                                        |
 > | ------------ | -------------------------------------------------- |
 > | `git status` | List all *new or modified* files                   |
@@ -105,8 +99,6 @@ toc_icon: "sticky-note"
 | git diff     |    git diff    |      git diff |
 ```
 
-<br>
-
 > | Left-aligned | Center-aligned | Right-aligned |
 > | :----------- | :------------: | ------------: |
 > | git status   |   git status   |    git status |
@@ -126,8 +118,6 @@ toc_icon: "sticky-note"
 | Backtick | `         |
 | Pipe     | \|        |
 ```
-
-<br>
 
 > | Name     | Character |
 > | -------- | --------- |
