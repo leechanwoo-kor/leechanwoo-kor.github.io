@@ -3,7 +3,8 @@ title: "[Data Visualization] Reduce and Focus+Context"
 categories:
   - Data Visualization
 tags:
-  - Reduce and Focus
+  - Reduce
+  - Focus
   - Context
 toc: true
 toc_sticky: true
