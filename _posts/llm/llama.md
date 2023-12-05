@@ -1,0 +1,272 @@
+---
+title: "[LLM] Meta AI의 Small Gaint Model: LLaMA(Large Language Model Meta AI)"
+categories:
+  - LLM
+tags:
+  - LLaMa
+  - Meta
+  - LLM
+  - Foundation Models
+  - Generative AI
+toc: true
+toc_sticky: true
+toc_label: "Meta AI의 Small Gaint Model: LLaMA(Large Language Model Meta AI)"
+toc_icon: "sticky-note"
+---
+
+ChatGPT의 열풍으로 인해 대중들은 OpenAI와 MS가 Generative AI의 핵심기업으로 인식하는 착시 현상을 겪고 있다. 하지만 최근까지 AI 발전에 가장 많이 공헌한 기업으로 Google과 Meta을 꼽을 수 있다.
+
+Google은 Foundation Model의 근간이 된 Transformer를 비롯하여 BERT, T5, ViT, PaLM등을 공개하였으며, 현재 Pytorch에 사용자가 많이 밀렸지만 AI/ML 프레임워크의 선구자격인 Tensorflow를 제공하였으며, TPU를 자체 설계/구현/운영하면서 가속기 HW에 대한 연구 또한 AI 커뮤니티에 꾸준히 제공하고 있다.
+
+Meta는 OPT와 같은 모델을 오픈소스를 제공하고 있고 있으며, ChatGPT 이전에 BlenderBot은 챗봇 연구에 많은 영감을 주었다. 또한 가장 인기있는 AI/ML 프레임워크인 Pytorch를 오픈소스로 제공하는 곳이 바로 Meta(구 Facebook)이다.
+
+Transformer가 Foundation Model의 대세가 되면서 새로운 모델 아키텍처 연구 대신 대규모 데이터셋를 대규모 컴퓨팅 리소스로 학습 성능을 경쟁하는 시대가 되었다. 이를 바탕으로 Big Tech 기업들은 소규모 업체나 대학 연구실들이 도저히 따라잡을 수 없는 기술적 해자를 견고히 형성해 나고 있다.
+
+<p align="center">
+  <img src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/68bd1f94-24c4-426e-9070-ec0d97f0a7b2"><br>
+  <em>source: Euro Fishing — The Moat</em>
+</p>
+
+점차 폐쇄적으로 변해가는 AI 업계와 달리 Meta는 자체 개발/학습한 모델들을 꾸준히 오픈소스로 제공하고 있다. 최근 발표한 Meta AI의 Foundation Model인 LLaMA 역시 AI 연구자들에게 공개하고 있다. LLaMA에 대한 접근 권한은 구글 독스를 통해 신청할 수 있다.
+
+<br>
+
+## Meta AI LLaMA의 특징
+
+그동안 Foundation Model의 문제점은 추론 시 compute budget을 고려하지 않고 오직 학습 성능에 초점을 맞추었다는 점이다. 예를들어 모델 파라미터를 늘려 모델 성능을 높이는데 성공하였지만, 추론 compute budget의 한계로 인해 현실적으로 추론 서비스가 거의 불가능한 반쪽짜리 모델이 대부분이었다.
+
+<p align="center">
+  <img src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/489b9a55-3412-47cc-88c6-e01e39b830bf"><br>
+  <em>source: Euro Fishing — The Moat</em>
+</p>
+
+최근 Forbes 기사는 학습 비용보다 추론 비용이 더 큰 문제라는 것을 지적한다. ChatGPT를 서비스하는데 하루에 수백만 $가 소요된다는 것이다.
+
+만일 ChatGPT 서비스에 하루에 3백만$/day(필자의 임의의 추정)이라고 가정한다면, 1년에 약 11억$가 서비스 비용으로 지출된다. 또한 SemiAnalysis의 Dylan Patel & Afzal Ahmad는 Google이 ChatGPT와 같은 LLMs으로 검색 서비스를 할 경우, 수익에서 3백억$ 이상을 컴퓨팅에 투자해야 할 것으로 전망하고 있다.
+
+> _“Inference costs far exceed training costs when deploying a model at any reasonable scale,” say Dylan Patel and Afzal Ahmad in SemiAnalysis. “In fact, the costs to inference ChatGPT exceed the training costs on a weekly basis. **If ChatGPT-like LLMs are deployed into search, that represents a direct transfer of $30 billion of Google’s profit into the hands of the picks and shovels of the computing industry.”**_
+
+따라서 이젠 추론 서비스를 고려한 Foundation Model을 만드는 것이 중요했다. 이를 위해선 추론 컴퓨팅 비용은 모델 파라미터에 비례하기 때문에 성능은 유지하면서 모델 파라미터의 사이즈를 줄이는 것이 무엇보다 필요하다.
+
+최근 Google Deepmind의 연구(Traninig Compute-Optimal Large Language Models)는 동일한 compute budget 내에서 더 작은 모델을 더 많은 tokens로 학습시켜 학습 성능은 유지하면서 추론 시 compute budget을 낮추는 방법을 제시한다.
+
+Meta AI는 DeepMind의 연구 결과에 영감을 얻어 추론 compute budget을 고려한 GPT-3(175B) 보다 더 작으면서 고성능 모델인 LLaMA을 발표하였다. Meta AI LLaMA의 간략한 특징은 다음과 같다.
+
+- ***4가지 버전 형태로 릴리즈 (6.7B, 13B, 32.5B, 65.2B)***
+- ***Model Parallelism: 6.7B(1-way), 13B(2-way), 32.5B(4-way), 65.2B(8-way)***
+- ***LLaMA(13B)이 GPT3(175B)보다 1/10 이상 모델 사이즈가 작지만 모든 벤치마크에서 GPT3(175B)를 압도하는 성능을 갖음***
+- ***6.7B 모델은 Single GPU(V100)에 실행 가능함***
+- ***LLaMA(65B)은 DeepMind의 Chinchilla(70B)과 Google Research의 PaLM(540B)와 같은 LLM 만큼 경쟁력이 있음***
+- ***공개 데이터만으로 학습됨***
+- ***최신 모델들의 연구를 반영하여 Transformer 구조를 수정***
+
+<br>
+
+## 모델 Architecture, optimization hyper-parameters
+
+### 1.Model Architecture
+
+다음은 Villia Transformer 구조에서 LLaMA에 수정된 부분이다.
+
+**1) Pre-normalization (from GPT-3)**
+
+- 학습 안정성을 개선하기 위해 각 transformer sub-layer의 입력을 normalization함(GPT-2부터 도입).
+- RMSNorm Normalizing 함수 사용
+
+**2)SwiGLU activation function (from PaLM)**
+
+- 성능 개선을 위해 ReLU를 SwiGLU로 교체함
+
+**3)Rotary Embeddings(from GPTNeo)**
+
+- 절대적인 positional embeddings을 제거하고 RoPE(Rotary Postional Embedding)을 사용함
+
+### 2. Optimization Hyper-Parameters
+
+Meta는 LLaMA 학습에 [AdamW(Adam with decoupled weight decay) optimizer](https://arxiv.org/pdf/1711.05101.pdf)를 사용하였다.
+
+**AdamW optimizer**
+
+- hyper-parameters: beta1=0.9, beta2=0.95
+- weight decay = 0.1, gradient clipping = 1.0
+- 2000 warmup steps
+
+<p align="center">
+  <img src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/e69a487c-4aa0-4d22-8a93-a3cd7f8d3909">
+</p>
+
+<br>
+
+## 데이터셋
+
+Meta AI는 LLaMA 학습을 위해 다른 LLMs의 학습 데이터 소스를 재사용하였다. (총 4.75 TB) Wikipedia의 경우, 2022년 6월~8월까지의 20개국(bg, ca, cs, da, de, en, es, fr, hr, hu, it, nl, pl, pt, ro, ru, sl, sr, sv, uk) 데이터로 아쉽게도 한국어는 빠져있다. 사용 인구가 많은 동아시아 문자(kr, cn, jp)가 빠진 이유는 2Bytes 문자라서 빠진 것이 아닐까 추측된다.
+
+<p align="center">
+  <img src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/7fd8a8c6-9868-4853-ac20-da330654e3c1">
+</p>
+
+BPE(Byte Pair Encoding) 알고리즘으로 데이터를 토큰화하였으며, 토큰화 후에 전체 학습 데이터셋은 1.4 T tokens을 포함한다. 각 토큰은 거의 한번만 학습되었으며, Wikipedia와 Books 데이터셋은 2 epoch 학습되었다.
+
+<br>
+
+## 효과적인 학습 방법
+
+### 학습 최적화
+
+- Multi-head attention을 효율적으로 구현한 [xformers](https://github.com/facebookresearch/xformers) 라이브러리를 사용 → 메모리 사용량과 계산량을 절감함
+- Backward pass 시 재계산되는 activation을 줄이기 위해 linear 레이어와 같은 비싼 계산이 요구되는 activation을 그대로 저장함 (Activation Checkpointing을 연산량에 따라 부분 적용함)
+- 가능한한 activations의 계산과 GPU간의 통신을 중첩시킴
+
+### 학습 시스템
+
+- LLaMA-65B 학습 시, 1.4T tokens 학습을 위해 대략 21 일 걸림 (Dec. 2022 ~ Feb. 2023)
+- 380 tokens/sec/GPU on 2048 A100 GPU(80GB) → 256 대 GPU Servers 사용
+
+<p align="center">
+  <img src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/bd93cec9-dda4-4ede-9d14-815e3a16478d">
+</p>
+
+## 벤치마크 측정 결과
+
+저자들은 Zero-shot 및 Few-shot task를 포함한 20개의 벤치마크에서 GPT-3, Gopher, chinchilla, PaLM과 같은 Foundation Model과 LLaMA를 비교하였다. 이중 대표적인 벤치마크에 대한 결과를 분석하였다.
+
+**Common Sense Reasoning Tasks (Zero-shot)**
+
+- LLaMA-65B가 비슷한 사이즈의 Chinchilla(70B)보다 우수한 성능을 보임
+- PaLM과 비교하였을 때 BoolQ와 WinoGrade를 제외한 전 벤치마크에서 더 좋은 성능을 보임 (PaLM-540B는 LLaMA-65B 대비 8.3x 더 큼)
+- LLaMA-13B는 10배 이상 큰 GPT-3에 비해 PIQA, OBQA를 제외한 대부분의 벤치마크에서 우수한 성능을 보임
+
+<p align="center">
+  <img src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/46711173-5ff2-4ddb-ad23-480570ac8716">
+</p>
+
+**Closed-book Question Answering**
+
+- LLaMA-65B는 NaturalQuestions와 TriviaQA에서 SOTA 성능을 보임
+- LLaMA-13B는 Chinchilla와 경쟁할 수 있는 수준이며 GPT-3과 비교하였을 때 전 벤치마크에서 압도적인 성능을 보임.
+- LLaMA-13B는 V100에서도 추론할 수 있는 모델 사이즈임
+
+<p align="center">
+  <img src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/1800800d-1fe0-44a2-b0cf-3127d285a8ec">
+</p>
+
+**Code Generation**
+
+- 자연어로 서술된 설명에 따라 코드를 생성하는 모델의 능력을 평가함
+- 모델들은 작성해야 하는 프로그램을 설명하는 몇 개의 문장과 일부 입력-출력 예제를 받아 설명에 적합한 python 코드를 생성해야 함.
+- Code를 finetuning 하지 않았을 경우, LLaMA는 LaMDA와 PaLM와 같은 다른 foundation model을 압도함
+- **Code-specific token으로 모델을 finetuning하면 코드 생성 능력을 획기적으로 개선시키는 것이 가능함.** 일례로 PaLM-Coder는 HumanEval@1 테스트에서 기존 26.2%(PaLM-540B)를 36%까지 개선시킬 수 있다고 함
+
+<p align="center">
+  <img src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/ec63ad06-6e2d-4a16-a182-c4aa3b3f5a8c">
+</p>
+
+**Massive Multitask Language Understanding(MMLU)**
+
+- MMLU는 다양한 영역(인문학, STEM 및 사회 과학 등)에 대한 객관적인 질문으로 구성됨
+- LLaMA-65B는 GPT-3보다 더 우수하지만 Chinchilla와 PaLM에 비해 떨어지는 벤치마크 결과를 보임.
+- 이와 같은 결과는 LLaMA의 학습 데이터(ArXiv, Gutenberg, Book3)양이 총 177GB인 반면, Chinchilla와 PaLM은 최대 2TB의 책으로 학습되었기 때문으로 설명됨
+
+<p align="center">
+  <img src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/f3843e3e-68b9-4364-919b-295e9932e8ff">
+</p>
+
+**Instruction Finetuning**
+
+아주 적은 양의 명령어 데이터 finetuning만으로 LLaMA의 MMLU 성능이 향상되고 모델이 명령에 따르는 능력이 더욱 향상됨을 관찰함.
+명령어 finetuning을 통해 LLaMA의 MMLU을 63.4에서 68.9(w/ 명령어 finetuning. LLaMA-I)까지 개선
+
+<p align="center">
+  <img src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/c4584c04-eb61-4253-aa26-31eda4cdd1f3">
+</p>
+
+## Bias, Toxicity & Misinformation
+
+LLM는 학습 데이터에 포함된 bias을 재생산하고 이를 증폭시키는 문제를 가지고 있으며 종종 완전히 잘못된 응답을 생성할 수 있다.
+
+LLaMA 또한 웹에서 가져온 데이터를 학습하였기 때문에 bias과 독성 등이 포함될 수 있으므로 Meta의 저자들은 독성 컨텐츠 생성 및 진실성 탐지를 측정하는 다양한 벤치마크로 LLaMA를 평가하였다.
+
+### RealToxicityPrompts
+
+- RealToxicityPrompts는 100k 프롬프트로 구성된 벤치마크 테스트로 생성된 텍스트는 독성 점수(0:non-toxic ~ 1:toxic)로 평가됨. 독성 점수는PerspectiveAPI로 자동적으로 평가됨
+- Respectful 버전 프롬프트는 “Complete the follwing sentence in a polite, respectful, and unbiased manner:”라는 문장으로 시작되고 Basic 버전 프롬프트는 이 문장이 없음
+- LLaMA-7B/13B/33B까지는 Respectful 버전의 독성이 낮은 반면, LLaMA-65B은 오히려 Basic 버전보다 Respectful 버전의 독성이 더 높은 것으로 관찰됨
+- 이와 같은 현상은 Gopher(280B)가 Chinchilla(70B)보다 더 나쁜 독성 점수를 얻는 것과 유사한 결과임.
+- 모델 크기와 독성간의 관계는 Family Model 이내 비교가 유효함
+
+<p align="center">
+  <img src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/d67eb2ba-cf4e-4bbf-a3d4-f8e3ecff4eda">
+</p>
+
+### CrowS-pairs
+
+- CrowS-pairs는 9가지 범주(성별, 종교, 인종/피부색, 성적 취향, 연령, 국적, 장애, 외모 및 사회경제적 지위)의 bias를 측정하는 벤치마크임 (더 높은 점수를 얻을수록 더 높은 bias를 나타냄)
+- LLaMA가 GPT3와 OPT에 비해 평균적으로 좀더 낮은 bias를 갖으나, 종교(+10), 연령(+6), 성별(+6)의 bias가 다른 모델에 비해 심한 것으로 나타남.
+- 이러한 bias의 경향은 여러 필터링 단계에도 불구하고 CommonCrawl의 bias에 의한 것으로 예상됨
+
+<p align="center">
+  <img src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/d67eb2ba-cf4e-4bbf-a3d4-f8e3ecff4eda">
+</p>
+
+### TruthfulQA
+
+- TruthfulQA는 모델의 진실성을 측정하여 잘못된 정보나 잘못된 주장을 생성하는 모델의 위험을 평가하는 벤치마크임
+- LLaMA는 모델 크기가 높을수록 모델의 진실성이 높아지며 LLaMA 모든 버전이 GPT-3보다 전체적으로 더 높은 점수를 얻었음
+- 하지만 정답률이 여전히 낮은 수준으로 LLaMA가 환각으로 인해 오답을 이야기할 가능성이 있음을 보여줌
+
+<p align="center">
+  <img src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/de6ed85d-9075-445c-b2bb-6329ce19fc19">
+</p>
+
+<br>
+
+## Carbon Footprint 영향
+
+Meta는 다음과 같이 LLaMA 모델별 Carbon Footprint를 제시하였다.
+
+<p align="center">
+  <img src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/dadb2f8a-c9d1-4c36-b96e-8c1086cd7902">
+</p>
+
+### 탄소 배출량
+
+위의 표에서 알 수 있듯 LLaMA-65B를 학습하는데 173톤의 CO2를 배출한다. CO2 배출량은 다음과 같이 계산할 수 있다.
+
+<p align="center">
+  <img src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/f6c62a49-be1e-4cdc-98e1-9a18f0f90b15">
+</p>
+
+### 전기 사용량 & 비용
+LLaMA-65B을 학습하기 위해 449 MWh를 소모한다. 449MWh를 한전의 산업용(을) 요금 중에서 가장 비싼 요금(고압A: 선택III)을 적용하여 비용으로 환산하면 최대 50억원의 전기료를 납부해야 한다.
+
+- 조건-1: 산업용(을*) 고압A: 선택III (*광업, 제조업 및 기타사업에 전력을 사용하는 계약전력 300kW 이상의 고객용)
+- 조건-2: 계약전력 449,000kW, 월간 449,000kWh 사용시 전기요금 계산, 역률(지상:90%, 진상:95%)
+- https://cyber.kepco.co.kr/ckepco/front/jsp/CY/J/A/CYJAPP000NFL.jsp#
+
+LLaMA 학습을 위해 사용된 GPU 서버가 256대이므로 DGX A-100을 약 2억으로 잡았을 때, 서버 비용만 512억원이다. 만일 LLaMA 학습 시 50억원의 전기료를 지출해야 한다면 LLaMA 학습을 10회 이상(from scratch 기준)하면 전체 서버 비용을 상회하는 엄청난 비용인 것이다. (물론 가장 비싼 요금으로 환산한 결과로 실제 전기료는 30~40억내 일 것으로 판단된다.)
+
+위의 결과로 부터 전체 모델 서비스 비용에서 전기 요금이 차지하는 비중이 대단히 높은 것으로 예상된다.
+
+### MWh/token/Param 비율
+
+LLaMA의 각 전력사용량을 Token과 Param로 Noramlization하면 다음과 같은 그래프를 얻을 수 있다. LLaMA-13B의 경우, LLaMA-7B와 같은 1T token를 학습하였기 때문에 상대적으로 MWh/Token/Param 비율이 가장 낮다.
+
+결과적으로 더 많은 token을 학습할수록 학습 시간이 늘어나므로 전력소모량이 늘어나며, 같은 양의 token을 학습하였을 때 모델 파라미터가 많을수록 Energy-efficient한 것을 알 수 있다. (물론 모델 파라미터에 비례하여 총 에너지 소모량은 증가한다.)
+
+<p align="center">
+  <img src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/9cf6fbc5-0dee-49d2-824e-fc9642e47c76">
+</p>
+
+## 결론 : LLaMA = Small Giant Model
+
+LLaMA-13B의 경우 GPT-3보다 10배이상 작음에도 불구하고 대부분의 평가서 GPT-3보다 우수한 성능을 보이며, 더 나아가 LLaMA-65B의 경우 대부분의 벤치마크에서 Chinchilla, Gopher, GPT-3, PaLM와 유사하거나 더 뛰어난 결과를 보였다. LLaMA는 향후 더 큰 모델에 더 많은 token을 학습시킨 모델을 발표할 계획이다.
+
+LLaMA의 의의는 Google Deepmind의 연구결과를 계승하여 대규모 학습 데이터셋으로 더 작은 모델을 학습시켰을 때 모델 성능을 높을 수 있다는 것을 재확인하였다는 점이다.
+
+2020년 GPT-3의 등장을 시작으로 모델 파라미터를 늘려 모델 성능을 증가시키려는 동향이 2022년 ChatGPT의 등장과 함께 모델 사이즈를 추론 서비스가 가능한 수준으로 제한시키면서 대규모 학습 데이터셋을 학습시켜 모델 성능을 유지하는 방법으로 전환될 것으로 보인다.
+
+현재 GPT-3(175B)기반 ChatGPT가 A100 GPU 8대(서버 1대)로 서비스되고 있다라고 추정되고 있다. 반면 LLaMA-13B은 V100 (32GB) 1대로 실행시킬 수 있으므로 ChatGPT에 비해 추론 비용을 크게 줄일 수 있을 것으로 예상된다.
+
+또한 Meta는 OpenAI가 API 유료화를 추구하는 것과 달리 LLaMA를 비상업적 라이선스로 출시하고 완전 오픈은 아니지만 연구자들에게 선별적으로 모델 액세스 권한을 부여하고 있다. 그 이유는 작년 Meta의 논문 생성 AI인 Galactica가 수준미달로 3일만에 폐쇄된 사례가 있어서 완전 오픈소스화가 아닌 선별적으로 모델 액세스를 허용하는 것으로 정책을 선회한 것으로 보인다.
+
+LLaMA가 Galactica의 사례로부터 교훈을 얻어 더 좋은 연구결과를 기대해본다.
