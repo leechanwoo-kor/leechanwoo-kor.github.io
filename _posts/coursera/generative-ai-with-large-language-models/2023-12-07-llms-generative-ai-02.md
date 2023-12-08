@@ -1,5 +1,5 @@
 ---
-title: "[Generative AI with Large Language Models] Introduction to LLMs and the generative AI project lifecycle"
+title: "[Generative AI with Large Language Models] Introduction to LLMs and the generative AI project lifecycle (2)"
 categories:
   - Generative AI with Large Language Models
 tags:
