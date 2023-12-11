@@ -1,1 +1,2 @@
-
+- 실습 URL
+  - https://github.com/aws-samples/aws-ai-ml-workshop-kr/tree/master/sagemaker/sm-special-webinar/setup
