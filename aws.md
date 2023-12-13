@@ -8,6 +8,20 @@
 
 <br>
 
+### Agenda: Simplifying DL workflows on AWS
+
+<p align="center">
+  <img src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/30bd86c2-0fa9-4154-9bc9-beea554d4b82">
+</p>
+
+- Development experience (IDE)
+- DL Frameworks
+- Infrastructure Compute (CPUs, GPUs), Storage
+
+<p align="center">
+  <img src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/09583dd5-9539-4cc3-9896-ad8f117a02fb">
+</p>
+
 <details>
 <summary>AWS</summary>
 
@@ -51,6 +65,24 @@
   - **5.672** USD/시간 (2023-12-13, 미국 동부(버지니아 북부) AWS 리전 기준)
 
 <br>
+
+### Commands
+
+- `lspci | grep -i nvidia` : GPU 확인
+```
+$ lspci | grep -i nvidia
+00:1e.0 3D controller: NVIDIA Corporation GA102GL [A10G] (rev al)
+```
+
+- `gcc --version` : gcc check
+```
+$ gcc --version
+-bash: gcc: command not found
+```
+
+
+
+
 <br>
 
 
