@@ -74,13 +74,9 @@ $ lspci | grep -i nvidia
 00:1e.0 3D controller: NVIDIA Corporation GA102GL [A10G] (rev al)
 ```
 
-- `gcc --version` : gcc check
-```
-$ gcc --version
--bash: gcc: command not found
-```
+### SSH 연결
 
-
+`ssh -i {key_address} {user_id@public IPv4 DNS}`
 
 
 <br>
