@@ -68,10 +68,17 @@
 
 ### Commands
 
+### GPU 확인
+
 - `lspci | grep -i nvidia` : GPU 확인
 ```
 $ lspci | grep -i nvidia
 00:1e.0 3D controller: NVIDIA Corporation GA102GL [A10G] (rev al)
+```
+
+- NVIDIA GPU 상태 확인
+```
+$ nvidia-smi
 ```
 
 ### SSH 연결
@@ -84,17 +91,25 @@ $ lspci | grep -i nvidia
   - : apt-get은 인덱스를 가지고 있는데 이 인덱스는 /etc/apt/sources.list에 있습니다. 이곳에 저장된 저장소에서 사용할 패키지의 정보를 얻습니다.
 
 ```
-sudo apt-get update
+$ sudo apt-get update
 ```
 
 - 설치된 패키지 업그래이드 : 설치되어 있는 패키지를 모두 새버전으로 업그레이드 합니다.
 
 ```
-sudo apt-get upgrade
+$ sudo apt-get upgrade
 ```
 
-<br>
+### 쿠다 설치 및 확인
 
+```
+$ sudo apt install nvidia-cuda-toolkit # 쿠다 설치
+$ nvcc -v # 쿠다 컴파일러 버전 체크
+```
+
+### 아나콘다 설치
+
+<br>
 
 <details>
 <summary>Amazon SageMaker (추후 적용)</summary>
