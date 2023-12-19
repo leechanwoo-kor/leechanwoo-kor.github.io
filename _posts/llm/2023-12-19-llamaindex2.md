@@ -1,10 +1,15 @@
-![image](https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/3171815e-e157-44dc-a1c6-cdce9db29468)---
+---
 title: "[LlamaIndex] 라마인덱스(LlamaIndex) 활용
 "
 categories:
   - LlamaIndex
 tags:
-  - LlamaIndex
+  - GPT
+  - IN-CONTEXT LEARNING
+  - LLM
+  - NLP
+  - OPEN AI
+  - PROMPT ENGINEERING
 toc: true
 toc_sticky: true
 toc_label: "라마인덱스(LlamaIndex) 활용"
@@ -192,3 +197,8 @@ The three best pieces of advice by Paul to raise money are:
 ## Lama Index vs Langchain: 목표에 따라 선택하기
 
 LamaIndex와 Langchain 중 어느 것을 선택하느냐는 프로젝트의 목표에 따라 달라질 것입니다. LamaIndex는 지능형 검색 도구를 개발하고 싶다면 확실한 선택이며, 데이터 검색을 위한 현명한 저장 메커니즘으로서 탁월합니다. 반대로 플러그인 기능을 갖춘 ChatGPT와 같은 시스템을 개발하고 싶다면 Langchain을 선택하십시오. ChatGPT와 LamaIndex의 여러 인스턴스를 지원할 뿐만 아니라, 멀티태스킹 에이전트를 구축할 수 있도록 하여 기능을 확장합니다. 예를 들어, Langchain을 사용하면 구글 검색과 동시에 파이썬 코드를 실행할 수 있는 에이전트를 만들 수 있습니다. 즉, LamaIndex는 데이터 처리에 탁월하지만, Langchain은 여러 도구를 조정하여 전체적인 솔루션을 제공합니다.
+
+<p align="center">
+  <img src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/3fbc9172-65d1-45a6-8e6c-0d933b7cc147"><br>
+  <em>LlamaIndex Logo Artwork created using Midjourney</em>
+</p>
