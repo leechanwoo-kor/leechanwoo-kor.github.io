@@ -1,3 +1,6 @@
+[![CodeFactor](https://www.codefactor.io/repository/github/leechanwoo-kor/leechanwoo-kor.github.io/badge)](https://www.codefactor.io/repository/github/leechanwoo-kor/leechanwoo-kor.github.io)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/blob/main/LICENSE)
+
 # leechanwoo-kor.github.io
 
 <details>
