@@ -1,13 +1,12 @@
 ---
-title: "[LangChain] LangChain Chat with Your Data
-"
+title: "[LangChain] LangChain, Chat with Your Data"
 categories:
   - LangChain
 tags:
   - LangChain
 toc: true
 toc_sticky: true
-toc_label: "LangChain Chat with Your Data"
+toc_label: "LangChain, Chat with Your Data"
 toc_icon: "sticky-note"
 ---
 
@@ -272,7 +271,9 @@ Not using a vector database, such as:
 
 ### RetrievalQA chain
 
-![image](https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/777bf3b0-efbe-4f1a-80f3-7c71e2f1f346)
+<p align="center">
+  <img src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/777bf3b0-efbe-4f1a-80f3-7c71e2f1f346">
+</p>
 
 이에 대한 일반적인 흐름은, 질문이 들어오고, 우리는 관련 문서를 찾아본 다음, 우리는 시스템 프롬프트와 인간 질문을 언어 모델에 전달하고 답을 얻습니다. 기본적으로 모든 청크를 동일한 컨텍스트 창, 언어 모델의 동일한 호출에 전달합니다.
 
@@ -280,8 +281,47 @@ Not using a vector database, such as:
 
 ### 3 additional methods
 
-![image](https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/0b4d491a-1bd0-4e05-b83d-7a20b909c7e5)
+<p align="center">
+  <img src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/0b4d491a-1bd0-4e05-b83d-7a20b909c7e5">
+</p>
 
 그러나 그에 대한 장단점이 있는 몇 가지 다른 방법을 사용할 수 있습니다. 대부분의 장점은 문서가 많을 때가 있는데, 단순히 문서를 모두 동일한 컨텍스트 창으로 전달할 수 없다는 사실에서 비롯됩니다. 맵리듀스(MapReduce), 리파인(Refine), 맵리랭크(MapRrank)는 짧은 컨텍스트 창의 이 문제를 해결하기 위한 세 가지 방법이 있습니다.
 
 <br>
+
+## 질문 답변(Question Answering)
+
+저희는 기능적인 챗봇을 보유하고 있습니다. 저희는 문서를 로드하는 것부터 시작해서 그것들을 분할하고 벡터 스토어를 만들고 다양한 검색 유형에 대해 이야기하고 질문에 답할 수는 있지만 후속 질문은 처리할 수 없고 대화는 할 수 없습니다. 좋은 소식은 이번 수업에서 해결할 것입니다. 방법을 알아봅시다.
+
+### ConversationalRetrievalChain
+
+<p align="center">
+  <img src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/cdde65fb-87c5-4c10-8b65-f64106c126a3">
+</p>
+
+이제 질문에 답하는 챗봇을 만드는 것으로 끝을 맺을 것입니다. 이것이 할 일은, 이전과 매우 유사하게 보일 것이지만, 우리는 이 채팅 히스토리 개념에 추가할 것입니다. 이것은 여러분이 체인점과 주고 받은 이전의 대화나 메시지입니다. 그러면 채팅 기록이 질문에 답하려고 할 때 상황에 맞게 기록할 수 있습니다. 따라서 후속 질문을 한다면, 여러분이 무슨 말을 하는지 알 수 있을 것입니다.
+
+<br>
+
+### Modular Components
+
+<p align="center">
+  <img src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/cdde65fb-87c5-4c10-8b65-f64106c126a3">
+</p>
+
+여기서 주목해야 할 중요한 점은 지금까지 이야기했던 셀프 쿼리나 압축 같은 멋진 검색 유형은 모두 여기서 사용할 수 있다는 것입니다. 저희가 이야기한 모든 구성 요소는 매우 모듈식이고 서로 잘 맞을 수 있습니다. 채팅 기록이라는 개념에 추가하는 것뿐입니다.
+
+<br>
+
+<p align="center">
+  <img src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/1f16dacb-6e96-483b-a4f1-366f813ccc07">
+</p>
+
+<br>
+
+## Conclusion
+
+LangChain을 사용하여 LangChain의 80개 이상의 다양한 문서 로더를 사용하여 다양한 문서 소스에서 데이터를 로드하는 방법에 대해 설명했습니다. 거기서 우리는 문서를 청크로 나누고, 그렇게 할 때 도착하는 많은 뉘앙스에 대해 이야기합니다. 그런 다음 해당 청크를 가져와 임베딩을 만들고 벡터 저장소에 넣어 쉽게 의미 검색을 가능하게 하는 방법을 보여줍니다. 그러나 의미 검색의 몇 가지 단점과 발생하는 특정 에지 경우에 실패할 수 있는 부분에 대해서도 이야기합니다.
+
+다음은 검색입니다. 여기서는 에지 케이스를 극복하기 위한 새롭고 고급이며 정말 재미있는 검색 알고리즘에 대해 이야기합니다. 다음 검색된 문서를 LLM과 결합하여 사용자 질문을 받아 LLM에 전달하고 원래 질문에 대한 답변을 생성합니다. 하지만 아직 한 가지 부족한 것이 있는데, 그것의 대화적 측면입니다.
+
