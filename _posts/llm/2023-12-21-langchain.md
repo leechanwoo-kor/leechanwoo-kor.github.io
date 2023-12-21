@@ -2,14 +2,9 @@
 title: "[LangChain] LangChain Chat with Your Data
 "
 categories:
-  - LlamaIndex
+  - LangChain
 tags:
-  - GPT
-  - IN-CONTEXT LEARNING
-  - LLM
-  - NLP
-  - OPEN AI
-  - PROMPT ENGINEERING
+  - LangChain
 toc: true
 toc_sticky: true
 toc_label: "LangChain Chat with Your Data"
@@ -180,10 +175,113 @@ Lang Chain에는 매우 다양한 종류의 스플리터가 있으며, 이번에
 
 전체 엔드 투 엔드 워크플로우를 상기시키기 위해, 우리는 문서부터 시작하여, 그 문서들의 작은 분할들을 만들고, 그 문서들의 임베딩을 만든 다음, 그 모든 문서들을 벡터 저장소에 저장합니다. 벡터 스토어는 나중에 비슷한 벡터를 쉽게 찾을 수 있는 데이터베이스입니다. 이는 당면한 질문과 관련된 문서를 찾으려고 할 때 유용할 것입니다. 그런 다음 당면한 질문을 선택하여 임베딩을 생성한 다음 벡터 저장소의 모든 다른 벡터와 비교한 다음 가장 유사한 것을 선택할 수 있습니다.
 
-![image](https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/800bd16a-88af-43d1-84ab-87b9b2494610)
+<p align="center">
+  <img src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/800bd16a-88af-43d1-84ab-87b9b2494610">
+</p>
 
 <br>
 
 그런 다음 가장 유사한 n개의 청크를 가져다가 질문과 함께 LLM에 전달하고 답을 얻습니다. 나중에 그 모든 것을 다룰 것입니다.
 
-![image](https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/bba8ae7d-daa2-41f2-9961-fe5e2c310a8c)
+<p align="center">
+  <img src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/bba8ae7d-daa2-41f2-9961-fe5e2c310a8c">
+</p>
+
+<br>
+
+## 검색(Retrieval)
+
+시맨틱 검색의 경우 상당한 양의 사용 사례에 대해 꽤 잘 작동하는 것을 보았습니다. 하지만 에지 케이스도 보았는데 어떻게 일이 조금 잘못될 수 있는지도 보았습니다. 이번에서는 검색에 대해 자세히 알아보고 이러한 에지 케이스를 극복하기 위한 몇 가지 고급 방법에 대해 알아보겠습니다. 검색은 지난 기간동안 이야기하고 있는 많은 기술들이 새로운 것이라고 생각하기 때문입니다. 이것은 최첨단의 주제이기 때문에 여러분은 바로 선두에 설 것입니다.
+
+이번에는 검색에 대해 알아보겠습니다. 쿼리 시간에 가장 관련성이 높은 분할을 검색하고 싶을 때 중요합니다. 의미 유사성 검색에 대해 이전에 이야기했지만 여기서는 몇 가지 다른 고급 방법에 대해 이야기할 것입니다.
+
+<p align="center">
+  <img src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/5d6b50cb-7817-4570-a973-04e68e13490f">
+</p>
+
+- Accessing/indexing the data in the vector store
+  - Basic semantic similarity
+  - Maximum marginal relevance
+  - Including Metadata
+- LLM Aided Retrieval
+
+<br>
+
+### Maximum marginal relevance(MMR)
+
+<p align="center">
+  <img src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/eaf4868e-b820-4c6e-a02c-7370f866dd87">
+</p>
+
+첫 번째로 다룰 내용은 최대 한계 관련성(Maximum Marginal Reliacity), 즉 MMR입니다. 그래서 이 아이디어의 배경에는 항상 임베딩 공간에서 쿼리와 가장 유사한 문서를 가져온다면, 엣지 케이스에서 본 것처럼 다양한 정보를 실제로 놓칠 수 있다는 것입니다. 이 예에서는 모든 흰 버섯에 대해 묻는 요리사가 있습니다. 가장 유사한 결과를 살펴보면, 이 문서들은 처음 두 문서가 될 것입니다. 이 문서들은 결실체에 대한 질문과 비슷한 많은 정보를 가지고 있고 모두 흰색입니다. 하지만 우리는 그것이 정말로 독이 있다는 사실과 같은 다른 정보도 확실히 얻고 싶습니다. 그래서 MMR을 사용하는 것이 다양한 문서 세트를 선택할 수 있기 때문에 이것이 중요한 역할을 합니다.
+
+<br>
+
+### MMR algorithm
+
+<p align="center">
+  <img src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/84a3fe64-bf22-4d1a-b7e3-727fd02e2eec">
+</p>
+
+MMR 뒤에 있는 아이디어는 우리가 질의를 보낸 후, "fetch_k"는 우리가 얼마나 많은 응답을 얻는지를 결정하기 위해 제어할 수 있는 매개 변수인 응답 집합을 처음에 얻는다는 것입니다. 이것은 오직 의미론적 유사성에 기초합니다. 그런 다음, 우리는 그 작은 문서 집합을 사용하여 의미론적 유사성에 기초하여 가장 관련성이 높은 문서뿐만 아니라 다양한 문서에 최적화합니다. 그리고 해당 문서 집합에서 사용자에게 반환할 최종 "k"를 선택합니다.
+
+<br>
+
+### LLM Aided Retrieval
+
+<p align="center">
+  <img src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/33a4a346-9445-43d5-a735-f003878884a7">
+</p>
+
+저희가 할 수 있는 또 다른 검색 유형은 셀프 쿼리라고 하는 것입니다. 따라서 의미론적으로 검색하려는 내용뿐만 아니라 필터를 수행하려는 일부 메타데이터에 대한 언급이 포함된 질문이 있을 때 유용합니다. 자, 1980년에 만들어진 외계인에 관한 영화에는 어떤 것들이 있나요? 이것은 두 가지 요소로 구성되어 있습니다. 의미론적인 부분이 있습니다. 에일리언이 약간 있습니다. 그래서 우리는 우리의 영화 데이터베이스에서 에일리언을 찾고자 합니다.
+
+그러나 각 영화에 대한 메타데이터를 실제로 참조하는 작품도 있습니다. 그 해는 1980년이어야 한다는 사실입니다. 우리가 할 수 있는 것은 언어 모델 자체를 사용하여 원래 질문을 필터와 검색어 두 개로 나눌 수 있다는 것입니다. 대부분의 벡터 저장소에서는 메타데이터 필터를 지원합니다. 그래서 1980년처럼 메타데이터를 기반으로 레코드를 쉽게 필터링할 수 있습니다.
+
+<br>
+
+### Compression
+
+<p align="center">
+  <img src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/6881ecf0-c767-46f8-9abc-f1280dd260f2">
+</p>
+
+마지막으로 압축에 대해서 말씀드리겠습니다. 이는 검색된 지문 중 가장 관련성이 높은 부분만 추출하는 데 유용할 수 있습니다. 예를 들어, 질문을 할 때 처음 한두 문장만 관련된 부분이더라도 저장되어 있던 문서 전체를 돌려받습니다. 그런 다음 압축을 사용하여 모든 문서를 언어 모델을 통해 실행하고 가장 관련성이 높은 세그먼트를 추출한 다음 가장 관련성이 높은 세그먼트만 최종 언어 모델 호출로 전달할 수 있습니다. 이것은 언어 모델에 더 많은 전화를 거는 비용이 들지만, 최종 답을 가장 중요한 것에만 집중하기에도 정말 좋습니다. 그래서 약간의 상쇄 효과가 있습니다.
+
+<br>
+
+### Other types of retrieval
+
+Not using a vector database, such as:
+- SVM
+- TF-IDF
+- ...
+
+<br>
+
+## 질문 답변(Question Answering)
+
+주어진 질문에 관련된 문서를 가져오는 방법에 대해 검토했습니다. 다음 단계는 문서를 가져가서 원래 질문을 가지고 언어 모델에 전달한 후 질문에 답하도록 요청하는 것입니다. 그것과 당신이 그 작업을 수행할 수 있는 몇 가지 다른 방법에 대해 검토할 것입니다.
+
+이번에는 방금 검색한 문서로 질문에 답변하는 방법에 대해 알아보겠습니다. 이것은 우리가 모든 저장과 섭취를 마친 후에, 그리고 관련된 스플릿을 가져온 후에 나타납니다. 이제 우리는 그것을 언어 모델로 전달하여 답을 얻어야 합니다.
+
+<p align="center">
+  <img src="https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/8b2278ff-0ee7-499f-affd-fc25bfdfc921">
+</p>
+
+<br>
+
+### RetrievalQA chain
+
+![image](https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/777bf3b0-efbe-4f1a-80f3-7c71e2f1f346)
+
+이에 대한 일반적인 흐름은, 질문이 들어오고, 우리는 관련 문서를 찾아본 다음, 우리는 시스템 프롬프트와 인간 질문을 언어 모델에 전달하고 답을 얻습니다. 기본적으로 모든 청크를 동일한 컨텍스트 창, 언어 모델의 동일한 호출에 전달합니다.
+
+<br>
+
+### 3 additional methods
+
+![image](https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/0b4d491a-1bd0-4e05-b83d-7a20b909c7e5)
+
+그러나 그에 대한 장단점이 있는 몇 가지 다른 방법을 사용할 수 있습니다. 대부분의 장점은 문서가 많을 때가 있는데, 단순히 문서를 모두 동일한 컨텍스트 창으로 전달할 수 없다는 사실에서 비롯됩니다. 맵리듀스(MapReduce), 리파인(Refine), 맵리랭크(MapRrank)는 짧은 컨텍스트 창의 이 문제를 해결하기 위한 세 가지 방법이 있습니다.
+
+<br>
