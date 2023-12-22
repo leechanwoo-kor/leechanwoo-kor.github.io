@@ -1,9 +1,9 @@
 ---
-title: "[LlamaIndex] 라마인덱스(LlamaIndex) 활용
-"
+title: "[LlamaIndex] 라마인덱스(LlamaIndex) 활용"
 categories:
-  - LlamaIndex
+  - LLM
 tags:
+  - LlamaIndex
   - GPT
   - IN-CONTEXT LEARNING
   - LLM
