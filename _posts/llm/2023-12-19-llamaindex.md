@@ -1,8 +1,7 @@
 ---
-title: "[LlamaIndex] 라마인덱스(LlamaIndex)
-"
+title: "[LlamaIndex] 라마인덱스(LlamaIndex)"
 categories:
-  - LlamaIndex
+  - LLM
 tags:
   - LlamaIndex
 toc: true

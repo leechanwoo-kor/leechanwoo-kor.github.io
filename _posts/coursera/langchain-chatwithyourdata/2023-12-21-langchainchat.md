@@ -1,7 +1,7 @@
 ---
 title: "[LangChain] LangChain, Chat with Your Data"
 categories:
-  - LangChain
+  - LLM
 tags:
   - LangChain
 toc: true
