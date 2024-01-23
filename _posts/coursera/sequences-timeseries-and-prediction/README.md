@@ -13,5 +13,5 @@
 - 신경망이 시계열을 인식하고 예측하는 방법
 
 ## Recurrent Neural Networks for Time Series
-- RNN과 LSTM은 순차적인 데이터를 분류하고 예측하는 데유용
+- RNN과 LSTM은 순차적인 데이터를 분류하고 예측하는 데 유용
 - 시계열적으로 이 네트워크들을 사용하는 방법
