@@ -15,3 +15,8 @@
 ## Recurrent Neural Networks for Time Series
 - RNN과 LSTM은 순차적인 데이터를 분류하고 예측하는 데 유용
 - 시계열적으로 이 네트워크들을 사용하는 방법
+
+## Real-world time series data
+- DNN과 RNN 위에 컨볼루션을 추가
+- 수백 년 동안의 흑점 활동을 측정하는 실제 데이터 시리즈를 사용
+- 모든 것을 종합해하고 그것을 사용하여 예측할 수 있는지 확인
