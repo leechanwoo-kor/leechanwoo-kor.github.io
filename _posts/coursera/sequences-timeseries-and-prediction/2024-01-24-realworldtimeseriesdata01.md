@@ -1,4 +1,4 @@
-![image](https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/96eb77d8-9afb-4c69-9908-c25a7aa93ba2)---
+---
 title: "[TensorFlow] Real-world time series data (1)"
 categories:
   - TensorFlow
