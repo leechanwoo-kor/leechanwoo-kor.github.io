@@ -24,7 +24,7 @@ toc_icon: "sticky-note"
 
 x에 입력 값이 여러 개 있는 경우 일반적으로 데이터 위의 윈도우라고 합니다. 이전에 이러한 윈도우를 생성하기 위해 텐서 플로우 데이터셋에서 도구를 사용하는 방법을 살펴보았습니다. 이번 주에는 해당 코드를 신경망에 공급하고 데이터 위에서 훈련하는 방법을 설명합니다.
 
-```Python
+```python
 def windowed_dataset(series, window_size, batch_size, shuffle_buffer):
   dataset = tf.data.Dataset.from_tensor_slices(series)
   dataset = dataset.window(window_size + 1, shift=1, drop_remainder=True)
@@ -59,7 +59,7 @@ def windowed_dataset(series, window_size, batch_size, shuffle_buffer):
 
 이제 윈도우 데이터셋이 생겼으니 신경망 훈련을 시작할 수 있습니다. 먼저 매우 간단한 선형 회귀 분석부터 시작하겠습니다. 정확도를 측정한 다음 그 부분을 개선하기 위해 노력하겠습니다.
 
-```Python
+```python
 split_time = 1000
 time_train = time[:split_time]
 x_train = series[:split_time]
@@ -73,7 +73,7 @@ x_valid = series[split_time:]
 
 <br>
 
-```Python
+```python
 window_size = 20
 batch_size = 32
 shuffle_buffer_size = 1000
@@ -97,7 +97,7 @@ model = tf.keras.models.Sequential([10])
 
 <br>
 
-```Python
+```python
 model.complie(loss="mse", optimizer=tf.keras.optimizers.SGD(learning_rate=1e-6, momentum=0.9))
 model.fit(dataset, epochs=100, verbose=0)
 ```
@@ -110,7 +110,7 @@ model.fit(dataset, epochs=100, verbose=0)
 
 <br>
 
-```Python
+```python
 print("Layer weights {}".format(l0.get_weights()))
 ```
 
@@ -170,7 +170,7 @@ Layer weights:
 
 <br>
 
-```Python
+```python
 print(series[1:21])
 model.predict(series[1:21][np.newaxis])
 ```
@@ -206,7 +206,7 @@ result = np.array(forecast)[:, 0, 0]
 
 <br>
 
-```Python
+```python
 tf.keras.metrics.mean_absolute_error(x_valid, results).numpy()
 ```
 

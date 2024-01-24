@@ -127,7 +127,7 @@ X 셀은 또한 이전 단계의 상태 행렬을 입력받습니다. 물론 이
 
 ## Outputting a Sequence
 
-```Python
+```python
 model = keras.models.Sequential([
   keras.layers.SimpleRNN(20, return_sequences=True, input_shape=[None, 1]),
   keras.layers.SimpleRNN(20),
@@ -153,7 +153,7 @@ model = keras.models.Sequential([
 
 마지막 차원은 단변량 시계열을 사용하기 때문에 단 하나입니다.
 
-```Python
+```python
 model = keras.models.Sequential([
   keras.layers.SimpleRNN(20, return_sequences=True, input_shape=[None, 1]),
   keras.layers.SimpleRNN(20, return_sequences=True),
@@ -173,7 +173,7 @@ model = keras.models.Sequential([
 
 이를 시퀀스 투 시퀀스 RNN이라고 합니다. 시퀀스 배치가 공급되면 동일한 길이의 시퀀스 배치를 반환합니다. 차원이 항상 일치하지 않을 수도 있습니다. 메모리 판매의 단위 수에 따라 달라집니다. 
 
-```Python
+```python
 model = keras.models.Sequential([
   keras.layers.SimpleRNN(20, return_sequences=True, input_shape=[None, 1]),
   keras.layers.SimpleRNN(20),
@@ -195,7 +195,7 @@ model = keras.models.Sequential([
 
 ## Lambda Layers
 
-```Python
+```python
 model = keras.models.Sequential([
   keras.layers.Lambda(lambda x: tf.expand_dims(x, axis=-1), input_shape=[None]),
   keras.layers.SimpleRNN(20, return_sequences=True, return_sequences=True),

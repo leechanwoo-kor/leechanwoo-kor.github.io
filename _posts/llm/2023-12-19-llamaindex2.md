@@ -156,11 +156,11 @@ LamaIndex를 설치하는 것은 간단한 과정입니다. Pip에서 직접 설
 
 웹 페이지에 특정 통찰력을 조회할 수 있는 간단한 파이썬 스크립트는 다음과 같습니다:
 
-```Python
+```python
 !pip install llama-index html2text
 ```
 
-```Python
+```python
 import os
 from llama_index import VectorStoreIndex, SimpleWebPageReader
 # Enter your OpenAI key below:
