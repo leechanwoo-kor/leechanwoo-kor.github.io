@@ -20,3 +20,7 @@
 - DNN과 RNN 위에 컨볼루션을 추가
 - 수백 년 동안의 흑점 활동을 측정하는 실제 데이터 시리즈를 사용
 - 모든 것을 종합해하고 그것을 사용하여 예측할 수 있는지 확인
+
+<br>
+
+![image](https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/db8bd5ea-1b22-4b8e-9b99-c20d88fba835)
