@@ -96,7 +96,7 @@ GPU는 메뉴로 이동하여 다음을 선택하여 추가할 수 있습니다:
 
 그런 다음 다음 셀을 실행하여 GPU가 인식되는지 확인합니다.
 
-```Python
+```python
 import tensorflow as tf
 
 # Get the GPU device name.
@@ -115,7 +115,7 @@ Found GPU at: /device:GPU:0
 
 torch가 GPU를 사용하기 위해서는 GPU를 장치로 식별하고 지정해야 합니다. 나중에, 우리의 훈련 루프에서, 우리는 데이터를 장치에 로드할 것이다.
 
-```Python
+```python
 import torch
 
 # If there's a GPU available...
@@ -149,7 +149,7 @@ We will use the GPU: Tesla T4
 
 또한 라이브러리에는 토큰 분류, 질문 답변, 다음 문장 예측 등을 위한 작업별 클래스가 포함되어 있습니다. 이러한 미리 작성된 클래스를 사용하면 목적에 맞게 BERT를 수정하는 프로세스가 간소화됩니다.
 
-```Python
+```python
 !pip install transformers
 ```
 
@@ -166,7 +166,7 @@ We will use the GPU: Tesla T4
 
 wget 패키지를 사용하여 Colab 인스턴스의 파일 시스템에 데이터세트를 다운로드합니다.
 
-```Python
+```python
 !pip install wget
 ```
 
@@ -185,7 +185,7 @@ Successfully installed wget-3.2
 
 데이터베이스는 깃허브의 [https://nyu-mll.github.io/CoLA/](https://nyu-mll.github.io/CoLA/)에서 호스팅됩니다.
 
-```Python
+```python
 import wget
 import os
 
@@ -205,7 +205,7 @@ Downloading dataset...
 
 파일 시스템에 데이터 세트의 압축을 풉니다. 왼쪽 사이드바에서 Colab 인스턴스의 파일 시스템을 탐색할 수 있습니다.
 
-```Python
+```python
 # Unzip the dataset (if we haven't already)
 if not os.path.exists('./cola_public/'):
     !unzip cola_public_1.1.zip
@@ -231,7 +231,7 @@ Archive:  cola_public_1.1.zip
 
 pre-training된 BERT를 적용하기 위해서는 모델이 제공하는 토크나이저를 사용해야 하기 때문에 사전 토큰화된 버전을 사용할 수 없다. 이는 (1) 모델이 특정하고 고정된 어휘를 가지고 있고 (2) BERT 토크나이저가 OOV(out-of-vocabulary)를 처리하는 특별한 방법을 가지고 있기 때문이다.
 
-```Python
+```python
 import pandas as pd
 
 # Load the dataset into a pandas dataframe.
@@ -265,7 +265,7 @@ Number of training sentences: 8,551
 
 여기 문법적으로 허용되지 않는 것으로 분류된 다섯 개의 문장이 있습니다. 감정 분석과 같은 것보다 이 작업이 얼마나 더 어려운지 볼 수 있습니다.
 
-```Python
+```python
 df.loc[df.label == 0].sample(5)[['sentence', 'label']]
 ```
 
@@ -279,7 +279,7 @@ df.loc[df.label == 0].sample(5)[['sentence', 'label']]
 
 학습 세트의 문장과 레이블을 숫자 배열로 추출해 봅시다.
 
-```Python
+```python
 # Get the lists of sentences and their labels.
 sentences = df.sentence.values
 labels = df.label.values
@@ -296,7 +296,7 @@ BERT에 텍스트를 공급하려면 토큰으로 분할한 다음 토큰을 Tok
 
 토큰화는 BERT에 포함된 Tokenizer에서 수행해야 합니다. 아래 셀에서 다운로드합니다. 여기서는 "uncased" 버전을 사용할 것입니다.
 
-```Python
+```python
 from transformers import BertTokenizer
 
 # Load the BERT tokenizer.
@@ -316,7 +316,7 @@ Downloading: 100%
 
 출력을 보기 위해 한 문장에 Tokenizer를 적용해 봅시다.
 
-```Python
+```python
 # Print the original sentence.
 print(' Original: ', sentences[0])
 
@@ -404,7 +404,7 @@ BERT에는 두 가지 제약 조건이 있습니다.
 
 아래 셀은 최대 문장 길이를 측정하기 위해 데이터 세트의 토큰화 패스를 하나 수행합니다.
 
-```Python
+```python
 max_len = 0
 
 # For every sentence...
@@ -437,7 +437,7 @@ Max sentence length:  47
 
 처음 네 가지 기능은 `tokenizer.encode`에 있지만 다섯 번째 항목(어텐션 마스크)을 얻기 위해 `tokenizer.encode_plus`를 사용하고 있습니다. 문서는 [여기](https://huggingface.co/docs/transformers/main_classes/tokenizer?highlight=encode_plus#transformers.PreTrainedTokenizer.encode_plus)에 있습니다.
 
-```Python
+```python
 # Tokenize all of the sentences and map the tokens to thier word IDs.
 input_ids = []
 attention_masks = []
@@ -494,7 +494,7 @@ Token IDs: tensor([  101,  2256,  2814,  2180,  1005,  1056,  4965,  2023,  4106
 ## 3.4. 학습 및 검증 분할
 학습에 90%, 검증에 10%를 사용하도록 학습 세트를 나눕니다.
 
-```Python
+```python
 from torch.utils.data import TensorDataset, random_split
 
 # Combine the training inputs into a TensorDataset.
@@ -520,7 +520,7 @@ print('{:>5,} validation samples'.format(val_size))
 
 우리는 또한 torch DataLoader 클래스를 사용하여 데이터 세트에 대한 iterator를 만들 것이다. 이것은 for 루프와 달리 iterator를 사용하면 전체 데이터 세트를 메모리에 로드할 필요가 없기 때문에 훈련 중 메모리를 절약하는 데 도움이 된다.
 
-```Python
+```python
 from torch.utils.data import DataLoader, RandomSampler, SequentialSampler
 
 # The DataLoader needs to know our batch size for training, so we specify it 
@@ -574,7 +574,7 @@ BertForQuestionAnswering
 
 `from_pretrained`에 대한 문서는 [여기](https://huggingface.co/transformers/v2.2.0/main_classes/model.html#transformers.PreTrainedModel.from_pretrained)에서 찾을 수 있으며, 추가 매개 변수는 [여기](https://huggingface.co/transformers/v2.2.0/main_classes/configuration.html#transformers.PretrainedConfig)에서 정의됩니다.
 
-```Python
+```python
 from transformers import BertForSequenceClassification, AdamW, BertConfig
 
 # Load BertForSequenceClassification, the pretrained BERT model with a single 
@@ -603,7 +603,7 @@ model.cuda()
 - 12개의 트랜스포머 중 첫 번째
 - 출력 레이어
 
-```Python
+```python
 # Get all of the model's parameters as a list of tuples.
 params = list(model.named_parameters())
 
@@ -681,7 +681,7 @@ classifier.bias                                                 (2,)
 
 [여기](https://github.com/huggingface/transformers/blob/5bfcd0485ece086ebcbed2d008813037968a9e58/examples/run_glue.py#L109) `run_glue.py`에서 AdamW 옵티마이저를 찾을 수 있습니다.
 
-```Python
+```python
 # Note: AdamW is a class from the huggingface library (as opposed to pytorch) 
 # I believe the 'W' stands for 'Weight Decay fix"
 optimizer = AdamW(model.parameters(),
@@ -691,7 +691,7 @@ optimizer = AdamW(model.parameters(),
 
 ```
 
-```Python
+```python
 from transformers import get_linear_schedule_with_warmup
 
 # Number of training epochs. The BERT authors recommend between 2 and 4. 
@@ -731,7 +731,7 @@ scheduler = get_linear_schedule_with_warmup(optimizer,
 
 Pytorch는 우리에게 모든 상세한 계산을 숨기지만, 우리는 각 라인에서 위의 단계 중 어떤 것이 일어나고 있는지를 짚기 위해 코드에 주석을 달았습니다.
 
-```Python
+```python
 import numpy as np
 
 # Function to calculate the accuracy of our predictions vs labels
@@ -743,7 +743,7 @@ def flat_accuracy(preds, labels):
 
 `hh:mm:ss`와 같이 경과 시간 형식을 지정하는 도우미 기능
 
-```Python
+```python
 import time
 import datetime
 
@@ -760,7 +760,7 @@ def format_time(elapsed):
 
 훈련을 시작할 준비가 되었습니다.
 
-```Python
+```python
 import random
 import numpy as np
 
@@ -1050,7 +1050,7 @@ Total training took 0:03:30 (h:mm:ss)
 
 학습 과정의 요약을 살펴보겠습니다.
 
-```Python
+```python
 import pandas as pd
 
 # Display floats with two decimal places.
@@ -1084,7 +1084,7 @@ Training Loss이 각 epoch에 따라 감소하는 반면, Valid. Loss은 증가�
 
 우리가 정답을 예측하고 있지만 신뢰도가 낮으면 검증 손실은 이를 포착하지만 정확도는 그렇지 않습니다.
 
-```Python
+```python
 import matplotlib.pyplot as plt
 % matplotlib inline
 
@@ -1125,7 +1125,7 @@ plt.show()
 
 테스트 데이터 세트를 준비하려면 학습 데이터와 동일한 단계를 모두 적용해야 합니다.
 
-```Python
+```python
 import pandas as pd
 
 # Load the dataset into a pandas dataframe.
@@ -1189,7 +1189,7 @@ Number of test sentences: 516
 
 테스트 세트가 준비되면 fine-tuning된 모델을 적용하여 테스트 세트에 대한 예측을 생성할 수 있습니다.
 
-```Python
+```python
 # Prediction on test set
 
 print('Predicting labels for {:,} test sentences...'.format(len(input_ids)))
@@ -1237,7 +1237,7 @@ CoLA 벤치마크의 정확도는 "MCC([Mathews Correlation Coefficient](https:/
 
 클래스가 불균형하기 때문에 여기서 MCC를 사용합니다.
 
-```Python
+```python
 print('Positive samples: %d of %d (%.2f%%)' % (df.label.sum(), len(df.label), (df.label.sum() / len(df.label) * 100.0)))
 ```
 
@@ -1245,7 +1245,7 @@ print('Positive samples: %d of %d (%.2f%%)' % (df.label.sum(), len(df.label), (d
 Positive samples: 354 of 516 (68.60%)
 ```
 
-```Python
+```python
 from sklearn.metrics import matthews_corrcoef
 
 matthews_set = []
@@ -1278,7 +1278,7 @@ Calculating Matthews Corr. Coef. for each batch...
 
 각 배치에는 32개의 문장이 포함되어 있으며, 마지막 배치에는 (516 % 32) = 4개의 테스트 문장만 포함되어 있습니다.
 
-```Python
+```python
 # Create a barplot showing the MCC score for each batch of test samples.
 ax = sns.barplot(x=list(range(len(matthews_set))), y=matthews_set, ci=None)
 
@@ -1293,7 +1293,7 @@ plt.show()
 
 이제 모든 배치에 대한 결과를 결합하여 최종 MCC score를 계산하겠습니다.
 
-```Python
+```python
 # Combine the results across all batches. 
 flat_predictions = np.concatenate(predictions, axis=0)
 
@@ -1337,7 +1337,7 @@ Total MCC: 0.498
 
 이 첫 번째 셀([여기](https://github.com/huggingface/transformers/blob/35ff345fc9df9e777b27903f11fa213e4052595b/examples/run_glue.py#L495)서 `run_glue.py`에서 가져온 것)은 모델과 토크나이저를 디스크에 씁니다.
 
-```Python
+```python
 import os
 
 # Saving best-practices: if you use defaults names for the model, you can reload it using from_pretrained()
@@ -1374,7 +1374,7 @@ Saving model to ./model_save/
 
 궁금해서 파일 크기를 확인해 봅시다.
 
-```Python
+```python
 !ls -l --block-size=K ./model_save/
 ```
 
@@ -1389,7 +1389,7 @@ total 427960K
 
 가장 큰 파일은 모델 크기로 약 418MB입니다.
 
-```Python
+```python
 !ls -l --block-size=M ./model_save/pytorch_model.bin
 ```
 
@@ -1399,20 +1399,20 @@ total 427960K
 
 Colab Notebook 세션에서 모델을 저장하려면 모델을 로컬 컴퓨터에 다운로드하거나 Google 드라이브에 복사하는 것이 좋습니다.
 
-```Python
+```python
 # Mount Google Drive to this Notebook instance.
 from google.colab import drive
     drive.mount('/content/drive')
 ```
 
-```Python
+```python
 # Copy the model files to a directory in your Google Drive.
 !cp -r ./model_save/ "./drive/Shared drives/ChrisMcCormick.AI/Blog Posts/BERT Fine-Tuning/"
 ```
 
 다음 기능은 디스크에서 모델을 다시 로드합니다.
 
-```Python
+```python
 # Load a trained model and vocabulary that you have fine-tuned
 model = model_class.from_pretrained(output_dir)
 tokenizer = tokenizer_class.from_pretrained(output_dir)
@@ -1427,7 +1427,7 @@ hugging face의 예제는 가중치 감소를 가능하게 하는 다음과 같�
 
 이 블록은 본질적으로 옵티마이저에게 편향 항(예: 방정식 $y = Wx + b $의 $ b $)에 가중치 감쇠를 적용하지 말라고 말한다. 가중치 감소는 정규화의 한 형태이다. 그레이디언트를 계산한 후 0.99와 같이 곱한다.
 
-```Python
+```python
 # This code is taken from:
 # https://github.com/huggingface/transformers/blob/5bfcd0485ece086ebcbed2d008813037968a9e58/examples/run_glue.py#L102
 

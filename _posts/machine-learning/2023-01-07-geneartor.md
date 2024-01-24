@@ -26,7 +26,7 @@ toc_icon: "sticky-note"
 
 제너레이터의 일반적인 사용 사례는 데이터 스트림 또는 CSV 파일과 같은 큰 파일로 작업하는 것입니다. 이러한 텍스트 파일은 쉼표를 사용하여 데이터를 열로 구분합니다. 이 형식은 데이터를 공유하는 일반적인 방법입니다. 이제 CSV 파일의 행 수를 계산하려면 어떻게 해야 할까요? 아래의 코드 블록은 이러한 행을 세는 한 가지 방법을 보여줍니다.
 
-```Python
+```python
 csv_gen = csv_reader("some_csv.txt")
 row_count = 0
 
@@ -49,7 +49,7 @@ def csv_reader(file_name):
 
 이 함수는 지정된 파일을 열고 `.read()`와 `.split()`을 사용하여 각 행을 별도의 요소로 리스트에 추가합니다. 더 위에서 본 행 계산 코드 블록에서 이 버전의 `csv_reader()`를 사용하면 다음과 같은 출력을 얻을 수 있습니다.
 
-```Python
+```python
 Traceback (most recent call last):
   File "ex1_naive.py", line 22, in <module>
     main()
@@ -64,7 +64,7 @@ MemoryError
 
 이 작업을 수행하기 전에 컴퓨터 속도가 느려지는 것을 볼 수 있습니다. 키보드로 프로그램을 종료해야 할 수도 있습니다. 그렇다면, 어떻게 이 거대한 데이터 파일을 처리할 수 있을까요? `csv_reader()`의 새로운 정의를 살펴보겠습니다.
 
-```Python
+```python
 def csv_reader(file_name)
     for row in open(file_name, "r"):
         yield row
@@ -80,7 +80,7 @@ Row count is 64186394
 
 또한 **리스트 컴프리헨션(list comprehension)** 와 매우 유사한 구문을 가진 **제너레이터 식generator expression(generator comprehension)** 을 정의할 수 있습니다. 이렇게 하면 함수를 호출하지 않고 제너레이터를 사용할 수 있습니다.
 
-```Python
+```python
 csv_gen = (row for row in open(file_name))
 ```
 
@@ -92,7 +92,7 @@ csv_gen = (row for row in open(file_name))
 
 다음은 무한 시퀀스 생성을 살펴보겠습니다. 파이썬에서 유한 시퀀스를 얻으려면 `range()`를 호출하여 리스트 컨텍스트에서 평가합니다.
 
-```Python
+```python
 >>> a = range(5)
 >>> list(a)
 [0, 1, 2, 3, 4]
@@ -100,7 +100,7 @@ csv_gen = (row for row in open(file_name))
 
 그러나 무한 시퀀스를 생성하려면 컴퓨터 메모리가 유한하므로 제너레이터를 사용해야 합니다.
 
-```Python
+```python
 def infinite_sequence():
     num = 0
     while True:
@@ -112,7 +112,7 @@ def infinite_sequence():
 
 `yield` 후에 `num`을 1씩 증가시킵니다. `for` 루프를 사용하여 시도해보면 정말 무한한 것처럼 보일 것입니다.
 
-```Python
+```python
 >>> for i in infinite_sequence():
 ...     print(i, end=" ")
 ...
@@ -131,7 +131,7 @@ Traceback (most recent call last):
 
 `for` 루프를 사용하는 대신 제너레이터 개체에서 `next()`를 직접 호출할 수도 있습니다. 이 기능은 콘솔에서 제너레이터를 테스트할 때 특히 유용합니다.
 
-```Python
+```python
 >>> gen = infinite_sequence()
 >>> next(gen)
 0
@@ -149,7 +149,7 @@ Traceback (most recent call last):
 
 무한 시퀀스는 여러 가지 방법으로 사용할 수 있지만 이를 위한 한 가지 실용적인 용도는 **회문 탐지기(palindrome detectors)** 를 만드는 것입니다. 회문 탐지기는 회문인 문자나 숫자의 모든 시퀀스를 찾을 것입니다. 이는 121 처럼 앞뒤로 똑같이 읽는 단어나 숫자들입니다. 먼저 숫자 회문 탐지기를 정의합니다.
 
-```Python
+```python
 def is_palindrome(num):
     # Skip single-digit inputs
     if num // 10 === 0:
@@ -169,7 +169,7 @@ def is_palindrome(num):
 
 이 코드에서 기본 수학을 이해하는 것에 대해 걱정하지 마세요. 이 함수는 입력 번호를 가져와서 반전하고 반전된 번호가 원래 번호와 동일한지 확인합니다. 이제 무한 시퀀스 제너레이터를 사용하여 모든 숫자 회문의 실행 리스트을 가져올 수 있습니다.
 
-```Python
+```python
 >>> for i in infinite_sequence():
 ...     pal = is_palindrome(i)
 ...     if pal:
@@ -201,7 +201,7 @@ Traceback (most recent call last):
 
 제너레이터 함수는 일반 함수와 동일하게 생겼고 작동하지만 한 가지 정의된 특성이 있습니다. 제너레이터 함수는 `return` 대신 파이썬 `yield` 키워드를 사용합니다. 이전에 작성한 제너레이터 함수를 기억해보세요.
 
-```Python
+```python
 def infinite_sequence():
     num = 0
     while True:
@@ -217,14 +217,14 @@ def infinite_sequence():
 
 리스트 컴프리헨션과 마찬가지로 제너레이터 식을 사용하면 코드의 몇 줄만으로 제너레이터 객체를 빠르게 만들 수 있습니다. 또한 리스트 컴프리헨션이 사용되는 동일한 경우에도 유용하며, 반복하기 전에 전체 개체를 메모리에 저장하고 빌드하지 않고도 생성할 수 있습니다. 즉, 제너레이터 식을 사용할 때 메모리 패널티가 없습니다. 일부 숫자를 제곱하는 예를 들어보겠습니다.
 
-```Python
+```python
 >>> nums_squared_lc = [num**2 for num in range(5)]
 >>> nums_squared_gc = (num**2 for num in range(5))
 ```
 
 `nums_squared_lc`와 `nums_squared_gc는 기본적으로 동일하게 보이지만 한 가지 주요 차이점이 있습니다. 찾을 수 있겠나요? 다음 각 개체를 검사할 때 어떤일이 일어나는지 봅시다.
 
-```Python
+```python
 >>> nums_squared_lc
 [0, 1, 4, 9, 16]
 >>> nums_squared_gc
@@ -237,7 +237,7 @@ def infinite_sequence():
 
 제너레이터가 메모리를 최적화하는 좋은 방법이라는 것을 앞에서 살펴봤습니다. 무한 시퀀스 생성기가 이러한 최적화의 극단적인 예이지만, 방금 본 숫자 제곱 예제를 확대하고 결과 개체의 크기를 검사해 보겠습니다. `sys.getsizeof()`에 대한 호출을 사용하여 이 작업을 수행할 수 있습니다.
 
-```Python
+```python
 >>> import sys
 >>> nums_squared_lc = [i ** 2 for i in range(10000)]
 >>> sys.getsizeof(nums_squared_lc)
@@ -251,7 +251,7 @@ def infinite_sequence():
 
 하지만 한 가지 명심해야 할 것이 있습니다. 리스트가 실행 중인 시스템의 사용 가능한 메모리보다 작으면 리스트 컴프리헨션이 동등한 제너레이터 식을 계산하는 것보다 더 빠를 수 있습니다. 이를 탐구하기 위해 위의 두 가지 컴프리헨션의 결과를 종합하여 요약해 보겠습니다. 
 
-```Python
+```python
 >>> import cProfile
 >>> cProfile.run('sum([i * 2 for i in range(10000)])')
          5 function calls in 0.001 seconds
@@ -295,7 +295,7 @@ def infinite_sequence():
 
 이렇게 하면 제너레이터의 메소드 중 하나를 호출할 때 마다 함수 실행을 다시 시작할 수 있습니다. 이러한 방식으로 모든 기능 평가는 yield 직후에 다시 활성화됩니다. 여러 파이썬 yield문을 사용하여 이를 확인할 수 있습니다.
 
-```Python
+```python
 >>> def multi_yield():
 ...     yield_str = "This will print the first string"
 ...     yield yield_str
@@ -319,7 +319,7 @@ StopIteration
 
 `StopIteration`은 이터레이터의 끝을 알리기 위해 발생하는 자연스러운 예외입니다. 예를 들어 `for` 루프의 경우 `StopIteration`을 중심으로 작성됩니다. `while` 루프를 사용하여 자신만의 `for` 루프를 구현할 수도 있습니다.
 
-```Python
+```python
 >>> letters = ["a", "b", "c", "y"]
 >>> it = iter(letters)
 >>> while True:
@@ -348,7 +348,7 @@ y
 
 이 프로그램은 이전과 같이 숫자 회문을 출력하지만 몇 번의 수정을 통해 출력합니다. 회문을 만나면 새로운 프로그램은 숫자를 추가하고 거기서 다음 숫자를 찾기 시작할 것입니다. 또한 `.throw()`를 사용하여 예외를 처리하고 `.close()`를 사용하여 주어진 숫자가 지나면 제너레이터를 중지합니다. 먼저 회문 탐지기의 코드를 보겠습니다.
 
-```Python
+```python
 def is_palindrome(num):
     # Skip single-digit inputs
     if num // 10 == 0:
@@ -368,7 +368,7 @@ def is_palindrome(num):
 
 이 코드는 이전에 보았던 코드와 동일하지만, 이제 프로그램은 완전히 `True` 또는 `False`를 반환합니다. 또한 다음과 같이 원래 무한 시퀀스 제너레이터를 수정해야 합니다.
 
-```Python
+```python
 def infinite_palindromes():
     num = 0
     while True:
@@ -387,7 +387,7 @@ def infinite_palindromes():
 
 이제, 다른 숫자와 함께 가장 낮은 숫자를 제너레이터로 다시 전송하는 주 함수 코드를 살펴보겠습니다. 예를 들어, 회문이 121이면 `.send()` 1000이 됩니다.
 
-```Python
+```python
 pal_gen = infinite_palindromes()
 for i in pal_gen:
     digits = len(str(i))
@@ -406,7 +406,7 @@ for i in pal_gen:
 
 `.throw()`는 제너레이터에 예외를 적용할 수 있습니다. 아래 예제에서는 6행에서 예외를 제기합니다. 이 코드는 `digits`가 5에 도달하면 `ValueError`을 발생시킵니다.
 
-```Python
+```python
 pal_gen = infinite_palindromes()
 for i in pal_gen:
     print(i)
@@ -439,7 +439,7 @@ ValueError: We don't like large palindromes
 
 이름에서 알 수 있듯이 `.close()`를 사용하면 제너레이터를 중지할 수 있습니다. 이것은 무한 시퀀스 제너레이터를 제어할 때 특히 유용할 수 있습니다. 반복을 중지하기 위해 `.throw()`를 `.close()`로 변경하여 위의 코드를 업데이트 해보겠습니다.
 
-```Python
+```python
 pal_gen = infinite_palindromes()
 for i in pal_gen:
     print(i)
@@ -451,7 +451,7 @@ for i in pal_gen:
 
 6행에서 `.throw()`를 호출하는 대신 `.close()`를 사용합니다. `close()`를 사용하면 유한 이터레이터의 끝을 알리는 데 사용되는 예외인 `StopIteration`이 증가한다는 장점이 있습니다.
 
-```Python
+```python
 11
 111
 1111
@@ -493,26 +493,26 @@ photobucket,Photobucket,60,web,Palo Alto,CA,1-Mar-05,3000000,USD,a
 
 일반적으로 `pandas`와 같은 패키지로 이 기능을 수행할 수 있지만 몇 개의 제너레이터로도 이 기능을 수행할 수 있습니다. 제너레이터 식으로 파일의 각 행을 읽는 것으로 시작합니다.
 
-```Python
+```python
 file_name = "techcrunch.csv"
 lines = (line for line in open(file_name))
 ```
 
 그런 다음 이전 제너레이터 식과 함께 다른 제너레이터 식을 사용하여 각 행을 리스트로 분할합니다.
 
-```Python
+```python
 list_line = (s.rstrip().split(",") for s in lines)
 ```
 
 여기서 첫 번째 제너레이터 라인을 반복하는 제너레이터 `list_line`을 생성했습니다. 이것은 제너레이터 파이프라인을 설계할 때 사용하는 일반적인 패턴입니다. 그런 다음 `techcrunch.csv`에서 열 이름을 가져옵니다. 열 이름은 CSV 파일의 첫 번째 줄을 구성하는 경향이 있으므로 `next()` 같은 호출을 사용하여 열 이름을 가져올 수 있습니다.
 
-```Python
+```python
 cols = next(list_line)
 ```
 
 `next()`에 대한 호출은 `list_line` 제너레이터를 통해 이터레이터를 한 번 진행합니다. 이 모든 것을 합치면. 당신의 코드는 다음과 같을 것입니다.
 
-```Python
+```python
 file_name = "techcrunch.csv"
 lines = (line for line in open(file_name))
 list_line = (s.rstrip().split(",") for s in lines)
@@ -523,13 +523,13 @@ cols = next(list_line)
 
 데이터를 필터링하고 작업을 수행하는 데 도움이 되도록 사전을 만들 수 있습니다. 여기서 키는 CSV의 열 이름입니다.
 
-```Python
+```python
 company_dicts = (dict(zip(cols, data)) for data in list_line)
 ```
 
 이 제너레이터 식을 `list_line`에서 생성한 리스트에서 반복합니다. 그런 다음 `zip()` 및 `dict()`를 사용하여 위에서 지정한 대로 사전을 만듭니다. 이제 네 번째 제너레이터를 사용하여 원하는 자금 조달 라운드를 필터링하고 `raisedAmt`도 끌어옵니다.
 
-```Python
+```python
 funding = (
     int(company_dict["raisedAmt"])
     for company_dict in company_dicts
@@ -541,13 +541,13 @@ funding = (
 
 제너레이터 식에서 이 모든 것을 한 번에 반복하는 것은 아닙니다. 실제로 `for`루프나 `sum()`과 같은 반복 가능한 함수를 사용하기 전까지는 어떤 것도 반복하지 않습니다. 실제로 제너레이터를 통해 반복하려면 지금 `sum()`를 입력하세요.
 
-```Python
+```python
 total_series_a = sum(funding)
 ```
 
 이 모든 것을 종합하면 다음과 같은 스크립트를 생성할 수 있습니다.
 
-```Python
+```python
 file_name = "techcrunch.csv"
 lines = (line for line in open(file_name))
 list_line = (s.rstrip()split(",") for s in lines)

@@ -19,7 +19,7 @@ toc_icon: "sticky-note"
 
 시퀀스의 다음 값을 예측하기 위한 머신러닝에 대해 살펴보았습니다. 데이터를 훈련할 수 있는 윈도우 청크로 분해하는 방법을 배웠고, 선형 회귀와 같은 효과를 내는 간단한 단일 계층 신경망을 살펴봤습니다. 이제 DNN을 사용하여 모델 정확도를 개선할 수 있는지 다음 단계로 넘어가 보겠습니다.
 
-```Python
+```python
 dataset = windowed_dataset(x_train, window_size, batch_size, shuffle_buffer_size)
 
 model = tf.keras.models.Sequential([
@@ -42,7 +42,7 @@ model.fit(dataset, epochs=100, verbose=0)
 
 ![image](https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/7cdd296a-2984-4240-9e4d-6c6e03d1436d)
 
-```Python
+```python
 tf.keras.metrics.mean_absolute_error(x_valid, results).numpy()
 ```
 
@@ -56,7 +56,7 @@ tf.keras.metrics.mean_absolute_error(x_valid, results).numpy()
 
 콜백을 사용하는 기법을 살펴보겠습니다.
 
-```Python
+```python
 dataset = windowed_dataset(x_train, window_size, batch_size, shuffle_buffer_size)
 
 model = tf.keras.models.Sequential([
@@ -82,7 +82,7 @@ history = model.fit(dataset, epochs=100, callbacks=[lr_schedule])
 
 <br>
 
-```Python
+```python
 lrs = 1e-8 * (10 ** (np.arrange(100) / 20))
 plt.semilogx(lrs, history.history["loss"])
 plt.axis([1e-8, 1e-3, 0, 300])
@@ -97,7 +97,7 @@ plt.axis([1e-8, 1e-3, 0, 300])
 Y축은 해당 에포크의 손실을 나타내고 X축은 학습률을 나타냅니다. 이제 이와 같이 비교적 안정적인 곡선의 최저점을 선택하면 10의 약 7배에서 -6을 구할 수 있습니다.
 
 
-```Python
+```python
 window_size = 30
 dataset = windowed_dataset(x_train, window_size, batch_size, shuffle_buffer_size)
 
@@ -117,7 +117,7 @@ history = model.fit(dataset, epochs=500)
 
 <br>
 
-```Python
+```python
 # Plot the loss
 loss = history.history['loss']
 epochs = range(len(loss))
@@ -135,7 +135,7 @@ plt.show()
 
 <br>
 
-```Python
+```python
 # Plot all but the first 10
 loss = history.history['loss']
 epochs = range(10, len(loss))
@@ -157,7 +157,7 @@ plt.show()
 
 ![image](https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/02babc2d-4771-4bdf-9b75-299b5af813a1)
 
-```Python
+```python
 tf.keras.metrics.mean_absolute_error(x_valid, results).numpy()
 ```
 
