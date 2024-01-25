@@ -75,7 +75,7 @@ toc_icon: "sticky-note"
 
 <br>
 
-## DNN(Depp Neural Network)
+## DNN(Deep Neural Network)
 
 <br>![image](https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/3c675f58-9768-40df-816a-0e0355dc4efb){: .align-center}
 *NN vs DNN*{: .align-center}<br>
