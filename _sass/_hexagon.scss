@@ -195,6 +195,20 @@
     fill: var(--color-postman);
 }
 
+.color-amazonaws {
+    background-color: var(--color-amazonaws);
+}
+
+.color-amazonaws::after,
+.color-amazonaws::before {
+    border-top-color: var(--color-amazonaws);
+    border-bottom-color: var(--color-amazonaws);
+}
+
+.color-amazonaws:hover {
+    fill: var(--color-amazonaws);
+}
+
 .color-visualstudio {
     background-color: var(--color-visualstudio);
 }
@@ -779,10 +793,24 @@
 
 .color-scikitlearn::after,
 .color-scikitlearn::before {
-    border-top-color: var(--color-pytoscikitlearnrch);
+    border-top-color: var(--color-scikitlearn);
     border-bottom-color: var(--color-scikitlearn);
 }
 
-.color-scikitlearn:hover {
-    fill: var(--color-scikitlearn);
+.color-googlecloud:hover {
+    fill: var(--color-googlecloud);
+}
+
+.color-googlecloud {
+    background-color: var(--color-googlecloud);
+}
+
+.color-googlecloud::after,
+.color-googlecloud::before {
+    border-top-color: var(--color-googlecloud);
+    border-bottom-color: var(--color-googlecloud);
+}
+
+.color-googlecloud:hover {
+    fill: var(--color-googlecloud);
 }
