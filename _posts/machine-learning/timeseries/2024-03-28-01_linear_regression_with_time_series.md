@@ -1,9 +1,10 @@
 ---
-title: "[Time Series] Linear Regression With Time Series"
+title: "[Time Series] 01. Linear Regression With Time Series"
 categories:
   - Time Series
 tags:
   - Time Series
+  - Linear Regression
 toc: true
 toc_sticky: true
 toc_label: "Linear Regression With Time Series"
