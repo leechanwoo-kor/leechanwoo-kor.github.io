@@ -93,7 +93,7 @@ _A decision tree will fail to extrapolate a trend beyond the training set._
 
 이 차이점이 바로 선형 회귀를 사용하여 추세를 추정하고, 대상을 변환하여 추세를 제거한 다음, 추세가 제거 잔차에 XGBoost를 적용하는 하이브리드 설계의 동기가 됩니다. 신경망(특징 변환기)을 하이브리드화하려면 다른 모델의 예측을 특징으로 포함하는 대신 신경망이 자체 예측의 일부로 포함할 수 있습니다. 잔차에 피팅하는 방법은 실제로 그라데이션 부스팅 알고리즘이 사용하는 방법과 동일하므로 이를 **boosted** hybrid, 예측을 피처로 사용하는 방법은 'stacking'이라고 하며 이를 **stacked** hybrids 라고 부릅니다.
 
-<div class="notice--primary" markdown="1">
+<div class="notice--success" markdown="1">
 **Winning Hybrids from Kaggle Competitions** <br>
 For inspiration, here are a few top scoring solutions from past competitions:
 
