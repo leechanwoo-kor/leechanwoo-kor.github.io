@@ -167,6 +167,7 @@ nfl_data.dropna()
 
 |   | Date | GameID | Drive | qtr | down | time | TimeUnder | TimeSecs | PlayTimeDiff | SideofField | ... | yacEPA | Home_WP_pre | Away_WP_pre | Home_WP_post | Away_WP_post | Win_Prob | WPA | airWPA | yacWPA | Season |
 |---|------|--------|-------|-----|------|------|-----------|----------|--------------|-------------|-----|--------|-------------|-------------|--------------|--------------|----------|-----|--------|--------|--------|
+|   |      |        |       |     |      |      |           |          |              |             |     |        |             |             |              |              |          |     |        |        |        |
 
 0 rows × 102 columns
 
