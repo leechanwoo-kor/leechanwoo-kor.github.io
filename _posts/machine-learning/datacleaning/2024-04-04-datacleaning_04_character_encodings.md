@@ -12,7 +12,7 @@ toc_icon: "sticky-note"
 
 <br>![image](https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/af91093f-993a-430e-8ded-d5107098faf1){: .align-center}<br>
 
-이 포스에서는 다양한 문자 인코딩으로 작업할 것입니다.
+이 포스트에서는 다양한 문자 인코딩으로 작업할 것입니다.
 
 <br>
 
@@ -36,7 +36,7 @@ np.random.seed(0)
 
 ## What are encodings?
 
-**문자 인코딩(character encodings)** 은 원시 바이너리 바이트 문자열(예: 0110100001101001)을 사람이 읽을 수 있는 텍스트(예: "hi")를 구성하는 문자로 매핑하기 위한 특정 규칙 집합입니다. 다양한 인코딩이 있으며, 원래 작성된 인코딩과 다른 인코딩으로 텍스트를 읽으려고 하면 'mojibake'(mo-gee-bah-kay처럼 말함)라는 스크램블된 텍스트가 나오게 됩니다. 다음은 모지바케의 예시입니다:
+**문자 인코딩(character encodings)** 은 원시 바이너리 바이트 문자열(예: 0110100001101001)을 사람이 읽을 수 있는 텍스트(예: "hi")를 구성하는 문자로 매핑하기 위한 특정 규칙 집합입니다. 다양한 인코딩이 있으며, 원래 작성된 인코딩과 다른 인코딩으로 텍스트를 읽으려고 하면 'mojibake'(mo-gee-bah-kay처럼 말함)라는 스크램블된 텍스트가 나오게 됩니다. 다음은 mojibake의 예시입니다:
 
 æ–‡å—åŒ–ã??
 
