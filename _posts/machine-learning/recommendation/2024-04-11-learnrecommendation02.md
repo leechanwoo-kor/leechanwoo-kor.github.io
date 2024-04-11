@@ -24,7 +24,8 @@ toc_icon: "sticky-note"
 
 개인화에서 말하는 희소성은 밀도와 함께 정의되며, 둘 사이의 관계는 `희소성 = 1 - 밀도` 입니다. 밀도의 정의는 유저-아이템 행렬에서 `(값이 존재하는 경우의 수) / (전체 경우의 수 = 유저 수 * 아이템 수)`이며, 수식으로 정리하면 다음과 같습니다.
 
-[수식]
+$Density = \dfrac{(Observed User, Item feedback) pair}{Users * Items}$
+{: .text-center}
 
 분모의 의미는 관측 가능한 모든 경우의 수이므로, 밀도는 (실제 관측된 경우의 수) / (가능한 모든 경우의 수)로 해석할 수도 있습니다. 예컨대 각 유저가 평균적으로 전체 아이템의 1%와 상호작용했다면 밀도는 0.99이며 희소성은 0.01입니다.
 
@@ -36,7 +37,7 @@ toc_icon: "sticky-note"
 
 유저-아이템 행렬도 언급했고, 행렬 분해 알고리즘이 많이 사용된다고도 했지만 정작 행렬이 어떠한 형태인지는 말하지 않았습니다. 이참에 행렬의 형태를 정확히 정의하고, 실제 컴퓨터에서 이를 어떻게 다루는지 살펴보겠습니다. 유저-아이템 행렬은 일반적으로 유저가 각 유저가 행이 되고 각 아이템이 열이 되며 rating이 값이 되는 다음과 같은 형태의 형렬입니다.
 
-![image](https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/343c4d0f-1033-4917-9949-84a420dd0501)
+<br>![image](https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/343c4d0f-1033-4917-9949-84a420dd0501){: .align-center}<br>
 
 여기서 문제가 되는 것은 다시 한 번 **결측**입니다. 수학에서 행렬의 결측치를 다루는 것과 달리 컴퓨터 상에서는 Null이나 Na 등으로 이를 표현하며, 모든 결측은 일정량의 메모리를 차지합니다. 그런데 문제는 이걸 굳이 표현함으로써 생기는 방대한 메모리의 낭비입니다. 쉽게 말해, 어차피 거의 다 결측이 아니라면 결측이 아닌 것만 표현하면 되지 않냐는 것입니다. 실제 많은 경우에 행렬의 밀도가 1%가 되지 않으며 0.01% 미만도 드문 일입니다.
 
@@ -62,31 +63,58 @@ col = [iid_to_idx[c] for c in col]
 
 바로 위에서 어떤 행렬을 분해할 것인지 보았습니다. 이제 다시 행렬 분해 알고리즘의 작동 방식을 살펴보겠습니다. 추천 시스템에서 처음 널리 사용된 행렬 분해 알고리즘은 SVD였습니다. 직관적으로 보자면, 유저-아이템 행렬을 차원 축소한 뒤 원상복귀하게 되면 0(기본적으로 결측을 0으로 둡니다)이었던 값들이 전반적인 패턴을 이식하여 다른 값으로 채워지는 것을 예측값으로 보게된다는 컨셉입니다. 보통 PCA를 어느 정도 이해하신 분들이라면 빠르게 감을 잡을 수 있는데, 바로 이해가 가지 않으셔도 그다지 상관없습니다.
 
-실제 가상의 영화 평점 데이터에서 기초적인 SVD기 작동하는 모습을 살펴보겠습니다.........
+실제 가상의 영화 평점 데이터에서 기초적인 SVD기 작동하는 모습을 살펴보겠습니다. 다음은 원시데이터이며, 관측되지 않은 탑건에 대한 지영의 평점은 0으로 표현되었습니다. 우리의 목표는 지영이 탑건을 좋아할지 맞추는 것인데, 대략적으로 토르와 마녀, 탑건이 비슷한 평점을 받는 반면 헤어질 결심(At Last)는 반대의 패턴을 보이는 것을 쉽게 확인할 수 있습니다.
 
-[이하 작성중]
+<br>![image](https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/88d024ee-b715-4af6-9349-80fb7e356129){: .align-center}<br>
 
+SVD를 통해 행렬을 분해한 뒤, 특이값(Singlear value)를 최소 1개에서 최대 4개까지 사용해보며 데이터가 복원되는 과정을 지켜보겠습니다. 1개를 사용하면 정보를 너무 많이 버려서 패턴을 학습할 수 없고, 4개를 사용하면 데이터를 모두 사용해 원본 데이터를 그대로 복원합니다. 2개 정도를 사용했을 때, 지영의 탑건에 대한 평점이 의도된 대로 복원되는 것을 확인할 수 있습니다. (코드는 아래 첨부하였습니다)
 
+<br>![image](https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/b1d7c797-43a0-4c2f-acb0-05d8396a21cd){: .align-center}<br>
 
+위의 시나리오는 가상의 시나리오이며 실제 추천 시스템에서 활용되는 SVD가 동작하는 방식과도 다소 다릅니다. 하지만 우리의 직관을 어느 정도는 채워줄 수 있기에 즐겨 사용하는 예시입니다. 눈치채신 분도 있겠지만 SVD는 PCA와 결이 같으며, AE(Auto Encoder)와도 통하는 바가 있습니다. 실제 최신 논문 중 상당 수는 AE를 이용하여 행렬을 분해합니다.
 
+하지만 여기서도 문제는 존재합니다. 기존의 SVD 알고리즘은 너무나도 희소한 행렬을 고려하지 않았습니다. 앞에서 말한 것처럼 일반적으로 추천 모델이 다루는 상호작용 행렬은 밀도가 1%, 특히 규모가 큰서비스의 경우는 0.01% 미만인데, 이러한 환경에서는 SVD 알고리즘이 정상적으로 작동하기 어렵습니다. 이러한 문제를 해결하기 위해 다양한 알고리즘들이 제안되었는데, 그 중 현재까지도 널리 쓰이며 전반적으로 우수한 퍼포먼스를 내는 가장 유명한 알고리즘은 아마도 ALS일 것입니다.
 
+일반적인 머신러닝 알고리즘의 관점으로 보면, feedback을 y로 두고 이가 존재하는 경우만 맞추는 지도 학습을 한 뒤, y가 존재하지 않을 때에 대해 성능을 보는 것과 같습니다. 하지만 이렇게 될 때, 유저와 아이템의 특성을 user-item matrix에서도 뽑아내어 활용하고 싶은데, 이때 MF를 사용하지 않으면 이에 관한 적절한 피쳐를 구성할 수 없다는 것이 문제입니다. 희소성을 고려한다면 더더욱 그렇습니다.
 
+### SVD 코드
 
+```python
+import numpy as np
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
 
+data = pd.DataFrame({
+    "Minsu":{"Thor":4, "Top Gun":5, "Witch":4, "At Last":2},
+    "Jiyoung":{"Thor":4, "Top Gun":0, "Witch":4, "At Last":1},
+    "Hyesun":{"Thor":3, "Top Gun":2, "Witch":3, "At Last":4},
+    "Jungho":{"Thor":2, "Top Gun":1, "Witch":2, "At Last":5}
+}).T
 
+matrix = data.values
+u, s, vh = np.linalg.svd(matrix)
 
+def recover_matrix(sv_count):
+    smat = np.zeros(data.shape)
+    smat[:sv_count, :sv_count] = np.diag(s[:sv_count])
+    matrix_recovered = np.dot(u, np.dot(smat, vh)).round().astype(int)
+    return matrix_recovered
 
+plt.figure(figsize=(20,7))
 
+plt.subplot(2,4,1)
+sns.heatmap(data, cmap="YlGnBu")
+plt.title("Raw")
 
+data_max = data.max().max()
+data_min = data.min().min()
 
+for sv_count in range(1, 5):
+    df_recovered = pd.DataFrame(recover_matrix(sv_count), index=data.index, columns=data.columns)
 
-
-
-
-
-
-
-
-
-
-
+    plt.subplot(2, 4, sv_count+4)
+    sns.heatmap(df_recovered, cmap="YlGnBu", vmin=data_min, vmax=data_max)
+    plt.title(f"# Used Singular Vector: {sv_count}")
+plt.show()
+```
