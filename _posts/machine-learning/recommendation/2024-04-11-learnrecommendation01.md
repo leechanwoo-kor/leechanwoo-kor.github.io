@@ -1,12 +1,12 @@
 ---
-title: "[Recommendation System] 추천 시스템과 머신 러닝"
+title: "[Recommendation System] 추천 시스템과 머신 러닝 (1)"
 categories:
   - Recommendation System
 tags:
   - Recommendation System
 toc: true
 toc_sticky: true
-toc_label: "Inconsistent Data Entry"
+toc_label: "추천 시스템과 머신 러닝 (1)"
 toc_icon: "sticky-note"
 ---
 
