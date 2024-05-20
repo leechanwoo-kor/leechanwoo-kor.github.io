@@ -10,7 +10,7 @@ toc_label: "그래프 기반 추천 시스템"
 toc_icon: "sticky-note"
 ---
 
-<br>![image](https://media.discordapp.net/attachments/1227797065111965797/1241968306584555550/leechanwoo__Thumbnail_images_for_articles_that_you_expect_to_se_28b1f965-b76f-4c1d-9e53-686f440a23f1.png?ex=664c209e&is=664acf1e&hm=ca2418fc240b1a0251298d6d12abbd1d7ff82b88084df7e673a620c9cf58d4ca&=&format=webp&quality=lossless&width=745&height=373){: .align-center}<br>
+<br>![image](https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/62e271a0-abad-4050-8883-89e3989c87c6){: .align-center}<br>
 
 기존 추천 시스템에 관한 연구는 전통적인 협업 필터링(CF) 및 행렬 분해(MF) 기반 연구에서 NCF와 같은 딥러닝 기반 모델로 발전되어 왔다. 최근 연구 동향은 그래프 뉴럴 네트워크(Graph Neural Network, GNN) 기법을 활용하여 사용자의 선호도를 그래프 구조로 파악하는 것이 주류이다. 따라서 본 포스트에서는 추천 시스템 연구의 전체적인 동향을 살펴보고, 최종적으로 GNN 기반 추천 시스템을 전반적으로 소개하고자 한다.
 
@@ -24,9 +24,7 @@ toc_icon: "sticky-note"
 
 CF는 **memory-based CF**와 **model-based CF**로 구분할 수 있으며, Memory-based CF는 사용자 유사도를 기반으로 이웃을 생성하는, **사용자 기반 CF(User-based CF, UBCF)**와 아이템 유사도를 기반으로 이웃을 생성하는 **아이템 기반 CF(Item-based CF, IBCF)**로 구분된다.
 
-![Collaborative Filtering, CF](https://prod-files-secure.s3.us-west-2.amazonaws.com/d3d0482b-4332-472a-ba04-0fbbc7dd505a/4e29e892-4286-4e36-adb5-57df666f86f4/Untitled.png)
-
-Collaborative Filtering, CF
+<br>![image](https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/6e28d591-b036-499a-b0b6-44d3df2170cb){: .align-center}<br>
 
 ## 1.2 Matrix Factoriazation
 
@@ -36,7 +34,7 @@ SVD는 고차원 행렬을 저차원 행렬로 축소하고, 축소한 저차원
 
 > 대표적인 논문으로는 넷플릭스에서 발표한 논문이 있다.<br>Koren, Y., Bell, R., & Volinsky, C. (2009).Matrix factorization techniques for recommender systems. Computer, 42(8), 30-37.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/d3d0482b-4332-472a-ba04-0fbbc7dd505a/98952724-ed57-4cdd-8f84-5cbe12f22159/Untitled.png)
+<br>![image](https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/56dd6a51-8297-4870-847f-a112c22fa3bc){: .align-center}<br>
 
 <br>
 
@@ -46,19 +44,15 @@ SVD는 고차원 행렬을 저차원 행렬로 축소하고, 축소한 저차원
 
 **NeuMF 모델**은 유저와 아이템의 원-핫 벡터(one-hot vector)를 밀집 행렬로 임베딩하여 뉴럴 네트워크 연산을 통해 구매 여부를 예측한다. 이러한 과정을 통해 유저와 아이템의 암묵적인 상호작용을 정교하게 예측하고 있다.
 
-![NeuMF 모델 구조](https://prod-files-secure.s3.us-west-2.amazonaws.com/d3d0482b-4332-472a-ba04-0fbbc7dd505a/1a719208-2ec2-455a-94a3-192d0cad40a6/Untitled.png)
-
-NeuMF 모델 구조
+<br>![image](https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/97179f5a-8a6b-4553-baef-76f064044ce1){: .align-center}<br>
 
 이외에도 **AutoRec**은 이미지 분야에서 제안되었던 Auto-Encoder 구조를 사용하여 유저가 아이템에 부여한 평점을 예측한다. BERT를 적용한 **BERT4Rec**은 유저의 구매 순서 데이터를 입력으로 평점을 예측하는 모델도 제안되었다.
 
-![BERT4Rec 모델 구조](https://prod-files-secure.s3.us-west-2.amazonaws.com/d3d0482b-4332-472a-ba04-0fbbc7dd505a/887c399e-ab89-492e-8955-b625a7712730/Untitled.png)
-
-BERT4Rec 모델 구조
+<br>![image](https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/8f3368d8-8458-4d0b-b9a8-3a1339443391){: .align-center}<br>
 
 한편 유저-아이템 간의 상호 작용 이외에도 다양한 부가 정보를 임베딩 기법을 활용하여 추천 목록을 만드는 연구가 많이 진행되었다. 구글이 발표한 **Wide & Deep model**은 사용자의 인구통계학적 정보, 접속 디바이스 유형, 과거 로그 기록, 설치한 앱 정보 등 다양한 데이터를 딥러닝 모델의 입력으로 활용한다.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/d3d0482b-4332-472a-ba04-0fbbc7dd505a/ef70b5e3-2f08-4653-a9f1-9ecb3fdb26ac/Untitled.png)
+<br>![image](https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/36b2c810-a492-4975-8755-70d1437c248d){: .align-center}<br>
 
 <br>
 
@@ -70,9 +64,7 @@ BERT4Rec 모델 구조
 
 대부분 유저와 아이템 간의 관계는 본질적으로 그래프 구조로 표현될 수 있다. 또한 협업 필터링의 핵심인 유사 이웃이 구매한 아이템을 추천하는 과정은 이분 그래프 형태로 표현될 수 있다. 추천 시스템을 위한 이분 그래프는 아래 그림과 같다.
 
-![유저-아이템 이분 그래프](https://prod-files-secure.s3.us-west-2.amazonaws.com/d3d0482b-4332-472a-ba04-0fbbc7dd505a/01bd4ff7-0ae4-4668-9a49-015e59451a6e/Untitled.png)
-
-유저-아이템 이분 그래프
+<br>![image](https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/a4abb78a-2ccb-44e7-8ec1-40da4dd6e44f){: .align-center}<br>
 
 기존 연구들과 달리 GNN을 추천 시스템에 적용했을 때 여러 장점들이 존재한다.
 
@@ -98,7 +90,7 @@ GNN은 인접 노드와의 관계성을 통해 자신 노드의 정보를 업데
 
 GCN은 각 층(layer)마다 동일한 가중치를 적용하여 인접 노드의 정보를 종합한다. 이때 각 인접 노드로부터 타겟 노드에 얼만큼 정보를 전달할 지를 메시지(message)라고 한다. GCN은 이웃들의 정보를 메시지 값에 따라 가중 평균 또는 합을 한다.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/d3d0482b-4332-472a-ba04-0fbbc7dd505a/fe31c6e9-b96d-4bb4-97ac-d7e1c5354932/Untitled.png)
+<br>![image](https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/c722daec-f4b9-4a9b-9d91-ebdedf36d21e){: .align-center}<br>
 
 ### GraphSAGE
 
@@ -108,7 +100,7 @@ GCN은 각 층(layer)마다 동일한 가중치를 적용하여 인접 노드의
 
 Graph Attention Network는 주변 노드의 정보를 반영할 때 각 이웃 노드마다 다른 attention을 부여하여 자기 자신을 업데이트한다. 타겟 노드에게 가장 많은 영향력을 미치는 노드에 더 큰 attention 스코어를 부여하는 것이 GAT의 핵심 아이디어이다.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/d3d0482b-4332-472a-ba04-0fbbc7dd505a/c7463cdb-d153-410f-80a6-51911971352e/Untitled.png)
+<br>![image](https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/d33e63dc-aa9c-465c-9e74-2b554e33bf99){: .align-center}<br>
 
 이러한 그래프 표현의 기본 배경을 바탕으로 그래프 기법을 추천 시스템에 적용한 모델들을 살펴보겠다.
 
@@ -120,15 +112,13 @@ NGCF는 유저-아이템 상호 관계 기반 모델의 베이스가 되는 연�
 
 전통적인 추천 시스템, 딥러닝 기반 추천 시스템 모델들은 모두 collaborative 관계를 예측하는 것을 목표로 한다. 그러나 이러한 과거 연구들은 유저-아이템의 상호관계 자체를 임베딩하지 못한다는 한계가 존재한다.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/d3d0482b-4332-472a-ba04-0fbbc7dd505a/271bdde4-794b-4ac9-8d7e-8f87ced774c1/Untitled.png)
+<br>![image](https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/9772e19d-a33b-4199-b4f1-d9d85960d5bf){: .align-center}<br>
 
 NGCF는 이분그래프를 트리 구조로 펼친 모델을 제시하여 고수준의 연결성(high order connectivity)을 직관적으로 표현한다.
 
 위 그림의 좌측 그림은 유저-아이템 사이의 이분 그래프, 오른쪽 그림은 트리구조를 나타낸다.
 
-![NGCF 모델 구조](https://prod-files-secure.s3.us-west-2.amazonaws.com/d3d0482b-4332-472a-ba04-0fbbc7dd505a/6e4aa463-91d8-47a6-b15e-9244ed567d9c/Untitled.png)
-
-NGCF 모델 구조
+<br>![image](https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/9cac0282-84f1-4f48-b749-7d713b798ab0){: .align-center}<br>
 
 위 그림은 NGCF의 전체적인 모델 구조를 보여준다.
 
@@ -147,9 +137,7 @@ NGCF의 message construction 과정을 단순화 함과 동시에 예측 정확�
 
 오히려 Embedding propagation layer에서 정규화된 연산을 사용하는 선형 전파층을 사용하여 예측 성능을 향상시켰다. 아래 그림은 LightGCN의 전체 모델 구조이고 NGCF 모델과 비교했을 때 Embedding propagation layer 부분에서만 차이가 있는 점을 확인할 수 있다.
 
-![LightGCN 모델](https://prod-files-secure.s3.us-west-2.amazonaws.com/d3d0482b-4332-472a-ba04-0fbbc7dd505a/097eae00-3df0-41a8-b0f8-0f5721c51d44/Untitled.png)
-
-LightGCN 모델
+<br>![image](https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/2ab61142-9191-4319-88ac-0ead40b69434){: .align-center}<br>
 
 ### Multi-GCCF
 
@@ -169,7 +157,7 @@ DHCF는 하이퍼 엣지를 제안한 모델이고 유저-아이템의 하이퍼
 
 아래 그림은 시퀀스 데이터를 활용한 추천 시스템의 전반적인 프레임워크를 보여준다.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/d3d0482b-4332-472a-ba04-0fbbc7dd505a/ddcf6792-3af6-4018-bdf3-2890ca831ef0/Untitled.png)
+<br>![image](https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/d8ad6a14-7610-47ee-a957-646d90c797af){: .align-center}<br>
 
 유저-아이템 상호작용 기반 GNN 모델과 달리 시퀀스 데이터 기반 GNN 모델은 시간 순서에 따른 유저의 행동을 표현한 그래프를 입력 형태로 활용한다. 또한 각 행동 순서는 방향성이 있는 엣지 (directed edge)들로 표현된다.
 
@@ -181,7 +169,7 @@ DHCF는 하이퍼 엣지를 제안한 모델이고 유저-아이템의 하이퍼
 
 아래 그림은 SR-GNN의 전체 구조를 나타낸다.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/d3d0482b-4332-472a-ba04-0fbbc7dd505a/057aadf0-5074-4d24-8832-32c4177c874f/Untitled.png)
+<br>![image](https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/e0f02568-9acc-45b9-aa92-93633339425b){: .align-center}<br>
 
 $v_1, v_2, \dots, v_7$ 은 추천 대상인 아이템 리스트를 의미한다. 각 세션 그래프는 하나의 서브 그래프로 간주 된다.
 
@@ -210,7 +198,7 @@ $v_1, v_2, \dots, v_7$ 은 추천 대상인 아이템 리스트를 의미한다.
 
 아래 그림은 유저-아이템 이분 그래프에 아이템-속성 정보가 반영된 이분 그래프를 적용한 예시이다.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/d3d0482b-4332-472a-ba04-0fbbc7dd505a/de8ce55e-2675-48bb-8878-5d9f2e70e623/Untitled.png)
+<br>![image](https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/88d772f8-33f8-42cc-bba0-ec81d8a1fab7){: .align-center}<br>
 
 그러나 이러한 구조를 사용하게 되면 앞서 언급처럼 한 노드에 대한 high-order relation이 급격하게 커질 수 있다. 이는 속성 관계가 많아질수록 그만큼 모델의 연산이 커지는 것을 의미한다.
 
@@ -218,7 +206,7 @@ $v_1, v_2, \dots, v_7$ 은 추천 대상인 아이템 리스트를 의미한다.
 
 아래 그림은 CKG에 어텐션 메커니즘을 적용한 임베딩 값을 입력으로 최종 예측을 계산하는 모델 구조이다.
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/d3d0482b-4332-472a-ba04-0fbbc7dd505a/5cbdb55a-9b09-4b3f-9255-3eeed18e858b/Untitled.png)
+<br>![image](https://github.com/leechanwoo-kor/leechanwoo-kor.github.io/assets/55765292/9bf1df07-c177-436a-aef0-f606a7cc3e00){: .align-center}<br>
 
 ## 3.6 이 외 모델
 
