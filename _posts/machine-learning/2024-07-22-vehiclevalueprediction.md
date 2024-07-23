@@ -143,6 +143,12 @@ RV 비율을 목표 변수로 설정하여 모델을 학습시켰습니다. 총 
 
 <br>
 
+![image](https://github.com/user-attachments/assets/90c585d7-9705-4602-a42f-81ce02111e0f){: .align-center}
+<em>그림 7: 연식과 연간 주행 거리에 따라 예측된 RV 비율 비교.</em>
+{: .text-center}
+
+<br>
+
 # Results and Discussion
 
 시간 외(out-of-time, OOT) 데이터 세트에 대한 차량 가격 모델의 성능 평가를 수행했으며, 실제 RV 비율과 모델 예측 RV 비율의 평균 절대 오차(MAE)를 평가 지표로 사용했습니다. 잘 알려진 바와 같이 MAE는 $\sum^n_{i=1}{\|y_i - x_i\| / n}$으로 정의되며, 여기서 $y_i$는 예측값, $x_i$는 관측값, $n$은 총 데이터 포인트 수입니다. 또한, **MAE**$_{car-seg}$를 다음과 같이 정의하여 각 자동차 모델에 대한 오프셋 효과를 집계하여 다음과 같이 계산했습니다.
@@ -167,12 +173,6 @@ $MAE_{car-seg} = \cfrac{\sum_i \|\overline{y_{car_i}} - \overline{x_{car_i}}\|}{
 
 ![image](https://github.com/user-attachments/assets/0d7b65e1-6dab-4fc1-9e8f-e7cbc7e40d72){: width="75%" height="75%"}{: .align-center}
 <em>표 2: XGBoost(XGB)와 CatBoost(CAT)를 활용한 예측 모델의 차량 모델별 성능.</em>
-{: .text-center}
-
-<br>
-
-![image](https://github.com/user-attachments/assets/90c585d7-9705-4602-a42f-81ce02111e0f){: .align-center}
-<em>그림 7: 연식과 연간 주행 거리에 따라 예측된 RV 비율 비교.</em>
 {: .text-center}
 
 <br>
