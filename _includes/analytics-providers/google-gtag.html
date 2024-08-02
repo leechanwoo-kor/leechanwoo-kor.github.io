@@ -7,15 +7,25 @@
       return true; // 오류가 처리되었음을 나타냄
     }
   };
-</script>
-<script async src="https://www.googletagmanager.com/gtag/js?id={{ site.analytics.google.tracking_id }}"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
 
-  gtag('config', '{{ site.analytics.google.tracking_id }}', { 
-    'anonymize_ip': {{ site.analytics.google.anonymize_ip | default: false }},
-    'cookie_flags': 'SameSite=None;Secure'
-  });
+  // Google Analytics 로딩 함수
+  function loadGoogleAnalytics() {
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', '{{ site.analytics.google.tracking_id }}', { 
+      'anonymize_ip': {{ site.analytics.google.anonymize_ip | default: false }},
+      'cookie_flags': 'SameSite=None;Secure',
+      'cookie_domain': 'auto',
+      'allow_google_signals': false  // 추가적인 개인정보 보호
+    });
+  }
+
+  // 스크립트 동적 로딩
+  var script = document.createElement('script');
+  script.src = "https://www.googletagmanager.com/gtag/js?id={{ site.analytics.google.tracking_id }}";
+  script.async = true;
+  script.onload = loadGoogleAnalytics;
+  document.head.appendChild(script);
 </script>
