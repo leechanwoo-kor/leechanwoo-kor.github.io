@@ -141,7 +141,7 @@
   }
 
   $container: _su-sum($columns, $gutters, $container-spread);
-  @return calc($gutters / $container * 100%);
+  @return percentage($gutters / $container);
 }
 
 
