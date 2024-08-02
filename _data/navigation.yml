@@ -11,11 +11,8 @@ main:
 
 # test
 test:
-  - title: "datamining"
+  - title: "Navigation Test"
     children:
-    - title: "/datamining/test"
-  - title: "nlp"
-    children:
-      - title: "CNN"
-      - url: "/nlp/cnn/"
+      - title: "Anaconda"
+        url: "/python/anaconda/"
     
