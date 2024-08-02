@@ -283,7 +283,7 @@ defaults:
   # default
   - scope:
       path: ""
-    value:
+    values:
       layout: home
       author_profile: true
       sidebar:
