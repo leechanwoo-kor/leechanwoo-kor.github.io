@@ -1,9 +1,21 @@
 <!-- Global site tag (gtag.js) - Google Analytics -->
+<script>
+  // 오류 처리 함수
+  window.onerror = function(message, source, lineno, colno, error) {
+    if (message.indexOf('CookieDeprecationLabel') > -1) {
+      console.warn('Google Analytics encountered a cookie-related error, but the site will continue to function.');
+      return true; // 오류가 처리되었음을 나타냄
+    }
+  };
+</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.analytics.google.tracking_id }}"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', '{{ site.analytics.google.tracking_id }}', { 'anonymize_ip': {{ site.analytics.google.anonymize_ip | default: false }}});
+  gtag('config', '{{ site.analytics.google.tracking_id }}', { 
+    'anonymize_ip': {{ site.analytics.google.anonymize_ip | default: false }},
+    'cookie_flags': 'SameSite=None;Secure'
+  });
 </script>
