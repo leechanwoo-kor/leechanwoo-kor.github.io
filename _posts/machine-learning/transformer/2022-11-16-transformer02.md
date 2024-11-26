@@ -1,9 +1,8 @@
 ---
-title: "[Transformer] 트랜스포머(Transformer) - 트랜스포머와 컴퓨팅"
+title: "[Machine Learning] 트랜스포머(Transformer) - 트랜스포머와 컴퓨팅"
 categories:
   - Machine Learning
 tags:
-  - Machine Learning
   - Transformer
 toc: true
 toc_sticky: true

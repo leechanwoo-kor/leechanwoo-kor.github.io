@@ -1,10 +1,9 @@
 ---
 title: "[Time Series] 06. Forecasting With Machine Learning"
 categories:
-  - Time Series
+  - Machine Learning
 tags:
   - Time Series
-  - Machine Learning
 toc: true
 toc_sticky: true
 toc_label: "Forecasting With Machine Learning"

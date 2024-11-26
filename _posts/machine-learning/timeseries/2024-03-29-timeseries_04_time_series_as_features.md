@@ -1,7 +1,7 @@
 ---
 title: "[Time Series] 04. Time Series as Features"
 categories:
-  - Time Series
+  - Machine Learning
 tags:
   - Time Series
 toc: true

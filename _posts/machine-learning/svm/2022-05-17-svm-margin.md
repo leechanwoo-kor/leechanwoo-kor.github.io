@@ -3,7 +3,6 @@ title: "[Machine Learning] SVM(Support Vector Machine) - 2. Margin"
 categories:
   - Machine Learning
 tags:
-  - Machine Learning
   - SVM
   - Support Vector Machine
 toc: true

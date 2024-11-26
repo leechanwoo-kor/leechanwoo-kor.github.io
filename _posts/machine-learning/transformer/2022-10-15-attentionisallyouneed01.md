@@ -1,14 +1,13 @@
 ---
-title: "[Transformer] Attention Is All You Need (1)"
+title: "[Machine Learning] Attention Is All You Need (1)"
 categories:
   - Machine Learning
 tags:
-  - Machine Learning
   - Support Vecrtor Machine
   - SVM
 toc: true
 toc_sticky: true
-toc_label: "SVM(Support Vector Machine) - Python"
+toc_label: "Attention Is All You Need (1)"
 toc_icon: "sticky-note"
 ---
 

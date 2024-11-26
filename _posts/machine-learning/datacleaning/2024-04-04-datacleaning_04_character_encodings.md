@@ -1,7 +1,7 @@
 ---
 title: "[Data Cleaning] 04. Character Encodings (문자 인코딩)"
 categories:
-  - Data Cleaning
+  - Machine Learning
 tags:
   - Data Cleaning
 toc: true

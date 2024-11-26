@@ -1,7 +1,7 @@
 ---
-title: "[AI] ANN, DNN, CNN, RNN의 개념과 차이"
+title: "[ML] ANN, DNN, CNN, RNN의 개념과 차이"
 categories:
-  - AI
+  - Machine Learning
 tags:
   - ANN
   - DNN

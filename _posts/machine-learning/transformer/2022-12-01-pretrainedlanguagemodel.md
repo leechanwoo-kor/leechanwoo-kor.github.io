@@ -1,9 +1,8 @@
 ---
-title: "[Language Model] 사전학습 언어 모델(Pretrained Language Model)"
+title: "[Machine Learning] 사전학습 언어 모델(Pretrained Language Model)"
 categories:
   - Machine Learning
 tags:
-  - Machine Learning
   - MobileBERT
   - ELECTRA
   - DeBERTa

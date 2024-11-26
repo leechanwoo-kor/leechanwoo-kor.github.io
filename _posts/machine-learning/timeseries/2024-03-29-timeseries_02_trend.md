@@ -1,7 +1,7 @@
 ---
 title: "[Time Series] 02. Trend"
 categories:
-  - Time Series
+  - Machine Learning
 tags:
   - Time Series
 toc: true

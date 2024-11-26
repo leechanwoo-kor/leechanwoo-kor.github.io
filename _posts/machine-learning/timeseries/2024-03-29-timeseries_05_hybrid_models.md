@@ -1,7 +1,7 @@
 ---
 title: "[Time Series] 05. Hybrid Models"
 categories:
-  - Time Series
+  - Machine Learning
 tags:
   - Time Series
 toc: true

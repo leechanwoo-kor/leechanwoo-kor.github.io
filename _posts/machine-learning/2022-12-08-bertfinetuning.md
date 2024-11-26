@@ -1,9 +1,8 @@
 ---
-title: "[BERT] BERT Fine-Tuning" 
+title: "[ML] BERT Fine-Tuning" 
 categories:
   - Machine Learning
 tags:
-  - Machine Learning
   - BERT
   - Fine-Tuning
 toc: true

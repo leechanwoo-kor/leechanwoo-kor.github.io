@@ -3,7 +3,6 @@ title: "[LLM] Pretrained vs Fine-tuned vs Instruction-tuned vs RL-tuned"
 categories:
   - LLM
 tags:
-  - LLM
   - Pretrained
   - Fine-tuned
   - Instruction-tuned

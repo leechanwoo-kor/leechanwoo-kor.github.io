@@ -1,7 +1,7 @@
 ---
 title: "[Data Cleaning] 03. Parsing Dates (날짜 파싱)"
 categories:
-  - Data Cleaning
+  - Machine Learning
 tags:
   - Data Cleaning
 toc: true
