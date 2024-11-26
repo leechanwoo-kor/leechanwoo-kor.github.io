@@ -3,7 +3,6 @@ title: "[Machine Learning] SVM(Support Vector Machine) - 1. Introduction"
 categories:
   - Machine Learning
 tags:
-  - Machine Learning
   - SVM
   - Support Vector Machine
 toc: true

@@ -1,7 +1,7 @@
 ---
 title: "[LangChain] LangChain(LangChain)"
 categories:
-  - Python
+  - LLM
 tags:
   - LangChain
 toc: true

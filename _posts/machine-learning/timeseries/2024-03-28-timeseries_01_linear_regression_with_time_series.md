@@ -1,7 +1,7 @@
 ---
 title: "[Time Series] 01. Linear Regression With Time Series"
 categories:
-  - Time Series
+  - Machine Learning
 tags:
   - Time Series
   - Linear Regression

@@ -1,7 +1,7 @@
 ---
 title: "[LangChain] 모듈(Modules)"
 categories:
-  - Python
+  - LLM
 tags:
   - LangChain
 toc: true

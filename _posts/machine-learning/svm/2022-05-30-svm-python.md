@@ -3,7 +3,6 @@ title: "[Machine Learning] SVM(Support Vector Machine) - Python"
 categories:
   - Machine Learning
 tags:
-  - Machine Learning
   - Support Vecrtor Machine
   - SVM
 toc: true

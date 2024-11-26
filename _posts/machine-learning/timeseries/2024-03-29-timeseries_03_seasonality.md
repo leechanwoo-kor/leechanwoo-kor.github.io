@@ -1,7 +1,7 @@
 ---
 title: "[Time Series] 03. Seasonality"
 categories:
-  - Time Series
+  - Machine Learning
 tags:
   - Time Series
 toc: true

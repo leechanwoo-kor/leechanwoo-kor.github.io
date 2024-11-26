@@ -1,7 +1,7 @@
 ---
 title: "[Data Cleaning] 05. Inconsistent Data Entry (일관되지 않은 데이터 입력)"
 categories:
-  - Data Cleaning
+  - Machine Learning
 tags:
   - Data Cleaning
 toc: true

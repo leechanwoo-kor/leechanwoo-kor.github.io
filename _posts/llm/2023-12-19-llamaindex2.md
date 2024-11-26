@@ -6,7 +6,6 @@ tags:
   - LlamaIndex
   - GPT
   - IN-CONTEXT LEARNING
-  - LLM
   - NLP
   - OPEN AI
   - PROMPT ENGINEERING

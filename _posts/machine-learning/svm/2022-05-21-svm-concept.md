@@ -3,7 +3,6 @@ title: "[Machine Learning] 서포트 벡터 머신(Support Vecrtor Machine, SVM)
 categories:
   - Machine Learning
 tags:
-  - Machine Learning
   - Support Vecrtor Machine
   - SVM
 toc: true

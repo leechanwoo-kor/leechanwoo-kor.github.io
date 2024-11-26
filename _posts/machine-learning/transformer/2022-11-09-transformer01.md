@@ -1,9 +1,8 @@
 ---
-title: "[Transformer] 트랜스포머(Transformer) - 트랜스포머의 이해"
+title: "[Machine Learning] 트랜스포머(Transformer) - 트랜스포머의 이해"
 categories:
   - Machine Learning
 tags:
-  - Machine Learning
   - Transformer
 toc: true
 toc_sticky: true

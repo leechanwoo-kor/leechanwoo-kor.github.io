@@ -4,7 +4,6 @@ categories:
   - Markdown
 tags:
   - Markdown
-  - 마크다운
 toc: true
 toc_sticky: true
 toc_label: "마크다운 문서 내부 링크 이동 (북마크, 바로 가기, 목차)"

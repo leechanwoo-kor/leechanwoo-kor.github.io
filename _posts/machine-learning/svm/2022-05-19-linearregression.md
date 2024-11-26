@@ -3,11 +3,10 @@ title: "[Machine Learning] Linear Regression"
 categories:
   - Machine Learning
 tags:
-  - Machine Learning
   - Linear Regression
 toc: true
 toc_sticky: true
-toc_label: "SVM(Support Vector Machine)"
+toc_label: "Linear Regression"
 toc_icon: "sticky-note"
 ---
 

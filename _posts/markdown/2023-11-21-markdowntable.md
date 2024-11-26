@@ -4,7 +4,6 @@ categories:
   - Markdown
 tags:
   - Markdown
-  - 마크다운
 toc: true
 toc_sticky: true
 toc_label: "마크다운 표(Table) 작성하는 법"

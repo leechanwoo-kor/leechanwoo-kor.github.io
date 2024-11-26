@@ -1,7 +1,7 @@
 ---
 title: "[Data Cleaning] 02. Scaling and Normalization (스케일링 및 정규화)"
 categories:
-  - Data Cleaning
+  - Machine Learning
 tags:
   - Data Cleaning
 toc: true

@@ -1,7 +1,7 @@
 ---
 title: "[Data Cleaning] 01. Handling Missing Values (결측값 처리)"
 categories:
-  - Data Cleaning
+  - Machine Learning
 tags:
   - Data Cleaning
 toc: true

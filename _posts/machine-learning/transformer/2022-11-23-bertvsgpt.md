@@ -1,15 +1,14 @@
 ---
-title: "[Transformer] BERT, GPT-2"
+title: "[Machine Learning] BERT, GPT-2"
 categories:
   - Machine Learning
 tags:
-  - Machine Learning
   - Transformer
   - BERT
   - GPT-2
 toc: true
 toc_sticky: true
-toc_label: "트랜스포머(Transformer) - 트랜스포머와 컴퓨팅"
+toc_label: "BERT, GPT-2"
 toc_icon: "sticky-note"
 ---
 
