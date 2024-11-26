@@ -29,16 +29,6 @@ toc_icon: "sticky-note"
 
 ![image](https://github.com/user-attachments/assets/8e5ef78a-dbbf-4d12-a214-02b4ca0d3f3d){: .align-center}
 
-```mermaid
-sequenceDiagram
-    Client->>+Server: 요청 1
-    Note right of Server: 스레드 1 생성
-    Server-->>-Client: 응답 1
-    Client->>+Server: 요청 2
-    Note right of Server: 스레드 2 생성
-    Server-->>-Client: 응답 2
-```
-
 ### 동기식 처리의 특징
 
 - ✅ 구현이 직관적이고 단순함
@@ -51,19 +41,6 @@ sequenceDiagram
 단일 스레드에서 여러 코루틴을 활용하여 동시에 여러 요청을 처리합니다.
 
 ![image](https://github.com/user-attachments/assets/4dfd42ca-545c-4952-a5e2-58b8e7e3e231){: .align-center}
-
-```mermaid
-sequenceDiagram
-    participant C as Client
-    participant S as Server(단일 스레드)
-    
-    C->>+S: 요청 1
-    Note right of S: 코루틴 1 생성
-    C->>+S: 요청 2
-    Note right of S: 코루틴 2 생성
-    S-->>-C: 응답 1
-    S-->>-C: 응답 2
-```
 
 ### 비동기식 처리의 특징
 - ✅ 효율적인 리소스 사용
