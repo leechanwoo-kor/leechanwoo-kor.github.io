@@ -1,3 +1,5 @@
+@use "sass:math";
+
 @function breakpoint-make-resolutions($resolution) {
   $length: length($resolution);
 
