@@ -9,6 +9,30 @@
 <meta name="msapplication-TileColor" content="#da532c">
 <meta name="theme-color" content="#ffffff">
 
+<!-- 소셜 미디어 메타 태그 강화 -->
+<meta property="og:locale" content="ko_KR">
+<meta property="og:type" content="{% if page.date %}article{% else %}website{% endif %}">
+<meta property="og:site_name" content="{{ site.title }}">
+{% if page.title %}
+<meta property="og:title" content="{{ page.title }}">
+<meta name="twitter:title" content="{{ page.title }}">
+{% endif %}
+{% if page.excerpt %}
+<meta property="og:description" content="{{ page.excerpt | strip_html | truncate: 160 }}">
+<meta name="twitter:description" content="{{ page.excerpt | strip_html | truncate: 160 }}">
+{% endif %}
+{% if page.header.image %}
+<meta property="og:image" content="{{ site.url }}{{ page.header.image }}">
+<meta name="twitter:image" content="{{ site.url }}{{ page.header.image }}">
+{% elsif site.og_image %}
+<meta property="og:image" content="{{ site.url }}{{ site.og_image }}">
+<meta name="twitter:image" content="{{ site.url }}{{ site.og_image }}">
+{% endif %}
+<meta name="twitter:card" content="summary_large_image">
+{% if site.twitter.username %}
+<meta name="twitter:site" content="@{{ site.twitter.username }}">
+{% endif %}
+
 <!-- Custom CSS -->
 <link rel="stylesheet" href="{{site.baseurl}}/assets/css/custom/custom.css">
 

@@ -72,10 +72,10 @@ google:
   search_engine_id       : # YOUR_SEARCH_ENGINE_ID
   instant_search         : # false (default), true
 # SEO Related
-google_site_verification :
-bing_site_verification   :
-yandex_site_verification :
-naver_site_verification  :
+google_site_verification : xcS29jotHUc78XgKlrxgAu2qTQe-AIu6UAu4ql1p204
+bing_site_verification   : # Bing Webmaster Tools 확인 코드를 여기에 입력하세요
+yandex_site_verification : # Yandex Webmaster 확인 코드를 여기에 입력하세요
+naver_site_verification  : # 네이버 서치어드바이저 확인 코드를 여기에 입력하세요
 
 # Social Sharing
 twitter:
@@ -84,13 +84,15 @@ facebook:
   username               :
   app_id                 :
   publisher              :
-og_image                 : # Open Graph/Twitter default site image
+og_image                 : "/assets/images/profile1x1.gif" # Open Graph/Twitter default site image
 # For specifying social profiles
 # - https://developers.google.com/structured-data/customize/social-profiles
 social:
-  type                   : # Person or Organization (defaults to Person)
-  name                   : # If the user or organization name differs from the site's name
+  type                   : "Person" # Person or Organization (defaults to Person)
+  name                   : "LEE CHANWOO" # If the user or organization name differs from the site's name
   links: # An array of links to social media profiles
+    - "https://github.com/leechanwoo-kor"
+    - "https://instagram.com/leechanwoo_"
 
 # Analytics
 analytics:
