@@ -90,7 +90,7 @@
   @if unitless($span-width) {
     $container-spread: su-valid-spread($container-spread);
     $container: _su-sum($columns, $gutters, $container-spread, $validate: false);
-    @return percentage($span-width / $container);
+    @return percentage(($span-width / $container));
   }
 
   @return $span-width;
@@ -136,12 +136,14 @@
     }
   }
 
-  @if _su-needs-calc-output($gutters, $columns, $gutters, -1, not 'validate') {
-    @return _su-calc-span($gutters, $columns, $gutters, -1, $container-spread, not 'validate');
-  }
+  $container-spread: su-valid-spread($container-spread);
+  $container: _su-sum($columns, $gutters, $container-spread, $validate: false);
 
-  $container: _su-sum($columns, $gutters, $container-spread);
-  @return percentage($gutters / $container);
+  @if unitless($gutters) {
+    @return percentage(($gutters / $container));
+  } @else {
+    @return $gutters;
+  }
 }
 
 
