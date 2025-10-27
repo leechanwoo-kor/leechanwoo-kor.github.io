@@ -17,9 +17,9 @@ toc_icon: "sticky-note"
 
 <br>
 
-## Installation
+## 설치
 
-### On Ubuntu
+### Ubuntu
 
 ```bash
 sudo apt install apt-transport-https ca-certificates curl software-properties-common
@@ -30,7 +30,7 @@ sudo apt install docker-ce
 sudo systemctl start docker
 ```
 
-### Docker Compose Installation
+### Docker Compose 설치
 
 ```bash
 sudo curl -L "https://github.com/docker/compose/releases/download/1.24.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
@@ -57,22 +57,22 @@ docker login            # 도커 허브 로그인
 docker logout           # 도커 허브 로그아웃
 ```
 
-## Image Management
+## 이미지 관리
 
-### List Images
+### 이미지 목록
 
 ```bash
 docker images           # 모든 이미지 목록
 docker images -a        # 중간 이미지를 포함한 모든 이미지 목록
 ```
 
-### Pull Images
+### 이미지 다운로드
 
 ```bash
 docker pull <image-name:version> # 도커 허브에서 이미지 다운로드
 ```
 
-### Build Images
+### 이미지 빌드
 
 ```bash
 docker build -t <image-name> . # 현재 디렉토리의 도커파일에서 이미지 빌드
@@ -89,7 +89,7 @@ docker tag <local-image-name> <username>/<preferred-image-name>
 docker push <username>/<preferred-image-name>
 ```
 
-### Remove Images
+### 이미지 제거
 
 ```bash
 docker rmi <image-name>        # 특정 이미지 제거
@@ -109,9 +109,9 @@ docker rmi $(docker images --filter "dangling=true" -q --no-trunc)
 docker rmi repository/image-name:tag
 ```
 
-## Container Management
+## 컨테이너 관리리
 
-### Run Containers
+### 컨테이너 실행
 
 ```bash
 docker run -itd --name <container-name> <image-name> # 분리(detached) 모드에서 컨테이너 실행
@@ -119,7 +119,7 @@ docker run -it -p <host-port>:<docker-port> <image-name> # 포트 매핑이 있�
 docker run -it --name <container-name> <image-name> # interactively 컨테이너 실행
 ```
 
-### List Containers
+### 컨테이너 목록
 
 ```bash
 docker ps                  # 실행 중인 컨테이너 목록
@@ -127,7 +127,7 @@ docker ps -a               # 모든 컨테이너 목록
 docker ps -s               # CPU 및 메모리 사용량이 있는 실행 중인 컨테이너 목록
 ```
 
-### Start, Stop, and Restart Containers
+### 컨테이너 시작, 중지, 재시작작
 
 ```bash
 docker start <container-name>   # 중지된 컨테이너 시작
@@ -135,7 +135,7 @@ docker stop <container-name>    # 실행 중인 컨테이너 중지
 docker restart <container-name> # 컨테이너 재시작
 ```
 
-### Remove Containers
+### 컨테이너 제거
 
 ```bash
 docker rm <container-name>      # 중지된 컨테이너 제거
@@ -164,7 +164,7 @@ docker logs <container-name>    # 컨테이너 로그 보기
 docker port <container-name>    # 컨테이너의 포트 매핑 표시
 ```
 
-## Network Management
+## 네트워크 관리
 
 ```bash
 docker network ls            # 모든 네트워크 목록
@@ -172,7 +172,7 @@ docker network create <network-name> # 새 네트워크 생성
 docker network rm <network-name>    # 네트워크 제거
 ```
 
-## Volume Management
+## 볼륨 관리
 
 ```bash
 docker volume ls             # 모든 볼륨 목록
@@ -183,7 +183,7 @@ docker run -v <host-path>:<container-path> <image-name> # 볼륨 마운트
 
 ## Docker Compose
 
-### Basic Commands
+### 기본 명령어
 
 ```bash
 docker-compose up           # docker-compose.yml에 정의된 서비스 시작
@@ -197,9 +197,9 @@ docker-compose pause        # 서비스 일시 중지
 docker-compose unpause      # 서비스 일시 중지 해제
 ```
 
-## Dockerfile Commands
+## Dockerfile 명령어
 
-### Build Image from Dockerfile
+### Dockerfile에서 이미지 빌드
 
 ```bash
 docker build -t <image-name> <Dockerfile-path> # Dockerfile에서 이미지 빌드
@@ -230,9 +230,9 @@ docker secret rm <secret-name>          # 시크릿 제거
 - Use Docker secrets to centrally manage sensitive data and securely transmit it to containers.
 - Secrets are encrypted during transit and at rest in a Docker swarm.
 
-## Cleanup
+## 정리
 
-### Remove Unused Resources
+### 사용하지 않는 자원 제거
 
 ```bash
 docker system prune          # 사용하지 않는 데이터(이미지, 컨테이너, 네트워크, 볼륨) 제거
