@@ -13,10 +13,6 @@ toc_icon: "sticky-note"
 
 <br>![image](https://github.com/user-attachments/assets/251e861e-8c9f-4619-ae93-e3759ff404a5){: .align-center}<br>
 
-데이터 저장 형식은 데이터를 얼마나 빠르고 효율적으로 추출하고 처리할 수 있는지에 중대한 영향을 미칩니다. 이번 포스트에서는 데이터 사이언스 커뮤니티에서 주목받는 두 가지 데이터 저장 형식인 Apache Parquet과 Apache Arrow를 비교해보겠습니다.
-
-<br>
-
 # LN-Tuning: Layer Normalization으로 대규모 언어 모델을 효율적으로 파인튜닝하기
 
 현대의 대규모 사전학습 언어 모델(Pre-trained Language Models, PLMs)은 수십억 개의 파라미터를 가지고 있습니다. BERT, GPT 시리즈와 같은 모델들을 특정 태스크에 맞게 파인튜닝하려면 엄청난 계산 비용과 메모리가 필요합니다. 각 다운스트림 태스크마다 모델의 전체 복사본을 저장하고 학습시켜야 한다면 이는 현실적으로 불가능합니다.
