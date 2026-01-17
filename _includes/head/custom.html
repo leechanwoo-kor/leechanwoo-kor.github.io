@@ -1,5 +1,13 @@
 <!-- start custom head snippets -->
 
+<!-- DNS Prefetch for external resources -->
+<link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+<link rel="dns-prefetch" href="//pagead2.googlesyndication.com">
+<link rel="dns-prefetch" href="//googletagmanager.com">
+<link rel="dns-prefetch" href="//fundingchoicesmessages.google.com">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+
 <!-- insert favicons. use https://realfavicongenerator.net/ -->
 <link rel="apple-touch-icon" sizes="180x180" href="{{site.baseurl}}/assets/logo.ico/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="{{site.baseurl}}/assets/logo.ico/favicon-32x32.png">
@@ -33,10 +41,11 @@
 <meta name="twitter:site" content="@{{ site.twitter.username }}">
 {% endif %}
 
-<!-- Custom CSS -->
-<link rel="stylesheet" href="{{site.baseurl}}/assets/css/custom/custom.css">
+<!-- Custom CSS - preload for performance -->
+<link rel="preload" href="{{site.baseurl}}/assets/css/custom/custom.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="{{site.baseurl}}/assets/css/custom/custom.css"></noscript>
 
-<!-- Google Adsense -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6158389106191012" crossorigin="anonymous"></script>
+<!-- Google Adsense - defer loading -->
+<script async defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6158389106191012" crossorigin="anonymous"></script>
 
 <!-- end custom head snippets -->
