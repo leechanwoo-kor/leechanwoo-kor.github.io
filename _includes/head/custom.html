@@ -1,12 +1,22 @@
 <!-- start custom head snippets -->
 
+<!-- Canonical URL redirect enforcement -->
+<script>
+  // Enforce canonical URL (www -> non-www or http -> https)
+  if (window.location.host === 'www.leechanwoo-kor.github.io') {
+    window.location.replace('https://leechanwoo-kor.github.io' + window.location.pathname + window.location.search + window.location.hash);
+  }
+</script>
+
 <!-- DNS Prefetch for external resources -->
 <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
 <link rel="dns-prefetch" href="//pagead2.googlesyndication.com">
 <link rel="dns-prefetch" href="//googletagmanager.com">
 <link rel="dns-prefetch" href="//fundingchoicesmessages.google.com">
+<link rel="dns-prefetch" href="//www.google-analytics.com">
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
+<link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
 
 <!-- insert favicons. use https://realfavicongenerator.net/ -->
 <link rel="apple-touch-icon" sizes="180x180" href="{{site.baseurl}}/assets/logo.ico/apple-touch-icon.png">
