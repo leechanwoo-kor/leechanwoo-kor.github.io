@@ -21,7 +21,7 @@ title                    : "Release notes for ML & Python"
 title_separator          : "-"
 subtitle                 : "Machine Learning & Python Developer" # site tagline that appears below site title in masthead
 name                     : "이찬우(LEE CHANWOO)"
-description              : "Machine Learning, Python, Docker, MLOps 관련 기술 블로그입니다. 딥러닝, 데이터 파이프라인, 컨테이너 기술에 대한 실용적인 가이드와 튜토리얼을 제공합니다."
+description              : "Machine Learning, Python, Docker, MLOps 관련 기술 블로그입니다. 딥러닝, 데이터 파이프라인, 컨테이너 기술에 대한 실용적인 가이드와 튜토리얼을 제공합니다. PyTorch, TensorFlow, Kubernetes 등 최신 ML/AI 기술 스택과 개발 노하우를 공유합니다."
 url                      : "https://leechanwoo-kor.github.io" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : "leechanwoo-kor/leechanwoo-kor.utterances" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"

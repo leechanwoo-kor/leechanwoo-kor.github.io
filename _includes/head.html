@@ -19,11 +19,39 @@
 </script>
 
 <!-- For all browsers -->
-<!-- Critical CSS preload -->
-<link rel="preload" href="{{ '/assets/css/main.css' | relative_url }}" as="style">
-<link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+<!-- Critical CSS inline for faster FCP -->
+<style>
+  /* Critical CSS - Above the fold styles */
+  *,*::before,*::after{box-sizing:border-box}
+  html{font-size:16px;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}
+  body{margin:0;padding:0;color:#fff;font-family:-apple-system,BlinkMacSystemFont,"Roboto","Segoe UI","Helvetica Neue","Lucida Grande",Arial,sans-serif;line-height:1.5;background-color:#252a34}
+  .masthead{position:relative;border-bottom:1px solid #393e46;-webkit-animation:intro .3s both;animation:intro .3s both;-webkit-animation-delay:.25s;animation-delay:.25s;z-index:20}
+  .initial-content,.search-content{-webkit-animation:intro .3s both;animation:intro .3s both;-webkit-animation-delay:.35s;animation-delay:.35s}
+  @keyframes intro{0%{opacity:0}100%{opacity:1}}
+  .page{width:100%;padding-right:1em;padding-left:1em}
+  img{max-width:100%;height:auto}
+  a{color:#00adb5;text-decoration:none}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+</style>
+
+<!-- Main CSS with preload and async loading -->
+<link rel="preload" href="{{ '/assets/css/main.css' | relative_url }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}"></noscript>
+
+<!-- Font Awesome async loading -->
 <link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+<!-- CSS loader polyfill for older browsers -->
+<script>
+  /*! loadCSS rel=preload polyfill. [c]2017 Filament Group, Inc. MIT License */
+  (function(w){"use strict";if(!w.loadCSS){w.loadCSS=function(){}}
+  var rp=loadCSS.relpreload={};rp.support=(function(){var ret;try{ret=w.document.createElement("link").relList.supports("preload")}catch(e){ret=false}
+  return function(){return ret}})();rp.bindMediaToggle=function(link){var finalMedia=link.media||"all";function enableStylesheet(){link.media=finalMedia}
+  if(link.addEventListener){link.addEventListener("load",enableStylesheet)}else if(link.attachEvent){link.attachEvent("onload",enableStylesheet)}
+  setTimeout(function(){link.rel="stylesheet";link.media="only x"});setTimeout(enableStylesheet,3000)};rp.poly=function(){if(rp.support()){return}
+  var links=w.document.getElementsByTagName("link");for(var i=0;i<links.length;i++){var link=links[i];if(link.rel==="preload"&&link.getAttribute("as")==="style"&&!link.getAttribute("data-loadcss")){link.setAttribute("data-loadcss",true);rp.bindMediaToggle(link)}}};if(!rp.support()){rp.poly();var run=w.setInterval(rp.poly,500);if(w.addEventListener){w.addEventListener("load",function(){rp.poly();w.clearInterval(run)})}else if(w.attachEvent){w.attachEvent("onload",function(){rp.poly();w.clearInterval(run)})}}}(typeof global!=="undefined"?global:this));
+</script>
 
 {% if site.head_scripts %}
   {% for script in site.head_scripts %}
