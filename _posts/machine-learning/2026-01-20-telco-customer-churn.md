@@ -749,7 +749,6 @@ Optimal Threshold: 0.2400
 weighted avg       0.80      0.70      0.71      1409
 ```
 
-```
 # 11. Production Considerations
 
 ## 11.1 모델 모니터링
