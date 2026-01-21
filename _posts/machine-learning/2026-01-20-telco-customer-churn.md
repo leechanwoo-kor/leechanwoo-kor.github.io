@@ -14,7 +14,7 @@ toc_icon: "sticky-note"
 <br><img width="1999" height="768" alt="image" src="https://github.com/user-attachments/assets/a65afbd0-3f78-4ab1-907f-af95d258e4c3" />{: .align-center}<br>
 
 
-# 머신러닝 기반 고객 이탈 예측 시스템 구1축
+# 머신러닝 기반 고객 이탈 예측 시스템 구축
 
 ### TL;DR
 
