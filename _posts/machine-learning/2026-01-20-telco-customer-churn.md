@@ -13,6 +13,7 @@ toc_icon: "sticky-note"
 
 <br><img width="1999" height="768" alt="image" src="https://github.com/user-attachments/assets/a65afbd0-3f78-4ab1-907f-af95d258e4c3" />{: .align-center}<br>
 
+<br>
 
 # 머신러닝 기반 고객 이탈 예측 시스템 구축
 
@@ -23,6 +24,8 @@ toc_icon: "sticky-note"
 - 핵심 과제: 클래스 불균형(73.4% vs 26.6%), 숨겨진 결측치 처리
 - 해결책: SMOTE + Random Forest, 5-Fold CV로 84% 정확도 달성
 - 기술 스택: Python, Scikit-learn, XGBoost, imbalanced-learn
+
+<br>
 
 # 1. Problem Definition
 
@@ -40,6 +43,8 @@ toc_icon: "sticky-note"
 - **Recall**: False Negative 최소화 (실제 이탈 고객 놓치지 않기)
 - **F1-Score**: Precision과 Recall의 조화평균
 - **ROC-AUC**: 임계값 독립적인 모델 성능 평가
+
+<br>
 
 # 2. Environment Setup
 
@@ -75,7 +80,9 @@ sns.set_theme(style='whitegrid')
 pd.set_option('display.max_columns', None)
 ```
 
-# 3. Data Acquisition & Initial Inspection
+<br>
+
+#  3. Data Acquisition & Initial Inspection
 
 ## 3.1 데이터 로딩
 
@@ -110,6 +117,8 @@ df = df.drop(columns=['customerID'])
 print(f"Empty strings in TotalCharges: {len(df[df['TotalCharges'] == ' '])}")
 # Output: 11
 ```
+
+<br>
 
 # 4. Exploratory Data Analysis (EDA)
 
@@ -255,6 +264,8 @@ Imbalance Ratio: 2.77:1
 
 문제점: 약 2.8:1의 클래스 불균형 → SMOTE 적용 필요
 
+<br>
+
 # 5. Data Preprocessing Pipeline
 
 ## 5.1 결측치 처리
@@ -311,6 +322,8 @@ print(f"✓ {len(encoders)}개 범주형 변수 인코딩 완료")
 - **주의**: One-Hot Encoding과의 트레이드오프
   - Label Encoding: 메모리 효율적, 트리 기반 모델에 적합
   - One-Hot Encoding: 선형 모델에 적합, 차원 증가
+
+<br>
 
 # 6. Handling Class Imbalance with SMOTE
 
@@ -378,6 +391,8 @@ After SMOTE:
 - **BorderlineSMOTE**: 경계선 샘플에 집중
 - **RandomUnderSampler**: 다수 클래스 다운샘플링
 
+<br>
+
 # 7. Model Training & Selection
 
 ## 7.1 Baseline Models
@@ -443,6 +458,8 @@ best_model = RandomForestClassifier(
 best_model.fit(X_train_balanced, y_train_balanced)
 print("✓ Random Forest 학습 완료")
 ```
+
+<br>
 
 # 8. Model Evaluation
 
@@ -533,6 +550,8 @@ print(feature_importance.head(10))
 - Contract: 계약 유형 (Month-to-month vs Long-term)
 
 <img width="984" height="784" alt="image" src="https://github.com/user-attachments/assets/b3c6690d-bbe4-4286-a78e-c83a53700499" />
+
+<br>
 
 # 9. Model Serialization & Deployment
 
@@ -629,6 +648,8 @@ print(f"""
 신뢰도: {result['confidence']:.2%}
 """)
 ```
+
+<br>
 
 # 10. Performance Optimization Roadmap
 
@@ -749,6 +770,8 @@ Optimal Threshold: 0.2400
 weighted avg       0.80      0.70      0.71      1409
 ```
 
+<br>
+
 # 11. Production Considerations
 
 ## 11.1 모델 모니터링
@@ -842,6 +865,8 @@ Prediction: No Churn
 Churn Probability: 30.00%
 Confidence: 70.00%
 ```
+
+<br>
 
 # 12. Key Takeaways
 
