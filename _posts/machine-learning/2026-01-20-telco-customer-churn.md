@@ -12,9 +12,10 @@ toc_label: "머신러닝 기반 고객 이탈(Customer Churn) 예측 시스템 �
 toc_icon: "sticky-note"
 ---
 
-<br>![image](https://github.com/user-attachments/assets/251e861e-8c9f-4619-ae93-e3759ff404a5){: .align-center}<br>
+<br><img width="1999" height="768" alt="image" src="https://github.com/user-attachments/assets/a65afbd0-3f78-4ab1-907f-af95d258e4c3" />{: .align-center}<br>
 
-# 머신러닝 기반 고객 이탈 예측 시스템 구축
+
+# 머신러닝 기반 고객 이탈 예측 시스템 구1축
 
 ### TL;DR
 
