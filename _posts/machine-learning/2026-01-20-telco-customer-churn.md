@@ -2,7 +2,6 @@
 title: "[Machine Learning] 머신러닝 기반 고객 이탈(Customer Churn) 예측 시스템 구축"
 categories:
   - Machine Learning
-  - Classification
 tags:
   - Classification
   - Customer Churn
