@@ -176,7 +176,7 @@ plt.show()
 ### 발견:
 - tenure ↔ TotalCharges: 0.83 (강한 양의 상관관계)
   - 해석: 가입 기간이 길수록 총 결제 금액 증가 (당연한 관계)
-  - 멀티콜리니어리티 검토: 트리 기반 모델은 영향 적지만, 선형 모델 사용 시 하나 제거 고려
+  - Multicollinearity 검토: 트리 기반 모델은 영향 적지만, 선형 모델 사용 시 하나 제거 고려
  
 <img width="660" height="584" alt="image" src="https://github.com/user-attachments/assets/ea7b89ec-7a29-48dc-93fa-1f4a7ca7cbbd" />{: .align-center}
 
@@ -663,6 +663,12 @@ print(f"Best Parameters: {random_search.best_params_}")
 print(f"Best F1 Score: {random_search.best_score_:.4f}")
 ```
 
+```
+Fitting 5 folds for each of 50 candidates, totalling 250 fits
+Best Parameters: {'n_estimators': 500, 'min_samples_split': 2, 'min_samples_leaf': 1, 'max_features': 'log2', 'max_depth': 10, 'bootstrap': True}
+Best F1 Score: 0.8328
+```
+
 ## 10.2 Stratified K-Fold 적용
 
 ```python
@@ -681,6 +687,11 @@ cv_scores_stratified = cross_val_score(
 
 print(f"Stratified CV F1 Scores: {cv_scores_stratified}")
 print(f"Mean: {cv_scores_stratified.mean():.4f}")
+```
+
+```
+Stratified CV F1 Scores: [0.8442029  0.84286574 0.85152057 0.85152057 0.85885886]
+Mean: 0.8498
 ```
 
 ## 10.3 앙상블 스태킹
@@ -724,6 +735,18 @@ print(f"Optimal Threshold: {optimal_threshold:.4f}")
 # 최적 임계값으로 재예측
 y_pred_optimized = (y_pred_proba[:, 1] >= optimal_threshold).astype(int)
 print(classification_report(y_test, y_pred_optimized))
+```
+
+```
+Optimal Threshold: 0.2400
+              precision    recall  f1-score   support
+
+           0       0.92      0.64      0.76      1035
+           1       0.46      0.85      0.60       374
+
+    accuracy                           0.70      1409
+   macro avg       0.69      0.75      0.68      1409
+weighted avg       0.80      0.70      0.71      1409
 ```
 
 ```
@@ -815,9 +838,15 @@ if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
 ```
 
+```
+Prediction: No Churn
+Churn Probability: 30.00%
+Confidence: 70.00%
+```
+
 # 12. Key Takeaways
 
-## 성공 요인
+## 핵심 요인
 1. SMOTE를 통한 클래스 불균형 해결: 소수 클래스 샘플링으로 모델 편향 완화
 2. Cross Validation: 단일 split 대비 신뢰성 높은 성능 추정
 3. 다중 Label Encoder 관리: 추론 시 일관성 보장
