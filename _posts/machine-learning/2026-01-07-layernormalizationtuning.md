@@ -7,7 +7,7 @@ tags:
   - Layer Normalization Tuning
 toc: true
 toc_sticky: true
-toc_label: "Parquet vs Arrow"
+toc_label: "Layer Normalization Tuning"
 toc_icon: "sticky-note"
 ---
 
