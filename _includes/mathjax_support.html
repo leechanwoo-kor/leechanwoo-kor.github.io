@@ -1,26 +1,30 @@
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-    TeX: {
-      equationNumbers: {
-        autoNumber: "AMS"
-      }
-    },
+<!-- MathJax - Lazy loaded for better performance -->
+<script>
+  window.MathJax = {
     tex2jax: {
-    inlineMath: [ ['$', '$'] ],
-    displayMath: [ ['$$', '$$'] ],
-    processEscapes: true,
+      inlineMath: [['$', '$']],
+      displayMath: [['$$', '$$']],
+      processEscapes: true
+    },
+    TeX: {
+      equationNumbers: { autoNumber: "AMS" }
+    },
+    messageStyle: "none"
+  };
+
+  function loadMathJax() {
+    if (window.mathJaxLoaded) return;
+    window.mathJaxLoaded = true;
+    var script = document.createElement('script');
+    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML';
+    script.async = true;
+    document.head.appendChild(script);
   }
-});
-MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
-	  alert("Math Processing Error: "+message[1]);
-	});
-MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
-	  alert("Math Processing Error: "+message[1]);
-	});
+
+  // Load MathJax after page is interactive
+  if (document.readyState === 'complete') {
+    loadMathJax();
+  } else {
+    window.addEventListener('load', loadMathJax);
+  }
 </script>
-
-<!-- 이전 MathJax 스크립트 참조 (주석 처리 또는 제거) -->
-<!-- <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script> -->
-
-<!-- 새로운 MathJax 스크립트 참조 -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>

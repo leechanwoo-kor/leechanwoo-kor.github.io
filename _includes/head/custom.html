@@ -55,7 +55,27 @@
 <link rel="preload" href="{{site.baseurl}}/assets/css/custom/custom.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="{{site.baseurl}}/assets/css/custom/custom.css"></noscript>
 
-<!-- Google Adsense - defer loading -->
-<script async defer src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6158389106191012" crossorigin="anonymous"></script>
+<!-- Google Adsense - lazy load after page is interactive -->
+<script>
+  // Load AdSense only after page is fully interactive
+  function loadAdsense() {
+    if (window.adsbygoogleLoaded) return;
+    window.adsbygoogleLoaded = true;
+    var script = document.createElement('script');
+    script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6158389106191012';
+    script.crossOrigin = 'anonymous';
+    script.async = true;
+    document.body.appendChild(script);
+  }
+  // Use requestIdleCallback for non-critical ad loading
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(loadAdsense, { timeout: 3000 });
+  } else {
+    // Fallback: load after window load event
+    window.addEventListener('load', function() {
+      setTimeout(loadAdsense, 1000);
+    });
+  }
+</script>
 
 <!-- end custom head snippets -->
