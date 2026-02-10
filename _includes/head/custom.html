@@ -83,29 +83,16 @@
 
   mermaid.initialize({ 
     startOnLoad: false,
-    theme: 'base', // 'dark' 대신 'base'를 써야 커스텀이 잘 먹힙니다.
-    themeVariables: {
-      darkMode: true,
-      
-      // 1. 기본 색상 (블로그 배경색과 조화롭게)
-      background: '#252a34',      // 배경색 (Minimal Mistakes 다크 테마 기본색)
-      primaryColor: '#3a414e',    // 노드(상자) 배경색
-      primaryBorderColor: '#66fcf1', // 노드 테두리 색 (네온 민트색으로 강조)
-      
-      // 2. 글자 및 선 색상 (가시성 핵심)
-      primaryTextColor: '#ffffff', // 노드 안 글자색 (흰색)
-      textColor: '#ffffff',        // 일반 글자색 (흰색)
-      lineColor: '#45a29e',        // 연결선 색상 (밝은 청록색)
-      
-      // 3. 기타 세부 설정
-      mainBkg: '#252a34',          // 메인 배경
-      noteBkg: '#fff5ad',          // 노트(Note) 배경 (밝은 노랑)
-      noteTextColor: '#333'        // 노트 글자 (검정)
-    }
+    // 💡 원하는 테마로 아래 값을 바꿔보세요!
+    // 'dark': 다크 모드 (현재 블로그에 추천)
+    // 'default': 기본 (흰 배경, 회색 선)
+    // 'forest': 초록색 계열
+    // 'neutral': 흑백의 깔끔한 스타일
+    theme: 'dark', 
   });
 
   document.addEventListener('DOMContentLoaded', () => {
-    /* 기존 코드와 동일한 변환 로직 */
+    /* Jekyll 코드 블록을 Mermaid가 인식하도록 변환하는 로직 */
     const codeBlocks = document.querySelectorAll('pre code.language-mermaid, .language-mermaid pre code');
     codeBlocks.forEach((codeBlock) => {
       const preElement = codeBlock.closest('div.highlighter-rouge') || codeBlock.closest('pre');
@@ -116,6 +103,8 @@
         preElement.parentNode.replaceChild(mermaidDiv, preElement);
       }
     });
+    
+    // 변환 후 렌더링 실행
     mermaid.run();
   });
 </script>
@@ -123,13 +112,7 @@
 <style>
   .mermaid svg { 
     max-width: 100%; 
-    height: auto;
-    background-color: transparent !important; /* 배경 투명 유지 */
-  }
-  /* 글자가 너무 작으면 키워줍니다 */
-  .mermaid .nodeLabel, .mermaid .edgeLabel {
-    font-size: 16px !important;
-    font-weight: bold !important;
+    height: auto; 
   }
 </style>
 
