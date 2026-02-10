@@ -1,0 +1,19 @@
+<!-- Google AdSense - lazy load after page is interactive -->
+<script>
+  function loadAdsense() {
+    if (window.adsbygoogleLoaded) return;
+    window.adsbygoogleLoaded = true;
+    var script = document.createElement('script');
+    script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6158389106191012';
+    script.crossOrigin = 'anonymous';
+    script.async = true;
+    document.body.appendChild(script);
+  }
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(loadAdsense, { timeout: 3000 });
+  } else {
+    window.addEventListener('load', function() {
+      setTimeout(loadAdsense, 1000);
+    });
+  }
+</script>
