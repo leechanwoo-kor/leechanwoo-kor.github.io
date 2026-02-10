@@ -1,0 +1,27 @@
+<!-- Mermaid diagram support -->
+{% assign skin = site.minimal_mistakes_skin | default: "default" %}
+{% if skin == "dark" or skin == "neon" or skin == "plum" %}
+  {% assign mermaid_theme = "dark" %}
+{% else %}
+  {% assign mermaid_theme = "default" %}
+{% endif %}
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+
+  mermaid.initialize({ startOnLoad: false, theme: '{{ mermaid_theme }}' });
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid, .language-mermaid pre code');
+    codeBlocks.forEach((codeBlock) => {
+      const preElement = codeBlock.closest('div.highlighter-rouge') || codeBlock.closest('pre');
+      if (preElement) {
+        const mermaidDiv = document.createElement('div');
+        mermaidDiv.className = 'mermaid';
+        mermaidDiv.textContent = codeBlock.textContent;
+        preElement.parentNode.replaceChild(mermaidDiv, preElement);
+      }
+    });
+    mermaid.run();
+  });
+</script>
+<style>.mermaid svg { max-width: 100%; height: auto; }</style>

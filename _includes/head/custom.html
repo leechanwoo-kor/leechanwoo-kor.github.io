@@ -1,14 +1,13 @@
 <!-- start custom head snippets -->
 
-<!-- Canonical URL redirect enforcement -->
+<!-- Canonical URL redirect -->
 <script>
-  // Enforce canonical URL (www -> non-www or http -> https)
   if (window.location.host === 'www.leechanwoo-kor.github.io') {
     window.location.replace('https://leechanwoo-kor.github.io' + window.location.pathname + window.location.search + window.location.hash);
   }
 </script>
 
-<!-- DNS Prefetch for external resources -->
+<!-- DNS Prefetch -->
 <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
 <link rel="dns-prefetch" href="//pagead2.googlesyndication.com">
 <link rel="dns-prefetch" href="//googletagmanager.com">
@@ -18,7 +17,7 @@
 <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
 <link rel="preconnect" href="https://www.google-analytics.com" crossorigin>
 
-<!-- insert favicons. use https://realfavicongenerator.net/ -->
+<!-- Favicons -->
 <link rel="apple-touch-icon" sizes="180x180" href="{{site.baseurl}}/assets/logo.ico/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="{{site.baseurl}}/assets/logo.ico/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="{{site.baseurl}}/assets/logo.ico/favicon-16x16.png">
@@ -27,7 +26,7 @@
 <meta name="msapplication-TileColor" content="#da532c">
 <meta name="theme-color" content="#ffffff">
 
-<!-- 소셜 미디어 메타 태그 강화 -->
+<!-- Open Graph / Twitter -->
 <meta property="og:locale" content="ko_KR">
 <meta property="og:type" content="{% if page.date %}article{% else %}website{% endif %}">
 <meta property="og:site_name" content="{{ site.title }}">
@@ -51,69 +50,11 @@
 <meta name="twitter:site" content="@{{ site.twitter.username }}">
 {% endif %}
 
-<!-- Custom CSS - preload for performance -->
-<link rel="preload" href="{{site.baseurl}}/assets/css/custom/custom.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="{{site.baseurl}}/assets/css/custom/custom.css"></noscript>
+<!-- Custom CSS -->
+<link rel="stylesheet" href="{{site.baseurl}}/assets/css/custom/custom.css">
 
-<!-- Google Adsense - lazy load after page is interactive -->
-<script>
-  // Load AdSense only after page is fully interactive
-  function loadAdsense() {
-    if (window.adsbygoogleLoaded) return;
-    window.adsbygoogleLoaded = true;
-    var script = document.createElement('script');
-    script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6158389106191012';
-    script.crossOrigin = 'anonymous';
-    script.async = true;
-    document.body.appendChild(script);
-  }
-  // Use requestIdleCallback for non-critical ad loading
-  if ('requestIdleCallback' in window) {
-    requestIdleCallback(loadAdsense, { timeout: 3000 });
-  } else {
-    // Fallback: load after window load event
-    window.addEventListener('load', function() {
-      setTimeout(loadAdsense, 1000);
-    });
-  }
-</script>
-
-<script type="module">
-  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
-
-  mermaid.initialize({ 
-    startOnLoad: false,
-    // 💡 원하는 테마로 아래 값을 바꿔보세요!
-    // 'dark': 다크 모드 (현재 블로그에 추천)
-    // 'default': 기본 (흰 배경, 회색 선)
-    // 'forest': 초록색 계열
-    // 'neutral': 흑백의 깔끔한 스타일
-    theme: 'dark', 
-  });
-
-  document.addEventListener('DOMContentLoaded', () => {
-    /* Jekyll 코드 블록을 Mermaid가 인식하도록 변환하는 로직 */
-    const codeBlocks = document.querySelectorAll('pre code.language-mermaid, .language-mermaid pre code');
-    codeBlocks.forEach((codeBlock) => {
-      const preElement = codeBlock.closest('div.highlighter-rouge') || codeBlock.closest('pre');
-      if (preElement) {
-        const mermaidDiv = document.createElement('div');
-        mermaidDiv.className = 'mermaid';
-        mermaidDiv.textContent = codeBlock.textContent;
-        preElement.parentNode.replaceChild(mermaidDiv, preElement);
-      }
-    });
-    
-    // 변환 후 렌더링 실행
-    mermaid.run();
-  });
-</script>
-
-<style>
-  .mermaid svg { 
-    max-width: 100%; 
-    height: auto; 
-  }
-</style>
+<!-- Includes -->
+{% include head/adsense.html %}
+{% include head/mermaid.html %}
 
 <!-- end custom head snippets -->
