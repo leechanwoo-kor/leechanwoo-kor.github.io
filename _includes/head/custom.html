@@ -80,9 +80,34 @@
 
 <script type="module">
   import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+
+  // 설정: 다크 모드 적용
   mermaid.initialize({ 
-    startOnLoad: true,
-    theme: 'dark'  /* minimal_mistakes_skin: "dark"를 쓰고 계시므로 다크 테마 적용 */
+    startOnLoad: false, // 우리가 수동으로 렌더링 할 것이므로 false
+    theme: 'dark' 
+  });
+
+  document.addEventListener('DOMContentLoaded', () => {
+    // 1. "language-mermaid" 클래스가 붙은 모든 요소를 찾습니다. (Jekyll이 생성한 코드 블록)
+    const codeBlocks = document.querySelectorAll('pre code.language-mermaid, .language-mermaid pre code');
+
+    codeBlocks.forEach((codeBlock) => {
+      // 2. 해당 코드 블록의 부모 요소(div.highlighter-rouge)를 찾습니다.
+      const preElement = codeBlock.closest('div.highlighter-rouge') || codeBlock.closest('pre');
+      
+      if (preElement) {
+        // 3. 새로운 div를 만들고 "mermaid" 클래스를 붙입니다.
+        const mermaidDiv = document.createElement('div');
+        mermaidDiv.className = 'mermaid';
+        mermaidDiv.textContent = codeBlock.textContent; // 코드를 그대로 옮깁니다.
+
+        // 4. 기존의 복잡한 코드 블록을 새로운 mermaid div로 교체합니다.
+        preElement.parentNode.replaceChild(mermaidDiv, preElement);
+      }
+    });
+
+    // 5. 변환된 div들을 Mermaid가 그림으로 그립니다.
+    mermaid.run();
   });
 </script>
 
