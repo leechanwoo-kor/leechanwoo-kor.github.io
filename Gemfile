@@ -23,3 +23,8 @@ gem "faraday-retry"
 gem 'wdm', '>= 0.1.0' if Gem.win_platform?
 gem 'tzinfo', '~> 2.0'
 gem 'tzinfo-data'
+gem 'csv'
+gem 'base64'
+gem 'bigdecimal'
+gem 'mutex_m'
+gem 'fiddle'
