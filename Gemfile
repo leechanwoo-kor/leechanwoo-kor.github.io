@@ -5,7 +5,7 @@ gem "jekyll", "~> 4.3.2"
 gem "kramdown-parser-gfm", "~> 1.1.0"
 
 # 테마 사용 (최신 버전 지정)
-gem "minimal-mistakes-jekyll", "~> 4.26.2"
+gem "minimal-mistakes-jekyll", "~> 4.27.0"
 
 # 플러그인
 group :jekyll_plugins do
