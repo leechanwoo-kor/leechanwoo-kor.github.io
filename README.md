@@ -38,7 +38,7 @@
 ## run
 
 ```
-$ jekyll clean
+$ bundle exec jekyll clean
 $ bundle exec jekyll serve --incremental
 $ open http://localhost:4000
 ```

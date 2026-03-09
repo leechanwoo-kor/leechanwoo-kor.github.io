@@ -1,8 +1,7 @@
 source "https://rubygems.org"
 
-# GitHub Pages 환경과 동일한 버전 사용
+# Jekyll
 gem "jekyll", "~> 4.3.2"
-gem "sass", "~> 3.7.4"
 gem "kramdown-parser-gfm", "~> 1.1.0"
 
 # 테마 사용 (최신 버전 지정)
