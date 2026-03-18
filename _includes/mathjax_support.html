@@ -1,30 +1,28 @@
-<!-- MathJax - Lazy loaded for better performance -->
+<!-- MathJax v3 -->
 <script>
   window.MathJax = {
-    tex2jax: {
+    tex: {
       inlineMath: [['$', '$']],
       displayMath: [['$$', '$$']],
-      processEscapes: true
+      processEscapes: true,
+      tags: 'ams'
     },
-    TeX: {
-      equationNumbers: { autoNumber: "AMS" }
-    },
-    messageStyle: "none"
+    options: {
+      // Handle kramdown's <script type="math/tex"> output
+      renderActions: {
+        find_script_mathtex: [10, function (doc) {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/);
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+            const text = document.createTextNode('');
+            node.parentNode.replaceChild(text, node);
+            math.start = {node: text, delim: '', n: 0};
+            math.end = {node: text, delim: '', n: 0};
+            doc.math.push(math);
+          }
+        }, '']
+      }
+    }
   };
-
-  function loadMathJax() {
-    if (window.mathJaxLoaded) return;
-    window.mathJaxLoaded = true;
-    var script = document.createElement('script');
-    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML';
-    script.async = true;
-    document.head.appendChild(script);
-  }
-
-  // Load MathJax after page is interactive
-  if (document.readyState === 'complete') {
-    loadMathJax();
-  } else {
-    window.addEventListener('load', loadMathJax);
-  }
 </script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
