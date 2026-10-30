@@ -188,20 +188,19 @@ LLM은 언어는 잘 알지만 "이 상품을 산 사람이 저 상품도 샀다
 |---|---|
 | 1 | 왜 생성형 추천인가 (이번 글) |
 | 2 | 추천 시스템 속 오토인코더: AutoRec, Mult-VAE, 그리고 이산 표현이 필요한 이유 |
-| 3 | 벡터 양자화와 VQ-VAE |
-| 4 | RQ-VAE: 잔차 양자화로 정밀도 높이기 |
-| 5 | 아이템 ID의 한계와 Semantic ID |
-| 6 | Generative Retrieval: DSI에서 TIGER까지 |
-| 7~8 | TIGER: Semantic ID 생성, 코드북 붕괴, 인코더 디코더 생성 |
-| 9 | LETTER: 협업 신호를 담는 학습형 토크나이저 |
-| 10~11 | TokenRec: MQ-Tokenizer, GNN과 LLM의 결합 |
-| 12~13 | LC-Rec: Uniform Semantic Mapping, 언어와 협업 의미의 정렬 |
-| 14~15 | EAGER: 행동과 의미의 Two-stream 생성 |
-| 16 | EAGER-LLM |
-| 17 | 정리: 세대별 생성형 추천 모델 비교 |
-| 18 | Constrained Decoding: 없는 아이템을 생성하지 않게 |
-| 19 | RQ-VAE를 직접 구현하며 겪은 코드북 붕괴와 해결 |
-| 20 | 생성형 추천을 실서비스에서 검증한다는 것 |
+| 3 | 벡터 양자화와 VQ-VAE: 코드북 학습, Straight-Through Estimator, 그리고 코드북 붕괴 |
+| 4 | RQ-VAE와 Semantic ID: 잔차를 여러 단계로 양자화해 계층적인 아이템 코드 만들기 |
+| 5 | 좋은 Semantic ID의 조건: 무엇을 양자화하고, 얼마나 길게 만들고, 어떻게 평가할까 |
+| 6 | DSI에서 TIGER까지: 다음 아이템의 ID를 생성하는 모델 |
+| 7 | LETTER: 협업 신호를 담는 학습형 토크나이저 |
+| 8~9 | TokenRec: MQ-Tokenizer, GNN과 LLM의 결합 |
+| 10~11 | LC-Rec: Uniform Semantic Mapping, 언어와 협업 의미의 정렬 |
+| 12~13 | EAGER: 행동과 의미의 Two-stream 생성 |
+| 14 | EAGER-LLM |
+| 15 | 정리: 세대별 생성형 추천 모델 비교 |
+| 16 | Constrained Decoding: 없는 아이템을 생성하지 않게 |
+| 17 | RQ-VAE를 직접 구현하며 겪은 코드북 붕괴와 해결 |
+| 18 | 생성형 추천을 실서비스에서 검증한다는 것 |
 
 다음 글에서는 Semantic ID의 출발점인 오토인코더가 추천 시스템에서 어떻게 쓰여 왔는지부터 정리하겠습니다.
 
