@@ -92,7 +92,7 @@ social:
   name                   : "LEE CHANWOO" # If the user or organization name differs from the site's name
   links: # An array of links to social media profiles
     - "https://github.com/leechanwoo-kor"
-    - "https://instagram.com/leechanwoo_"
+    - "https://www.linkedin.com/in/cwlee1124/"
 
 # Analytics
 analytics:
@@ -125,9 +125,9 @@ author:
     - label: "Facebook"
       icon: "fab fa-fw fa-facebook-square"
       # url: "https://facebook.com/"
-    - label: "Instagram"
-      icon: "fab fa-fw fa-instagram"
-      url: "https://instagram.com/leechanwoo_"
+    - label: "LinkedIn"
+      icon: "fab fa-fw fa-linkedin"
+      url: "https://www.linkedin.com/in/cwlee1124/"
 
 # Site Footer
 footer:
@@ -150,9 +150,9 @@ footer:
     - label: "Bitbucket"
       icon: "fab fa-fw fa-bitbucket"
       # url:
-    - label: "Instagram"
-      icon: "fab fa-fw fa-instagram"
-      url: "https://instagram.com/leechanwoo_"
+    - label: "LinkedIn"
+      icon: "fab fa-fw fa-linkedin"
+      url: "https://www.linkedin.com/in/cwlee1124/"
 
 
 # Reading Files
@@ -296,8 +296,6 @@ defaults:
     values:
       layout: home
       author_profile: true
-      sidebar:
-        nav: "test"
   # _posts
   - scope:
       path: ""

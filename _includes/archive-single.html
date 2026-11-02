@@ -17,6 +17,7 @@
         <img src="{{ teaser | relative_url }}" alt="{{ title }}" loading="lazy" decoding="async" width="400" height="250">
       </div>
     {% endif %}
+    {% if include.home %}{% include blog-post-meta.html document=post %}{% endif %}
     <h2 class="archive__item-title no_toc" itemprop="headline">
       {% if post.link %}
         <a href="{{ post.link }}">{{ title }}</a> <a href="{{ post.url | relative_url }}" rel="permalink"><i class="fas fa-link" aria-hidden="true" title="permalink"></i><span class="sr-only">Permalink</span></a>
@@ -24,7 +25,7 @@
         <a href="{{ post.url | relative_url }}" rel="permalink">{{ title }}</a>
       {% endif %}
     </h2>
-    {% include page__meta.html type=include.type %}
+    {% unless include.home %}{% include page__meta.html type=include.type %}{% endunless %}
     {% if post.excerpt %}<p class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify | strip_html | truncate: 160 }}</p>{% endif %}
   </article>
 </div>

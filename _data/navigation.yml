@@ -8,11 +8,3 @@ main:
     url: /tags/
   - title: "Timeline"
     url: /timeline/
-
-# test
-test:
-  - title: "Navigation Test"
-    children:
-      - title: "Anaconda"
-        url: "/python/anaconda/"
-    

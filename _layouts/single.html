@@ -16,7 +16,7 @@ layout: default
 
 {% include structured-data.html %}
 
-<div id="main" role="main">
+<div id="main"{% if page.id %} class="blog-reading-layout"{% endif %} role="main">
   {% include sidebar.html %}
 
   <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
@@ -31,12 +31,25 @@ layout: default
           {% if page.title %}<h1 id="page-title" class="page__title p-name" itemprop="headline">
             <a href="{{ page.url | absolute_url }}" class="u-url" itemprop="url">{{ page.title | markdownify | remove: "<p>" | remove: "</p>" }}</a>
           </h1>{% endif %}
-          {% include page__meta.html %}
+          {% if page.id %}
+            {% include blog-post-meta.html document=page %}
+          {% else %}
+            {% include page__meta.html %}
+          {% endif %}
         </header>
       {% endunless %}
 
+      {% if page.id and page.toc %}
+        <details class="post-toc">
+          <summary>이 글의 목차</summary>
+          <nav class="toc" aria-label="{{ page.toc_label | default: site.data.ui-text[site.locale].toc_label | default: 'On this page' | escape }}">
+            {% include toc.html sanitize=true html=content h_min=1 h_max=6 class="toc__menu" skip_no_ids=true %}
+          </nav>
+        </details>
+      {% endif %}
+
       <section class="page__content e-content" itemprop="text">
-        {% if page.toc %}
+        {% if page.toc and page.id == nil %}
           <aside class="sidebar__right {% if page.toc_sticky %}sticky{% endif %}">
             <nav class="toc">
               <header><h4 class="nav__title"><i class="fas fa-{{ page.toc_icon | default: 'file-alt' }}"></i> {{ page.toc_label | default: site.data.ui-text[site.locale].toc_label | default: "On this page" }}</h4></header>
