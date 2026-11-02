@@ -19,7 +19,7 @@
 {% elsif site.search == true %}
   <!-- Lazy load search scripts only when search is triggered -->
   <script>
-    (function() {
+    document.addEventListener('DOMContentLoaded', function() {
       var searchToggle = document.querySelector('.search__toggle');
       var searchLoaded = false;
       if (searchToggle) {
@@ -31,16 +31,19 @@
               '{{ "/assets/js/lunr/lunr-store.js" | relative_url }}',
               '{{ "/assets/js/lunr/lunr-en.js" | relative_url }}'
             ];
-            scripts.forEach(function(src) {
+            function loadScript(index) {
+              if (index === scripts.length) return;
               var script = document.createElement('script');
-              script.src = src;
-              script.defer = true;
+              script.src = scripts[index];
+              script.onload = function() { loadScript(index + 1); };
+              script.onerror = function() { searchLoaded = false; };
               document.body.appendChild(script);
-            });
+            }
+            loadScript(0);
           }
-        }, { once: true });
+        });
       }
-    })();
+    });
   </script>
 {% endif %}
 
