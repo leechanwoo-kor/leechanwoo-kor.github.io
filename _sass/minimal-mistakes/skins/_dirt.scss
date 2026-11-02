@@ -1,3 +1,4 @@
+@use "sass:color";
 /* ==========================================================================
    Dirt skin
    ========================================================================== */
@@ -12,7 +13,7 @@ $footer-background-color: #e9dcbe !default;
 $link-color: #343434 !default;
 $masthead-link-color: $text-color !default;
 $masthead-link-color-hover: $text-color !default;
-$navicon-link-color-hover: mix(#fff, $text-color, 80%) !default;
+$navicon-link-color-hover: color.mix(#fff, $text-color, 80%) !default;
 
 /* dirt syntax highlighting (base16) */
 $base00: #231e18 !default;
@@ -31,3 +32,32 @@ $base0c: #6eb958 !default;
 $base0d: #88a4d3 !default;
 $base0e: #bb90e2 !default;
 $base0f: #b49368 !default;
+
+@use "../variables" with (
+  $background-color: $background-color,
+  $text-color: $text-color,
+  $muted-text-color: $muted-text-color,
+  $primary-color: $primary-color,
+  $border-color: $border-color,
+  $footer-background-color: $footer-background-color,
+  $link-color: $link-color,
+  $masthead-link-color: $masthead-link-color,
+  $masthead-link-color-hover: $masthead-link-color-hover,
+  $navicon-link-color-hover: $navicon-link-color-hover,
+  $base00: $base00,
+  $base01: $base01,
+  $base02: $base02,
+  $base03: $base03,
+  $base04: $base04,
+  $base05: $base05,
+  $base06: $base06,
+  $base07: $base07,
+  $base08: $base08,
+  $base09: $base09,
+  $base0a: $base0a,
+  $base0b: $base0b,
+  $base0c: $base0c,
+  $base0d: $base0d,
+  $base0e: $base0e,
+  $base0f: $base0f
+);

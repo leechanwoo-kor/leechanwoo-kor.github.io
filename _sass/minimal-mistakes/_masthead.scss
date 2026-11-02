@@ -1,18 +1,22 @@
+@use "minimal-mistakes/mixins";
+@use "minimal-mistakes/variables";
+@use "minimal-mistakes/vendor/breakpoint/breakpoint";
+
 /* ==========================================================================
    MASTHEAD
    ========================================================================== */
 
 .masthead {
   position: relative;
-  border-bottom: 1px solid $border-color;
-  -webkit-animation: $intro-transition;
-  animation: $intro-transition;
+  border-bottom: 1px solid variables.$border-color;
+  -webkit-animation: variables.$intro-transition;
+  animation: variables.$intro-transition;
   -webkit-animation-delay: 0.15s;
   animation-delay: 0.15s;
   z-index: 20;
 
   &__inner-wrap {
-    @include clearfix;
+    @include mixins.clearfix;
     margin-left: auto;
     margin-right: auto;
     padding: 1em;
@@ -23,10 +27,10 @@
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
     justify-content: space-between;
-    font-family: $sans-serif-narrow;
+    font-family: variables.$sans-serif-narrow;
 
-    @include breakpoint($x-large) {
-      max-width: $max-width;
+    @include breakpoint.breakpoint(variables.$x-large) {
+      max-width: variables.$max-width;
     }
 
     nav {
@@ -55,7 +59,7 @@
 
 .site-subtitle {
   display: block;
-  font-size: $type-size-8;
+  font-size: variables.$type-size-8;
 }
 
 .masthead__menu {
@@ -68,7 +72,7 @@
   .site-nav {
     margin-left: 0;
 
-    @include breakpoint($small) {
+    @include breakpoint.breakpoint(variables.$small) {
       float: right;
     }
   }

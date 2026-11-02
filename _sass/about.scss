@@ -1,6 +1,6 @@
-@import "./hexagon";
-@import "./variables";
-@import "./mixin";
+@use "hexagon";
+@use "variables";
+@use "mixin";
 
 // :root {
 //     --body-color: $body-bg-color;
@@ -127,7 +127,7 @@
 #skills,
 #project {
 
-    @include mobile {
+    @include mixin.mobile {
         padding-left: 15px;
         padding-right: 15px;
     }
@@ -137,7 +137,7 @@
         font-size: 3.2rem;
         font-weight: 600;
 
-        @include mobile {
+        @include mixin.mobile {
             font-size: 1.8rem;
         }
     }

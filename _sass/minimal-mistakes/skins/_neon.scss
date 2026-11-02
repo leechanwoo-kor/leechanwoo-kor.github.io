@@ -1,3 +1,4 @@
+@use "sass:color";
 /* ==========================================================================
    Neon skin
    ========================================================================== */
@@ -6,17 +7,17 @@
 $background-color: #141010 !default;
 $text-color: #fff6fb !default;
 $primary-color: #f21368 !default;
-$border-color: mix(#fff, $background-color, 20%) !default;
-$code-background-color: mix(#000, $background-color, 15%) !default;
-$code-background-color-dark: mix(#000, $background-color, 20%) !default;
-$form-background-color: mix(#000, $background-color, 15%) !default;
-$footer-background-color: mix($primary-color, #000, 10%) !default;
+$border-color: color.mix(#fff, $background-color, 20%) !default;
+$code-background-color: color.mix(#000, $background-color, 15%) !default;
+$code-background-color-dark: color.mix(#000, $background-color, 20%) !default;
+$form-background-color: color.mix(#000, $background-color, 15%) !default;
+$footer-background-color: color.mix($primary-color, #000, 10%) !default;
 $link-color: $primary-color !default;
-$link-color-hover: mix(#fff, $link-color, 25%) !default;
-$link-color-visited: mix(#000, $link-color, 25%) !default;
+$link-color-hover: color.mix(#fff, $link-color, 25%) !default;
+$link-color-visited: color.mix(#000, $link-color, 25%) !default;
 $masthead-link-color: $text-color !default;
-$masthead-link-color-hover: mix(#000, $text-color, 20%) !default;
-$navicon-link-color-hover: mix(#000, $background-color, 30%) !default;
+$masthead-link-color-hover: color.mix(#000, $text-color, 20%) !default;
+$navicon-link-color-hover: color.mix(#000, $background-color, 30%) !default;
 
 /* notices */
 $notice-background-mix: 90% !default;
@@ -40,6 +41,40 @@ $base0d: #3777e6 !default;
 $base0e: #ad00a1 !default;
 $base0f: #cc6633 !default;
 
+@use "../variables" with (
+  $background-color: $background-color,
+  $text-color: $text-color,
+  $primary-color: $primary-color,
+  $border-color: $border-color,
+  $code-background-color: $code-background-color,
+  $code-background-color-dark: $code-background-color-dark,
+  $form-background-color: $form-background-color,
+  $footer-background-color: $footer-background-color,
+  $link-color: $link-color,
+  $link-color-hover: $link-color-hover,
+  $link-color-visited: $link-color-visited,
+  $masthead-link-color: $masthead-link-color,
+  $masthead-link-color-hover: $masthead-link-color-hover,
+  $navicon-link-color-hover: $navicon-link-color-hover,
+  $notice-background-mix: $notice-background-mix,
+  $code-notice-background-mix: $code-notice-background-mix,
+  $base00: $base00,
+  $base01: $base01,
+  $base02: $base02,
+  $base03: $base03,
+  $base04: $base04,
+  $base05: $base05,
+  $base06: $base06,
+  $base07: $base07,
+  $base08: $base08,
+  $base09: $base09,
+  $base0a: $base0a,
+  $base0b: $base0b,
+  $base0c: $base0c,
+  $base0d: $base0d,
+  $base0e: $base0e,
+  $base0f: $base0f
+);
 .author__urls.social-icons i,
 .author__urls.social-icons .svg-inline--fa,
 .page__footer-follow .social-icons i,

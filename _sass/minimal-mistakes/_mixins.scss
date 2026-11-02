@@ -1,12 +1,15 @@
+@use "sass:color";
+@use "minimal-mistakes/variables";
+
 /* ==========================================================================
    MIXINS
    ========================================================================== */
 
    %tab-focus {
     /* Default*/
-    outline: thin dotted $focus-color;
+    outline: thin dotted variables.$focus-color;
     /* Webkit*/
-    outline: 5px auto $focus-color;
+    outline: 5px auto variables.$focus-color;
     outline-offset: -2px;
   }
   
@@ -14,7 +17,7 @@
      em function
      ========================================================================== */
   
-  @function em($target, $context: $doc-font-size) {
+  @function em($target, $context: variables.$doc-font-size) {
     @return ($target / $context) * 1em;
   }
   
@@ -59,33 +62,33 @@
   
   @function yiq-is-light(
     $color,
-    $threshold: $yiq-contrasted-threshold
+    $threshold: variables.$yiq-contrasted-threshold
   ) {
-    $red: red($color);
-    $green: green($color);
-    $blue: blue($color);
+    $red: color.red($color);
+    $green: color.green($color);
+    $blue: color.blue($color);
   
     $yiq: (($red * 0.299) + ($green * 0.587) + ($blue * 0.114));
   
-    @if $yiq-debug { @debug $yiq, $threshold; }
+    @if variables.$yiq-debug { @debug $yiq, $threshold; }
   
     @return if($yiq >= $threshold, true, false);
   }
   
   @function yiq-contrast-color(
     $color,
-    $dark: $yiq-contrasted-dark-default,
-    $light: $yiq-contrasted-light-default,
-    $threshold: $yiq-contrasted-threshold
+    $dark: variables.$yiq-contrasted-dark-default,
+    $light: variables.$yiq-contrasted-light-default,
+    $threshold: variables.$yiq-contrasted-threshold
   ) {
-    @return if(yiq-is-light($color, $threshold), $yiq-contrasted-dark-default, $yiq-contrasted-light-default);
+    @return if(yiq-is-light($color, $threshold), variables.$yiq-contrasted-dark-default, variables.$yiq-contrasted-light-default);
   }
   
   @mixin yiq-contrasted(
     $background-color,
-    $dark: $yiq-contrasted-dark-default,
-    $light: $yiq-contrasted-light-default,
-    $threshold: $yiq-contrasted-threshold
+    $dark: variables.$yiq-contrasted-dark-default,
+    $light: variables.$yiq-contrasted-light-default,
+    $threshold: variables.$yiq-contrasted-threshold
   ) {
     background-color: $background-color;
     color: yiq-contrast-color($background-color, $dark, $light, $threshold);

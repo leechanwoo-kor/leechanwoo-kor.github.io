@@ -1,3 +1,9 @@
+@use "sass:color";
+@use "minimal-mistakes/mixins";
+@use "minimal-mistakes/variables";
+@use "minimal-mistakes/vendor/breakpoint/breakpoint";
+@use "vendor/susy/susy/unprefix";
+
 /* ==========================================================================
    UTILITY CLASSES
    ========================================================================== */
@@ -69,7 +75,7 @@ body:hover .visually-hidden button {
   position: fixed;
   z-index: 20;
   margin: 0;
-  font-family: $sans-serif;
+  font-family: variables.$sans-serif;
   white-space: nowrap;
 }
 
@@ -151,7 +157,7 @@ body:hover .visually-hidden button {
   margin-left: auto;
   margin-right: auto;
 
-  @include breakpoint($small) {
+  @include breakpoint.breakpoint(variables.$small) {
     float: left;
     margin-right: 1em;
   }
@@ -164,7 +170,7 @@ body:hover .visually-hidden button {
   margin-left: auto;
   margin-right: auto;
 
-  @include breakpoint($small) {
+  @include breakpoint.breakpoint(variables.$small) {
     float: right;
     margin-left: 1em;
   }
@@ -181,8 +187,8 @@ body:hover .visually-hidden button {
 /* file page content container */
 
 .full {
-  @include breakpoint($large) {
-    margin-right: -1 * span(2.5 of 12) !important;
+  @include breakpoint.breakpoint(variables.$large) {
+    margin-right: -1 * unprefix.span(2.5 of 12) !important;
   }
 }
 
@@ -208,121 +214,121 @@ body:hover .visually-hidden button {
   .fab,
   .far,
   .fal {
-    color: $text-color;
+    color: variables.$text-color;
   }
 
   .fa-behance,
   .fa-behance-square {
-    color: $behance-color;
+    color: variables.$behance-color;
   }
 
   .fa-bitbucket {
-    color: $bitbucket-color;
+    color: variables.$bitbucket-color;
   }
 
   .fa-dribbble,
   .fa-dribble-square {
-    color: $dribbble-color;
+    color: variables.$dribbble-color;
   }
 
   .fa-facebook,
   .fa-facebook-square,
   .fa-facebook-f {
-    color: $facebook-color;
+    color: variables.$facebook-color;
   }
 
   .fa-flickr {
-    color: $flickr-color;
+    color: variables.$flickr-color;
   }
 
   .fa-foursquare {
-    color: $foursquare-color;
+    color: variables.$foursquare-color;
   }
 
   .fa-github,
   .fa-github-alt,
   .fa-github-square {
-    color: $github-color;
+    color: variables.$github-color;
   }
 
   .fa-gitlab {
-    color: $gitlab-color;
+    color: variables.$gitlab-color;
   }
 
   .fa-instagram {
-    color: $instagram-color;
+    color: variables.$instagram-color;
   }
 
   .fa-keybase {
-    color: $keybase-color;
+    color: variables.$keybase-color;
   }
 
   .fa-lastfm,
   .fa-lastfm-square {
-    color: $lastfm-color;
+    color: variables.$lastfm-color;
   }
 
   .fa-linkedin,
   .fa-linkedin-in {
-    color: $linkedin-color;
+    color: variables.$linkedin-color;
   }
 
   .fa-mastodon,
   .fa-mastodon-square {
-    color: $mastodon-color;
+    color: variables.$mastodon-color;
   }
 
   .fa-pinterest,
   .fa-pinterest-p,
   .fa-pinterest-square {
-    color: $pinterest-color;
+    color: variables.$pinterest-color;
   }
 
   .fa-reddit {
-    color: $reddit-color;
+    color: variables.$reddit-color;
   }
 
   .fa-rss,
   .fa-rss-square {
-    color: $rss-color;
+    color: variables.$rss-color;
   }
 
   .fa-soundcloud {
-    color: $soundcloud-color;
+    color: variables.$soundcloud-color;
   }
 
   .fa-stack-exchange,
   .fa-stack-overflow {
-    color: $stackoverflow-color;
+    color: variables.$stackoverflow-color;
   }
 
   .fa-tumblr,
   .fa-tumblr-square {
-    color: $tumblr-color;
+    color: variables.$tumblr-color;
   }
 
   .fa-twitter,
   .fa-twitter-square {
-    color: $twitter-color;
+    color: variables.$twitter-color;
   }
 
   .fa-vimeo,
   .fa-vimeo-square,
   .fa-vimeo-v {
-    color: $vimeo-color;
+    color: variables.$vimeo-color;
   }
 
   .fa-vine {
-    color: $vine-color;
+    color: variables.$vine-color;
   }
 
   .fa-youtube {
-    color: $youtube-color;
+    color: variables.$youtube-color;
   }
 
   .fa-xing,
   .fa-xing-square {
-    color: $xing-color;
+    color: variables.$xing-color;
   }
 }
 
@@ -332,9 +338,9 @@ body:hover .visually-hidden button {
 
 .navicon {
   position: relative;
-  width: $navicon-width;
-  height: $navicon-height;
-  background: $primary-color;
+  width: variables.$navicon-width;
+  height: variables.$navicon-height;
+  background: variables.$primary-color;
   margin: auto;
   -webkit-transition: 0.3s;
   transition: 0.3s;
@@ -344,19 +350,19 @@ body:hover .visually-hidden button {
     content: "";
     position: absolute;
     left: 0;
-    width: $navicon-width;
-    height: $navicon-height;
-    background: $primary-color;
+    width: variables.$navicon-width;
+    height: variables.$navicon-height;
+    background: variables.$primary-color;
     -webkit-transition: 0.3s;
     transition: 0.3s;
   }
 
   &:before {
-    top: (-2 * $navicon-height);
+    top: (-2 * variables.$navicon-height);
   }
 
   &:after {
-    bottom: (-2 * $navicon-height);
+    bottom: (-2 * variables.$navicon-height);
   }
 }
 
@@ -371,7 +377,7 @@ body:hover .visually-hidden button {
     -ms-transform-origin: 50% 50%;
     transform-origin: 50% 50%;
     top: 0;
-    width: $navicon-width;
+    width: variables.$navicon-width;
   }
 
   /* rotate the lines to form the x shape*/
@@ -395,9 +401,9 @@ body:hover .visually-hidden button {
       width: 100%;
       height: 100%;
       opacity: 0;
-      background-color: $background-color;
-      -webkit-transition: $global-transition;
-      transition: $global-transition;
+      background-color: variables.$background-color;
+      -webkit-transition: variables.$global-transition;
+      transition: variables.$global-transition;
       pointer-events: none;
     }
   }
@@ -405,8 +411,8 @@ body:hover .visually-hidden button {
   &.close {
     &:before {
       opacity: 0.9;
-      -webkit-transition: $global-transition;
-      transition: $global-transition;
+      -webkit-transition: variables.$global-transition;
+      transition: variables.$global-transition;
       pointer-events: auto;
     }
   }
@@ -416,7 +422,7 @@ body:hover .visually-hidden button {
   .navicon,
   .navicon:before,
   .navicon:after {
-    background: mix(#000, $primary-color, 25%);
+    background: color.mix(#000, variables.$primary-color, 25%);
   }
 
   &.close {
@@ -431,8 +437,8 @@ body:hover .visually-hidden button {
    ========================================================================== */
 
 .sticky {
-  @include breakpoint($large) {
-    @include clearfix();
+  @include breakpoint.breakpoint(variables.$large) {
+    @include mixins.clearfix();
     position: -webkit-sticky;
     position: sticky;
     top: 2em;
@@ -453,7 +459,7 @@ body:hover .visually-hidden button {
   margin-bottom: 20px;
   background-color: #f5f5f5;
   border: 1px solid #e3e3e3;
-  border-radius: $border-radius;
+  border-radius: variables.$border-radius;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
 }
 
@@ -492,9 +498,9 @@ body:hover .visually-hidden button {
   min-height: 0;
   z-index: 9999;
   background: #fff;
-  border: 1px solid $border-color;
-  border-radius: $border-radius;
-  box-shadow: $box-shadow;
+  border: 1px solid variables.$border-color;
+  border-radius: variables.$border-radius;
+  box-shadow: variables.$box-shadow;
 
   &__title {
     margin: 0;
@@ -507,7 +513,7 @@ body:hover .visually-hidden button {
 
   &__actions {
     padding: 0.5em 1em;
-    border-top: 1px solid $border-color;
+    border-top: 1px solid variables.$border-color;
   }
 }
 
@@ -516,23 +522,23 @@ body:hover .visually-hidden button {
    ========================================================================== */
 
 .footnote {
-  color: mix(#fff, $gray, 25%);
+  color: color.mix(#fff, variables.$gray, 25%);
   text-decoration: none;
 }
 
 .footnotes {
-  color: mix(#fff, $gray, 25%);
+  color: color.mix(#fff, variables.$gray, 25%);
 
   ol,
   li,
   p {
     margin-bottom: 0;
-    font-size: $type-size-6;
+    font-size: variables.$type-size-6;
   }
 }
 
 a.reversefootnote {
-  color: $gray;
+  color: variables.$gray;
   text-decoration: none;
 
   &:hover {
@@ -545,7 +551,7 @@ a.reversefootnote {
    ========================================================================== */
 
 .required {
-  color: $danger-color;
+  color: variables.$danger-color;
   font-weight: bold;
 }
 

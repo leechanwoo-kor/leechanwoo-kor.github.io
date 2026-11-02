@@ -1,3 +1,7 @@
+@use "sass:color";
+@use "minimal-mistakes/variables";
+@use "minimal-mistakes/vendor/breakpoint/breakpoint";
+
 /* ==========================================================================
    SEARCH
    ========================================================================== */
@@ -11,17 +15,17 @@
 .search__toggle {
   margin-left: 1rem;
   margin-right: 1rem;
-  height: $nav-toggle-height;
+  height: variables.$nav-toggle-height;
   border: 0;
   outline: none;
-  color: $primary-color;
+  color: variables.$primary-color;
   background-color: transparent;
   cursor: pointer;
   -webkit-transition: 0.2s;
   transition: 0.2s;
 
   &:hover {
-    color: mix(#000, $primary-color, 25%);
+    color: color.mix(#000, variables.$primary-color, 25%);
   }
 }
 
@@ -42,13 +46,13 @@
     margin-right: auto;
     padding-left: 1em;
     padding-right: 1em;
-    -webkit-animation: $intro-transition;
-    animation: $intro-transition;
+    -webkit-animation: variables.$intro-transition;
+    animation: variables.$intro-transition;
     -webkit-animation-delay: 0.15s;
     animation-delay: 0.15s;
 
-    @include breakpoint($x-large) {
-      max-width: $max-width;
+    @include breakpoint.breakpoint(variables.$x-large) {
+      max-width: variables.$max-width;
     }
 
   }
@@ -65,14 +69,14 @@
     outline: none;
     box-shadow: none;
     background-color: transparent;
-    font-size: $type-size-3;
+    font-size: variables.$type-size-3;
 
-    @include breakpoint($large) {
-      font-size: $type-size-2;
+    @include breakpoint.breakpoint(variables.$large) {
+      font-size: variables.$type-size-2;
     }
 
-    @include breakpoint($x-large) {
-      font-size: $type-size-1;
+    @include breakpoint.breakpoint(variables.$x-large) {
+      font-size: variables.$type-size-1;
     }
   }
 
@@ -88,17 +92,17 @@
 
   .results__found {
     margin-top: 0.5em;
-    font-size: $type-size-6;
+    font-size: variables.$type-size-6;
   }
 
   .archive__item {
     margin-bottom: 2em;
 
-    @include breakpoint($large) {
+    @include breakpoint.breakpoint(variables.$large) {
       width: 75%;
     }
 
-    @include breakpoint($x-large) {
+    @include breakpoint.breakpoint(variables.$x-large) {
       width: 50%;
     }
   }
@@ -120,13 +124,13 @@
 }
 
 .archive__item-title .ais-Highlight {
-  color: $primary-color;
+  color: variables.$primary-color;
   font-style: normal;
   text-decoration: underline;
 }
 
 .archive__item-excerpt .ais-Highlight {
-  color: $primary-color;
+  color: variables.$primary-color;
   font-style: normal;
   font-weight: bold;
 }

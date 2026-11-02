@@ -1,3 +1,8 @@
+@use "minimal-mistakes/mixins";
+@use "minimal-mistakes/variables";
+@use "minimal-mistakes/vendor/breakpoint/breakpoint";
+@use "vendor/susy/susy/unprefix";
+
 /* ==========================================================================
    ARCHIVE
    ========================================================================== */
@@ -6,15 +11,15 @@
   margin-top: 1em;
   margin-bottom: 2em;
 
-  @include breakpoint($large) {
+  @include breakpoint.breakpoint(variables.$large) {
     float: right;
-    width: calc(100% - #{$right-sidebar-width-narrow});
-    padding-right: $right-sidebar-width-narrow;
+    width: calc(100% - #{variables.$right-sidebar-width-narrow});
+    padding-right: variables.$right-sidebar-width-narrow;
   }
 
-  @include breakpoint($x-large) {
-    width: calc(100% - #{$right-sidebar-width});
-    padding-right: $right-sidebar-width;
+  @include breakpoint.breakpoint(variables.$x-large) {
+    width: calc(100% - #{variables.$right-sidebar-width});
+    padding-right: variables.$right-sidebar-width;
   }
 }
 
@@ -34,9 +39,9 @@
 .archive__subtitle {
   margin: 1.414em 0 0.5em;
   padding-bottom: 0.5em;
-  font-size: $type-size-5;
-  color: $muted-text-color;
-  border-bottom: 1px solid $border-color;
+  font-size: variables.$type-size-5;
+  color: variables.$muted-text-color;
+  border-bottom: 1px solid variables.$border-color;
 
   + .list__item .archive__item-title {
     margin-top: 0.5em;
@@ -45,7 +50,7 @@
 
 .archive__item-title {
   margin-bottom: 0.25em;
-  font-family: $sans-serif-narrow;
+  font-family: variables.$sans-serif-narrow;
   line-height: initial;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -74,7 +79,7 @@
 
 .archive__item-excerpt {
   margin-top: 0;
-  font-size: $type-size-6;
+  font-size: variables.$type-size-6;
 
   & + p {
     text-indent: 0;
@@ -87,7 +92,7 @@
 
 .archive__item-teaser {
   position: relative;
-  border-radius: $border-radius;
+  border-radius: variables.$border-radius;
   overflow: hidden;
 
   img {
@@ -102,15 +107,15 @@
   margin: 0 auto;
   padding: 2px 5px;
   color: #fff;
-  font-family: $caption-font-family;
-  font-size: $type-size-8;
+  font-family: variables.$caption-font-family;
+  font-size: variables.$type-size-8;
   background: #000;
   text-align: right;
   z-index: 5;
   opacity: 0.5;
-  border-radius: $border-radius 0 0 0;
+  border-radius: variables.$border-radius 0 0 0;
 
-  @include breakpoint($large) {
+  @include breakpoint.breakpoint(variables.$large) {
     padding: 5px 10px;
   }
 
@@ -125,7 +130,8 @@
    ========================================================================== */
 
 .list__item {
-  .page__meta {
+  .page__meta,
+  .comment__date {
     margin: 0 0 4px;
     font-size: 0.6em;
   }
@@ -139,12 +145,12 @@
   .grid__wrapper {
     /* extend grid elements to the right */
 
-    @include breakpoint($large) {
-      margin-right: -1 * $right-sidebar-width-narrow;
+    @include breakpoint.breakpoint(variables.$large) {
+      margin-right: -1 * variables.$right-sidebar-width-narrow;
     }
 
-    @include breakpoint($x-large) {
-      margin-right: -1 * $right-sidebar-width;
+    @include breakpoint.breakpoint(variables.$x-large) {
+      margin-right: -1 * variables.$right-sidebar-width;
     }
   }
 }
@@ -152,9 +158,9 @@
 .grid__item {
   margin-bottom: 2em;
 
-  @include breakpoint($small) {
+  @include breakpoint.breakpoint(variables.$small) {
     float: left;
-    width: span(5 of 10);
+    width: unprefix.span(5 of 10);
 
     &:nth-child(2n + 1) {
       clear: both;
@@ -163,14 +169,14 @@
 
     &:nth-child(2n + 2) {
       clear: none;
-      margin-left: gutter(of 10);
+      margin-left: unprefix.gutter(of 10);
     }
   }
 
-  @include breakpoint($medium) {
+  @include breakpoint.breakpoint(variables.$medium) {
     margin-left: 0; /* override margin*/
     margin-right: 0; /* override margin*/
-    width: span(3 of 12);
+    width: unprefix.span(3 of 12);
 
     &:nth-child(2n + 1) {
       clear: none;
@@ -182,21 +188,22 @@
 
     &:nth-child(4n + 2) {
       clear: none;
-      margin-left: gutter(1 of 12);
+      margin-left: unprefix.gutter(1 of 12);
     }
 
     &:nth-child(4n + 3) {
       clear: none;
-      margin-left: gutter(1 of 12);
+      margin-left: unprefix.gutter(1 of 12);
     }
 
     &:nth-child(4n + 4) {
       clear: none;
-      margin-left: gutter(1 of 12);
+      margin-left: unprefix.gutter(1 of 12);
     }
   }
 
-  .page__meta {
+  .page__meta,
+  .comment__date {
     margin: 0 0 4px;
     font-size: 0.6em;
   }
@@ -211,24 +218,24 @@
 
   .archive__item-title {
     margin-top: 0.5em;
-    font-size: $type-size-5;
+    font-size: variables.$type-size-5;
   }
 
   .archive__item-excerpt {
     display: none;
 
-    @include breakpoint($medium) {
+    @include breakpoint.breakpoint(variables.$medium) {
       display: block;
-      font-size: $type-size-6;
+      font-size: variables.$type-size-6;
     }
   }
 
   .archive__item-teaser {
-    @include breakpoint($small) {
+    @include breakpoint.breakpoint(variables.$small) {
       max-height: 200px;
     }
 
-    @include breakpoint($medium) {
+    @include breakpoint.breakpoint(variables.$medium) {
       max-height: 120px;
     }
   }
@@ -239,9 +246,9 @@
    ========================================================================== */
 
 .feature__wrapper {
-  @include clearfix();
+  @include mixins.clearfix();
   margin-bottom: 2em;
-  border-bottom: 1px solid $border-color;
+  border-bottom: 1px solid variables.$border-color;
 
   .archive__item-title {
     margin-bottom: 0;
@@ -253,10 +260,10 @@
   margin-bottom: 2em;
   font-size: 1.125em;
 
-  @include breakpoint($small) {
+  @include breakpoint.breakpoint(variables.$small) {
     float: left;
     margin-bottom: 0;
-    width: span(4 of 12);
+    width: unprefix.span(4 of 12);
 
     &:nth-child(3n + 1) {
       clear: both;
@@ -265,12 +272,12 @@
 
     &:nth-child(3n + 2) {
       clear: none;
-      margin-left: gutter(of 12);
+      margin-left: unprefix.gutter(of 12);
     }
 
     &:nth-child(3n + 3) {
       clear: none;
-      margin-left: gutter(of 12);
+      margin-left: unprefix.gutter(of 12);
     }
 
     .feature__item-teaser {
@@ -280,8 +287,8 @@
   }
 
   .archive__item-body {
-    padding-left: gutter(1 of 12);
-    padding-right: gutter(1 of 12);
+    padding-left: unprefix.gutter(1 of 12);
+    padding-right: unprefix.gutter(1 of 12);
   }
 
   a.btn::before {
@@ -319,17 +326,17 @@
       bottom: 0;
     }
 
-    @include breakpoint($small) {
+    @include breakpoint.breakpoint(variables.$small) {
       .archive__item-teaser {
         float: left;
-        width: span(5 of 12);
+        width: unprefix.span(5 of 12);
       }
 
       .archive__item-body {
         float: right;
-        padding-left: gutter(0.5 of 12);
-        padding-right: gutter(1 of 12);
-        width: span(7 of 12);
+        padding-left: unprefix.gutter(0.5 of 12);
+        padding-right: unprefix.gutter(1 of 12);
+        width: unprefix.span(7 of 12);
       }
     }
   }
@@ -360,19 +367,19 @@
       bottom: 0;
     }
 
-    @include breakpoint($small) {
+    @include breakpoint.breakpoint(variables.$small) {
       text-align: right;
 
       .archive__item-teaser {
         float: right;
-        width: span(5 of 12);
+        width: unprefix.span(5 of 12);
       }
 
       .archive__item-body {
         float: left;
-        width: span(7 of 12);
-        padding-left: gutter(0.5 of 12);
-        padding-right: gutter(1 of 12);
+        width: unprefix.span(7 of 12);
+        padding-left: unprefix.gutter(0.5 of 12);
+        padding-right: unprefix.gutter(1 of 12);
       }
     }
   }
@@ -404,17 +411,17 @@
       bottom: 0;
     }
 
-    @include breakpoint($small) {
+    @include breakpoint.breakpoint(variables.$small) {
       text-align: center;
 
       .archive__item-teaser {
         margin: 0 auto;
-        width: span(5 of 12);
+        width: unprefix.span(5 of 12);
       }
 
       .archive__item-body {
         margin: 0 auto;
-        width: span(7 of 12);
+        width: unprefix.span(7 of 12);
       }
     }
   }
@@ -444,11 +451,11 @@
 
   .wide {
   .archive {
-    @include breakpoint($large) {
+    @include breakpoint.breakpoint(variables.$large) {
       padding-right: 0;
     }
 
-    @include breakpoint($x-large) {
+    @include breakpoint.breakpoint(variables.$x-large) {
       padding-right: 0;
     }
   }

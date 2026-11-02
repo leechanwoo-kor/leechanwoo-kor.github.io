@@ -1,3 +1,7 @@
+@use "mixins";
+@use "minimal-mistakes/variables";
+@use "minimal-mistakes/vendor/breakpoint/breakpoint";
+
 /* ==========================================================================
    STYLE RESETS
    ========================================================================== */
@@ -7,20 +11,20 @@
 html {
   /* apply a natural box layout model to all elements */
   box-sizing: border-box;
-  background-color: $background-color;
+  background-color: variables.$background-color;
   font-size: 16px;
 
-  @include breakpoint($medium) {
+  @include breakpoint.breakpoint(variables.$medium) {
     // defualt 18px;
     font-size: 16px;
   }
 
-  @include breakpoint($large) {
+  @include breakpoint.breakpoint(variables.$large) {
     // defualt 20px;
     font-size: 16px;
   }
 
-  @include breakpoint($x-large) {
+  @include breakpoint.breakpoint(variables.$x-large) {
     // defualt 22px;
     font-size: 16px;
   }
@@ -78,7 +82,7 @@ audio:not([controls]) {
 }
 
 a {
-  color: $link-color;
+  color: variables.$link-color;
 }
 
 /* Apply focus state */

@@ -1,31 +1,35 @@
+@use "minimal-mistakes/mixins";
+@use "minimal-mistakes/variables";
+@use "minimal-mistakes/vendor/breakpoint/breakpoint";
+
 /* ==========================================================================
    FOOTER
    ========================================================================== */
 
 .page__footer {
-  @include clearfix;
+  @include mixins.clearfix;
   float: left;
   margin-left: 0;
   margin-right: 0;
   width: 100%;
   margin-top: 3em;
-  color: $muted-text-color;
-  -webkit-animation: $intro-transition;
-  animation: $intro-transition;
+  color: variables.$muted-text-color;
+  -webkit-animation: variables.$intro-transition;
+  animation: variables.$intro-transition;
   -webkit-animation-delay: 0.45s;
   animation-delay: 0.45s;
-  background-color: $footer-background-color;
+  background-color: variables.$footer-background-color;
 
   footer {
-    @include clearfix;
+    @include mixins.clearfix;
     margin-left: auto;
     margin-right: auto;
     margin-top: 2em;
     max-width: 100%;
     padding: 0 1em 2em;
 
-    @include breakpoint($x-large) {
-      max-width: $x-large;
+    @include breakpoint.breakpoint(variables.$x-large) {
+      max-width: variables.$x-large;
     }
   }
 
@@ -42,13 +46,13 @@
   .fab,
   .far,
   .fal {
-    color: $muted-text-color;
+    color: variables.$muted-text-color;
   }
 }
 
 .page__footer-copyright {
-  font-family: $global-font-family;
-  font-size: $type-size-7;
+  font-family: variables.$global-font-family;
+  font-size: variables.$type-size-7;
 }
 
 .page__footer-follow {
@@ -62,8 +66,8 @@
     display: inline-block;
     padding-top: 5px;
     padding-bottom: 5px;
-    font-family: $sans-serif-narrow;
-    font-size: $type-size-6;
+    font-family: variables.$sans-serif-narrow;
+    font-size: variables.$type-size-6;
     text-transform: uppercase;
   }
 

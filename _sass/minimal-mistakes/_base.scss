@@ -1,3 +1,7 @@
+@use "mixins";
+@use "minimal-mistakes/variables";
+@use "minimal-mistakes/vendor/breakpoint/breakpoint";
+
 /* ==========================================================================
    BASE ELEMENTS
    ========================================================================== */
@@ -11,8 +15,8 @@ html {
 body {
   margin: 0;
   padding: 0;
-  color: $text-color;
-  font-family: $global-font-family;
+  color: variables.$text-color;
+  font-family: variables.$global-font-family;
   line-height: 1.5;
 
   &.overflow--hidden {
@@ -29,38 +33,38 @@ h5,
 h6 {
   margin: 2em 0 0.5em;
   line-height: 1.2;
-  font-family: $header-font-family;
+  font-family: variables.$header-font-family;
   font-weight: bold;
 }
 
 h1 {
   margin-top: 0;
-  font-size: $h-size-1;
+  font-size: variables.$h-size-1;
 }
 
 h2 {
-  font-size: $h-size-2;
+  font-size: variables.$h-size-2;
 }
 
 h3 {
-  font-size: $h-size-3;
+  font-size: variables.$h-size-3;
 }
 
 h4 {
-  font-size: $h-size-4;
+  font-size: variables.$h-size-4;
 }
 
 h5 {
-  font-size: $h-size-5;
+  font-size: variables.$h-size-5;
 }
 
 h6 {
-  font-size: $h-size-6;
+  font-size: variables.$h-size-6;
 }
 
 small,
 .small {
-  font-size: $type-size-6;
+  font-size: variables.$type-size-6;
 }
 
 p {
@@ -70,7 +74,7 @@ p {
 u,
 ins {
   text-decoration: none;
-  border-bottom: 1px solid $text-color;
+  border-bottom: 1px solid variables.$text-color;
   a {
     color: inherit;
   }
@@ -101,7 +105,7 @@ abbr[title],
 abbr[data-original-title] {
   text-decoration: none;
   cursor: help;
-  border-bottom: 1px dotted $text-color;
+  border-bottom: 1px dotted variables.$text-color;
 }
 
 /* blockquotes */
@@ -111,7 +115,7 @@ blockquote {
   padding-left: 1em;
   padding-right: 1em;
   font-style: italic;
-  border-left: 0.25em solid $primary-color;
+  border-left: 0.25em solid variables.$primary-color;
 
   cite {
     font-style: italic;
@@ -134,11 +138,11 @@ a {
   }
 
   &:visited {
-    color: $link-color-visited;
+    color: variables.$link-color-visited;
   }
 
   &:hover {
-    color: $link-color-hover;
+    color: variables.$link-color-hover;
     outline: 0;
   }
 }
@@ -156,7 +160,7 @@ code,
 kbd,
 samp,
 pre {
-  font-family: $monospace;
+  font-family: variables.$monospace;
 }
 
 pre {
@@ -171,8 +175,8 @@ td > code {
   padding-top: 0.1rem;
   padding-bottom: 0.1rem;
   font-size: 0.8em;
-  background: $code-background-color;
-  border-radius: $border-radius;
+  background: variables.$code-background-color;
+  border-radius: variables.$border-radius;
 
   &:before,
   &:after {
@@ -187,7 +191,7 @@ hr {
   display: block;
   margin: 1em 0;
   border: 0;
-  border-top: 1px solid $border-color;
+  border-top: 1px solid variables.$border-color;
 }
 
 /* lists */
@@ -226,9 +230,9 @@ figure {
 
   img {
     width: 100%;
-    border-radius: $border-radius;
-    -webkit-transition: $global-transition;
-    transition: $global-transition;
+    border-radius: variables.$border-radius;
+    -webkit-transition: variables.$global-transition;
+    transition: variables.$global-transition;
   }
 
   > a {
@@ -238,7 +242,7 @@ figure {
   &.half {
     > a,
     > img {
-      @include breakpoint($small) {
+      @include breakpoint.breakpoint(variables.$small) {
         width: calc(50% - 0.5em);
       }
     }
@@ -251,7 +255,7 @@ figure {
   &.third {
     > a,
     > img {
-      @include breakpoint($small) {
+      @include breakpoint.breakpoint(variables.$small) {
         width: calc(33.3333% - 0.5em);
       }
     }
@@ -266,16 +270,16 @@ figure {
 
 figcaption {
   margin-bottom: 0.5em;
-  color: $muted-text-color;
-  font-family: $caption-font-family;
-  font-size: $type-size-6;
+  color: variables.$muted-text-color;
+  font-family: variables.$caption-font-family;
+  font-size: variables.$type-size-6;
 
   a {
-    -webkit-transition: $global-transition;
-    transition: $global-transition;
+    -webkit-transition: variables.$global-transition;
+    transition: variables.$global-transition;
 
     &:hover {
-      color: $link-color-hover;
+      color: variables.$link-color-hover;
     }
   }
 }
@@ -355,6 +359,6 @@ input[type="submit"],
 .btn,
 .highlight,
 .archive__item-teaser {
-  -webkit-transition: $global-transition;
-  transition: $global-transition;
+  -webkit-transition: variables.$global-transition;
+  transition: variables.$global-transition;
 }

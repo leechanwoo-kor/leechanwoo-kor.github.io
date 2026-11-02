@@ -1,3 +1,6 @@
+@use "sass:color";
+@use "minimal-mistakes/variables";
+
 /* ==========================================================================
    NOTICE TEXT BLOCKS
    ========================================================================== */
@@ -13,12 +16,12 @@
 @mixin notice($notice-color) {
   margin: 2em 0 !important;  /* override*/
   padding: 1em;
-  color: $text-color;
-  font-family: $global-font-family;
-  font-size: $type-size-6 !important;
+  color: variables.$text-color;
+  font-family: variables.$global-font-family;
+  font-size: variables.$type-size-6 !important;
   text-indent: initial; /* override*/
-  background-color: mix($background-color, $notice-color, $notice-background-mix);
-  border-radius: $border-radius;
+  background-color: color.mix(variables.$background-color, $notice-color, variables.$notice-background-mix);
+  border-radius: variables.$border-radius;
   box-shadow: 0 1px 1px rgba($notice-color, 0.25);
 
   h4 {
@@ -46,15 +49,15 @@
   }
 
   a {
-    color: mix(#000, $notice-color, 10%);
+    color: color.mix(#000, $notice-color, 10%);
 
     &:hover {
-      color: mix(#000, $notice-color, 50%);
+      color: color.mix(#000, $notice-color, 50%);
     }
   }
 
   code {
-    background-color: mix($background-color, $notice-color, $code-notice-background-mix)
+    background-color: color.mix(variables.$background-color, $notice-color, variables.$code-notice-background-mix)
   }
 
 	pre code {
@@ -71,35 +74,35 @@
 /* Default notice */
 
 .notice {
-  @include notice($light-gray);
+  @include notice(variables.$light-gray);
 }
 
 /* Primary notice */
 
 .notice--primary {
-  @include notice($primary-color);
+  @include notice(variables.$primary-color);
 }
 
 /* Info notice */
 
 .notice--info {
-  @include notice($info-color);
+  @include notice(variables.$info-color);
 }
 
 /* Warning notice */
 
 .notice--warning {
-  @include notice($warning-color);
+  @include notice(variables.$warning-color);
 }
 
 /* Success notice */
 
 .notice--success {
-  @include notice($success-color);
+  @include notice(variables.$success-color);
 }
 
 /* Danger notice */
 
 .notice--danger {
-  @include notice($danger-color);
+  @include notice(variables.$danger-color);
 }
