@@ -43,6 +43,24 @@ $ bundle exec jekyll serve --incremental
 $ open http://localhost:4000
 ```
 
+## verification
+
+Ruby 3.4와 Node.js 24를 사용합니다. 의존성은 저장소의 `Gemfile.lock`과 `package-lock.json`에 맞춰 설치합니다.
+
+```powershell
+bundle install
+npm ci
+npm run build:js
+npm test
+$env:JEKYLL_ENV = "production"
+bundle exec jekyll build --strict_front_matter --trace
+npm run verify:site -- _site
+```
+
+Pull request에서는 위 빌드와 검증만 실행합니다. `main`에 push하거나 워크플로를 수동 실행하면 검증 통과 후 GitHub Pages에 배포합니다.
+
+화면은 저장소의 `_layouts`, `_includes`, `_sass`, `assets`에 있는 테마 소스를 사용합니다. Minimal Mistakes gem을 업데이트해도 이 로컬 파일은 자동 갱신되지 않습니다. JavaScript 소스를 변경하면 `npm run build:js`로 `assets/js/main.min.js`도 갱신합니다.
+
 ## commit - push
 
 ```

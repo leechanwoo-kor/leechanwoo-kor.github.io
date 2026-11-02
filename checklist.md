@@ -19,7 +19,7 @@
 - [x] Verify, commit, push, and deploy search/build prerequisites.
 - [x] Verify, commit, push, and deploy About repairs.
 - [x] Verify, commit, push, and deploy content corrections.
-- [ ] Verify, commit, push, and deploy SEO corrections.
+- [x] Verify, commit, push, and deploy SEO corrections.
 - [ ] Verify, commit, push, and deploy CI/developer documentation.
 - [ ] Migrate Sass with equivalent CSS, then verify, commit, push, and deploy.
 - [ ] Confirm final deployed output and clean local/remote state.
