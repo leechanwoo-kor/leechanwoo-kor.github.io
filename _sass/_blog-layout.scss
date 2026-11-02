@@ -63,6 +63,23 @@ $secondary: color.mix(variables.$text-color, variables.$background-color, 75%);
   }
 
   .blog-post-meta__category { color: variables.$text-color; }
+  .blog-ad {
+    min-height: 306px;
+    margin: 24px 0;
+    padding: 16px 0;
+    border-top: 1px solid variables.$border-color;
+    border-bottom: 1px solid variables.$border-color;
+    @media print { display: none; }
+  }
+  .blog-ad .adsbygoogle { border: 0; }
+  .blog-ad__label {
+    display: block;
+    margin-bottom: 8px;
+    color: $secondary;
+    font-size: 10px;
+    line-height: 14px;
+    text-align: center;
+  }
   .breadcrumbs ol { float: none; width: auto; }
   .page__footer {
     margin-top: 0;
@@ -173,6 +190,7 @@ $secondary: color.mix(variables.$text-color, variables.$background-color, 75%);
 
 .blog-post {
   .page { max-width: 720px; }
+  .blog-ad { clear: both; }
   .page__title {
     margin-bottom: 18px;
     font-size: 31px;

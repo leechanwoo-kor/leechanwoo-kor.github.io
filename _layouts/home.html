@@ -16,6 +16,9 @@ layout: archive
 <div class="entries-{{ entries_layout }}">
   {% for post in posts %}
     {% include archive-single.html type=entries_layout home=true %}
+    {% if forloop.index == 4 and forloop.last == false %}
+      {% include ad-unit.html slot="2024194306" %}
+    {% endif %}
   {% endfor %}
 </div>
 

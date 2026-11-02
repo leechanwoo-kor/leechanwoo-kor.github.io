@@ -6,6 +6,10 @@
   <script src="{{ '/assets/js/main.min.js' | relative_url }}" defer></script>
 {% endif %}
 
+{% if page.layout == 'home' or page.id %}
+  <script src="{{ '/assets/js/ad-units.js' | relative_url }}" defer></script>
+{% endif %}
+
 {% if page.layout == "search" %}
   {%- assign search_provider = site.search_provider | default: "lunr" -%}
   {%- case search_provider -%}

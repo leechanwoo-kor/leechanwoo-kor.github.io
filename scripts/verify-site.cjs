@@ -19,6 +19,7 @@ const linkedinURL = 'https://www.linkedin.com/in/cwlee1124/';
 const errors = new Set();
 let pages = 0;
 let structuredData = 0;
+let adSlots = 0;
 
 function checkLink(value, from) {
   const url = new URL(value, new URL(from, siteURL));
@@ -29,10 +30,41 @@ function checkLink(value, from) {
   }
 }
 
+function checkAds(document, file) {
+  const isHome = Boolean(document.querySelector('h1#page-title.archive__subtitle'));
+  const isPost = Boolean(document.querySelector('#main.blog-reading-layout'));
+  const posts = document.querySelectorAll('.archive > .entries-list > .list__item');
+  const units = document.querySelectorAll('.blog-ad');
+  const expected = isPost || (isHome && posts.length > 4) ? 1 : 0;
+  assert.equal(units.length, expected, `${file}: unexpected manual ad placement count`);
+  assert.equal(document.querySelectorAll('script[src$="/assets/js/ad-units.js"]').length, isHome || isPost ? 1 : 0, `${file}: unexpected manual ad initializer count`);
+  for (const unit of units) {
+    adSlots++;
+    const ad = unit.querySelector('ins.adsbygoogle');
+    assert.ok(ad, `${file}: missing AdSense unit`);
+    assert.equal(ad.dataset.adClient, 'ca-pub-6158389106191012', `${file}: wrong AdSense publisher`);
+    assert.equal(ad.dataset.adSlot, isHome ? '2024194306' : '7693830091', `${file}: wrong AdSense placement ID`);
+    assert.equal(ad.style.display, 'block', `${file}: ad unit is initially hidden`);
+    assert.equal(ad.style.width, '100%', `${file}: ad unit has no responsive width`);
+    assert.equal(ad.style.height, '250px', `${file}: ad unit has no reserved height`);
+    assert.ok(!ad.hasAttribute('data-ad-format') && !ad.hasAttribute('data-full-width-responsive'), `${file}: automatic sizing overrides fixed-height ad sizing`);
+    assert.equal(unit.getAttribute('aria-label'), '광고', `${file}: ad landmark has no label`);
+    assert.equal(unit.querySelector('.blog-ad__label')?.textContent.trim(), '광고', `${file}: ad has no visible label`);
+    assert.ok(!unit.closest('.page__content, .toc, .sidebar, .masthead'), `${file}: ad interrupts content or navigation`);
+    if (isHome) {
+      assert.equal(posts[3].nextElementSibling, unit, `${file}: ad does not follow the fourth post`);
+      assert.equal(unit.nextElementSibling, posts[4], `${file}: ad is not between post entries`);
+    } else {
+      assert.equal(document.querySelector('.page__content').nextElementSibling, unit, `${file}: ad does not follow the article body`);
+    }
+  }
+}
+
 for (const file of files) {
   if (!file.endsWith('.html')) continue;
   pages++;
   const document = JSDOM.fragment(read(file));
+  checkAds(document, file);
   if (document.querySelector('.nav__list')?.textContent.includes('Navigation Test')) {
     errors.add(`${file}: demo navigation is still published`);
   }
@@ -155,7 +187,7 @@ async function checkAbout() {
 checkNavigation();
 checkAbout().then(() => {
   assert.equal(errors.size, 0, [...errors].join('\n'));
-  console.log(`Verified ${pages} HTML pages, ${structuredData} JSON-LD blocks, sitemap/feed, local links, IDs, social metadata, home layout/pagination, article contents, LinkedIn profiles, and About search with the generated index.`);
+  console.log(`Verified ${pages} HTML pages, ${structuredData} JSON-LD blocks, ${adSlots} manual ad placements, sitemap/feed, local links, IDs, social metadata, home layout/pagination, article contents, LinkedIn profiles, and About search with the generated index.`);
 }).catch(error => {
   console.error(error);
   process.exitCode = 1;

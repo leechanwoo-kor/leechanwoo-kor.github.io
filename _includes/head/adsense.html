@@ -7,6 +7,10 @@
     script.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6158389106191012';
     script.crossOrigin = 'anonymous';
     script.async = true;
+    script.onload = function() {
+      window.adsenseReady = true;
+      window.dispatchEvent(new Event('adsense:ready'));
+    };
     document.body.appendChild(script);
   }
   if ('requestIdleCallback' in window) {
