@@ -153,6 +153,8 @@ kickstarter_2016 = pd.read_csv("../input/kickstarter-projects/ks-projects-201612
 ```
 
 <div class="notice--danger" markdown="1">
+
+```text
 ---------------------------------------------------------------------------
 UnicodeDecodeError                        Traceback (most recent call last)
 /tmp/ipykernel_19/3982885289.py in <module>
@@ -210,6 +212,8 @@ UnicodeDecodeError                        Traceback (most recent call last)
 /opt/conda/lib/python3.7/site-packages/pandas/_libs/parsers.pyx in pandas._libs.parsers.raise_parser_error()
 
 UnicodeDecodeError: 'utf-8' codec can't decode byte 0x99 in position 7955: invalid start byte
+```
+
 </div>
 
 UTF-8 바이트를 ASCII인 것처럼 디코딩하려고 할 때와 동일한 `UnicodeDecodeError`가 발생하는 것을 주목하세요! 이는 이 파일이 실제로 UTF-8이 아니라는 것을 알려줍니다. 하지만 실제로 어떤 인코딩인지 알 수 없습니다. 이를 알아내는 한 가지 방법은 여러 가지 문자 인코딩을 테스트하여 어떤 것이 작동하는지 확인하는 것입니다. 하지만 더 좋은 방법은 charset_normalizer 모듈을 사용하여 올바른 인코딩이 무엇인지 자동으로 추측하는 것입니다. 100% 정확하다고 보장할 수는 없지만 일반적으로 그냥 추측하는 것보다 빠릅니다.

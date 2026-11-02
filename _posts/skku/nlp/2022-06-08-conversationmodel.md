@@ -86,6 +86,7 @@ Training to maximize likelihood gives a system that prefers common responses
 ![image](https://user-images.githubusercontent.com/55765292/172515913-4ce95c2a-f189-4c35-94e3-30141259db11.png){: .align-center}
 
 ### Conversation Model
+{: #conversation-model-persona}
 
 ![image](https://user-images.githubusercontent.com/55765292/172515965-3ad56720-d542-4c9f-bb26-6da8d3f669f0.png){: .align-center}
 
