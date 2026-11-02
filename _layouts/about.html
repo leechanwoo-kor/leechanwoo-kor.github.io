@@ -23,7 +23,7 @@
     {% include_cached browser-upgrade.html %}
     {% include_cached masthead.html %}
 
-    <div class="initial-content-about">
+    <div class="initial-content initial-content-about">
         {% if page.header.overlay_color or page.header.overlay_image or page.header.image %}
         {% include page__hero.html %}
         {% elsif page.header.video.id and page.header.video.provider %}
@@ -449,6 +449,15 @@
         {% include_cached search/search_form.html %}
     </div>
     {% endif %}
+
+    <div id="footer" class="page__footer">
+        <footer>
+            {% include footer/custom.html %}
+            {% include_cached footer.html %}
+        </footer>
+    </div>
+
+    {% include scripts.html %}
 
 </body>
 
