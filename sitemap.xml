@@ -7,13 +7,10 @@ layout: null
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"
         xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     {% for post in site.posts %}
+    {% unless post.sitemap == false %}
     <url>
-        <loc>{{ site.url }}{{ post.url }}</loc>
-        {% if post.lastmod == null %}
-        <lastmod>{{ post.date | date_to_xmlschema }}</lastmod>
-        {% else %}
-        <lastmod>{{ post.lastmod | date_to_xmlschema }}</lastmod>
-        {% endif %}
+        <loc>{{ post.url | absolute_url | xml_escape }}</loc>
+        <lastmod>{{ post.last_modified_at | default: post.lastmod | default: post.date | date_to_xmlschema }}</lastmod>
 
         {% if post.sitemap.changefreq == null %}
         <changefreq>weekly</changefreq>
@@ -28,17 +25,17 @@ layout: null
         {% endif %}
 
     </url>
+    {% endunless %}
     {% endfor %}
     
     {% for page in site.pages %}
+    {% assign page_url_ending = page.url | slice: -1, 1 %}
+    {% assign page_url_extension = page.url | split: '.' | last %}
     {% if page.layout != nil and page.layout != 'feed' and page.sitemap != false %}
+    {% if page_url_ending == '/' or page_url_extension == 'html' %}
     <url>
-        <loc>{{ site.url }}{{ page.url }}</loc>
-        {% if page.date %}
-        <lastmod>{{ page.date | date_to_xmlschema }}</lastmod>
-        {% else %}
-        <lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
-        {% endif %}
+        <loc>{{ page.url | absolute_url | xml_escape }}</loc>
+        <lastmod>{{ page.last_modified_at | default: page.lastmod | default: page.date | default: site.time | date_to_xmlschema }}</lastmod>
         
         {% if page.sitemap.changefreq %}
         <changefreq>{{ page.sitemap.changefreq }}</changefreq>
@@ -52,6 +49,7 @@ layout: null
         <priority>0.3</priority>
         {% endif %}
     </url>
+    {% endif %}
     {% endif %}
     {% endfor %}
 </urlset>

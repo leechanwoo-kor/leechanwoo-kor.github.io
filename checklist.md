@@ -18,7 +18,7 @@
 - [x] Remove unused npm-run-all; npm audit reports zero vulnerabilities.
 - [x] Verify, commit, push, and deploy search/build prerequisites.
 - [x] Verify, commit, push, and deploy About repairs.
-- [ ] Verify, commit, push, and deploy content corrections.
+- [x] Verify, commit, push, and deploy content corrections.
 - [ ] Verify, commit, push, and deploy SEO corrections.
 - [ ] Verify, commit, push, and deploy CI/developer documentation.
 - [ ] Migrate Sass with equivalent CSS, then verify, commit, push, and deploy.
