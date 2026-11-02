@@ -16,7 +16,7 @@
 
 - [x] Verify the remote main baseline and push authentication.
 - [x] Remove unused npm-run-all; npm audit reports zero vulnerabilities.
-- [ ] Verify, commit, push, and deploy search/build prerequisites.
+- [x] Verify, commit, push, and deploy search/build prerequisites.
 - [ ] Verify, commit, push, and deploy About repairs.
 - [ ] Verify, commit, push, and deploy content corrections.
 - [ ] Verify, commit, push, and deploy SEO corrections.
