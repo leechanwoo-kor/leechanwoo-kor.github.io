@@ -1,9 +1,9 @@
 ---
 title: "[Database] Database Systems"
 categories:
-  - database
+  - Database
 tags:
-  - dbms
+  - DBMS
 toc: true
 toc_sticky: true
 toc_label: "Basic Concepts"
