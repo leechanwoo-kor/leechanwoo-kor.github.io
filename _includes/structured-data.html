@@ -1,37 +1,31 @@
 {% if page.date %}
+{% assign publisher_logo = site.logo | default: site.og_image | default: site.author.avatar %}
+{% assign article_image = page.header.og_image | default: page.header.overlay_image | default: page.header.image | default: site.og_image %}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "{{ page.url | absolute_url }}"
+    "@id": {{ page.url | absolute_url | jsonify }}
   },
-  "headline": "{{ page.title | escape }}",
-  "description": "{{ page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 160 | escape }}",
-  "datePublished": "{{ page.date | date_to_xmlschema }}",
-  {% if page.last_modified_at %}
-  "dateModified": "{{ page.last_modified_at | date_to_xmlschema }}",
-  {% else %}
-  "dateModified": "{{ page.date | date_to_xmlschema }}",
-  {% endif %}
+  "headline": {{ page.title | jsonify }},
+  "description": {{ page.description | default: page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 160 | jsonify }},
+  "datePublished": {{ page.date | date_to_xmlschema | jsonify }},
+  "dateModified": {{ page.last_modified_at | default: page.lastmod | default: page.date | date_to_xmlschema | jsonify }},
   "author": {
     "@type": "Person",
-    "name": "{{ site.author.name }}"
+    "name": {{ site.author.name | jsonify }}
   },
   "publisher": {
     "@type": "Organization",
-    "name": "{{ site.name | default: site.title }}",
+    "name": {{ site.name | default: site.title | jsonify }}{% if publisher_logo %},
     "logo": {
       "@type": "ImageObject",
-      "url": "{{ site.url }}{{ site.logo }}"
-    }
-  },
-  {% if page.header.image %}
-  "image": "{{ site.url }}{{ page.header.image }}"
-  {% elsif site.og_image %}
-  "image": "{{ site.url }}{{ site.og_image }}"
-  {% endif %}
+      "url": {{ publisher_logo | absolute_url | jsonify }}
+    }{% endif %}
+  }{% if article_image %},
+  "image": {{ article_image | absolute_url | jsonify }}{% endif %}
 }
 </script>
 {% endif %}
