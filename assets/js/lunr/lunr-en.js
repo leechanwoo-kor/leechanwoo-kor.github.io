@@ -23,8 +23,8 @@ var idx = lunr(function () {
 });
 
 $(document).ready(function() {
-  $('input#search').on('keyup', function () {
-    var resultdiv = $('#results');
+  $('input#site-search').on('keyup', function () {
+    var resultdiv = $('#site-search-results');
     var query = $(this).val().toLowerCase();
     var result =
       idx.query(function (q) {
@@ -70,4 +70,7 @@ $(document).ready(function() {
       resultdiv.append(searchitem);
     }
   });
+  if ($('input#site-search').val()) {
+    $('input#site-search').trigger('keyup');
+  }
 });
