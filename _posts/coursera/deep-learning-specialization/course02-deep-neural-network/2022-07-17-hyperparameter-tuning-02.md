@@ -8,7 +8,7 @@ tags:
   - Tensorflow
   - Deep Learning
   - Mathematical Optimization
-  - Hyperparameter Tuning
+  - hyperparameter tuning
 toc: true
 toc_sticky: true
 toc_label: "Hyperparameter Tuning (2)"

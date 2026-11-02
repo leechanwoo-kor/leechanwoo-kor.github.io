@@ -1,7 +1,7 @@
 ---
 title: "[Database] Entity Relationship(ER) Model"
 categories:
-  - database
+  - Database
 tags:
   - Entity Relationship Model
   - ER Model

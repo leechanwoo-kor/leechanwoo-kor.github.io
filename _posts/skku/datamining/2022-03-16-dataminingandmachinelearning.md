@@ -4,7 +4,7 @@ categories:
   - Data Mining
 tags:
   - Data Mining
-  - Machine learning
+  - Machine Learning
 toc: true
 toc_sticky: true
 toc_label: "데이터 마이닝과 기계학습"
