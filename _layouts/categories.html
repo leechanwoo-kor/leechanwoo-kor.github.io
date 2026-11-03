@@ -5,26 +5,25 @@ layout: archive
 {{ content }}
 
 {% assign categories_max = 0 %}
-{% assign categories_single_count = 0 %}
+{% assign categories_more_count = site.categories.size | minus: 12 %}
 {% for category in site.categories %}
-  {% if category[1].size == 1 %}
-    {% assign categories_single_count = categories_single_count | plus: 1 %}
-  {% endif %}
   {% if category[1].size > categories_max %}
     {% assign categories_max = category[1].size %}
   {% endif %}
 {% endfor %}
 
 <ul class="taxonomy__index">
+  {% assign category_index = 0 %}
   {% for i in (1..categories_max) reversed %}
-    {% if i == 1 and categories_single_count > 0 %}
-      <li class="taxonomy__index-more">
-        <details class="taxonomy__singletons">
-          <summary>글이 1개인 카테고리 {{ categories_single_count }}개</summary>
-          <ul class="taxonomy__index">
-    {% endif %}
     {% for category in site.categories %}
       {% if category[1].size == i %}
+        {% assign category_index = category_index | plus: 1 %}
+        {% if category_index == 13 %}
+          <li class="taxonomy__index-more">
+            <details class="taxonomy__singletons">
+              <summary>전체 보기 · {{ categories_more_count }}개 더</summary>
+              <ul class="taxonomy__index">
+        {% endif %}
         <li>
           <a href="#{{ category[0] | slugify }}">
             <strong>{{ category[0] }}</strong> <span class="taxonomy__count">{{ i }}</span>
@@ -32,22 +31,24 @@ layout: archive
         </li>
       {% endif %}
     {% endfor %}
-    {% if i == 1 and categories_single_count > 0 %}
-          </ul>
-        </details>
-      </li>
-    {% endif %}
   {% endfor %}
+  {% if categories_more_count > 0 %}
+        </ul>
+      </details>
+    </li>
+  {% endif %}
 </ul>
 
 {% assign entries_layout = page.entries_layout | default: 'list' %}
+{% assign category_index = 0 %}
 {% for i in (1..categories_max) reversed %}
-  {% if i == 1 and categories_single_count > 0 %}
-    <details class="taxonomy__singletons">
-      <summary>글이 1개인 카테고리 {{ categories_single_count }}개</summary>
-  {% endif %}
   {% for category in site.categories %}
     {% if category[1].size == i %}
+      {% assign category_index = category_index | plus: 1 %}
+      {% if category_index == 13 %}
+        <details class="taxonomy__singletons">
+          <summary>전체 보기 · {{ categories_more_count }}개 더</summary>
+      {% endif %}
       <section id="{{ category[0] | slugify | downcase }}" class="taxonomy__section">
         <h2 class="archive__subtitle">{{ category[0] }}</h2>
         <div class="entries-{{ entries_layout }}">
@@ -59,7 +60,7 @@ layout: archive
       </section>
     {% endif %}
   {% endfor %}
-  {% if i == 1 and categories_single_count > 0 %}
-    </details>
-  {% endif %}
 {% endfor %}
+{% if categories_more_count > 0 %}
+  </details>
+{% endif %}
