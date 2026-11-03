@@ -172,6 +172,7 @@ $secondary: color.mix(variables.$text-color, variables.$background-color, 75%);
     letter-spacing: -0.4px;
   }
   .entries-list > .list__item { padding: 28px 0; border-bottom: 1px solid variables.$border-color; }
+  .entries-list > .list__item + .blog-ad { border-top-color: transparent; }
   .entries-list {
     .blog-post-meta { margin-bottom: 8px; font-size: 12px; }
     .blog-post-meta time { font-variant-numeric: tabular-nums; }
