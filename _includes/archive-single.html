@@ -26,6 +26,12 @@
       {% endif %}
     </h2>
     {% unless include.home %}{% include page__meta.html type=include.type %}{% endunless %}
-    {% if post.excerpt %}<p class="archive__item-excerpt" itemprop="description">{{ post.excerpt | markdownify | strip_html | truncate: 160 }}</p>{% endif %}
+    {% if post.excerpt %}
+      {% assign excerpt = post.excerpt | markdownify | strip_html %}
+      {% assign excerpt_text = excerpt | strip %}
+      {% unless include.home and excerpt_text == empty %}
+        <p class="archive__item-excerpt" itemprop="description">{{ excerpt | truncate: 160 }}</p>
+      {% endunless %}
+    {% endif %}
   </article>
 </div>

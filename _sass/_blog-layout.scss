@@ -170,7 +170,13 @@ $secondary: color.mix(variables.$text-color, variables.$background-color, 75%);
     line-height: 1.4;
     letter-spacing: -0.4px;
   }
-  .entries-list > .list__item { padding: 30px 0; border-bottom: 1px solid variables.$border-color; }
+  .entries-list > .list__item { padding: 28px 0; border-bottom: 1px solid variables.$border-color; }
+  .entries-list {
+    .blog-post-meta { margin-bottom: 8px; font-size: 12px; }
+    .blog-post-meta time { font-variant-numeric: tabular-nums; }
+    .archive__item-title { line-height: 1.5; }
+    .archive__item-excerpt { margin: 10px 0 0; color: $secondary; font-size: 14px; line-height: 1.75; }
+  }
   .archive__item-title {
     margin: 0;
     font-size: 21px;
@@ -183,6 +189,7 @@ $secondary: color.mix(variables.$text-color, variables.$background-color, 75%);
   .archive__item-excerpt { margin: 12px 0 0; }
   .pagination { margin-top: 32px; }
   @media (max-width: 1023px) {
+    .entries-list > .list__item { padding: 24px 0; }
     .archive__subtitle { font-size: 18px; padding-bottom: 16px; }
     .archive__item-title { font-size: 19px; line-height: 1.6; }
   }
