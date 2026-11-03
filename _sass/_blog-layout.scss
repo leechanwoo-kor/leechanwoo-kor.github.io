@@ -4,6 +4,8 @@
 $secondary: color.mix(variables.$text-color, variables.$background-color, 75%);
 
 .layout--home,
+.layout--categories,
+.layout--tags,
 .blog-post {
   .masthead__inner-wrap,
   #main,
@@ -161,7 +163,9 @@ $secondary: color.mix(variables.$text-color, variables.$background-color, 75%);
   }
 }
 
-.layout--home {
+.layout--home,
+.layout--categories .taxonomy__section,
+.layout--tags .taxonomy__section {
   .archive__subtitle {
     margin: 0;
     padding: 1px 0 18px;
@@ -194,6 +198,31 @@ $secondary: color.mix(variables.$text-color, variables.$background-color, 75%);
     .entries-list > .list__item { padding: 24px 0; }
     .archive__subtitle { font-size: 18px; padding-bottom: 16px; }
     .archive__item-title { font-size: 19px; line-height: 1.6; }
+  }
+}
+
+.layout--categories,
+.layout--tags {
+  .page__title { margin: 0 0 24px; font-size: 31px; line-height: 1.45; }
+  .taxonomy__index {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0 24px;
+    margin: 0 0 40px;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .taxonomy__index a { align-items: baseline; gap: 12px; min-height: 44px; padding: 10px 0; }
+  .taxonomy__index strong { min-width: 0; overflow-wrap: anywhere; }
+  .taxonomy__count { flex-shrink: 0; font-variant-numeric: tabular-nums; }
+  .taxonomy__section { margin-bottom: 40px; padding-bottom: 0; border-bottom: 0; }
+  .taxonomy__section .page__meta { margin: 8px 0 0; color: $secondary; font-size: 12px; line-height: 1.6; }
+  .back-to-top { padding: 12px 0; font-size: 12px; line-height: 1.6; }
+  @media (max-width: 1023px) {
+    .page__title { font-size: 26px; }
+    .taxonomy__index { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 599px) {
+    .taxonomy__index { column-gap: 16px; }
   }
 }
 
