@@ -250,6 +250,34 @@ $secondary: color.mix(variables.$text-color, variables.$background-color, 75%);
   .post-toc .toc { margin-top: 14px; border: 0; border-radius: 0; box-shadow: none; }
   .post-toc .toc__menu { font-size: 14px; }
   .post-toc .toc__menu a { padding-top: 6px; padding-bottom: 6px; border: 0; color: $secondary; }
+  .post-pagination {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+    float: none;
+    margin-top: 32px;
+    padding-top: 24px;
+  }
+  .post-pagination::after { display: none; }
+  .post-pagination .pagination--pager {
+    float: none;
+    width: auto;
+    min-width: 0;
+    margin: 0;
+    padding: 12px 0;
+    border: 0;
+    border-radius: 0;
+    font-size: 12px;
+    text-align: left;
+  }
+  .post-pagination a:hover { color: variables.$text-color; background: transparent; }
+  .post-pagination a:hover .post-pagination__title { text-decoration: underline; }
+  .post-pagination a:focus-visible { outline: 2px solid variables.$link-color; outline-offset: 4px; }
+  .post-pagination__label { color: $secondary; font-weight: 400; }
+  .post-pagination__title { display: block; margin-top: 8px; color: variables.$text-color; font-size: 16px; line-height: 1.6; word-break: keep-all; overflow-wrap: anywhere; }
+  @media (max-width: 599px) {
+    .post-pagination { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  }
   .page__content {
     font-size: 18px;
     line-height: 1.8;
