@@ -1,9 +1,12 @@
 ---
 title: "Timeline"
 layout: default
+classes: blog-timeline
 permalink: /timeline/
 ---
 
+<main id="main">
+<h1 class="page__title">{{ page.title }}</h1>
 <div class="timeline_introduce">현재까지 {{ site.posts.size }}개의 포스트를 작성했어요.</div>
 
 {% assign curYear = "now" | date : "%Y" %}
@@ -24,7 +27,7 @@ permalink: /timeline/
     </div>
     {% endif %}
 
-    {% assign postDay = post.date | date: '%d' %}
+    {% assign postDay = post.date | date: '%Y-%m-%d' %}
     {% if postDay != day %}
         {% assign day = postDay %}
         {% if containerType == 'left' %}
@@ -43,6 +46,7 @@ permalink: /timeline/
     </div>
 </div>
 {% endfor %}
+</main>
 
 <!-- <div class="timeline_box">
     {% if containerType == 'left' %}

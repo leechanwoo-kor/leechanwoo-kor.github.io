@@ -316,3 +316,46 @@ $secondary: color.mix(variables.$text-color, variables.$background-color, 75%);
     .post-toc summary { min-height: 44px; }
   }
 }
+
+.blog-timeline {
+  .masthead__inner-wrap,
+  #main,
+  .page__footer footer { max-width: 1120px; padding-left: 32px; padding-right: 32px; }
+  .masthead__inner-wrap { padding-top: 24px; padding-bottom: 24px; }
+  .site-subtitle { font-size: 11px; }
+  #main { padding-top: 40px; padding-bottom: 48px; }
+  .page__title { margin: 0 0 12px; font-size: 31px; line-height: 1.45; }
+  .timeline_introduce { margin-bottom: 32px; color: $secondary; font-size: 16px; font-weight: 400; line-height: 1.7; text-align: left; }
+  .timeline_introduce,
+  .timeline_title,
+  .timeline_date { font-family: inherit; }
+  .timeline_box::after { width: 2px; margin-left: -1px; background: variables.$border-color; }
+  .timeline_container { padding: 16px 24px; }
+  .timeline_container::before { display: none; }
+  .timeline_container::after { width: 10px; height: 10px; top: 25px; right: -5px; border: 2px solid variables.$muted-text-color; background: variables.$background-color; }
+  .timeline_container.right::after { left: -5px; }
+  .timeline_content { padding: 0; border-radius: 0; background: transparent; }
+  .timeline_title { margin: 0 0 8px; font-size: 18px; line-height: 1.5; word-break: keep-all; overflow-wrap: anywhere; }
+  .timeline_date { margin: 0; color: $secondary; font-size: 12px; font-style: normal; line-height: 1.6; font-variant-numeric: tabular-nums; }
+  .page__footer { margin-top: 0; border-top: 1px solid variables.$border-color; background: variables.$background-color; color: $secondary; }
+  .page__footer footer { margin-top: 0; padding-top: 24px; padding-bottom: 24px; }
+  @media (max-width: 1023px) {
+    .masthead__inner-wrap,
+    #main,
+    .page__footer footer { padding-left: 22px; padding-right: 22px; }
+    .masthead__inner-wrap { padding-top: 18px; padding-bottom: 18px; }
+    #main { padding-top: 28px; padding-bottom: 36px; }
+    .page__title { font-size: 26px; }
+  }
+  @media (max-width: 768px) {
+    .timeline_box::after { left: 12px; }
+    .timeline_container { left: 0; width: 100%; padding-left: 36px; padding-right: 0; }
+    .timeline_container::after,
+    .timeline_container.right::after { left: 7px; right: auto; }
+  }
+  @media (max-width: 359px) {
+    .masthead__inner-wrap,
+    #main,
+    .page__footer footer { padding-left: 18px; padding-right: 18px; }
+  }
+}
