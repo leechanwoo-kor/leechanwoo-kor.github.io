@@ -10,6 +10,10 @@
   <script src="{{ '/assets/js/ad-units.js' | relative_url }}" defer></script>
 {% endif %}
 
+{% if page.layout == 'categories' or page.layout == 'tags' %}
+  <script src="{{ '/assets/js/taxonomy-collapse.js' | relative_url }}" defer></script>
+{% endif %}
+
 {% if page.layout == "search" %}
   {%- assign search_provider = site.search_provider | default: "lunr" -%}
   {%- case search_provider -%}

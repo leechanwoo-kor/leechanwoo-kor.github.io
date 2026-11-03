@@ -5,7 +5,11 @@ layout: archive
 {{ content }}
 
 {% assign tags_max = 0 %}
+{% assign tags_single_count = 0 %}
 {% for tag in site.tags %}
+  {% if tag[1].size == 1 %}
+    {% assign tags_single_count = tags_single_count | plus: 1 %}
+  {% endif %}
   {% if tag[1].size > tags_max %}
     {% assign tags_max = tag[1].size %}
   {% endif %}
@@ -13,6 +17,12 @@ layout: archive
 
 <ul class="taxonomy__index">
   {% for i in (1..tags_max) reversed %}
+    {% if i == 1 and tags_single_count > 0 %}
+      <li class="taxonomy__index-more">
+        <details class="taxonomy__singletons">
+          <summary>글이 1개인 태그 {{ tags_single_count }}개</summary>
+          <ul class="taxonomy__index">
+    {% endif %}
     {% for tag in site.tags %}
       {% if tag[1].size == i %}
         <li>
@@ -22,11 +32,20 @@ layout: archive
         </li>
       {% endif %}
     {% endfor %}
+    {% if i == 1 and tags_single_count > 0 %}
+          </ul>
+        </details>
+      </li>
+    {% endif %}
   {% endfor %}
 </ul>
 
 {% assign entries_layout = page.entries_layout | default: 'list' %}
 {% for i in (1..tags_max) reversed %}
+  {% if i == 1 and tags_single_count > 0 %}
+    <details class="taxonomy__singletons">
+      <summary>글이 1개인 태그 {{ tags_single_count }}개</summary>
+  {% endif %}
   {% for tag in site.tags %}
     {% if tag[1].size == i %}
       <section id="{{ tag[0] | slugify | downcase }}" class="taxonomy__section">
@@ -40,4 +59,7 @@ layout: archive
       </section>
     {% endif %}
   {% endfor %}
+  {% if i == 1 and tags_single_count > 0 %}
+    </details>
+  {% endif %}
 {% endfor %}

@@ -214,9 +214,14 @@ $secondary: color.mix(variables.$text-color, variables.$background-color, 75%);
   .taxonomy__index a { align-items: baseline; gap: 12px; min-height: 44px; padding: 10px 0; }
   .taxonomy__index strong { min-width: 0; overflow-wrap: anywhere; }
   .taxonomy__count { flex-shrink: 0; font-variant-numeric: tabular-nums; }
-  .taxonomy__section { margin-bottom: 40px; padding-bottom: 0; border-bottom: 0; }
+  .taxonomy__section { margin-bottom: 40px; padding-bottom: 0; border-bottom: 0; scroll-margin-top: 20px; }
   .taxonomy__section .page__meta { margin: 8px 0 0; color: $secondary; font-size: 12px; line-height: 1.6; }
   .back-to-top { padding: 12px 0; font-size: 12px; line-height: 1.6; }
+  .taxonomy__index-more { grid-column: 1 / -1; }
+  .taxonomy__singletons { margin: 16px 0 32px; border-top: 1px solid variables.$border-color; }
+  .taxonomy__singletons > summary { min-height: 44px; padding: 12px 0; font-size: 14px; font-weight: 600; cursor: pointer; }
+  .taxonomy__singletons[open] > summary { margin-bottom: 16px; }
+  .taxonomy__singletons .taxonomy__index { margin: 0 0 16px; }
   @media (max-width: 1023px) {
     .page__title { font-size: 26px; }
     .taxonomy__index { grid-template-columns: repeat(2, minmax(0, 1fr)); }
