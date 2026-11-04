@@ -267,11 +267,12 @@ async function checkAbout() {
   try {
     const { document } = dom.window;
     checkPrimaryNavigation(document, 'About', 'about/index.html');
-    assert.equal(document.querySelectorAll('h1').length, 1, 'About must have one primary heading');
-    assert.ok(document.querySelector('.sidebar .h-card'), 'About omits the shared author profile');
-    assert.equal(document.querySelectorAll('#skills .about-skill-groups li').length, 46, 'About loses existing skills');
-    assert.equal(document.querySelectorAll('#project .about-entries > li').length, 8, 'About loses existing projects');
-    assert.equal(document.querySelectorAll('#education .about-entries > li').length, 2, 'About loses existing education');
+    assert.equal(document.querySelectorAll('#skills .hexagon svg title').length, 46, 'About loses existing skill icons');
+    assert.equal([...document.querySelectorAll('.project-container p')].filter(item => item.textContent.includes('■')).length, 8, 'About loses existing projects');
+    assert.equal(document.querySelectorAll('.education-container b').length, 2, 'About loses existing education');
+    const aboutContent = document.querySelector('.initial-content-about').textContent;
+    assert.ok(aboutContent.includes('2023.12 ~ 현재'), 'About must use the Korean date range format');
+    assert.ok(!/—|HAI본부/.test(aboutContent), 'About contains rejected date punctuation or the standalone division label');
     assert.ok(document.querySelector('script[src$="/assets/js/main.min.js"]'), 'About omits shared scripts');
     assert.ok(document.getElementById('footer'), 'About footer link has no target');
     dom.window.eval(read('assets/js/main.min.js'));
