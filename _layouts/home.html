@@ -4,7 +4,7 @@ layout: archive
 
 {{ content }}
 
-<h1 id="page-title" class="archive__subtitle">최근 글</h1>
+<h1 id="page-title" class="archive__subtitle">{% if paginator.page > 1 %}이전 글{% else %}최근 글{% endif %}</h1>
 
 {% if paginator %}
   {% assign posts = paginator.posts %}

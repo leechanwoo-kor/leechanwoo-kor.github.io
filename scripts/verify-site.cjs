@@ -130,7 +130,7 @@ function checkNavigation() {
   for (const [document, number] of [[home, 1], [page2, 2]]) {
     assert.equal(document.querySelectorAll('.sidebar .nav__list').length, 0, 'Removed sidebar navigation is still published');
     assert.equal(document.querySelectorAll('h1').length, 1, 'Home must have one primary heading');
-    assert.ok(document.querySelector('h1#page-title')?.textContent.trim(), 'Home skip-link target has no heading');
+    assert.equal(document.querySelector('h1#page-title')?.textContent.trim(), number === 1 ? '최근 글' : '이전 글', 'Home heading must distinguish recent posts from older pages');
     for (const selector of ['.sidebar .author__urls', '.page__footer-follow']) {
       assert.ok(document.querySelector(`${selector} a[href="${linkedinURL}"]`), `LinkedIn is missing from ${selector}`);
     }
