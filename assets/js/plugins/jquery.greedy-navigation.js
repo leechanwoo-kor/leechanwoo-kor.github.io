@@ -6,6 +6,8 @@ Copyright (c) 2015 Luke Jackson
 
 $(function() {
 
+  if ($("nav.greedy-nav[data-fixed-navigation]").length) return;
+
   var $btn = $("nav.greedy-nav .greedy-nav__toggle");
   var $vlinks = $("nav.greedy-nav .visible-links");
   var $hlinks = $("nav.greedy-nav .hidden-links");

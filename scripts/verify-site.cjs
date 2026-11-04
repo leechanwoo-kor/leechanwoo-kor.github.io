@@ -125,6 +125,8 @@ assert.ok(![...files].some(file => /^(tests|scripts)\//.test(file)), 'Verificati
 
 function checkNavigation() {
   const page2 = JSDOM.fragment(read('page2/index.html'));
+  checkPrimaryNavigation(home, 'Posts', 'index.html');
+  checkPrimaryNavigation(page2, 'Posts', 'page2/index.html');
   for (const [document, number] of [[home, 1], [page2, 2]]) {
     assert.equal(document.querySelectorAll('.sidebar .nav__list').length, 0, 'Removed sidebar navigation is still published');
     assert.equal(document.querySelectorAll('h1').length, 1, 'Home must have one primary heading');
@@ -134,11 +136,39 @@ function checkNavigation() {
     }
     const posts = document.querySelectorAll('.archive > .entries-list .archive__item');
     assert.equal(posts.length, 10, 'Home pagination lost posts');
-    for (const post of posts) {
+    const destinations = new Set();
+    for (const [index, post] of [...posts].entries()) {
       const title = post.querySelector('.archive__item-title');
       const date = post.querySelector('time[datetime]');
       assert.ok(date && !Number.isNaN(Date.parse(date.dateTime)), 'Post has no valid publication date');
-      assert.ok(date.compareDocumentPosition(title) & 4, 'Post metadata must precede its title');
+      assert.ok(title.compareDocumentPosition(date) & 4, 'Home post title must precede its metadata');
+      const destination = new URL(title.querySelector('a[rel="permalink"]').getAttribute('href'), siteURL);
+      destinations.add(destination.href);
+      const articleFile = `${decodeURIComponent(destination.pathname).replace(/^\//, '')}index.html`;
+      const article = JSDOM.fragment(read(articleFile));
+      assert.equal(article.querySelector('link[rel="canonical"]').href, destination.href, 'Home entry no longer points to its original article');
+      const featured = number === 1 && index < 2;
+      assert.equal(post.parentElement.classList.contains('home-entry--featured'), featured, 'Featured entries must be the first two posts on the first page');
+      assert.equal(post.parentElement.classList.contains('home-entry--compact'), !featured, 'Older posts must use compact entries');
+      const image = post.querySelector('.home-entry__image img');
+      if (featured) {
+        assert.equal(post.parentElement.classList.contains('home-entry--text'), !image, 'Image-free featured entries need the text layout');
+        if (image) assert.ok(image.alt.trim(), 'Featured image has no alternative text');
+        const excerpt = post.querySelector('.archive__item-excerpt');
+        if (excerpt) assert.ok(excerpt.textContent.trim(), 'Featured entry has an empty excerpt');
+      } else {
+        assert.equal(image, null, 'Compact entry unexpectedly includes a thumbnail');
+        assert.equal(post.querySelector('.archive__item-excerpt'), null, 'Compact entry unexpectedly includes a summary');
+      }
+    }
+    assert.equal(destinations.size, posts.length, 'Home pagination repeats an article');
+    const olderHeading = document.querySelector('.home-older-heading');
+    if (number === 1) {
+      assert.ok(olderHeading?.textContent.trim(), 'Older entries have no section heading');
+      assert.equal(olderHeading.previousElementSibling, posts[1].parentElement, 'Older heading must follow the two featured entries');
+      assert.equal(olderHeading.nextElementSibling, posts[2].parentElement, 'Older heading must precede the third entry');
+    } else {
+      assert.equal(olderHeading, null, 'Paginated archives should use the compact list throughout');
     }
     assert.equal(document.querySelector('.pagination [aria-current="page"]')?.textContent, String(number));
     for (const control of document.querySelectorAll('.pagination [aria-disabled="true"]')) {
@@ -151,6 +181,7 @@ function checkNavigation() {
 
   const firstPostURL = new URL(home.querySelector('.archive__item-title a[rel="permalink"]').getAttribute('href'), siteURL);
   const firstPost = JSDOM.fragment(read(`${decodeURIComponent(firstPostURL.pathname).replace(/^\//, '')}index.html`));
+  checkPrimaryNavigation(firstPost, 'Posts', firstPostURL.pathname);
   const toc = firstPost.querySelector('details.post-toc');
   assert.ok(toc?.querySelector('summary')?.textContent.trim(), 'Article contents have no disclosure control');
   assert.ok(!toc.hasAttribute('open'), 'Article contents should initially be collapsed');
@@ -159,10 +190,38 @@ function checkNavigation() {
   }
 }
 
+function checkPrimaryNavigation(document, expected, file) {
+  const navigation = document.querySelector('#site-nav');
+  assert.ok(navigation, `${file}: main navigation is missing`);
+  assert.equal(navigation.getAttribute('aria-label'), 'Main navigation', `${file}: navigation has no accessible name`);
+  const links = [...navigation.querySelectorAll('.visible-links a')];
+  assert.deepEqual(links.map(link => link.textContent.trim()), ['Posts', 'Topics', 'About'], `${file}: navigation labels changed`);
+  assert.deepEqual(links.map(link => new URL(link.getAttribute('href'), siteURL).pathname), ['/', '/categories/', '/about/'], `${file}: navigation destinations changed`);
+  assert.deepEqual(links.filter(link => link.getAttribute('aria-current') === 'page').map(link => link.textContent.trim()), [expected], `${file}: active navigation does not match the page`);
+  const search = navigation.querySelector('.search__toggle');
+  assert.equal(search?.getAttribute('aria-label'), 'Search posts', `${file}: search has no accessible name`);
+  assert.equal(search?.querySelector('.search__label')?.textContent.trim(), 'Search', `${file}: search label is missing`);
+}
+
+function checkTopicNavigation() {
+  for (const [page, label] of [['categories', 'Categories'], ['tags', 'Tags']]) {
+    const file = `${page}/index.html`;
+    const document = JSDOM.fragment(read(file));
+    checkPrimaryNavigation(document, 'Topics', file);
+    const tabs = document.querySelector('.topics-nav');
+    assert.equal(tabs?.getAttribute('aria-label'), 'Browse topics', `${file}: topic navigation has no accessible name`);
+    assert.deepEqual([...tabs.querySelectorAll('a')].map(link => link.textContent.trim()), ['Categories', 'Tags'], `${file}: topic navigation labels changed`);
+    assert.deepEqual([...tabs.querySelectorAll('a[aria-current="page"]')].map(link => link.textContent.trim()), [label], `${file}: current topic tab is incorrect`);
+    assert.deepEqual([...tabs.querySelectorAll('a')].map(link => new URL(link.getAttribute('href'), siteURL).pathname), ['/categories/', '/tags/'], `${file}: topic tab destinations changed`);
+  }
+  checkPrimaryNavigation(JSDOM.fragment(read('timeline/index.html')), 'Posts', 'timeline/index.html');
+}
+
 async function checkAbout() {
   const dom = new JSDOM(read('about/index.html'), { runScripts: 'outside-only', url: siteURL });
   try {
     const { document } = dom.window;
+    checkPrimaryNavigation(document, 'About', 'about/index.html');
     assert.ok(document.querySelector('script[src$="/assets/js/main.min.js"]'), 'About omits shared scripts');
     assert.ok(document.getElementById('footer'), 'About footer link has no target');
     dom.window.eval(read('assets/js/main.min.js'));
@@ -185,6 +244,7 @@ async function checkAbout() {
 }
 
 checkNavigation();
+checkTopicNavigation();
 checkAbout().then(() => {
   assert.equal(errors.size, 0, [...errors].join('\n'));
   console.log(`Verified ${pages} HTML pages, ${structuredData} JSON-LD blocks, ${adSlots} manual ad placements, sitemap/feed, local links, IDs, social metadata, home layout/pagination, article contents, LinkedIn profiles, and About search with the generated index.`);

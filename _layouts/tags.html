@@ -4,6 +4,8 @@ layout: archive
 
 {{ content }}
 
+{% include topics-nav.html active="tags" %}
+
 {% assign tags_max = 0 %}
 {% assign tags_more_count = site.tags.size | minus: 12 %}
 {% for tag in site.tags %}

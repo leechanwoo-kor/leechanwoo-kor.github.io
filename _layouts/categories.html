@@ -4,6 +4,8 @@ layout: archive
 
 {{ content }}
 
+{% include topics-nav.html active="categories" %}
+
 {% assign categories_max = 0 %}
 {% assign categories_more_count = site.categories.size | minus: 12 %}
 {% for category in site.categories %}

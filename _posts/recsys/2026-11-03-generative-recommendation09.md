@@ -1,5 +1,11 @@
 ---
 title: "[Generative Recommendation] (9) TokenRec (2): 아이템 토큰을 생성하는 대신 검색하기"
+card_title: "TokenRec (2): 아이템 토큰을 생성하는 대신 검색하기"
+card_series: "Generative Recommendation · 9"
+card_summary: "아이템 ID를 순서대로 생성하는 대신 선호 벡터로 검색한다."
+card_image: "/assets/images/posts/generative-recommendation/09/cover.png"
+card_image_alt: "본문 도식 일부: 선호 벡터와 가까운 아이템 검색"
+card_image_crop: "retrieval"
 categories:
   - Recommendation System
 tags:

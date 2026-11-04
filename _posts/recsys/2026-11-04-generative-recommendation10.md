@@ -1,5 +1,11 @@
 ---
 title: "[Generative Recommendation] (10) LC-Rec (1): LLM이 생성할 아이템 인덱스와 Uniform Semantic Mapping"
+card_title: "LC-Rec (1): LLM이 생성할 아이템 인덱스와 Uniform Semantic Mapping"
+card_series: "Generative Recommendation · 10"
+card_summary: "RQ-VAE로 만든 아이템 인덱스의 충돌을 Uniform Semantic Mapping으로 해소한다."
+card_image: "/assets/images/posts/generative-recommendation/10/cover.png"
+card_image_alt: "본문 도식 일부: Uniform Semantic Mapping의 코드 재배정"
+card_image_crop: "uniform-mapping"
 categories:
   - Recommendation System
 tags:

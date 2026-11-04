@@ -4,20 +4,32 @@
   {% assign teaser = site.teaser %}
 {% endif %}
 
+{% assign display_title = post.title %}
+{% if include.home and post.card_title %}{% assign display_title = post.card_title %}{% endif %}
 {% if post.id %}
-  {% assign title = post.title | markdownify | remove: "<p>" | remove: "</p>" %}
+  {% assign title = display_title | markdownify | remove: "<p>" | remove: "</p>" %}
 {% else %}
-  {% assign title = post.title %}
+  {% assign title = display_title %}
 {% endif %}
 
-<div class="{{ include.type | default: 'list' }}__item">
+{% assign card_image = post.card_image | default: post.header.teaser %}
+{% assign home_entry_class = "" %}
+{% if include.home %}
+  {% if include.featured %}
+    {% assign home_entry_class = " home-entry home-entry--featured" %}
+    {% unless card_image %}{% assign home_entry_class = home_entry_class | append: " home-entry--text" %}{% endunless %}
+  {% else %}
+    {% assign home_entry_class = " home-entry home-entry--compact" %}
+  {% endif %}
+{% endif %}
+<div class="{{ include.type | default: 'list' }}__item{{ home_entry_class }}">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    {% if include.type == "grid" and teaser %}
+    {% if include.type == "grid" and teaser and include.home != true %}
       <div class="archive__item-teaser">
         <img src="{{ teaser | relative_url }}" alt="{{ title }}" loading="lazy" decoding="async" width="400" height="250">
       </div>
     {% endif %}
-    {% if include.home %}{% include blog-post-meta.html document=post %}{% endif %}
+    {% if include.home %}<div class="home-entry__copy">{% endif %}
     <h2 class="archive__item-title no_toc" itemprop="headline">
       {% if post.link %}
         <a href="{{ post.link }}">{{ title }}</a> <a href="{{ post.url | relative_url }}" rel="permalink"><i class="fas fa-link" aria-hidden="true" title="permalink"></i><span class="sr-only">Permalink</span></a>
@@ -25,13 +37,26 @@
         <a href="{{ post.url | relative_url }}" rel="permalink">{{ title }}</a>
       {% endif %}
     </h2>
-    {% unless include.home %}{% include page__meta.html type=include.type %}{% endunless %}
-    {% if post.excerpt %}
-      {% assign excerpt = post.excerpt | markdownify | strip_html %}
-      {% assign excerpt_text = excerpt | strip %}
-      {% unless include.home and excerpt_text == empty %}
+    {% if include.home %}
+      {% if include.featured %}
+        {% assign summary = post.card_summary | default: post.excerpt | markdownify | strip_html | strip %}
+        {% unless summary == empty %}
+          <p class="archive__item-excerpt" itemprop="description">{{ summary | truncate: 160 }}</p>
+        {% endunless %}
+      {% endif %}
+      {% include blog-post-meta.html document=post card=true %}
+      </div>
+      {% if include.featured and card_image %}
+        <figure class="home-entry__image{% if post.card_image_crop %} home-entry__image--{{ post.card_image_crop | escape }}{% endif %}">
+          <img src="{{ card_image | relative_url }}" alt="{{ post.card_image_alt | default: display_title | escape }}" loading="lazy" decoding="async">
+        </figure>
+      {% endif %}
+    {% else %}
+      {% include page__meta.html type=include.type %}
+      {% if post.excerpt %}
+        {% assign excerpt = post.excerpt | markdownify | strip_html %}
         <p class="archive__item-excerpt" itemprop="description">{{ excerpt | truncate: 160 }}</p>
-      {% endunless %}
+      {% endif %}
     {% endif %}
   </article>
 </div>

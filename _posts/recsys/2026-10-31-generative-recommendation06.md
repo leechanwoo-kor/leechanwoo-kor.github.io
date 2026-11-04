@@ -1,5 +1,7 @@
 ---
 title: "[Generative Recommendation] (6) DSI에서 TIGER까지: 다음 아이템의 ID를 생성하는 모델"
+card_title: "DSI에서 TIGER까지: 다음 아이템의 ID를 생성하는 모델"
+card_series: "Generative Recommendation · 6"
 categories:
   - Recommendation System
 tags:

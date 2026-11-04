@@ -1,5 +1,7 @@
 ---
 title: "[Generative Recommendation] (7) LETTER: 협업 신호를 담는 학습형 토크나이저"
+card_title: "LETTER: 협업 신호를 담는 학습형 토크나이저"
+card_series: "Generative Recommendation · 7"
 categories:
   - Recommendation System
 tags:

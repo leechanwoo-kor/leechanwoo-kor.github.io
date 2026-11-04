@@ -1,5 +1,7 @@
 ---
 title: "[Generative Recommendation] (8) TokenRec (1): 협업 신호를 LLM 토큰으로 바꾸는 MQ-Tokenizer"
+card_title: "TokenRec (1): 협업 신호를 LLM 토큰으로 바꾸는 MQ-Tokenizer"
+card_series: "Generative Recommendation · 8"
 categories:
   - Recommendation System
 tags:

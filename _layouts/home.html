@@ -4,7 +4,7 @@ layout: archive
 
 {{ content }}
 
-<h1 id="page-title" class="archive__subtitle">{{ site.data.ui-text[site.locale].recent_posts | default: "Recent Posts" }}</h1>
+<h1 id="page-title" class="archive__subtitle">최근 글</h1>
 
 {% if paginator %}
   {% assign posts = paginator.posts %}
@@ -13,9 +13,16 @@ layout: archive
 {% endif %}
 
 {% assign entries_layout = page.entries_layout | default: 'list' %}
+{% assign show_featured = true %}
+{% if paginator.page > 1 %}{% assign show_featured = false %}{% endif %}
 <div class="entries-{{ entries_layout }}">
   {% for post in posts %}
-    {% include archive-single.html type=entries_layout home=true %}
+    {% assign featured = false %}
+    {% if show_featured and forloop.index <= 2 %}{% assign featured = true %}{% endif %}
+    {% if show_featured and forloop.index == 3 %}
+      <h2 class="home-older-heading">이전 글</h2>
+    {% endif %}
+    {% include archive-single.html type=entries_layout home=true featured=featured %}
     {% if forloop.index == 4 and forloop.last == false %}
       {% include ad-unit.html slot="2024194306" %}
     {% endif %}

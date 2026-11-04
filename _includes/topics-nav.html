@@ -1,0 +1,4 @@
+<nav class="topics-nav" aria-label="Browse topics">
+  <a href="{{ '/categories/' | relative_url }}"{% if include.active == 'categories' %} aria-current="page"{% endif %}>Categories</a>
+  <a href="{{ '/tags/' | relative_url }}"{% if include.active == 'tags' %} aria-current="page"{% endif %}>Tags</a>
+</nav>

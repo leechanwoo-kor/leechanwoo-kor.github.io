@@ -1,10 +1,11 @@
 # main links
 main:
+  - title: "Posts"
+    url: /
+    key: posts
+  - title: "Topics"
+    url: /categories/
+    key: topics
   - title: "About"
     url: /about/
-  - title: "Category"
-    url: "/categories/"
-  - title: "Tags"
-    url: /tags/
-  - title: "Timeline"
-    url: /timeline/
+    key: about

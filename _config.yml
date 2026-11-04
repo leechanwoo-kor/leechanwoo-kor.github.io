@@ -19,7 +19,7 @@ minimal_mistakes_skin    : "dirt"
 locale                   : "ko-KR"
 title                    : "Release notes for ML & Python"
 title_separator          : "-"
-subtitle                 : "Machine Learning & Python Developer" # site tagline that appears below site title in masthead
+subtitle                 : "ML & Python" # site tagline that appears below site title in masthead
 name                     : "이찬우(LEE CHANWOO)"
 description              : "Machine Learning, Python, Docker, MLOps 관련 기술 블로그입니다. 딥러닝, 데이터 파이프라인, 컨테이너 기술에 대한 실용적인 가이드와 튜토리얼을 제공합니다. PyTorch, TensorFlow, Kubernetes 등 최신 ML/AI 기술 스택과 개발 노하우를 공유합니다."
 url                      : "https://leechanwoo-kor.github.io" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
@@ -27,7 +27,7 @@ baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : "leechanwoo-kor/leechanwoo-kor.utterances" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : # "/assets/images/profile.gif"
 logo                     : # "/assets/images/profile.gif"
-masthead_title           : "Release notes for" # overrides the website title displayed in the masthead, use " " for no title
+masthead_title           : "Release notes" # overrides the website title displayed in the masthead, use " " for no title
 breadcrumbs              : true # true, false (default)
 words_per_minute         : 200
 comments:
@@ -104,15 +104,13 @@ analytics:
 
 # Site Author
 author:
-  name             : "LEE CHANWOO"
+  name             : "이찬우"
+  name_en          : "LEE CHANWOO"
   avatar           : "/assets/images/profile1x1.gif"
-  bio              : "**📝 Blog 2026 version 2.2.0**<br>**🔖 Mar 9, 2026**"
+  bio              : "추천 시스템 · 머신러닝"
   location         : "Republic of Korea"
   email            :
   links:
-    - label: "Email"
-      icon: "fas fa-fw fa-envelope-square"
-      url: "mailto:cwlee1124@gmail.com"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/leechanwoo-kor"
@@ -128,6 +126,9 @@ author:
     - label: "LinkedIn"
       icon: "fab fa-fw fa-linkedin"
       url: "https://www.linkedin.com/in/cwlee1124/"
+    - label: "Email"
+      icon: "fas fa-fw fa-envelope-square"
+      url: "mailto:cwlee1124@gmail.com"
 
 # Site Footer
 footer:
