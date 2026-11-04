@@ -65,6 +65,9 @@ for (const file of files) {
   pages++;
   const document = JSDOM.fragment(read(file));
   checkAds(document, file);
+  for (const link of document.querySelectorAll('.sidebar .author__urls a')) {
+    assert.ok(link.querySelector('.label')?.textContent.trim(), `${file}: profile icon link has no accessible name`);
+  }
   if (document.querySelector('.nav__list')?.textContent.includes('Navigation Test')) {
     errors.add(`${file}: demo navigation is still published`);
   }
@@ -264,6 +267,11 @@ async function checkAbout() {
   try {
     const { document } = dom.window;
     checkPrimaryNavigation(document, 'About', 'about/index.html');
+    assert.equal(document.querySelectorAll('h1').length, 1, 'About must have one primary heading');
+    assert.ok(document.querySelector('.sidebar .h-card'), 'About omits the shared author profile');
+    assert.equal(document.querySelectorAll('#skills .about-skill-groups li').length, 46, 'About loses existing skills');
+    assert.equal(document.querySelectorAll('#project .about-entries > li').length, 8, 'About loses existing projects');
+    assert.equal(document.querySelectorAll('#education .about-entries > li').length, 2, 'About loses existing education');
     assert.ok(document.querySelector('script[src$="/assets/js/main.min.js"]'), 'About omits shared scripts');
     assert.ok(document.getElementById('footer'), 'About footer link has no target');
     dom.window.eval(read('assets/js/main.min.js'));

@@ -111,6 +111,7 @@
 .site-folio.layout--categories,
 .site-folio.layout--tags,
 .site-folio.layout--terms,
+.site-folio.layout--about,
 .site-folio.blog-post {
   #main {
     display: grid;
@@ -302,6 +303,7 @@
   .site-folio.layout--categories,
   .site-folio.layout--tags,
   .site-folio.layout--terms,
+  .site-folio.layout--about,
   .site-folio.blog-post {
     #main { grid-template-columns: 190px minmax(0, 1fr); gap: 40px; padding-inline: 28px; }
     .breadcrumbs ol { margin-left: 230px; }
@@ -323,6 +325,7 @@
   .site-folio.layout--categories,
   .site-folio.layout--tags,
   .site-folio.layout--terms,
+  .site-folio.layout--about,
   .site-folio.blog-post {
     #main { display: block; padding-top: 30px; padding-bottom: 48px; }
     .sidebar,
@@ -356,6 +359,7 @@
   .site-folio.layout--categories,
   .site-folio.layout--tags,
   .site-folio.layout--terms,
+  .site-folio.layout--about,
   .site-folio.blog-post {
     #main { padding: 28px 20px 40px; }
     .sidebar,
