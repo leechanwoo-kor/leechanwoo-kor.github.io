@@ -217,6 +217,48 @@ function checkTopicNavigation() {
   checkPrimaryNavigation(JSDOM.fragment(read('timeline/index.html')), 'Posts', 'timeline/index.html');
 }
 
+function checkTaxonomyPagination() {
+  for (const page of ['categories', 'tags']) {
+    const file = `${page}/index.html`;
+    const dom = new JSDOM(read(file), { runScripts: 'outside-only', url: new URL(`${page}/`, siteURL).href });
+    try {
+      const { document } = dom.window;
+      const sections = [...document.querySelectorAll('.taxonomy__section')];
+      const index = [...document.querySelectorAll('.taxonomy__index a[href]')];
+      assert.equal(index.length, sections.length, `${file}: taxonomy index and sections disagree`);
+      assert.equal([...document.scripts].filter(script => script.src && new URL(script.src).pathname.endsWith('/assets/js/taxonomy-collapse.js')).length, 1, `${file}: taxonomy initializer must load once`);
+      assert.equal(document.querySelectorAll('.taxonomy__pagination').length, 0, `${file}: pagination must not restrict the no-JavaScript archive`);
+      assert.equal(document.querySelectorAll('details.taxonomy__singletons').length, sections.length > 12 ? 2 : 0, `${file}: taxonomy disclosures changed`);
+      assert.equal(document.querySelectorAll('details.taxonomy__singletons[open]').length, 0, `${file}: extra taxonomy groups must initially be collapsed`);
+      const original = sections.map((section, position) => {
+        const entries = section.querySelector('.entries-list, .entries-grid');
+        const items = [...entries.children];
+        assert.equal(decodeURIComponent(index[position].hash.slice(1)), section.id, `${file}: taxonomy index order or target changed`);
+        assert.equal(index[position].querySelector('strong').textContent.trim(), section.querySelector('h2').textContent.trim(), `${file}: taxonomy heading and index label disagree`);
+        assert.equal(Number(index[position].querySelector('.taxonomy__count').textContent), items.length, `${file}: ${section.id} post count differs from its index`);
+        assert.equal(items.some(item => item.hidden), false, `${file}: ${section.id} hides posts before JavaScript loads`);
+        assert.equal(Boolean(section.closest('details.taxonomy__singletons')), position >= 12, `${file}: article groups no longer use the top twelve`);
+        assert.equal(Boolean(index[position].closest('details.taxonomy__singletons')), position >= 12, `${file}: index no longer uses the top twelve`);
+        return { section, entries, count: items.length, links: [...entries.querySelectorAll('a[rel="permalink"]')].map(link => link.href) };
+      });
+      const counts = original.map(group => group.count);
+      assert.deepEqual(counts, [...counts].sort((a, b) => b - a), `${file}: taxonomy groups must be ordered by post count`);
+      dom.window.eval(read('assets/js/taxonomy-collapse.js'));
+      for (const group of original) {
+        const items = [...group.entries.children];
+        assert.equal(items.length, group.count, `${file}: ${group.section.id} loses posts during pagination`);
+        assert.deepEqual([...group.entries.querySelectorAll('a[rel="permalink"]')].map(link => link.href), group.links, `${file}: ${group.section.id} article order or destinations changed`);
+        assert.equal(items.filter(item => !item.hidden).length, Math.min(group.count, 10), `${file}: ${group.section.id} has an incorrect first page`);
+        const pagers = group.section.querySelectorAll('.taxonomy__pagination');
+        assert.equal(pagers.length, group.count > 10 ? 1 : 0, `${file}: ${group.section.id} has an incorrect pager count`);
+        if (pagers.length) assert.equal(pagers[0].querySelector('[aria-current="page"]')?.textContent, '1', `${file}: ${group.section.id} does not start on page one`);
+      }
+    } finally {
+      dom.window.close();
+    }
+  }
+}
+
 async function checkAbout() {
   const dom = new JSDOM(read('about/index.html'), { runScripts: 'outside-only', url: siteURL });
   try {
@@ -245,9 +287,10 @@ async function checkAbout() {
 
 checkNavigation();
 checkTopicNavigation();
+checkTaxonomyPagination();
 checkAbout().then(() => {
   assert.equal(errors.size, 0, [...errors].join('\n'));
-  console.log(`Verified ${pages} HTML pages, ${structuredData} JSON-LD blocks, ${adSlots} manual ad placements, sitemap/feed, local links, IDs, social metadata, home layout/pagination, article contents, LinkedIn profiles, and About search with the generated index.`);
+  console.log(`Verified ${pages} HTML pages, ${structuredData} JSON-LD blocks, ${adSlots} manual ad placements, sitemap/feed, local links, IDs, social metadata, home layout/pagination, taxonomy counts/disclosures/pagination, article contents, LinkedIn profiles, and About search with the generated index.`);
 }).catch(error => {
   console.error(error);
   process.exitCode = 1;
