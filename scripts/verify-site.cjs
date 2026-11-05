@@ -60,11 +60,43 @@ function checkAds(document, file) {
   }
 }
 
+function checkPostReading(document, file) {
+  const isPost = Boolean(document.querySelector('#main.blog-reading-layout'));
+  assert.equal(document.querySelectorAll('script[src$="/assets/js/post-reading.js"]').length, isPost ? 1 : 0, `${file}: unexpected article initializer count`);
+  if (!isPost) return;
+  assert.ok(document.querySelector('.post-byline a[rel="author"]')?.textContent.trim(), `${file}: mobile author is missing`);
+  const outline = document.querySelector('.post-outline');
+  const mobile = document.querySelector('.post-toc .toc');
+  assert.equal(Boolean(outline), Boolean(mobile), `${file}: desktop and mobile outlines disagree`);
+  if (!outline) return;
+  const headings = [...document.querySelectorAll('.page__content h2[id], .page__content h3[id]')].filter(heading => !heading.classList.contains('no_toc'));
+  const firstSection = headings.findIndex(heading => heading.tagName === 'H2');
+  const included = firstSection < 0 ? headings : headings.slice(firstSection);
+  const expected = included.map(heading => heading.id);
+  for (const navigation of [outline, mobile]) {
+    const links = [...navigation.querySelectorAll('a')];
+    assert.deepEqual(links.map(link => decodeURIComponent(link.getAttribute('href').slice(1))), expected, `${file}: article outline omits or reorders headings`);
+    let parentSection;
+    links.forEach((link, index) => {
+      const heading = included[index];
+      assert.equal(link.textContent.trim(), heading.textContent.trim(), `${file}: outline label differs from its heading`);
+      if (firstSection >= 0 && heading.tagName === 'H3') {
+        assert.equal(link.closest('ul').parentElement, parentSection, `${file}: subsection is outside its parent section`);
+      } else {
+        parentSection = link.parentElement;
+        assert.equal(parentSection.parentElement.parentElement, navigation, `${file}: major section is incorrectly nested`);
+      }
+    });
+  }
+  assert.ok(!outline.hasAttribute('data-enhanced'), `${file}: no-JavaScript outline must remain expanded`);
+}
+
 for (const file of files) {
   if (!file.endsWith('.html')) continue;
   pages++;
   const document = JSDOM.fragment(read(file));
   checkAds(document, file);
+  checkPostReading(document, file);
   for (const link of document.querySelectorAll('.sidebar .author__urls a')) {
     assert.ok(link.querySelector('.label')?.textContent.trim(), `${file}: profile icon link has no accessible name`);
   }

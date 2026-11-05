@@ -1,0 +1,31 @@
+{%- assign outline_nodes = include.html | split: '<h' -%}
+{%- assign outline_level = 3 -%}
+{%- for node in outline_nodes -%}
+  {%- assign level = node | slice: 0, 1 -%}
+  {%- assign attributes = node | split: '>' | first -%}
+  {%- if level == '2' and attributes contains 'id="' -%}
+    {%- unless attributes contains 'no_toc' -%}{%- assign outline_level = 2 -%}{%- break -%}{%- endunless -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- assign outline_started = false -%}
+{%- assign outline_nested = false -%}
+{%- for node in outline_nodes -%}
+  {%- assign level = node | slice: 0, 1 | plus: 0 -%}
+  {%- assign attributes = node | split: '>' | first -%}
+  {%- if level < outline_level or level > 3 -%}{%- continue -%}{%- endif -%}
+  {%- unless attributes contains 'id="' -%}{%- continue -%}{%- endunless -%}
+  {%- if attributes contains 'no_toc' -%}{%- continue -%}{%- endif -%}
+  {%- if outline_started == false and level != outline_level -%}{%- continue -%}{%- endif -%}
+  {%- assign heading_id = attributes | split: 'id="' | last | split: '"' | first -%}
+  {%- assign heading_open = attributes | append: '>' -%}
+  {%- assign heading_text = node | split: '</h' | first | remove_first: heading_open | strip_html | strip -%}
+  {%- if level == outline_level -%}
+    {%- if outline_nested -%}</li></ul>{%- assign outline_nested = false -%}{%- endif -%}
+    {%- if outline_started -%}</li>{%- else -%}<ul>{%- assign outline_started = true -%}{%- endif -%}
+  {%- elsif outline_nested -%}</li>
+  {%- else -%}<ul>{%- assign outline_nested = true -%}
+  {%- endif -%}
+  <li data-level="{{ level }}"><a href="#{{ heading_id | escape_once }}" data-level="{{ level }}">{{ heading_text | escape_once }}</a>
+{%- endfor -%}
+{%- if outline_nested -%}</li></ul>{%- endif -%}
+{%- if outline_started -%}</li></ul>{%- endif -%}

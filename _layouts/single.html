@@ -8,7 +8,7 @@ layout: default
   {% include page__hero_video.html %}
 {% endif %}
 
-{% if page.url != "/" and site.breadcrumbs %}
+{% if page.url != "/" and site.breadcrumbs and page.id == nil %}
   {% unless paginator %}
     {% include breadcrumbs.html %}
   {% endunless %}
@@ -16,8 +16,14 @@ layout: default
 
 {% include structured-data.html %}
 
+{% assign post_outline = '' %}
+{% if page.id and page.toc %}
+  {% capture post_outline %}{% include post-outline.html html=content %}{% endcapture %}
+  {% assign post_outline = post_outline | strip %}
+{% endif %}
+
 <div id="main"{% if page.id %} class="blog-reading-layout"{% endif %} role="main">
-  {% include sidebar.html %}
+  {% include sidebar.html outline=post_outline %}
 
   <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
     {% if page.title %}<meta itemprop="headline" content="{{ page.title | markdownify | strip_html | strip_newlines | escape_once }}">{% endif %}
@@ -28,10 +34,29 @@ layout: default
     <div class="page__inner-wrap">
       {% unless page.header.overlay_color or page.header.overlay_image %}
         <header>
+          {% assign display_title = page.title %}
+          {% if page.id %}
+            {% assign display_title = page.card_title | default: page.title %}
+            {% assign post_series = page.card_series %}
+            {% assign title_start = display_title | slice: 0, 1 %}
+            {% if page.card_title == nil and title_start == '[' and display_title contains '] ' %}
+              {% assign title_prefix = display_title | split: '] ' | first | append: '] ' %}
+              {% assign post_series = title_prefix | remove_first: '[' | remove: '] ' %}
+              {% assign display_title = display_title | remove_first: title_prefix %}
+            {% endif %}
+            {% if post_series %}<p class="post-series">{{ post_series | escape }}</p>{% endif %}
+          {% endif %}
           {% if page.title %}<h1 id="page-title" class="page__title p-name" itemprop="headline">
-            <a href="{{ page.url | absolute_url }}" class="u-url" itemprop="url">{{ page.title | markdownify | remove: "<p>" | remove: "</p>" }}</a>
+            <a href="{{ page.url | absolute_url }}" class="u-url" itemprop="url">{{ display_title | markdownify | remove: "<p>" | remove: "</p>" }}</a>
           </h1>{% endif %}
           {% if page.id %}
+            {% if page.card_summary %}<p class="post-deck">{{ page.card_summary | escape }}</p>{% endif %}
+            {% assign post_author = page.author | default: page.authors[0] | default: site.author %}
+            {% assign post_author = site.data.authors[post_author] | default: post_author %}
+            <div class="post-byline">
+              {% if post_author.avatar %}<img src="{{ post_author.avatar | relative_url }}" alt="" width="32" height="32" decoding="async">{% endif %}
+              <a href="{{ post_author.home | default: '/' | absolute_url }}" rel="author">{{ post_author.name | escape }}</a>
+            </div>
             {% include blog-post-meta.html document=page %}
           {% else %}
             {% include page__meta.html %}
@@ -39,11 +64,11 @@ layout: default
         </header>
       {% endunless %}
 
-      {% if page.id and page.toc %}
+      {% if post_outline != '' %}
         <details class="post-toc">
           <summary>이 글의 목차</summary>
           <nav class="toc" aria-label="{{ page.toc_label | default: site.data.ui-text[site.locale].toc_label | default: 'On this page' | escape }}">
-            {% include toc.html sanitize=true html=content h_min=1 h_max=6 class="toc__menu" skip_no_ids=true %}
+            {{ post_outline | replace_first: '<ul>', '<ul class="toc__menu">' }}
           </nav>
         </details>
       {% endif %}
