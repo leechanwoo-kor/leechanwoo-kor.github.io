@@ -8,7 +8,7 @@ tags:
   - EAGER
   - Contrastive Learning
   - Knowledge Transfer
-  - Multi-task Learning
+  - Multi-Task Learning
 toc: true
 toc_sticky: true
 toc_label: "EAGER (2)"
