@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 
 # Jekyll
-gem "jekyll", "~> 4.3.2"
+gem "jekyll", "~> 4.4.1"
 gem "kramdown-parser-gfm", "~> 1.1.0"
 
 # 테마 사용 (최신 버전 지정)
