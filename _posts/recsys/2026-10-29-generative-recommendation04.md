@@ -259,7 +259,7 @@ def add_collision_suffix(codes):                       # codes: (N, L) 텐서
 * **잔차 양자화**는 양자화 오차를 다시 양자화하는 과정을 반복해서, $K \times L$개의 코드 벡터로 $K^L$개의 조합을 표현합니다.
 * 단계가 깊어질수록 잔차가 작아지며, 앞쪽 코드는 큰 범주를, 뒤쪽 코드는 세부를 담는 **거친 것에서 세밀한 것으로**의 구조가 생깁니다.
 * **RQ-VAE**는 이 잔차 양자화를 오토인코더에 넣은 모델이고, TIGER는 단계별 코드북과 k-means 초기화로 아이템 Semantic ID를 만들었습니다.
-* 실험에서는 TIGER 방식이 모든 단계에서 가장 좋았고, 코드북을 공유하면 깊은 단계의 코드가 거의 쓰이지 않았으며 ID가 소수에 몰렸습니다. 다만 대규모 실데이터에서는 사후 잔차 k-means가 더 좋았다는 보고도 있어, 두 방법을 모두 비교해 보는 것이 좋습니다.
+* 실험에서는 TIGER 방식이 모든 단계에서 가장 좋았고, 코드북을 공유하면 모든 단계에서 일부 코드만 쓰였고 ID가 소수에 몰렸습니다. 다만 대규모 실데이터에서는 사후 잔차 k-means가 더 좋았다는 보고도 있어, 두 방법을 모두 비교해 보는 것이 좋습니다.
 * 만들어진 Semantic ID는 **앞자리를 공유할수록 비슷한 아이템**이라는 계층 구조를 가지며, 의미를 잘 담을수록 **ID 충돌**도 생기기 쉬워 네 번째 코드 같은 처리가 필요합니다.
 
 다음 글에서는 한 걸음 물러나 **Semantic ID 자체의 설계**를 다룹니다. 어떤 임베딩을 양자화해야 하는지, 콘텐츠 정보만으로 충분한지 아니면 협업 신호를 담아야 하는지, ID 길이와 코드북 크기는 어떻게 정하는지, 그리고 좋은 Semantic ID를 어떻게 평가하는지 정리하겠습니다.
@@ -270,5 +270,5 @@ def add_collision_suffix(codes):                       # codes: (N, L) 텐서
 
 * Lee et al., *Autoregressive Image Generation using Residual Quantization* (RQ-VAE), CVPR 2022. [arXiv:2203.01941](https://arxiv.org/abs/2203.01941)
 * Rajput et al., *Recommender Systems with Generative Retrieval* (TIGER), NeurIPS 2023. [arXiv:2305.05065](https://arxiv.org/abs/2305.05065)
-* Zeghidour et al., *SoundStream: An End-to-End Neural Audio Codec*, 2021. [arXiv:2107.03312](https://arxiv.org/abs/2107.03312)
+* Zeghidour et al., *SoundStream: An End-to-End Neural Audio Codec*, IEEE/ACM TASLP 2022. [arXiv:2107.03312](https://arxiv.org/abs/2107.03312)
 * Kuaishou OneRec Team, *OneRec Technical Report*, 2025. [arXiv:2506.13695](https://arxiv.org/abs/2506.13695)

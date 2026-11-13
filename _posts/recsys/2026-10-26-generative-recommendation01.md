@@ -211,5 +211,5 @@ LLM은 언어는 잘 알지만 "이 상품을 산 사람이 저 상품도 샀다
 * Tay et al., *Transformer Memory as a Differentiable Search Index*, NeurIPS 2022. [arXiv:2202.06991](https://arxiv.org/abs/2202.06991)
 * Rajput et al., *Recommender Systems with Generative Retrieval*, NeurIPS 2023. [arXiv:2305.05065](https://arxiv.org/abs/2305.05065)
 * Geng et al., *Recommendation as Language Processing (RLP): A Unified Pretrain, Personalized Prompt & Predict Paradigm (P5)*, RecSys 2022. [arXiv:2203.13366](https://arxiv.org/abs/2203.13366)
-* Zheng et al., *Adapting Large Language Models by Integrating Collaborative Semantics for Recommendation* (LC-Rec). [arXiv:2311.09049](https://arxiv.org/abs/2311.09049)
-* Wang et al., *Learnable Item Tokenization for Generative Recommendation* (LETTER). [arXiv:2405.07314](https://arxiv.org/abs/2405.07314)
+* Zheng et al., *Adapting Large Language Models by Integrating Collaborative Semantics for Recommendation* (LC-Rec), ICDE 2024. [arXiv:2311.09049](https://arxiv.org/abs/2311.09049)
+* Wang et al., *Learnable Item Tokenization for Generative Recommendation* (LETTER), CIKM 2024. [arXiv:2405.07314](https://arxiv.org/abs/2405.07314)

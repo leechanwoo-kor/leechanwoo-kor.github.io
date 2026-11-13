@@ -108,7 +108,7 @@ $$
 \min_\theta \sum_{i=1}^{n} \left\| \mathbf{r}^{(i)} - h(\mathbf{r}^{(i)}; \theta) \right\|_{\mathcal{O}}^2 + \frac{\lambda}{2}\left(\|W\|_F^2 + \|V\|_F^2\right)
 $$
 
-$\|\cdot\|_{\mathcal{O}}^2$는 관측된 항목만 더한다는 뜻이고, 뒤쪽은 과적합을 막는 L2 규제입니다.
+$\lVert\cdot\rVert_{\mathcal{O}}^2$는 관측된 항목만 더한다는 뜻이고, 뒤쪽은 과적합을 막는 L2 규제입니다.
 
 ### 3.3 결과: 아이템 기반이 더 잘 맞았다
 

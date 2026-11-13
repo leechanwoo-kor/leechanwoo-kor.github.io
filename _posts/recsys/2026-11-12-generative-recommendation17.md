@@ -166,7 +166,7 @@ def codebook_report(codes, K):
         cnt = torch.bincount(codes[:, l], minlength=K).float()
         p = cnt[cnt > 0] / cnt.sum()
         srt = torch.sort(cnt).values
-        idx = torch.arange(1, K + 1, dtype=torch.float)
+        idx = torch.arange(1, K + 1, dtype=torch.float, device=codes.device)
         gini = ((2 * idx - K - 1) * srt).sum() / (K * srt.sum())
         out.append(dict(level=l + 1, used=int((cnt > 0).sum()),
                         perplexity=float(torch.exp(-(p * p.log()).sum())), gini=float(gini)))
@@ -220,7 +220,7 @@ class DeadCodeReset:
             dead = (~self.used[l]).nonzero(as_tuple=True)[0]
             if len(dead):
                 pick = torch.randint(len(residuals[l]), (len(dead),))
-                cb.data[dead] = residuals[l][pick] + 1e-3 * torch.randn(len(dead), cb.size(1))
+                cb.data[dead] = residuals[l][pick] + 1e-3 * torch.randn(len(dead), cb.size(1), device=cb.device)
         self.used.zero_()
 ```
 

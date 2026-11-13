@@ -61,7 +61,7 @@ DSI는 문서 ID를 붙이는 세 가지 방식을 비교했습니다.
 
 ### 1.3 결과
 
-Natural Questions(NQ320K)에서 DSI는 BM25(Hits@1 11.6)와 T5-XXL 듀얼 인코더(24.3)보다 높은 Hits@1(35.6, 의미 구조 ID, T5-Large)을 기록했습니다. 다만 Hits@10에서는 듀얼 인코더(67.3)가 DSI(62.6)보다 높았습니다. 정답 하나를 정확히 맞히는 데는 강하지만, 후보를 넓게 뽑는 데는 기존 방식이 여전히 강했던 셈입니다. 모델이 클수록 성능이 꾸준히 올라간다는 점도 함께 보였습니다.
+Natural Questions(NQ320K)에서 DSI는 BM25(Hits@1 11.6)와 T5-XXL 듀얼 인코더(24.3)보다 높은 Hits@1(35.6, 의미 구조 ID, T5-Large)을 기록했습니다. 다만 같은 T5-Large의 Hits@10(62.6)은 T5-XXL 듀얼 인코더(67.3)보다 낮았고, DSI도 T5-XXL로 키워야 Hits@1 40.4, Hits@10 70.3으로 두 지표 모두에서 앞섰습니다. 정답 하나를 정확히 맞히는 데는 강했지만, 후보를 넓게 뽑는 데서 앞서려면 더 큰 모델이 필요했던 셈입니다. 모델이 클수록 성능이 꾸준히 올라간다는 점도 함께 보였습니다.
 
 ---
 
@@ -199,7 +199,7 @@ flowchart TD
 
 <br>![image](/assets/images/posts/generative-recommendation/06/beam-search.png){: .align-center}<br>
 
-* **빔 크기 10부터 Recall@10이 거의 늘지 않았습니다(0.615).** 빔 크기가 10보다 작으면 상위 10개를 다 채우지 못하므로 낮게 나오는 것이 당연하고, 그 이상은 계산만 늘어납니다.
+* **빔 크기 10부터 Recall@10이 거의 늘지 않았습니다(0.615, 이 그림은 시드 하나의 결과라 위 표의 세 시드 평균 0.589와 다릅니다).** 빔 크기가 10보다 작으면 상위 10개를 다 채우지 못하므로 낮게 나오는 것이 당연하고, 그 이상은 계산만 늘어납니다.
 * **제약 없이 생성해도 존재하지 않는 ID가 거의 나오지 않았습니다.** 상위 10개 중 최대 0.007%로, 두 방식의 Recall이 사실상 같았습니다. TIGER 논문(0.1~1.6%)보다도 훨씬 적은데, 이 실험은 아이템이 1,797개뿐이고 코드 조합이 촘촘해서 모델이 존재하는 조합을 쉽게 익혔기 때문으로 보입니다. 아이템이 수백만 개로 늘어나고 품절, 지역 제한 같은 조건이 붙는 실서비스에서는 제약 디코딩의 필요성이 훨씬 커집니다.
 
 ---
@@ -291,7 +291,7 @@ def constrained_beam_search(model, src, trie, offsets, sid_len=4, beam=20):
     beams = [((), 0.0)]                                # (지금까지의 코드, 로그 확률)
     for l in range(sid_len):
         prefix = torch.tensor([[c + offsets[i] for i, c in enumerate(p)] for p, _ in beams],
-                              dtype=torch.long).reshape(len(beams), l)
+                              dtype=torch.long, device=src.device).reshape(len(beams), l)
         logp = model(src.expand(len(beams), -1), prefix)[:, -1].log_softmax(-1)
         cand = [(p + (c,), s + logp[b, c + offsets[l]].item())
                 for b, (p, s) in enumerate(beams) for c in trie[p]]   # 존재하는 다음 코드만
@@ -323,4 +323,4 @@ def constrained_beam_search(model, src, trie, offsets, sid_len=4, beam=20):
 * Tay et al., *Transformer Memory as a Differentiable Search Index* (DSI), NeurIPS 2022. [arXiv:2202.06991](https://arxiv.org/abs/2202.06991)
 * Rajput et al., *Recommender Systems with Generative Retrieval* (TIGER), NeurIPS 2023. [arXiv:2305.05065](https://arxiv.org/abs/2305.05065)
 * Kang and McAuley, *Self-Attentive Sequential Recommendation* (SASRec), ICDM 2018. [arXiv:1808.09781](https://arxiv.org/abs/1808.09781)
-* Su et al., *Vectorizing the Trie: Efficient Constrained Decoding for LLM-based Generative Retrieval on Accelerators* (STATIC), 2026. [arXiv:2602.22647](https://arxiv.org/abs/2602.22647)
+* Su et al., *Vectorizing the Trie: Efficient Constrained Decoding for LLM-based Generative Retrieval on Accelerators* (STATIC), KDD 2026. [arXiv:2602.22647](https://arxiv.org/abs/2602.22647)

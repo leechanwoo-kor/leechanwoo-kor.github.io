@@ -69,7 +69,7 @@ flowchart LR
 * **양자화:** $z_e(x)$와 가장 가까운 코드 벡터 $e_k$를 찾아 $z_q(x) = e_k$로 바꿉니다.
 * **Decoder:** 연속 벡터가 아니라 **코드 벡터 $z_q(x)$만 보고** 입력을 복원합니다.
 
-VAE와 비교하면 사후 분포가 크게 단순해집니다. VQ-VAE의 사후 분포 $q(z|x)$는 가장 가까운 코드에 확률 1을 주는 **원-핫 분포**입니다.
+VAE와 비교하면 사후 분포가 크게 단순해집니다. VQ-VAE의 사후 분포 $q(z \mid x)$는 가장 가까운 코드에 확률 1을 주는 **원-핫 분포**입니다.
 
 $$
 q(z = k \mid x) =
@@ -354,7 +354,7 @@ Adam처럼 상태를 가진 옵티마이저를 쓴다면, 교체한 코드의 �
 
 * van den Oord et al., *Neural Discrete Representation Learning* (VQ-VAE), NeurIPS 2017. [arXiv:1711.00937](https://arxiv.org/abs/1711.00937)
 * Bengio et al., *Estimating or Propagating Gradients Through Stochastic Neurons for Conditional Computation*, 2013. [arXiv:1308.3432](https://arxiv.org/abs/1308.3432)
-* Zeghidour et al., *SoundStream: An End-to-End Neural Audio Codec*, 2021. [arXiv:2107.03312](https://arxiv.org/abs/2107.03312)
+* Zeghidour et al., *SoundStream: An End-to-End Neural Audio Codec*, IEEE/ACM TASLP 2022. [arXiv:2107.03312](https://arxiv.org/abs/2107.03312)
 * Yu et al., *Vector-quantized Image Modeling with Improved VQGAN* (ViT-VQGAN), ICLR 2022. [arXiv:2110.04627](https://arxiv.org/abs/2110.04627)
 * Kuaishou OneRec Team, *OneRec Technical Report*, 2025. [arXiv:2506.13695](https://arxiv.org/abs/2506.13695)
 * Chen et al., *What Makes a Good Semantic ID for Generative Recommendation? A Reproducibility Study*, 2026. [arXiv:2609.24430](https://arxiv.org/abs/2609.24430)

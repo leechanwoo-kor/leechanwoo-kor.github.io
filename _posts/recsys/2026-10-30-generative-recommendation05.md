@@ -131,7 +131,7 @@ flowchart LR
 
 <br>![image](/assets/images/posts/generative-recommendation/05/warm-vs-data.png){: .align-center}<br>
 
-* **데이터가 적을 때는 협업 ID가 가장 좋았습니다.** 세션 500개에서 협업 ID의 Recall@10은 0.39로, 아이템 ID(0.29)보다 약 32% 높았습니다. 비슷하게 소비되는 아이템끼리 앞자리를 공유하므로, 기록이 적은 아이템도 같은 그룹 아이템의 통계를 빌려 쓸 수 있기 때문입니다.
+* **데이터가 적을 때는 협업 ID가 가장 좋았습니다.** 세션 500개에서 협업 ID의 Recall@10은 0.39로, 아이템 ID(0.29)보다 약 3분의 1 높았습니다. 비슷하게 소비되는 아이템끼리 앞자리를 공유하므로, 기록이 적은 아이템도 같은 그룹 아이템의 통계를 빌려 쓸 수 있기 때문입니다.
 * **데이터가 많아지면 아이템 ID가 따라잡았습니다.** 아이템 ID는 데이터가 늘수록 꾸준히 좋아져 세션 3만 개에서 0.46으로 협업 ID(0.45)를 앞섰고, NDCG@10도 0.278 대 0.267로 앞섰습니다. 반면 협업 ID는 세션 8천 개 이후 거의 늘지 않았습니다. 아이템 ID의 기억력이 충분한 데이터를 만나 힘을 발휘한 것으로, 2장의 기억과 일반화 관점과 같은 결과입니다.
 * **콘텐츠 ID는 데이터가 적을 때도 아이템 ID보다 낮았습니다.** 이 실험에서는 생김새가 취향을 절반 정도만 설명하기 때문에, 생김새로 묶은 앞자리가 오히려 엉뚱한 아이템과 통계를 섞었습니다.
 * **랜덤 ID는 모든 조건에서 가장 나빴습니다.** 의미 없는 코드끼리 통계를 공유하니 잡음만 늘어난 셈입니다. TIGER의 비교 실험에서 랜덤 ID가 가장 나빴던 것과 같은 방향입니다.
@@ -155,7 +155,7 @@ flowchart LR
 | 3 | 914~951 | 13~19 | 0.393 |
 | 4 | 1,472~1,483 | 7~9 | 0.387 |
 
-단계가 짧으면 충돌 코드가 대부분의 구분을 떠맡고, 길면 앞자리 조합이 아이템 수에 가까워져 공유되는 통계가 줄어듭니다. 이번 실험에서는 2~3단계가 가장 좋았지만 차이는 크지 않았습니다. 2026년의 재현 연구(Chen et al.)도 방법에 따라 가장 좋은 길이가 달랐다고 보고했습니다. 잔차 k-means는 3단계 근처에서 가장 좋았고, RQ-VAE는 12단계에서 가장 좋았지만 성능 차이는 비슷했습니다. **길이는 데이터와 방법에 맞춰 실험으로 정해야 하는 값**입니다.
+단계가 짧으면 충돌 코드가 대부분의 구분을 떠맡고, 길면 앞자리 조합이 아이템 수에 가까워져 공유되는 통계가 줄어듭니다. 이번 실험에서는 2~3단계가 가장 좋았지만 차이는 크지 않았습니다. 2026년의 재현 연구(Chen et al.)도 방법에 따라 가장 좋은 길이가 달랐다고 보고했습니다. 잔차 k-means는 3단계 근처에서 가장 좋았고, RQ-VAE는 12단계에서 가장 좋았지만 두 방법의 최고 성능은 비슷했습니다. **길이는 데이터와 방법에 맞춰 실험으로 정해야 하는 값**입니다.
 
 ---
 
@@ -284,7 +284,7 @@ def id_report(codes, sessions, labels=None):
 ## 참고 문헌
 
 * Wang et al., *Learnable Item Tokenization for Generative Recommendation* (LETTER), CIKM 2024. [arXiv:2405.07314](https://arxiv.org/abs/2405.07314)
-* Singh et al., *Better Generalization with Semantic IDs: A Case Study in Ranking for Recommendations*, 2024. [arXiv:2306.08121](https://arxiv.org/abs/2306.08121)
+* Singh et al., *Better Generalization with Semantic IDs: A Case Study in Ranking for Recommendations*, RecSys 2024. [arXiv:2306.08121](https://arxiv.org/abs/2306.08121)
 * Rajput et al., *Recommender Systems with Generative Retrieval* (TIGER), NeurIPS 2023. [arXiv:2305.05065](https://arxiv.org/abs/2305.05065)
 * Kuaishou OneRec Team, *OneRec Technical Report*, 2025. [arXiv:2506.13695](https://arxiv.org/abs/2506.13695)
 * Chen et al., *What Makes a Good Semantic ID for Generative Recommendation? A Reproducibility Study*, 2026. [arXiv:2609.24430](https://arxiv.org/abs/2609.24430)
